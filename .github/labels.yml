@@ -1,0 +1,73 @@
+# GitHub 라벨 자동 등록용 YAML 설정 파일
+
+- name: feature
+  color: "1E90FF"
+  description: 새로운 기능 개발 작업
+
+- name: bug
+  color: "D73A4A"
+  description: 기능 오류 또는 버그 수정
+
+- name: enhancement
+  color: "A2EEEF"
+  description: 기존 기능 개선
+
+- name: design
+  color: "FBCA04"
+  description: UI/UX 디자인 관련 작업
+
+- name: style
+  color: "EDEDED"
+  description: 코드 포맷팅, 스타일 수정 (기능 변화 없음)
+
+- name: refactor
+  color: "8E44AD"
+  description: 코드 리팩토링, 구조 개선
+
+- name: docs
+  color: "0075CA"
+  description: 문서 관련 작업 (README, 주석 등)
+
+- name: chore
+  color: "BFDADC"
+  description: 설정파일, 빌드, CI/CD 등 기타 작업
+
+- name: test
+  color: "0E8A16"
+  description: 테스트 코드 관련 작업
+
+- name: hotfix
+  color: "FF8C00"
+  description: 운영 중 긴급 버그 수정
+
+- name: release
+  color: "5319E7"
+  description: 릴리즈 관련 이슈 및 PR
+
+- name: deployment:preview
+  color: "FFD700"
+  description: Preview 서버 배포 관련 작업
+
+- name: deployment:production
+  color: "22863A"
+  description: 실서버 배포 관련 작업
+
+- name: wontfix
+  color: "000000"
+  description: 해결하지 않을 예정인 이슈
+
+- name: duplicate
+  color: "CCCCCC"
+  description: 중복된 이슈 또는 PR
+
+- name: invalid
+  color: "E4E669"
+  description: 유효하지 않은 이슈나 PR
+
+- name: question
+  color: "D876E3"
+  description: 질문 또는 논의가 필요한 사안
+
+- name: help wanted
+  color: "33AAFF"
+  description: 도움이 필요한 작업 (외부 기여 가능)
