@@ -1,0 +1,21 @@
+feature:
+  - feature/**
+  - "**/feature/**"
+
+fix:
+  - fix/**
+  - "**/fix/**"
+
+docs:
+  - docs/**
+  - "**/docs/**"
+  - "**/*.md"
+
+chore:
+  - chore/**
+  - "**/chore/**"
+  - .github/**
+
+release:
+  - release/**
+  - "**/release/**"
