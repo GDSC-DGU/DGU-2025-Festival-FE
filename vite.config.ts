@@ -6,6 +6,7 @@ const vitestConfig = {
     environment: 'jsdom',
     globals: true,
     coverage: {
+      provider: 'v8',
       reporter: ['text', 'lcov'],
     },
   },
