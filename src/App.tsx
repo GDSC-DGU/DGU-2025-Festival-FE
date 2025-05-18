@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <div>초기 폴더/파일 구성</div>
+      <div>dev 서버입니다.</div>
     </>
   )
 }
