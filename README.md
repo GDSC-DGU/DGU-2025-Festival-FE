@@ -44,21 +44,22 @@ src/
 
 - `main`: **운영(Vercel Product URL)** 배포용 브랜치
 - `develop`: **프리뷰(Vercel Preview URL)** 배포용 브랜치
-- `feature/기능명`: 기능 개발 브랜치
-  - 예: `feature/guestbook`, `feature/festival-info`
-- `fix/버그설명`: 버그 수정 브랜치
-  - 예: `fix/mobile-layout`
+- `feature/#이슈번호`: 기능 개발 브랜치
+  - 예: `feature/#10`, `feature/#23`
+- `fix/#이슈번호`: 버그 수정 브랜치
+  - 예: `fix/#13`
+
 
 ---
 
-## 🚀 배포 전략 (Vercel)
+## 🚀 배포 전략 (AWS S3 + CloudFront)
 
-| 브랜치 | 환경 | 설명 |
-|--------|------|------|
-| `develop` | Preview 서버 | PR 테스트 및 내부 확인용 |
-| `main` | Production 서버 | 실사용자 대상 운영 서버 |
+| 브랜치       | 환경                         | 설명                                           |
+| --------- | -------------------------- | -------------------------------------------- |
+| `develop` | Preview 서버 (`/dev` 경로)     | 내부 테스트용 환경으로 CloudFront + S3 `/dev`에 자동 배포   |
+| `main`    | Production 서버 (`/prod` 경로) | 사용자 대상 운영 서버로 CloudFront + S3 `/prod`에 자동 배포 |
 
-> Vercel의 Git 연동 기능을 통해 각 브랜치에 맞는 환경으로 자동 배포됩니다.
+> GitHub Actions 기반 CI/CD를 통해 브랜치에 따라 정적 파일이 S3의 `/dev`, `/prod`로 구분되어 자동 업로드되며, CloudFront 캐시가 무효화됩니다.
 
 ---
 
