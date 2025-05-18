@@ -1,0 +1,53 @@
+name: Deploy to S3 and Invalidate CloudFront
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Set deployment target based on branch
+        id: set-env
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "DEPLOY_PATH=prod" >> $GITHUB_ENV
+            echo "DISTRIBUTION_ID=EN9WG0178MOSJ" >> $GITHUB_ENV
+          else
+            echo "DEPLOY_PATH=dev" >> $GITHUB_ENV
+            echo "DISTRIBUTION_ID=E2BF2F2YWOZWPA" >> $GITHUB_ENV
+          fi
+
+      - name: Upload to S3 subfolder
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        with:
+          args: --delete
+        env:
+          AWS_S3_BUCKET: 2025-dgu-spring-festival-frontend
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-northeast-2
+          SOURCE_DIR: ./dist
+          DEST_DIR: ${{ env.DEPLOY_PATH }}
+
+      - name: Invalidate CloudFront cache
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ env.DISTRIBUTION_ID }}
+          PATHS: "/${{ env.DEPLOY_PATH }}/*"
+          AWS_REGION: ap-northeast-2
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
