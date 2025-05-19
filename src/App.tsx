@@ -1,12 +1,6 @@
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes';
 
-
-function App() {
-
-  return (
-    <>
-      <div>초기 폴더/파일 구성</div>
-    </>
-  )
+export default function App() {
+  return <RouterProvider router={router} />;
 }
-
-export default App
