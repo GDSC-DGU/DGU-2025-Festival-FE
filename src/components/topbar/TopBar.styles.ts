@@ -5,6 +5,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: fixed;
+  top: 0;
+  padding: 0 20px;
+  width: 400px;
+  background-color: white;
+  z-index: 1000;
 `;
 
 export const Side = styled.div`
