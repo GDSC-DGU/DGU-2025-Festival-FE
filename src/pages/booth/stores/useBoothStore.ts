@@ -45,17 +45,18 @@ export const useBoothStore = create<BoothState>()(
     {
       name: 'liked-booths-storage',
       partialize: (state) => ({
-        likedBooths: Array.from(state.likedBooths),
+        likedBooths: Array.from(state.likedBooths), // Set → string[]
         likeCounts: state.likeCounts,
         showOnlyLiked: state.showOnlyLiked,
         selectedBoothId: state.selectedBoothId,
       }),
-      merge: (persisted, current) => ({
+      
+      merge: (persisted: any, current) => ({
         ...current,
-        likedBooths: new Set((persisted as any).likedBooths || []),
-        likeCounts: (persisted as any).likeCounts || {},
-        showOnlyLiked: (persisted as any).showOnlyLiked ?? false,
-        selectedBoothId: (persisted as any).selectedBoothId ?? null,
+        likedBooths: new Set(persisted.likedBooths ?? []),
+        likeCounts: persisted.likeCounts ?? {},
+        showOnlyLiked: persisted.showOnlyLiked ?? false,
+        selectedBoothId: persisted.selectedBoothId ?? null,
       }),
     }
   )

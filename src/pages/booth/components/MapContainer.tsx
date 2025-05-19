@@ -34,7 +34,7 @@ export default function MapContainer({ date, boothType, boothId }: MapContainerP
       disableDefaultUI: true,
     });
   
-    let filtered = booths.filter((booth) => {
+    const filtered = booths.filter((booth) => {
       const isSameDate = booth.date === date;
       const isSameType = booth.type === boothType;
       if (!isSameDate || !isSameType) return false;
