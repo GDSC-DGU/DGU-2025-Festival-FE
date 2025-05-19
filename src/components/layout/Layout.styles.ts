@@ -11,7 +11,9 @@ export const AppContainer = styled.div`
 `;
 
 export const AppWrapper = styled.div<WrapperProps>`
-  width: 375px;
+padding-top: 44px;
+  max-width: 430px;
+  width: 100%;
   min-height: 100dvh;
   background: ${({ $backgroundImage }) =>
     $backgroundImage
