@@ -51,13 +51,16 @@ export const useBoothStore = create<BoothState>()(
         selectedBoothId: state.selectedBoothId,
       }),
       
-      merge: (persisted: any, current) => ({
-        ...current,
-        likedBooths: new Set(persisted.likedBooths ?? []),
-        likeCounts: persisted.likeCounts ?? {},
-        showOnlyLiked: persisted.showOnlyLiked ?? false,
-        selectedBoothId: persisted.selectedBoothId ?? null,
-      }),
+      merge: (persisted, current) => {
+        const state = persisted as Partial<BoothState>;
+        return {
+          ...current,
+          likedBooths: new Set(state.likedBooths || []),
+          likeCounts: state.likeCounts ?? {},
+          showOnlyLiked: state.showOnlyLiked ?? false,
+          selectedBoothId: state.selectedBoothId ?? null,
+        };
+      }         
     }
   )
 );
