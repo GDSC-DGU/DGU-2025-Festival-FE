@@ -1,0 +1,40 @@
+@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2107@1.0/Pretendard-Regular.woff2');
+
+:root {
+    /* Color Palette - Indigo */
+    --indigo-50: #EEF2FF;
+    --indigo-100: #E0E7FF;
+    --indigo-200: #C7D2FE;
+    --indigo-300: #A5B4FC;
+    --indigo-400: #818CF8;
+    --indigo-500: #6366F1;
+    --indigo-600: #4F46E5;
+    --indigo-700: #4338CA;
+    --indigo-800: #3730A3;
+    --indigo-900: #312E81;
+
+    /* Gray Scale */
+    --gray-50: #F8F9FC;
+    --gray-100: #F1F3F9;
+    --gray-200: #E2E5F0;
+    --gray-300: #CBD1E1;
+    --gray-400: #949DB8;
+    --gray-500: #646E8B;
+    --gray-600: #475069;
+    --gray-700: #333C55;
+    --gray-800: #1E253B;
+    --gray-900: #0F162A;
+
+    /* Gradient */
+    --gradient-purple: linear-gradient(180deg, #060032 0%, #575BDF 89%);
+    --gradient-orange: linear-gradient(180deg, #F04F37 0%, #FFCCB0 100%);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', sans-serif;
+    background-color: #FFFFFF;
+    color: var(--gray-900);
+    -webkit-font-smoothing: antialiased;
+}
