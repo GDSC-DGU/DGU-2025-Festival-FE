@@ -1,17 +1,22 @@
-// src/components/layout/Layout.styles.ts
 import styled from 'styled-components';
+
+interface WrapperProps {
+  $backgroundImage?: string;
+}
 
 export const AppContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: var(--gray-50);
 `;
 
-export const AppWrapper = styled.div`
-  width: 375px; /* ✅ 앱 뷰 고정 폭 */
+export const AppWrapper = styled.div<WrapperProps>`
+  width: 375px;
   min-height: 100dvh;
-  background-color: white;
+  background: ${({ $backgroundImage }) =>
+    $backgroundImage
+      ? `url(${$backgroundImage}) no-repeat center top / cover`
+      : '#FFFFFF'};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
