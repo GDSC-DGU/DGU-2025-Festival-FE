@@ -1,8 +1,7 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const BottomNav = styled.nav`
-  width: 100%;
+  width: 400px;
   height: 56px;
   background-color: white;
   box-shadow: 0 -2px 8px rgba(79, 70, 229, 0.1);
@@ -11,7 +10,8 @@ export const BottomNav = styled.nav`
   align-items: center;
   font-size: 12px;
   font-weight: 500;
-
+  position: fixed;
+  bottom: 0;
   ul {
     display: flex;
     width: 100%;
@@ -38,8 +38,8 @@ export const BottomNav = styled.nav`
         }
 
         img {
-          width: 20px;  
-          height: 20px; 
+          width: 20px;
+          height: 20px;
           object-fit: contain;
         }
       }
