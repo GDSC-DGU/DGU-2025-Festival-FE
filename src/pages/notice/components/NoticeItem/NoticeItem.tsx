@@ -2,7 +2,7 @@ import { Container, TitleText, DateText } from "./NoticeItem.styles";
 import { formatDate } from "@/utils/date";
 
 interface NoticeItemProps {
-  title: String;
+  title: string;
   date: Date;
   onClick: () => void;
 }
