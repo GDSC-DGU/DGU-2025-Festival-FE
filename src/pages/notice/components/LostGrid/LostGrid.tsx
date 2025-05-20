@@ -43,7 +43,7 @@ const LostGrid = () => {
           <LostItem
             key={index}
             imageUrl={lost.imageUrl}
-            onClick={() => navigate(`/lost/${lost.id}`)}
+            onClick={() => navigate(`/notice/lost/${lost.id}`)}
           />
         ))}
       </GridContainer>
