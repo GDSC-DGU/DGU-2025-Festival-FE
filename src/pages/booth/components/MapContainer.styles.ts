@@ -14,11 +14,15 @@ export const MapBox = styled.div`
   overflow: hidden;
 `;
 
-export const FilterButton = styled.button`
+interface FilterButtonProps {
+  $active: boolean;
+}
+
+export const FilterButton = styled.button<FilterButtonProps>`
   position: absolute;
   top: 12px;
   right: 12px;
-  background: #6366f1;
+  background: ${({ $active }) => ($active ? 'var(--indigo-500)' : 'var(--gray-300)')};
   color: white;
   font-size: 12px;
   font-weight: 600;
@@ -28,4 +32,8 @@ export const FilterButton = styled.button`
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   z-index: 10;
+
+  display: flex;
+  align-items: center;
+  transition: background 0.2s ease;
 `;

@@ -19,12 +19,11 @@ export default function BoothPage() {
   return (
     <PageWrapper>
       <BoothTitle />
-      <BoothTypeToggle value={boothType} onChange={setBoothType} />
+      <DateSelector selected={selectedDate} onChange={setSelectedDate} />
       <Wrapper apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
         <MapContainer boothType={boothType} date={selectedDate} />
       </Wrapper>
-      <DateSelector selected={selectedDate} onChange={setSelectedDate} />
-
+      <BoothTypeToggle value={boothType} onChange={setBoothType} />
       {filteredBooths.map((booth) => (
         <BoothCard
           key={booth.id}
