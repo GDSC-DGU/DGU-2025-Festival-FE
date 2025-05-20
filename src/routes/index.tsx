@@ -11,6 +11,7 @@ import NotFoundPage from "@/pages/not-found/NotFoundPage";
 import AdminPage from "@/pages/admin/AdminPage";
 import NoticeDetailPage from "@/pages/notice-detail/NoticeDetailPage";
 import LostDetailPage from "@/pages/lost-detail/LostDetailPage";
+import BoothDetailPage from "@/pages/booth/BoothDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ export const router = createBrowserRouter([
       { path: "timetable", element: <TimetablePage /> },
       { path: "notice", element: <NoticePage /> },
       { path: "booth", element: <BoothPage /> },
+      { path: "booth/:id", element: <BoothDetailPage /> },
       { path: "waiting", element: <WaitingPage /> },
       {
         path: "admin",
