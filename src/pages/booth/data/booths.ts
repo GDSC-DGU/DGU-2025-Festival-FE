@@ -1,16 +1,5 @@
 import boothJuice from '@/assets/booth/booth-juice.png';
 
-export interface Booth {
-    id: string;
-    name: string;
-    intro: string;
-    date: string;
-    type: 'day' | 'night';
-    position: { lat: number; lng: number };
-    image: string;
-    likes: number; 
-    waitingAvailable?: boolean;
-  }
 
 export const booths = [
     {
@@ -127,5 +116,5 @@ export const booths = [
         waitingAvailable: true,
 
     },
-  ];
+  ] as const;
   

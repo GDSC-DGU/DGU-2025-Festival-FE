@@ -4,6 +4,8 @@ export interface WaitingData {
   boothId: string;
   people: number;
   phone: string;
+  name?: string;        
+  department?: string;  
 }
 
 interface WaitingState {
