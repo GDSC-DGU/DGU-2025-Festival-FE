@@ -50,7 +50,6 @@ export const ImageScrollContainer = styled.div`
 
 export const ImageItem = styled.div`
   flex: 0 0 100%;
-  margin: 0 20px;
   scroll-snap-align: start;
   border-radius: 8px;
   aspect-ratio: 1.6;
@@ -69,5 +68,32 @@ export const ImageItem = styled.div`
 export const ContentText = styled.p`
   ${({ theme }) => theme.fonts.Body2};
   color: ${({ theme }) => theme.colors.gray700};
+  white-space: pre-line;
+`;
+
+export const QuestionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
+  margin-left: 8px;
+  bottom: 0;
+`;
+
+export const QuestionText = styled.p`
+  color: ${({ theme }) => theme.colors.indigo500};
+  ${({ theme }) => theme.fonts.Caption}
+`;
+
+export const QuestionHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const QuestionContent = styled.p`
+  ${({ theme }) => theme.fonts.Caption}
+  color: ${({ theme }) => theme.colors.gray600};
   white-space: pre-line;
 `;

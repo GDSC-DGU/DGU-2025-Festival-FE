@@ -10,6 +10,7 @@ import WaitingPage from "@/pages/waiting/WaitingPage";
 import NotFoundPage from "@/pages/not-found/NotFoundPage";
 import AdminPage from "@/pages/admin/AdminPage";
 import NoticeDetailPage from "@/pages/notice-detail/NoticeDetailPage";
+import LostDetailPage from "@/pages/lost-detail/LostDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
         children: [{ index: true, element: <AdminPage /> }],
       },
       { path: "notice/:id", element: <NoticeDetailPage /> },
+      { path: "lost/:id", element: <LostDetailPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

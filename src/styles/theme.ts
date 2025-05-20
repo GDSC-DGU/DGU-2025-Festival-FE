@@ -80,6 +80,8 @@ export const fonts = {
 } as const;
 
 export const colors = {
+  white: "#FFFFFF",
+  black: "#000000",
   indigo50: "#EEF2FF",
   indigo100: "#E0E7FF",
   indigo200: "#C7D2FE",
