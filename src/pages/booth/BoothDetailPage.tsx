@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { booths } from '@/pages/booth/data/booths';
 import { useBoothStore } from '@/pages/booth/stores/useBoothStore';
 import HeartOn from '@/assets/icons/heart-on.png';
@@ -7,6 +7,8 @@ import HeartOff from '@/assets/icons/heart-off.png';
 import MapContainer from '@/pages/booth/components/MapContainer';
 import BoothDetailTitle from '@/pages/booth/components/BoothDetailTitle';
 import MiniBoothCard from './components/MiniBoothCard';
+import WaitingModal from '@/components/waitingModal/WaitingModal';
+import { useWaitingStore } from '@/stores/useWaitingStore';
 
 import {
   Container, MapWrapper, Card, Header, Info,
@@ -24,14 +26,19 @@ export default function BoothDetailPage() {
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const autoScrollIndex = useRef(0);
+  const [showWaitingModal, setShowWaitingModal] = useState(false);
+  const addWaiting = useWaitingStore((state) => state.addWaiting);
 
   const relatedBooths = booths.filter(
     (b) => b.date === booth?.date && b.type === booth?.type && b.id !== booth?.id
   );
 
   // 무한 스크롤을 위해 관련 부스를 3배로 반복
-  const loopedBooths = [...relatedBooths, ...relatedBooths, ...relatedBooths];
+  const loopedBooths = useMemo(() => {
+    return [...relatedBooths, ...relatedBooths];
+  }, [relatedBooths]);
 
+ 
   // 중앙 부스를 기준으로 시작 위치 설정
   useEffect(() => {
     const middleIndex = relatedBooths.length;
@@ -41,7 +48,7 @@ export default function BoothDetailPage() {
       (el as HTMLElement).scrollIntoView({ behavior: 'auto', inline: 'center' });
       autoScrollIndex.current = middleIndex;
     }
-  }, [id, loopedBooths]);
+  }, [relatedBooths.length]);
 
   // 자동 스크롤 기능(컨펌 후 뺄수도 있음)
   useEffect(() => {
@@ -99,7 +106,7 @@ export default function BoothDetailPage() {
         </Header>
         <BoothImage src={booth.image} alt="부스 이미지" />
         {booth.waitingAvailable && (
-          <ReserveButton>웨이팅 하기</ReserveButton>
+          <ReserveButton onClick={() => setShowWaitingModal(true)}>웨이팅 하기</ReserveButton>
         )}
       </Card>
 
@@ -117,6 +124,17 @@ export default function BoothDetailPage() {
           ))}
         </ScrollWrapper>
       )}
+
+{showWaitingModal && booth && (
+  <WaitingModal
+    booth={booth}
+    onConfirm={({ boothId, people, phone }) => {
+      addWaiting({ boothId, people, phone });
+    }}
+    onCancel={() => setShowWaitingModal(false)}
+  />
+)}
+
     </Container>
   );
 }
