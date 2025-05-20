@@ -43,20 +43,22 @@ const NoticePage = () => {
             isLeftSelected={isLeftSelected}
             setIsLeftSelected={handleToggle}
           />
-          <QuestionContainer
-            onClick={() => setShowQuestionContent(!showQuestionContent)}
-          >
-            <img src={QuestionIcon} width={20} height={20} alt="?" />
-            <QuestionText>어디서 찾나요?</QuestionText>
-            {showQuestionContent && (
-              <FloatingBox>
-                <FloatingText>
-                  잃어버린 분실물은 000에서 찾으면 됩니다. {"\n"}분실물을
-                  습득하셨다면 000으로 가져와주세요.
-                </FloatingText>
-              </FloatingBox>
-            )}
-          </QuestionContainer>
+          {!isLeftSelected && (
+            <QuestionContainer
+              onClick={() => setShowQuestionContent(!showQuestionContent)}
+            >
+              <img src={QuestionIcon} width={20} height={20} alt="?" />
+              <QuestionText>어디서 찾나요?</QuestionText>
+              {showQuestionContent && (
+                <FloatingBox>
+                  <FloatingText>
+                    잃어버린 분실물은 000에서 찾으면 됩니다. {"\n"}분실물을
+                    습득하셨다면 000으로 가져와주세요.
+                  </FloatingText>
+                </FloatingBox>
+              )}
+            </QuestionContainer>
+          )}
         </Section>
 
         <ToggleContainer>
