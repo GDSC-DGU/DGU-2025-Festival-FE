@@ -6,7 +6,7 @@ import MapContainer from './components/MapContainer';
 import BoothCard from './components/BoothCard';
 import BoothTitle from './components/BoothTitle';
 import { Wrapper } from '@googlemaps/react-wrapper';
-import { PageWrapper, ToolbarRow, WaitingCheckButton, Badge } from './BoothPage.styles';
+import { PageWrapper, ToolbarRow, WaitingCheckButton } from './BoothPage.styles';
 import { booths } from './data/booths';
 
 export default function BoothPage() {
