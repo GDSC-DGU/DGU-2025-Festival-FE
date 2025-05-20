@@ -3,8 +3,7 @@ import { booths } from '../data/booths';
 import { useBoothStore } from '../stores/useBoothStore';
 import markerLiked from '@/assets/icons/marker-liked.png';
 import markerDefault from '@/assets/icons/marker-default.png';
-import HeartOn from '@/assets/icons/heart-on.png';
-import HeartOff from '@/assets/icons/heart-off.png';
+import Heart from '@/assets/icons/heart-null.png'
 
 import {
   MapWrapper,
@@ -61,16 +60,17 @@ export default function MapContainer({ date, boothType, boothId }: MapContainerP
     <MapWrapper>
       <MapBox ref={mapRef} />
       {!boothId && ( 
-        <FilterButton onClick={toggleShowOnlyLiked}>
-          <img
-            src={showOnlyLiked ? HeartOn : HeartOff}
-            alt="찜한 목록"
-            width={14}
-            height={14}
-            style={{ marginRight: '6px' }}
-          />
-          찜한 목록
-        </FilterButton>
+        <FilterButton onClick={toggleShowOnlyLiked} $active={showOnlyLiked}>
+        <img
+          src={Heart}
+          alt="찜한 목록"
+          width={14}
+          height={14}
+          style={{ marginRight: '6px' }}
+        />
+        찜한 목록
+      </FilterButton>
+      
       )}
     </MapWrapper>
   );   
