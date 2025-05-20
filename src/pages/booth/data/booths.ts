@@ -1,3 +1,5 @@
+import boothJuice from '@/assets/booth/booth-juice.png';
+
 export interface Booth {
     id: string;
     name: string;
@@ -18,8 +20,48 @@ export const booths = [
       date: '2025-05-27',
       type: 'day',
       position: { lat: 37.5585, lng: 126.9982 },
-        image: '/images/booth-juice.png',
+        image: boothJuice,
         waitingAvailable: true,
+
+    }, {
+      id: 'booth-2',
+      name: '굿즈 판매소',
+      intro: '한정판 굿즈를 판매 중입니다.',
+      date: '2025-05-27',
+      type: 'day',
+      position: { lat: 37.5591, lng: 126.9977 },
+        image: boothJuice,
+        waitingAvailable: false,
+
+    },{
+      id: 'booth-7',
+      name: '굿즈 판매소',
+      intro: '한정판 굿즈를 판매 중입니다.',
+      date: '2025-05-27',
+      type: 'day',
+      position: { lat: 37.5591, lng: 126.9977 },
+        image: boothJuice,
+        waitingAvailable: false,
+
+    },{
+      id: 'booth-8',
+      name: '1',
+      intro: '한정판 굿즈를 판매 중입니다.',
+      date: '2025-05-27',
+      type: 'day',
+      position: { lat: 37.5591, lng: 126.9977 },
+        image: boothJuice,
+        waitingAvailable: false,
+
+    },{
+      id: 'booth-11',
+      name: '3',
+      intro: '한정판 굿즈를 판매 중입니다.',
+      date: '2025-05-27',
+      type: 'day',
+      position: { lat: 37.5591, lng: 126.9977 },
+        image: boothJuice,
+        waitingAvailable: false,
 
     },
     {
@@ -27,10 +69,40 @@ export const booths = [
       name: '굿즈 판매소',
       intro: '한정판 굿즈를 판매 중입니다.',
       date: '2025-05-27',
-      type: 'night',
+      type: 'day',
       position: { lat: 37.5591, lng: 126.9977 },
-        image: '/images/booth-goods.png',
-        waitingAvailable: true,
+        image: boothJuice,
+        waitingAvailable: false,
+
+    },{
+      id: 'booth-7',
+      name: '굿즈 판매소',
+      intro: '한정판 굿즈를 판매 중입니다.',
+      date: '2025-05-27',
+      type: 'day',
+      position: { lat: 37.5591, lng: 126.9977 },
+        image: boothJuice,
+        waitingAvailable: false,
+
+    },{
+      id: 'booth-8',
+      name: '1',
+      intro: '한정판 굿즈를 판매 중입니다.',
+      date: '2025-05-27',
+      type: 'day',
+      position: { lat: 37.5591, lng: 126.9977 },
+        image: boothJuice,
+        waitingAvailable: false,
+
+    },{
+      id: 'booth-11',
+      name: '3',
+      intro: '한정판 굿즈를 판매 중입니다.',
+      date: '2025-05-27',
+      type: 'day',
+      position: { lat: 37.5591, lng: 126.9977 },
+        image: boothJuice,
+        waitingAvailable: false,
 
     },
     {
