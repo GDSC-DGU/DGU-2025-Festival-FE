@@ -3,6 +3,7 @@ import { booths } from '@/pages/booth/data/booths';
 import { useWaitingStore } from '@/stores/useWaitingStore';
 import WaitingModal from '@/components/waitingModal/WaitingModal';
 import WaitingInfoModal from './components/WaitingInfoModal';
+import CancelConfirmModal from './components/CancelConfirmModal';
 import * as S from './WaitingPage.styles';
 import type { Booth } from '@/types/booth';
 import QuestionIcon from '@/assets/icons/question.png';
@@ -13,6 +14,7 @@ export default function WaitingPage() {
   const [showWaitingModal, setShowWaitingModal] = useState(false);
   const [selectedBooth, setSelectedBooth] = useState<Booth | null>(null);
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showCancelConfirm, setShowCancelConfirm] = useState(false); // ✅ 추가
   const { activeWaiting, addWaiting, cancelWaiting } = useWaitingStore();
 
   const handleClickBooth = (booth: Booth) => {
@@ -39,38 +41,38 @@ export default function WaitingPage() {
   return (
     <S.Page>
       <S.Header>
-  <S.TitleWrapper>
-    <S.Title>야간 부스 웨이팅</S.Title>
-  </S.TitleWrapper>
+        <S.TitleWrapper>
+          <S.Title>야간 부스 웨이팅</S.Title>
+        </S.TitleWrapper>
 
-  <S.QuestionWrapper>
-    <S.QuestionIcon
-      src={QuestionIcon}
-      alt="웨이팅 안내"
-      onClick={() => setShowInfoModal(true)}
-    />
-    <S.WaitingHint>웨이팅 안내</S.WaitingHint>
-  </S.QuestionWrapper>
-</S.Header>
-
+        <S.QuestionWrapper>
+          <S.QuestionIcon
+            src={QuestionIcon}
+            alt="웨이팅 안내"
+            onClick={() => setShowInfoModal(true)}
+          />
+          <S.WaitingHint>웨이팅 안내</S.WaitingHint>
+        </S.QuestionWrapper>
+      </S.Header>
 
       {activeWaiting && (
         <S.MyWaitingBox>
-        <S.SubTitle>내 웨이팅 순서</S.SubTitle>
-        <S.WaitingCard>
-          <S.WaitingCardContent>
-            <S.BoothName>{activeWaiting.name}</S.BoothName>
-            <S.BoothInfo>{activeWaiting.department}</S.BoothInfo>
-            <S.Badge>내 순서 {getMyRank(activeWaiting.boothId)}번</S.Badge>
-            <S.WaitingSummary>전체 대기 11팀</S.WaitingSummary>
-            {/* 나중에 → {getTotalWaitingCount()} */}
-          </S.WaitingCardContent>
-      
-          <S.CancelButton onClick={() => cancelWaiting(activeWaiting.boothId)}>
-            웨이팅 취소
-          </S.CancelButton>
-        </S.WaitingCard>
-      </S.MyWaitingBox>      
+          <S.SubTitle>내 웨이팅 순서</S.SubTitle>
+          <S.WaitingCard>
+            <S.WaitingCardContent>
+              <S.BoothName>{activeWaiting.name}</S.BoothName>
+              <S.BoothInfo>{activeWaiting.department}</S.BoothInfo>
+              <S.Badge>내 순서 {getMyRank(activeWaiting.boothId)}번</S.Badge>
+              <S.WaitingSummary>전체 대기 11팀</S.WaitingSummary>
+              {/* 나중에 → {getTotalWaitingCount()} */}
+            </S.WaitingCardContent>
+
+            {/* ✅ 여기 변경 */}
+            <S.CancelButton onClick={() => setShowCancelConfirm(true)}>
+              웨이팅 취소
+            </S.CancelButton>
+          </S.WaitingCard>
+        </S.MyWaitingBox>
       )}
 
       <S.SectionTitle>웨이팅 가능 부스</S.SectionTitle>
@@ -91,7 +93,6 @@ export default function WaitingPage() {
 
                   {/* {getTotalWaitingCount()} */}
                 </S.WaitingSummary>
-
               </div>
               {waitingCount > 0 ? (
                 <S.BoothActionButton onClick={() => handleClickBooth(booth)}
@@ -123,6 +124,17 @@ export default function WaitingPage() {
 
       {showInfoModal && (
         <WaitingInfoModal onClose={() => setShowInfoModal(false)} />
+      )}
+
+      {/* ✅ 취소 확인 모달 렌더링 */}
+      {showCancelConfirm && (
+        <CancelConfirmModal
+          onConfirm={() => {
+            cancelWaiting(activeWaiting!.boothId);
+            setShowCancelConfirm(false);
+          }}
+          onCancel={() => setShowCancelConfirm(false)}
+        />
       )}
     </S.Page>
   );
