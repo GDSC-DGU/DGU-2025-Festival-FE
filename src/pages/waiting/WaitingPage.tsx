@@ -28,15 +28,15 @@ export default function WaitingPage() {
     (b) => b.waitingAvailable && b.date === today
   );
 
-  const getMyRank = (boothId: string): number => {
+  const getMyRank = (_boothId: string): number => {
     // TODO: 백엔드에서 내 phone 번호 기준으로 순번 조회
     return 12; // 임시 데이터
   };
 
-  const getWaitingCount = (booth: Booth): number => {
-    // TODO: 백엔드에서 boothId 기준 현재 대기 팀 수 조회
-    return filteredBooths.reduce((sum, booth) => sum + (booth.waitingCount ?? 0), 0);
-  };
+  // const getWaitingCount = (_booth: Booth): number => {
+  //   // TODO: 백엔드에서 boothId 기준 현재 대기 팀 수 조회
+  //   return filteredBooths.reduce((sum, booth) => sum + (booth.waitingCount ?? 0), 0);
+  // };
 
   return (
     <S.Page>
@@ -81,7 +81,7 @@ export default function WaitingPage() {
           const isMyWaiting = activeWaiting?.boothId === booth.id;
           // const waitingCount = getWaitingCount(booth);
           const waitingCount = 3; // 임시 데이터
-          const waitingText = waitingCount > 0 ? `대기 ${waitingCount}팀` : '바로 입장 가능';
+          // const waitingText = waitingCount > 0 ? `대기 ${waitingCount}팀` : '바로 입장 가능';
 
           return (
             <S.BoothCard key={booth.id}>

@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { booths } from '@/pages/booth/data/booths';
 import { useBoothStore } from '@/pages/booth/stores/useBoothStore';
 import HeartOn from '@/assets/icons/heart-on.png';
@@ -34,8 +34,10 @@ export default function BoothDetailPage() {
   );
 
   // 무한 스크롤을 위해 관련 부스를 3배로 반복
-  const loopedBooths = [...relatedBooths, ...relatedBooths, ...relatedBooths];
+  const loopedBooths = useMemo(() => {
+    return [...relatedBooths, ...relatedBooths, ...relatedBooths]; }, []);
 
+ 
   // 중앙 부스를 기준으로 시작 위치 설정
   useEffect(() => {
     const middleIndex = relatedBooths.length;
