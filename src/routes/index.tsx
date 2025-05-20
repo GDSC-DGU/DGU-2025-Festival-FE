@@ -1,33 +1,37 @@
-import { createBrowserRouter } from 'react-router-dom';
-import Layout from '@/components/layout/Layout';
-import ProtectedRoute from '@/components/auth/ProtectedRoute';
+import { createBrowserRouter } from "react-router-dom";
+import Layout from "@/components/layout/Layout";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 
-import HomePage from '@/pages/home/HomePage';
-import TimetablePage from '@/pages/timetable/TimetablePage';
-import NoticePage from '@/pages/notice/NoticePage';
-import BoothPage from '@/pages/booth/BoothPage';
-import BoothDetailPage  from '@/pages/booth/BoothDetailPage';
-import WaitingPage from '@/pages/waiting/WaitingPage';
-import NotFoundPage from '@/pages/not-found/NotFoundPage';
-import AdminPage from '@/pages/admin/AdminPage';
+import HomePage from "@/pages/home/HomePage";
+import TimetablePage from "@/pages/timetable/TimetablePage";
+import NoticePage from "@/pages/notice/NoticePage";
+import BoothPage from "@/pages/booth/BoothPage";
+import WaitingPage from "@/pages/waiting/WaitingPage";
+import NotFoundPage from "@/pages/not-found/NotFoundPage";
+import AdminPage from "@/pages/admin/AdminPage";
+import NoticeDetailPage from "@/pages/notice-detail/NoticeDetailPage";
+import LostDetailPage from "@/pages/lost-detail/LostDetailPage";
+import BoothDetailPage from "@/pages/booth/BoothDetailPage";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'timetable', element: <TimetablePage /> },
-      { path: 'notice', element: <NoticePage /> },
-      { path: 'booth', element: <BoothPage /> },
-      { path: 'booth/:id', element: <BoothDetailPage /> },
-      { path: 'waiting', element: <WaitingPage /> },
+      { path: "timetable", element: <TimetablePage /> },
+      { path: "notice", element: <NoticePage /> },
+      { path: "booth", element: <BoothPage /> },
+      { path: "booth/:id", element: <BoothDetailPage /> },
+      { path: "waiting", element: <WaitingPage /> },
       {
-        path: 'admin',
+        path: "admin",
         element: <ProtectedRoute />,
         children: [{ index: true, element: <AdminPage /> }],
       },
-      { path: '*', element: <NotFoundPage /> },
+      { path: "notice/:id", element: <NoticeDetailPage /> },
+      { path: "notice/lost/:id", element: <LostDetailPage /> },
+      { path: "*", element: <NotFoundPage /> },
     ],
   },
 ]);
