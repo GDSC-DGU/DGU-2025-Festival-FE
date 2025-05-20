@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const BottomNav = styled.nav`
-  width: 400px;
+  max-width: 430px;
+  width: 100%;
   height: 56px;
   background-color: white;
   box-shadow: 0 -2px 8px rgba(79, 70, 229, 0.1);
