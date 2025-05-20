@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
         children: [{ index: true, element: <AdminPage /> }],
       },
       { path: "notice/:id", element: <NoticeDetailPage /> },
-      { path: "lost/:id", element: <LostDetailPage /> },
+      { path: "notice/lost/:id", element: <LostDetailPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },
