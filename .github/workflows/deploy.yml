@@ -28,10 +28,17 @@ jobs:
             echo "DISTRIBUTION_ID=E2BF2F2YWOZWPA" >> $GITHUB_ENV
           fi
 
-      - name: Build with Google Maps API Key
+      - name: Create .env file for Vite build
         run: |
-          echo "Using Google Maps API Key"
-          VITE_GOOGLE_MAPS_API_KEY=${{ secrets.VITE_GOOGLE_MAPS_API_KEY }} npm run build
+          echo "VITE_GOOGLE_MAPS_API_KEY=${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}" >> .env
+
+      - name: Build project
+        run: |
+          set -e
+          npm run build
+
+      - name: Check dist contents
+        run: ls -al ./dist
 
       - name: Upload to S3 subfolder
         uses: jakejarvis/s3-sync-action@v0.5.1
