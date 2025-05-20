@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const BottomNav = styled.nav`
+  max-width: 430px;
   width: 100%;
   height: 56px;
   background-color: white;
@@ -11,7 +11,8 @@ export const BottomNav = styled.nav`
   align-items: center;
   font-size: 12px;
   font-weight: 500;
-
+  position: fixed;
+  bottom: 0;
   ul {
     display: flex;
     width: 100%;
@@ -38,8 +39,8 @@ export const BottomNav = styled.nav`
         }
 
         img {
-          width: 20px;  
-          height: 20px; 
+          width: 20px;
+          height: 20px;
           object-fit: contain;
         }
       }
