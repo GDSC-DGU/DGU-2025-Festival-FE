@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 interface TopBarProps {
   showBackButton?: boolean;
-  title: String;
+  title: string;
 }
 
 const TopBar = ({ showBackButton = false, title }: TopBarProps) => {
