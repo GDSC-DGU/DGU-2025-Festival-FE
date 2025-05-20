@@ -51,7 +51,7 @@ export const booths = [
       type: 'day',
       position: { lat: 37.5591, lng: 126.9977 },
         image: boothJuice,
-        waitingAvailable: false,
+        waitingAvailable: true,
 
     },{
       id: 'booth-11',

@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { booths } from '@/pages/booth/data/booths';
 import { useBoothStore } from '@/pages/booth/stores/useBoothStore';
 import HeartOn from '@/assets/icons/heart-on.png';
@@ -7,6 +7,8 @@ import HeartOff from '@/assets/icons/heart-off.png';
 import MapContainer from '@/pages/booth/components/MapContainer';
 import BoothDetailTitle from '@/pages/booth/components/BoothDetailTitle';
 import MiniBoothCard from './components/MiniBoothCard';
+import WaitingModal from '@/components/waitingModal/WaitingModal';
+import { useWaitingStore } from '@/stores/useWaitingStore';
 
 import {
   Container, MapWrapper, Card, Header, Info,
@@ -24,6 +26,8 @@ export default function BoothDetailPage() {
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const autoScrollIndex = useRef(0);
+  const [showWaitingModal, setShowWaitingModal] = useState(false);
+  const addWaiting = useWaitingStore((state) => state.addWaiting);
 
   const relatedBooths = booths.filter(
     (b) => b.date === booth?.date && b.type === booth?.type && b.id !== booth?.id
@@ -99,7 +103,7 @@ export default function BoothDetailPage() {
         </Header>
         <BoothImage src={booth.image} alt="부스 이미지" />
         {booth.waitingAvailable && (
-          <ReserveButton>웨이팅 하기</ReserveButton>
+          <ReserveButton onClick={() => setShowWaitingModal(true)}>웨이팅 하기</ReserveButton>
         )}
       </Card>
 
@@ -117,6 +121,17 @@ export default function BoothDetailPage() {
           ))}
         </ScrollWrapper>
       )}
+
+{showWaitingModal && booth && (
+  <WaitingModal
+    booth={booth}
+    onConfirm={({ boothId, people, phone }) => {
+      addWaiting({ boothId, people, phone });
+    }}
+    onCancel={() => setShowWaitingModal(false)}
+  />
+)}
+
     </Container>
   );
 }
