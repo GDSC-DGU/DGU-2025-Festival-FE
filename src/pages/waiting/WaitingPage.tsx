@@ -28,6 +28,7 @@ export default function WaitingPage() {
     (b) => b.waitingAvailable && b.date === today
   );
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
   const getMyRank = (_boothId: string): number => {
     // TODO: 백엔드에서 내 phone 번호 기준으로 순번 조회
     return 12; // 임시 데이터

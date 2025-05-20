@@ -35,7 +35,8 @@ export default function BoothDetailPage() {
 
   // 무한 스크롤을 위해 관련 부스를 3배로 반복
   const loopedBooths = useMemo(() => {
-    return [...relatedBooths, ...relatedBooths, ...relatedBooths]; }, []);
+    return [...relatedBooths, ...relatedBooths];
+  }, [relatedBooths]);
 
  
   // 중앙 부스를 기준으로 시작 위치 설정
@@ -47,7 +48,7 @@ export default function BoothDetailPage() {
       (el as HTMLElement).scrollIntoView({ behavior: 'auto', inline: 'center' });
       autoScrollIndex.current = middleIndex;
     }
-  }, [id, loopedBooths]);
+  }, [relatedBooths.length]);
 
   // 자동 스크롤 기능(컨펌 후 뺄수도 있음)
   useEffect(() => {
