@@ -14,6 +14,8 @@ import {
 } from "./NoticePage.styles";
 import NoticeList from "./components/NoticeList/NoticeList";
 import QuestionIcon from "@/assets/icons/question.svg";
+import { noticeItems } from "./data/noticeItems";
+import { lostItems } from "./data/lostItems";
 
 const STORAGE_KEY = "notice_tab";
 
@@ -62,7 +64,11 @@ const NoticePage = () => {
         </Section>
 
         <ToggleContainer>
-          {isLeftSelected ? <NoticeList /> : <LostGrid />}
+          {isLeftSelected ? (
+            <NoticeList notices={noticeItems} />
+          ) : (
+            <LostGrid lostItems={lostItems} />
+          )}
         </ToggleContainer>
       </ContentContainer>
     </Container>

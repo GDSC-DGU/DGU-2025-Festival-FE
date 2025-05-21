@@ -1,29 +1,29 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   ButtonWrapper,
   Fab,
   ToggleMenu,
   MenuItem,
-} from './FloatingButton.styles';
-import logoutIcon from '@/assets/icons/logout.svg';
-import powerIcon from '@/assets/icons/power.svg';
-import menuIcon from '@/assets/icons/menu.png';
-import closeIcon from '@/assets/icons/close-menu.png';
-import BoothCloseModal from '../Modal/BoothCloseModal';
-import LogoutModal from '../Modal/LogoutModal';
+} from "./FloatingButton.styles";
+import logoutIcon from "@/assets/icons/logout.svg";
+import powerIcon from "@/assets/icons/power.svg";
+import menuIcon from "@/assets/icons/menu.png";
+import closeIcon from "@/assets/icons/close-menu.png";
+import BoothCloseModal from "../Modal/BoothCloseModal";
+import LogoutModal from "../../../../../components/logoutModal/LogoutModal";
 
 const FloatingButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCloseModal, setShowCloseModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  const handleBoothCloseConfirm = (type: 'soldout' | 'timeover') => {
+  const handleBoothCloseConfirm = (type: "soldout" | "timeover") => {
     console.log(`부스 종료 타입: ${type}`);
     setShowCloseModal(false);
   };
 
   const handleLogoutConfirm = () => {
-    console.log('로그아웃 처리 실행');
+    console.log("로그아웃 처리 실행");
     setShowLogoutModal(false);
   };
 

@@ -8,21 +8,30 @@ import {
   ContentHeader,
   Divider,
   ImageItem,
-  ContentText,
   QuestionContainer,
   QuestionText,
   QuestionHeader,
   QuestionContent,
+  ImageScrollContainer,
+  InfoField,
+  Label,
+  Value,
+  Tag,
+  TitleContainer,
 } from "./LostDetailPage.styles";
 import { formatDate } from "@/utils/date";
 import QuestionIcons from "@/assets/icons/question.svg";
-import { dummyLosts } from "./data/lostDetails";
+import { lostDetails } from "./data/lostDetails";
+import { useState, useRef } from "react";
+import ImagePagination from "../notice-detail/components/ImagePagination/ImagePagination";
 
 const LostDetailPage = () => {
   const { id } = useParams();
   const lostId = Number(id);
+  const [pageIndex, setPageIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const lost = dummyLosts.find((n) => n.id === lostId);
+  const lost = lostDetails.find((n) => n.lost_id === lostId);
 
   if (!lost) {
     return (
@@ -33,21 +42,75 @@ const LostDetailPage = () => {
     );
   }
 
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const scrollX = scrollRef.current.scrollLeft;
+    const width = scrollRef.current.clientWidth;
+
+    const index = Math.round(scrollX / width);
+    setPageIndex(index);
+  };
+
+  const scrollToIndex = (index: number) => {
+    if (!scrollRef.current) return;
+    const width = scrollRef.current.clientWidth;
+    scrollRef.current.scrollTo({
+      left: index * width,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <Container>
       <TopBar title="분실물" showBackButton />
       <ContentContainer>
         <ContentHeader>
-          <TitleText>{lost.title}</TitleText>
-          <DateText>{formatDate(lost.date)}</DateText>
+          <TitleContainer>
+            <TitleText>{lost.lost_title}</TitleText>
+            <Tag>{lost.lost_tag}</Tag>
+          </TitleContainer>
+
+          <DateText>{formatDate(lost.publish_time)}</DateText>
         </ContentHeader>
         <Divider />
-        {lost.imageUrl && (
-          <ImageItem>
-            <img src={lost.imageUrl} />
-          </ImageItem>
+        {lost.lost_item_image_urls.length > 0 && (
+          <>
+            <ImageScrollContainer ref={scrollRef} onScroll={handleScroll}>
+              {lost.lost_item_image_urls.slice(0, 5).map((url, i) => (
+                <ImageItem key={i}>
+                  <img src={url} alt={`분실물 이미지 ${i + 1}`} />
+                </ImageItem>
+              ))}
+            </ImageScrollContainer>
+            {lost.lost_item_image_urls.length > 1 && (
+              <ImagePagination
+                total={lost.lost_item_image_urls.length}
+                current={pageIndex}
+                onDotClick={scrollToIndex}
+              />
+            )}
+          </>
         )}
-        <ContentText>{lost.content}</ContentText>
+        <InfoField>
+          <Label>색상</Label>
+          <Value>{lost.lost_color}</Value>
+        </InfoField>
+        <InfoField>
+          <Label>종류</Label>
+          <Value>{lost.lost_category_name}</Value>
+        </InfoField>
+        <InfoField>
+          <Label>브랜드</Label>
+          <Value>{lost.lost_brand}</Value>
+        </InfoField>
+        <InfoField>
+          <Label>분실 장소</Label>
+          <Value>{lost.lost_location}</Value>
+        </InfoField>
+        <InfoField>
+          <Label>특징</Label>
+          <Value>{lost.lost_note}</Value>
+        </InfoField>
         <QuestionContainer>
           <QuestionHeader>
             <img src={QuestionIcons} alt="?" />

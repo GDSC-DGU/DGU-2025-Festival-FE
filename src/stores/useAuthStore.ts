@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 interface AuthState {
   isAdminLoggedIn: boolean;
@@ -7,7 +7,7 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  isAdminLoggedIn: false,
+  isAdminLoggedIn: true,
   login: () => set({ isAdminLoggedIn: true }),
   logout: () => set({ isAdminLoggedIn: false }),
 }));
