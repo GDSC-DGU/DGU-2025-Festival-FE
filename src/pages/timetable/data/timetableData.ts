@@ -1,0 +1,138 @@
+export const timetableData = [
+  {
+    id: 1,
+    date: "2025-05-27",
+    start: "18:00",
+    end: "18:30",
+    title: "일리",
+    tag: "교내 동아리",
+    description: "동국대학교 밴드 동아리 일리입니다.",
+    instagram: "illie_band",
+    songs: [
+      { title: "노래1 - 가수1", coveredBy: "홍길동" },
+      { title: "노래2 - 가수2", coveredBy: "김철수" },
+      { title: "노래3 - 가수3", coveredBy: "이영희" },
+    ],
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazrguvyGZzs_9h8pJ9gbIpBKWYuTbjuARbw&s",
+  },
+  {
+    id: 2,
+    date: "2025-05-27",
+    start: "18:30",
+    end: "19:00",
+    title: "음샘",
+    tag: "교내 동아리",
+    description: "동국대학교 밴드 동아리 음샘입니다.",
+    instagram: "insta",
+    songs: [
+      { title: "노래1 - 가수1", coveredBy: "홍길동" },
+      { title: "노래2 - 가수2", coveredBy: "김철수" },
+      { title: "노래3 - 가수3", coveredBy: "이영희" },
+    ],
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazrguvyGZzs_9h8pJ9gbIpBKWYuTbjuARbw&s",
+  },
+  {
+    id: 3,
+    date: "2025-05-27",
+    start: "19:00",
+    end: "19:30",
+    title: "목멱성",
+    tag: "교내 동아리",
+    description: "동국대학교 밴드 동아리 목멱성입니다.",
+    instagram: "insta",
+    songs: [
+      { title: "노래1 - 가수1", coveredBy: "홍길동" },
+      { title: "노래2 - 가수2", coveredBy: "김철수" },
+      { title: "노래3 - 가수3", coveredBy: "이영희" },
+    ],
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazrguvyGZzs_9h8pJ9gbIpBKWYuTbjuARbw&s",
+  },
+  {
+    id: 4,
+    date: "2025-05-27",
+    start: "19:30",
+    end: "20:30",
+    title: "피어리스던",
+    tag: "교내 동아리",
+    description: "동국대학교 밴드 동아리 피어리스던입니다.",
+    instagram: "insta",
+    songs: [
+      { title: "노래1 - 가수1", coveredBy: "홍길동" },
+      { title: "노래2 - 가수2", coveredBy: "김철수" },
+      { title: "노래3 - 가수3", coveredBy: "이영희" },
+    ],
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazrguvyGZzs_9h8pJ9gbIpBKWYuTbjuARbw&s",
+  },
+  {
+    id: 5,
+    date: "2025-05-28",
+    start: "18:00",
+    end: "18:30",
+    title: "두둠칫",
+    tag: "교내 동아리",
+    description: "동국대학교 댄스 동아리 두둠칫입니다.",
+    instagram: "instagram",
+    songs: [
+      { title: "노래1 - 가수1", coveredBy: "홍길동" },
+      { title: "노래2 - 가수2", coveredBy: "김철수" },
+      { title: "노래3 - 가수3", coveredBy: "이영희" },
+    ],
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazrguvyGZzs_9h8pJ9gbIpBKWYuTbjuARbw&s",
+  },
+  {
+    id: 6,
+    date: "2025-05-28",
+    start: "18:30",
+    end: "19:00",
+    title: "뭉게구름",
+    tag: "교내 동아리",
+    description: "동국대학교 밴드 동아리 뭉게구름입니다.",
+    instagram: "insta",
+    songs: [
+      { title: "노래1 - 가수1", coveredBy: "홍길동" },
+      { title: "노래2 - 가수2", coveredBy: "김철수" },
+      { title: "노래3 - 가수3", coveredBy: "이영희" },
+    ],
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazrguvyGZzs_9h8pJ9gbIpBKWYuTbjuARbw&s",
+  },
+  {
+    id: 7,
+    date: "2025-05-29",
+    start: "19:00",
+    end: "19:30",
+    title: "목멱성",
+    tag: "교내 동아리",
+    description: "동국대학교 밴드 동아리 목멱성입니다.",
+    instagram: "insta",
+    songs: [
+      { title: "노래1 - 가수1", coveredBy: "홍길동" },
+      { title: "노래2 - 가수2", coveredBy: "김철수" },
+      { title: "노래3 - 가수3", coveredBy: "이영희" },
+    ],
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazrguvyGZzs_9h8pJ9gbIpBKWYuTbjuARbw&s",
+  },
+  {
+    id: 8,
+    date: "2025-05-29",
+    start: "19:30",
+    end: "20:30",
+    title: "피어리스던",
+    tag: "교내 동아리",
+    description: "동국대학교 밴드 동아리 피어리스던입니다.",
+    instagram: "insta",
+    songs: [
+      { title: "노래1 - 가수1", coveredBy: "홍길동" },
+      { title: "노래2 - 가수2", coveredBy: "김철수" },
+      { title: "노래3 - 가수3", coveredBy: "이영희" },
+    ],
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazrguvyGZzs_9h8pJ9gbIpBKWYuTbjuARbw&s",
+  },
+];

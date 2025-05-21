@@ -1,0 +1,63 @@
+import {
+  ItemContainer,
+  TimeText,
+  LineContainer,
+  Circle,
+  VerticalLine,
+  Card,
+  Avatar,
+  Title,
+  Button,
+  Description,
+  Content,
+} from "./TimetableItem.styles";
+import { useState } from "react";
+import DetailModal from "../DetailModal/DetailModal";
+
+interface TimetableItemProps {
+  id: number;
+  start: string;
+  end: string;
+  title: string;
+  description?: string;
+  imageUrl: string;
+}
+
+const TimetableItem = ({
+  id,
+  start,
+  end,
+  title,
+  description,
+  imageUrl,
+}: TimetableItemProps) => {
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const handleDetail = () => {
+    setShowModal(true);
+  };
+
+  return (
+    <ItemContainer>
+      <TimeText>
+        {start}
+        <br />~{end}
+      </TimeText>
+      <LineContainer>
+        <Circle />
+        <VerticalLine />
+      </LineContainer>
+      <Card>
+        <Avatar src={imageUrl} alt="image" />
+        <Content>
+          <Title>{title}</Title>
+          {description && <Description>{description}</Description>}
+        </Content>
+
+        <Button onClick={handleDetail}>상세보기</Button>
+      </Card>
+      {showModal && <DetailModal id={id} onClose={() => setShowModal(false)} />}
+    </ItemContainer>
+  );
+};
+
+export default TimetableItem;
