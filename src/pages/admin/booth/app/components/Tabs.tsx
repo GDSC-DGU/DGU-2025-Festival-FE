@@ -1,25 +1,24 @@
 import styled from 'styled-components';
-import { useBoothAdminStore } from '../stores/useBoothAdminStore';
 
-interface TabsProps {
-  current: 'available' | 'full';
-  onChange: (tab: 'available' | 'full') => void;
+export type TabType = 'available' | 'full';
+
+export interface TabsProps {
+  current: TabType;
+  onChange: (tab: TabType) => void;
 }
 
-const Tabs = ({}: TabsProps) => {
-  const { tab, setTab } = useBoothAdminStore();
-
+const Tabs: React.FC<TabsProps> = ({ current, onChange }) => {
   return (
     <TabWrapper>
       <TabButton
-        selected={tab === 'available'}
-        onClick={() => setTab('available')}
+        selected={current === 'available'}
+        onClick={() => onChange('available')}
       >
         자리 있음
       </TabButton>
       <TabButton
-        selected={tab === 'full'}
-        onClick={() => setTab('full')}
+        selected={current === 'full'}
+        onClick={() => onChange('full')}
       >
         만석
       </TabButton>
@@ -46,4 +45,5 @@ const TabButton = styled.button<{ selected: boolean }>`
   color: ${({ selected }) => (selected ? '#4F46E5' : '#949DB8')};
   background-color: ${({ selected }) => (selected ? 'white' : 'transparent')};
   border: none;
+  cursor: pointer;
 `;
