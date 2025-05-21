@@ -1,12 +1,12 @@
+import { RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import theme from "./styles/theme";
+import { router } from "./routes";
 
-
-function App() {
-
+export default function App() {
   return (
-    <>
-      <div>dev 서버입니다.</div>
-    </>
-  )
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
-
-export default App
