@@ -17,6 +17,7 @@ export const TagScrollWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  padding-bottom: 10px;
 `;
 
 export const TagList = styled.div`
