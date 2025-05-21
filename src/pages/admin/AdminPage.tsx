@@ -1,6 +1,21 @@
-const AdminPage = () => {
-    return <div>관리자 전용 페이지입니다.</div>;
+import { useAuthStore } from '@/stores/useAuthStore';
+import { useNavigate } from 'react-router-dom';
+
+const AdminLoginPage = () => {
+  const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    login();
+    navigate('/admin/booth');
   };
-  
-  export default AdminPage;
-  
+
+  return (
+    <div>
+      <h2>관리자 로그인</h2>
+      <button onClick={handleLogin}>로그인</button>
+    </div>
+  );
+};
+
+export default AdminLoginPage;
