@@ -33,7 +33,12 @@ const navItems: NavItem[] = [
     defaultIcon: NoticeOff,
     activeIcon: NoticeOn,
   },
-  { label: "부스", path: "/booth", defaultIcon: BoothOff, activeIcon: BoothOn },
+  {
+    label: "부스/주점",
+    path: "/booth",
+    defaultIcon: BoothOff,
+    activeIcon: BoothOn,
+  },
   {
     label: "웨이팅",
     path: "/waiting",
