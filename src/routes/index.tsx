@@ -55,7 +55,31 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "notice/:id",
+        element: (
+          <ProtectedRoute>
+            <NoticeDetailPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "notice/lost/:id",
+        element: (
+          <ProtectedRoute>
+            <LostDetailPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: "write",
+        element: (
+          <ProtectedRoute>
+            <WritePage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "edit/:id",
         element: (
           <ProtectedRoute>
             <WritePage />
