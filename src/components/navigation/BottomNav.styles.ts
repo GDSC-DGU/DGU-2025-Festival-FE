@@ -35,7 +35,10 @@ export const BottomNav = styled.nav`
 
         &.active,
         .active {
-          color: var(--gray-900);
+          background: ${({ theme }) => theme.gradients.purple};
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: transparent;
         }
 
         img {
