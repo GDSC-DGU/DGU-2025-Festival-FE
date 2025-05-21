@@ -3,7 +3,6 @@ import { Container, TagContainer, GridContainer } from "./LostGrid.styles";
 import LostItem from "../LostItem/LostItem";
 import Tag from "../Tag/Tag";
 import { useNavigate } from "react-router-dom";
-import { lostItems } from "../../data/lostItems";
 import type { LostItemType } from "../../data/lostItems";
 
 interface LostGridProps {

@@ -26,6 +26,16 @@ const NoticeItem = ({
   onEdit,
   onDelete,
 }: NoticeItemProps) => {
+  const handleEditClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onEdit?.();
+  };
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onDelete?.();
+  };
+
   return (
     <Container onClick={onClick}>
       <ContentContainer>
@@ -34,8 +44,8 @@ const NoticeItem = ({
       </ContentContainer>
       {isAdmin && (
         <AdminContainer>
-          <EditButton onClick={onEdit}>수정</EditButton>
-          <DeleteButton onClick={onDelete}>삭제</DeleteButton>
+          <EditButton onClick={handleEditClick}>수정</EditButton>
+          <DeleteButton onClick={handleDeleteClick}>삭제</DeleteButton>
         </AdminContainer>
       )}
     </Container>

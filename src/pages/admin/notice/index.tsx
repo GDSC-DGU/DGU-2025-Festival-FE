@@ -6,16 +6,19 @@ import {
   ContentContainer,
   Section,
   ToggleContainer,
+  WriteButton,
 } from "./index.styles";
 import NoticeList from "@/pages/notice/components/NoticeList/NoticeList";
 import LostGrid from "@/pages/notice/components/LostGrid/LostGrid";
-import WriteIdon from "@/assets/icons/write.svg";
 import { noticeItems } from "@/pages/notice/data/noticeItems";
 import { lostItems } from "@/pages/notice/data/lostItems";
+import WriteIcon from "@/assets/icons/write.svg";
+import { useNavigate } from "react-router-dom";
 
 const STORAGE_KEY = "notice_tab";
 
 const AdminNoticePage = () => {
+  const navigate = useNavigate();
   const [isLeftSelected, setIsLeftSelected] = useState<boolean>(true);
   useEffect(() => {
     const saved = sessionStorage.getItem(STORAGE_KEY);
@@ -28,6 +31,11 @@ const AdminNoticePage = () => {
     setIsLeftSelected(selected);
     sessionStorage.setItem(STORAGE_KEY, selected ? "notice" : "lost");
   };
+
+  const handleWrite = () => {
+    const type = isLeftSelected ? "notice" : "lost";
+    navigate(`/admin/write?type=${type}`);
+  };
   return (
     <Container>
       <TopBar title="공지사항 및 분실물" />
@@ -38,6 +46,9 @@ const AdminNoticePage = () => {
             isLeftSelected={isLeftSelected}
             setIsLeftSelected={handleToggle}
           />
+          <WriteButton onClick={handleWrite}>
+            <img src={WriteIcon} width={24} height={24} />
+          </WriteButton>
         </Section>
 
         <ToggleContainer>

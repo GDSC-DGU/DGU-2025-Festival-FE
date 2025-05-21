@@ -15,7 +15,7 @@ import BoothDetailPage from "@/pages/booth/BoothDetailPage";
 import AdminLoginPage from "@/pages/admin/AdminPage";
 import BoothAdminEntry from "@/pages/admin/booth";
 import AdminNoticePage from "@/pages/admin/notice";
-import AdminLostPage from "@/pages/admin/notice/lost";
+import WritePage from "@/pages/admin/write";
 
 export const router = createBrowserRouter([
   {
@@ -55,10 +55,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "notice/lost",
+        path: "write",
         element: (
           <ProtectedRoute>
-            <AdminLostPage />
+            <WritePage />
           </ProtectedRoute>
         ),
       },
