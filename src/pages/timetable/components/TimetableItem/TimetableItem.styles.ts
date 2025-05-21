@@ -12,6 +12,7 @@ export const TimeText = styled.div`
   text-align: left;
   color: white;
   ${({ theme }) => theme.fonts.Body1}
+  width: 100px;
 `;
 
 export const LineContainer = styled.div`

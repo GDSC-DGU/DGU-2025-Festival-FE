@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -8,7 +8,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 1000;
 `;
 
 export const ModalBox = styled.div`
@@ -69,13 +69,13 @@ export const CancelButton = styled.button`
 
 export const ConfirmButton = styled.button<{ disabled?: boolean }>`
   flex: 1;
-  background: ${({ disabled }) => (disabled ? '#a7a7a7' : '#575bdf')};
-  color: ${({ disabled }) => (disabled ? 'black' : 'white')};
+  background: ${({ disabled }) => (disabled ? "#a7a7a7" : "#575bdf")};
+  color: ${({ disabled }) => (disabled ? "black" : "white")};
   border-radius: 100px;
   padding: 10px;
   font-weight: 500;
   border: none;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;
 
 export const PhoneInputWrapper = styled.div`
@@ -86,7 +86,7 @@ export const PhoneInputWrapper = styled.div`
 
 export const SendCodeButton = styled.button<{ disabled?: boolean }>`
   padding: 10px 12px;
-  background-color: ${({ disabled }) => (disabled ? '#c6c6c6' : '#575bdf')};
+  background-color: ${({ disabled }) => (disabled ? "#c6c6c6" : "#575bdf")};
   color: white;
   border-radius: 8px;
   font-weight: 500;
@@ -96,7 +96,7 @@ export const SendCodeButton = styled.button<{ disabled?: boolean }>`
   text-align: center;
   align-items: center;
   border: none;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;
 
 export const SmallNotice = styled.p`
@@ -104,5 +104,4 @@ export const SmallNotice = styled.p`
   color: #888;
   margin: -18px 0 20px;
   text-align: center;
-  
 `;

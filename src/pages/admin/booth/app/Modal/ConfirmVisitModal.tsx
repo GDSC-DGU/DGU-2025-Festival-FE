@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface ConfirmVisitModalProps {
   boothName: string;
@@ -6,7 +6,11 @@ interface ConfirmVisitModalProps {
   onConfirm: () => void;
 }
 
-const ConfirmVisitModal = ({ boothName, onCancel, onConfirm }: ConfirmVisitModalProps) => {
+const ConfirmVisitModal = ({
+  boothName,
+  onCancel,
+  onConfirm,
+}: ConfirmVisitModalProps) => {
   return (
     <Backdrop>
       <ModalContainer>
@@ -31,7 +35,7 @@ const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
-  z-index: 999;
+  z-index: 1000;
 `;
 
 const ModalContainer = styled.div`

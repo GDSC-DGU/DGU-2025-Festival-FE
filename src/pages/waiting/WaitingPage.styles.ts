@@ -1,21 +1,19 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Page = styled.div`
   width: 100%;
-  min-height: 100dvh;
   background-color: white;
   display: flex;
   flex-direction: column;
-  padding-bottom: 80px; 
+  padding-bottom: 80px;
+  padding-top: 54px;
 `;
 
-export const Header = styled.div`
-  position: relative;
-  padding: 12px 18px;
-  height: 56px;
+export const ContentContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  gap: 15px;
 `;
 
 export const TitleWrapper = styled.div`
@@ -34,13 +32,12 @@ export const Title = styled.h1`
 
 export const QuestionWrapper = styled.div`
   position: absolute;
-  right: 18px;
+  right: 25px;
+  top: 60px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 4px;
-  margin-top: 100px;
-  margin-right: 8px;
 `;
 
 export const QuestionIcon = styled.img`
@@ -56,9 +53,6 @@ export const WaitingHint = styled.div`
   font-weight: 500;
   text-align: right;
 `;
-
-
-
 
 export const MyWaitingBox = styled.div`
   padding: 20px;
@@ -78,18 +72,15 @@ export const WaitingCard = styled.div`
   border-radius: 8px;
   background-color: #fff;
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   gap: 5px;
-    box-shadow: 0 0 4px rgba(202, 56, 56, 0.25);
-
+  box-shadow: 0 0 4px rgba(202, 56, 56, 0.25);
 `;
 export const WaitingCardContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
 `;
-
-
 
 export const BoothName = styled.div`
   font-size: 16px;
@@ -122,24 +113,20 @@ export const CancelButton = styled.button`
   font-weight: 500;
   color: white;
   width: fit-content;
-  align-self: flex-end; 
-
+  align-self: flex-end;
 `;
 
 export const SectionTitle = styled.h3`
   font-size: 16px;
   font-weight: 600;
   color: #333c55;
-  padding: 0 20px;
-  margin-top: 20px;
   margin-left: 6px;
 `;
 
 export const BoothList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 0 20px;
+  gap: 20px;
 `;
 
 export const BoothCard = styled.div`
@@ -152,7 +139,6 @@ export const BoothCard = styled.div`
   align-items: center;
 `;
 
-
 interface BoothActionButtonProps {
   $isCancel?: boolean;
 }
@@ -163,9 +149,8 @@ export const BoothActionButton = styled.button<BoothActionButtonProps>`
   font-size: 12px;
   font-weight: 500;
   border: none;
-  background-color: ${({ $isCancel }) => ($isCancel ? '#A7A7A7' : '#575bdf')};
+  background-color: ${({ $isCancel }) => ($isCancel ? "#A7A7A7" : "#575bdf")};
   color: white;
-
 `;
 
 export const BoothIntro = styled.div`
@@ -174,7 +159,6 @@ export const BoothIntro = styled.div`
   margin-left: 5px;
   margin-bottom: 10px;
   margin-top: 5px;
-
 `;
 
 export const ImmediateEntryText = styled.div`
@@ -184,7 +168,7 @@ export const ImmediateEntryText = styled.div`
 `;
 
 export const WaitingSummary = styled.div`
- padding: 4px 12px;
+  padding: 4px 12px;
   border-radius: 100px;
   background-color: var(--gray-200);
   font-size: 12px;
