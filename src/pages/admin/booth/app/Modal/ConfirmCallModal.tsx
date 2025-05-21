@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface ConfirmCallModalProps {
   boothName: string;
@@ -6,7 +6,11 @@ interface ConfirmCallModalProps {
   onConfirm: () => void;
 }
 
-const ConfirmCallModal = ({ boothName, onCancel, onConfirm }: ConfirmCallModalProps) => {
+const ConfirmCallModal = ({
+  boothName,
+  onCancel,
+  onConfirm,
+}: ConfirmCallModalProps) => {
   return (
     <Backdrop>
       <ModalContainer>
@@ -31,7 +35,7 @@ const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
-  z-index: 999;
+  z-index: 1000;
 `;
 
 const ModalContainer = styled.div`
@@ -84,4 +88,3 @@ const ConfirmButton = styled.button`
   color: white;
   border: none;
 `;
-
