@@ -14,6 +14,7 @@ import { noticeItems } from "@/pages/notice/data/noticeItems";
 import { lostItems } from "@/pages/notice/data/lostItems";
 import WriteIcon from "@/assets/icons/write.svg";
 import { useNavigate } from "react-router-dom";
+import FloatingLogoutButton from "./components/FloatingLogoutButton/FloatingLogoutButton";
 
 const STORAGE_KEY = "notice_tab";
 
@@ -59,6 +60,7 @@ const AdminNoticePage = () => {
           )}
         </ToggleContainer>
       </ContentContainer>
+      <FloatingLogoutButton />
     </Container>
   );
 };
