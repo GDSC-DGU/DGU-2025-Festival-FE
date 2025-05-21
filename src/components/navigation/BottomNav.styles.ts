@@ -9,8 +9,7 @@ export const BottomNav = styled.nav`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-size: 12px;
-  font-weight: 500;
+  ${({ theme }) => theme.fonts.Body3}
   position: fixed;
   bottom: 0;
   ul {
