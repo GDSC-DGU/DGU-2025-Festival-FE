@@ -32,7 +32,7 @@ const TimetableItem = ({
   imageUrl,
 }: TimetableItemProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const handleDetail = (id: number) => {
+  const handleDetail = () => {
     setShowModal(true);
   };
 
@@ -53,7 +53,7 @@ const TimetableItem = ({
           {description && <Description>{description}</Description>}
         </Content>
 
-        <Button onClick={() => handleDetail(id)}>상세보기</Button>
+        <Button onClick={handleDetail}>상세보기</Button>
       </Card>
       {showModal && <DetailModal id={id} onClose={() => setShowModal(false)} />}
     </ItemContainer>
