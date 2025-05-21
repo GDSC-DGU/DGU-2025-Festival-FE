@@ -1,4 +1,10 @@
 export const fonts = {
+  TimeTable: {
+    fontFamily: "Playfair Display",
+    fontSize: 40,
+    fontWeight: "500",
+    lineHeight: "60px",
+  },
   Head1: {
     fontFamily: "Pretendard",
     fontSize: 24,
@@ -108,6 +114,11 @@ export const colors = {
 export const gradients = {
   purple: "linear-gradient(180deg, #060032 0%, #575BDF 89%)",
   orange: "linear-gradient(180deg, #F04F37 0%, #FFCCB0 100%)",
+  header: "linear-gradient(180deg, #575BDF 0%,  #060032 100%)",
+  rankingBox1:
+    "linear-gradient(180deg, rgba(255, 255, 255, 0.90) 48.87%, rgba(255, 255, 255, 0.00) 390.51%)",
+  rankingBox2:
+    "linear-gradient(179deg, rgba(255, 255, 255, 0.80) 37.23%, rgba(153, 153, 153, 0.00) 240.09%)",
 } as const;
 
 const theme = {
