@@ -20,21 +20,22 @@ const STORAGE_KEY = "notice_tab";
 
 const AdminNoticePage = () => {
   const navigate = useNavigate();
-  const [isLeftSelected, setIsLeftSelected] = useState<boolean>(true);
+  type NoticeTabType = "공지사항" | "분실물";
+  const [tab, setTab] = useState<NoticeTabType>("공지사항");
   useEffect(() => {
     const saved = sessionStorage.getItem(STORAGE_KEY);
-    if (saved === "lost") {
-      setIsLeftSelected(false);
+    if (saved === "분실물") {
+      setTab("분실물");
     }
   }, []);
 
-  const handleToggle = (selected: boolean) => {
-    setIsLeftSelected(selected);
-    sessionStorage.setItem(STORAGE_KEY, selected ? "notice" : "lost");
+  const handleToggle = (selected: NoticeTabType) => {
+    setTab(selected);
+    sessionStorage.setItem(STORAGE_KEY, selected);
   };
 
   const handleWrite = () => {
-    const type = isLeftSelected ? "notice" : "lost";
+    const type = tab === "공지사항" ? "notice" : "lost";
     navigate(`/admin/write?type=${type}`);
   };
   return (
@@ -44,8 +45,8 @@ const AdminNoticePage = () => {
         <Section>
           <Toggle
             options={["공지사항", "분실물"]}
-            isLeftSelected={isLeftSelected}
-            setIsLeftSelected={handleToggle}
+            current={tab}
+            onChange={handleToggle}
           />
           <WriteButton onClick={handleWrite}>
             <img src={WriteIcon} width={24} height={24} />
@@ -53,7 +54,7 @@ const AdminNoticePage = () => {
         </Section>
 
         <ToggleContainer>
-          {isLeftSelected ? (
+          {tab === "공지사항" ? (
             <NoticeList notices={noticeItems} isAdmin={true} />
           ) : (
             <LostGrid isAdmin={true} lostItems={lostItems} />
