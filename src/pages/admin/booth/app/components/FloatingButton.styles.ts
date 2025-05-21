@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 // 버튼 전체 래퍼 (화면 오른쪽 아래 고정)
 export const ButtonWrapper = styled.div`
@@ -29,12 +28,8 @@ export const MenuItem = styled.button`
   background: transparent;
   border: none;
   border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-  font-family: 'Pretendard', sans-serif;
   color: #333c55;
   cursor: pointer;
-
   img {
     width: 50px;
     height: 50px;
