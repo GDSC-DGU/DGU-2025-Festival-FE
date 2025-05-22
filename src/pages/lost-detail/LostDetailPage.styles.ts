@@ -21,6 +21,13 @@ export const ContentHeader = styled.div`
   gap: 8px;
 `;
 
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+`;
+
 export const TitleText = styled.h1`
   ${({ theme }) => theme.fonts.Head3};
   color: ${({ theme }) => theme.colors.gray700};
@@ -96,4 +103,25 @@ export const QuestionContent = styled.p`
   ${({ theme }) => theme.fonts.Caption}
   color: ${({ theme }) => theme.colors.gray600};
   white-space: pre-line;
+`;
+
+export const InfoField = styled.div``;
+
+export const Label = styled.p`
+  font-weight: bold;
+  margin-bottom: 4px;
+  font-size: 14px;
+`;
+
+export const Value = styled.p`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.gray700};
+`;
+
+export const Tag = styled.div`
+  padding: 5px 10px;
+  color: white;
+  ${({ theme }) => theme.fonts.Button2}
+  border-radius: 16px;
+  background-color: ${({ theme }) => theme.colors.indigo600};
 `;

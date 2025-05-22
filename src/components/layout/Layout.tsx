@@ -11,14 +11,14 @@ export default function Layout() {
     pathname === "/timetable" ||
     pathname.startsWith("/booth");
   const backgroundImage = isBgPage ? mainBgImage : undefined;
-
+  const isAdmin = pathname.startsWith("/admin");
   return (
     <S.AppContainer>
       <S.AppWrapper $backgroundImage={backgroundImage}>
         <S.AppMain>
           <Outlet />
         </S.AppMain>
-        <BottomNav />
+        {!isAdmin && <BottomNav />}
       </S.AppWrapper>
     </S.AppContainer>
   );

@@ -8,6 +8,8 @@ export const TagContainer = styled.div<{ $isActive: boolean }>`
       $isActive ? theme.colors.indigo600 : theme.colors.gray300};
   background-color: ${({ theme, $isActive }) =>
     $isActive ? theme.colors.indigo600 : theme.colors.white};
+  white-space: nowrap;
+  cursor: pointer;
 `;
 
 export const TagText = styled.p<{ $isActive: boolean }>`
