@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { booths } from '../data/booths';
 import { useBoothStore } from '../stores/useBoothStore';
-import markerLiked from '@/assets/icons/marker-liked.png';
-import markerDefault from '@/assets/icons/marker-default.png';
+import markerLiked from '@/assets/icons/marker-liked.svg';
+import markerDefault from '@/assets/icons/marker-default.svg';
 import Heart from '@/assets/icons/heart-null.png'
 
 import {
