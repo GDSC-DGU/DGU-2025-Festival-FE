@@ -45,6 +45,7 @@ const AdminLoginPage = () => {
         return;
       }
     } catch (error: unknown) {
+      console.error("로그인 실패:", error);
       setError("서버 오류가 발생했습니다.");
     }
   };
