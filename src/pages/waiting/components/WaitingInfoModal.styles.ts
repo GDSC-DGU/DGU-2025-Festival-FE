@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -10,7 +10,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 1000;
 `;
 
 export const ModalBox = styled.div`
@@ -24,7 +24,7 @@ export const ModalBox = styled.div`
 export const Title = styled.h2`
   font-size: 18px;
   font-weight: bold;
-  color: #333C55;
+  color: #333c55;
   margin-bottom: 12px;
   text-align: center;
 `;
@@ -32,7 +32,7 @@ export const Title = styled.h2`
 export const Text = styled.p`
   font-size: 14px;
   line-height: 1.7;
-  color: #646E8B;
+  color: #646e8b;
   white-space: pre-line;
   margin-bottom: 20px;
   text-align: center;
@@ -45,5 +45,5 @@ export const ConfirmButton = styled.button`
   border: none;
   background: #575bdf;
   color: white;
-  font-weight: 500;
+  ${({ theme }) => theme.fonts.Button1}
 `;

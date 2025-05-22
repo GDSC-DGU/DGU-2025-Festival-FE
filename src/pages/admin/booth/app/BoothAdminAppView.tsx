@@ -1,21 +1,21 @@
 import {
   Wrapper,
-  Header,
   BoothListWrapper,
   Section,
   SectionTitle,
   SectionDescription,
   TotalCount,
-} from './BoothAdminAppView.styles';
-import Tabs from './components/Tabs';
-import FloatingButton from './components/FloatingButton';
-import { useBoothAdminStore } from './stores/useBoothAdminStore';
-import WaitingBoothCard from './components/WaitingCard';
-import ConfirmCallModal from './Modal/ConfirmCallModal';
-import ConfirmVisitModal from './Modal/ConfirmVisitModal';
-import ConfirmDeleteModal from './Modal/ConfirmDeleteModal';
-import BoothCloseModal from './Modal/BoothCloseModal';
-import PhoneModal from './Modal/PhoneModal';
+} from "./BoothAdminAppView.styles";
+import Tabs from "./components/Tabs";
+import FloatingButton from "./components/FloatingButton";
+import { useBoothAdminStore } from "./stores/useBoothAdminStore";
+import WaitingBoothCard from "./components/WaitingCard";
+import ConfirmCallModal from "./Modal/ConfirmCallModal";
+import ConfirmVisitModal from "./Modal/ConfirmVisitModal";
+import ConfirmDeleteModal from "./Modal/ConfirmDeleteModal";
+import BoothCloseModal from "./Modal/BoothCloseModal";
+import PhoneModal from "./Modal/PhoneModal";
+import TopBar from "@/components/topbar/TopBar";
 
 const BoothAdminAppView = () => {
   const {
@@ -51,7 +51,7 @@ const BoothAdminAppView = () => {
 
   return (
     <Wrapper>
-      <Header>야간 부스 웨이팅 관리</Header>
+      <TopBar title="야간 부스 웨이팅 관리" />
 
       <Section>
         <SectionTitle>부스 좌석 현황 설정</SectionTitle>
@@ -85,16 +85,15 @@ const BoothAdminAppView = () => {
         <SectionDescription>
           현재 등록된 모든 대기자를 확인할 수 있어요.
         </SectionDescription>
-        <TotalCount>
-          대기 {notEnteredCount}팀
-        </TotalCount>
+        <TotalCount>대기 {notEnteredCount}팀</TotalCount>
         <BoothListWrapper>
           {normalBooths.map((booth) => {
             const isCalling = booth.calledAt;
             const elapsedMinutes = booth.calledAt
               ? (now - new Date(booth.calledAt).getTime()) / 60000
               : 0;
-            const showDeleteButton = isCalling && elapsedMinutes >= LATE_MINUTES;
+            const showDeleteButton =
+              isCalling && elapsedMinutes >= LATE_MINUTES;
 
             return (
               <WaitingBoothCard
@@ -107,9 +106,9 @@ const BoothAdminAppView = () => {
         </BoothListWrapper>
       </Section>
 
-        <FloatingButton />
+      <FloatingButton />
 
-      {modalType === 'call' && selectedBooth && (
+      {modalType === "call" && selectedBooth && (
         <ConfirmCallModal
           boothName={selectedBooth.name}
           onCancel={closeModal}
@@ -120,7 +119,7 @@ const BoothAdminAppView = () => {
         />
       )}
 
-      {modalType === 'visit' && selectedBooth && (
+      {modalType === "visit" && selectedBooth && (
         <ConfirmVisitModal
           boothName={selectedBooth.name}
           onCancel={closeModal}
@@ -131,7 +130,7 @@ const BoothAdminAppView = () => {
         />
       )}
 
-      {modalType === 'delete' && selectedBooth && (
+      {modalType === "delete" && selectedBooth && (
         <ConfirmDeleteModal
           boothName={selectedBooth.name}
           onCancel={closeModal}
@@ -142,7 +141,7 @@ const BoothAdminAppView = () => {
         />
       )}
 
-      {modalType === 'closeBooth' && (
+      {modalType === "closeBooth" && (
         <BoothCloseModal
           onCancel={closeModal}
           onConfirm={(reason) => {

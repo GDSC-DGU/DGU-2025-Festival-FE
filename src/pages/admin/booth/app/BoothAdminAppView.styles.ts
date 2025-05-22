@@ -1,21 +1,13 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100dvh;
   display: flex;
   flex-direction: column;
   background-color: white;
   align-items: center;
+  padding-top: 54px;
 `;
-
-export const Header = styled.header`
-  padding: 12px 20px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #333c55;
-  margin-top: 20px;
-text-align: center;`;
 
 export const Section = styled.section`
   padding: 20px;
@@ -26,13 +18,12 @@ export const Section = styled.section`
 `;
 
 export const SectionTitle = styled.h2`
-  font-size: 16px;
-  font-weight: 700;
+  ${({ theme }) => theme.fonts.Head3};
   margin: 0;
 `;
 
 export const SectionDescription = styled.p`
-  font-size: 12px;
+  ${({ theme }) => theme.fonts.Body3};
   color: #6b7280;
   margin: 0;
 `;
@@ -54,9 +45,8 @@ export const Footer = styled.footer`
 `;
 
 export const TotalCount = styled.div`
-  color: #4f46e5;
-  font-size: 15px;
-  font-weight: 700;
+  color: ${({ theme }) => theme.colors.indigo600};
+  ${({ theme }) => theme.fonts.Body2B}
   margin-bottom: 8px;
   align-self: flex-end;
 `;

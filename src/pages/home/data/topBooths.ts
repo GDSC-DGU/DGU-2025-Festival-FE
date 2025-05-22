@@ -1,5 +1,5 @@
 export const topBooths = [
-  { ranking: 1, title: "부스명", description: "부스 한줄 소개" },
-  { ranking: 2, title: "부스명", description: "부스 한줄 소개" },
-  { ranking: 3, title: "부스명", description: "부스 한줄 소개" },
+  { booth_id: 1, score: 3 },
+  { booth_id: 2, score: 2 },
+  { booth_id: 3, score: 1 },
 ];

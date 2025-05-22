@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -8,7 +8,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 1000;
 `;
 
 export const ModalBox = styled.div`
@@ -21,33 +21,32 @@ export const ModalBox = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 20px;
-  font-weight: 600;
+  ${({ theme }) => theme.fonts.Head3}
   color: #333c55;
   margin-bottom: 20px;
   text-align: center;
 `;
 
 export const Label = styled.label`
-  font-size: 14px;
-  font-weight: 600;
+  ${({ theme }) => theme.fonts.Body2B}
   color: #333c55;
   margin-left: 3px;
 `;
 
 export const Input = styled.input`
   width: 87%;
-  height: 36px;
-  padding: 8px 16px;
-  border: 1px solid #d7d7d7;
-  border-radius: 4px;
-  font-size: 16px;
+  padding: 10px 16px;
+  border: 1px solid ${({ theme }) => theme.colors.gray300};
+  outline: none;
+  border-radius: 8px;
+  ${({ theme }) => theme.fonts.Body2};
+  color: ${({ theme }) => theme.colors.gray700};
   margin: 8px 0;
 `;
 
 export const Notice = styled.p`
-  font-size: 14px;
-  color: #646e8b;
+  ${({ theme }) => theme.fonts.Body3}
+  color: ${({ theme }) => theme.colors.gray500};
   text-align: center;
   line-height: 1.6;
   margin-bottom: 24px;
@@ -60,22 +59,23 @@ export const ButtonGroup = styled.div`
 
 export const CancelButton = styled.button`
   flex: 1;
-  background: #a7a7a7;
-  border-radius: 100px;
-  padding: 10px;
-  font-weight: 500;
-  border: none;
+  background: white;
+  border: 1px solid ${({ theme }) => theme.colors.gray300};
+  border-radius: 16px;
+  padding: 8px 0;
+  ${({ theme }) => theme.fonts.Button2}
+  color: ${({ theme }) => theme.colors.gray400};
 `;
 
 export const ConfirmButton = styled.button<{ disabled?: boolean }>`
   flex: 1;
-  background: ${({ disabled }) => (disabled ? '#a7a7a7' : '#575bdf')};
-  color: ${({ disabled }) => (disabled ? 'black' : 'white')};
-  border-radius: 100px;
-  padding: 10px;
-  font-weight: 500;
+  background: ${({ disabled, theme }) =>
+    disabled ? theme.colors.gray400 : theme.colors.indigo600};
+  color: white;
+  border-radius: 16px;
+  ${({ theme }) => theme.fonts.Button2}
   border: none;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;
 
 export const PhoneInputWrapper = styled.div`
@@ -85,24 +85,26 @@ export const PhoneInputWrapper = styled.div`
 `;
 
 export const SendCodeButton = styled.button<{ disabled?: boolean }>`
-  padding: 10px 12px;
-  background-color: ${({ disabled }) => (disabled ? '#c6c6c6' : '#575bdf')};
+  padding: 10px 16px;
+  background: ${({ disabled, theme }) =>
+    disabled ? theme.colors.gray400 : theme.colors.indigo600};
   color: white;
   border-radius: 8px;
-  font-weight: 500;
+  ${({ theme }) => theme.fonts.Body2};
   white-space: nowrap;
-  height: 45px;
   align-self: center;
   text-align: center;
   align-items: center;
   border: none;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  border: 1px solid
+    ${({ disabled, theme }) =>
+      disabled ? theme.colors.gray400 : theme.colors.indigo600};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;
 
 export const SmallNotice = styled.p`
-  font-size: 12px;
-  color: #888;
+  ${({ theme }) => theme.fonts.Caption}
+  color: ${({ theme }) => theme.colors.gray400};
   margin: -18px 0 20px;
-  text-align: center;
-  
+  text-align: start;
 `;
