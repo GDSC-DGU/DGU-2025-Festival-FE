@@ -1,4 +1,5 @@
 import { useAuthStore } from "@/stores/useAuthStore";
+import axios from "axios";
 
 import type {
   AxiosInstance,
@@ -17,16 +18,16 @@ interface ApiSuccess<T> {
 interface ApiFailure {
   success: false;
   data: null;
-  error: any;
+  error: unknown;
 }
 
 export type ApiResponse<T> = ApiSuccess<T> | ApiFailure;
 
-export const sendRequest = async <T = any>(
+export const sendRequest = async <T = unknown, D = unknown>(
   instance: AxiosInstance,
   method: Method,
   url: string,
-  data?: any
+  data?: D
 ): Promise<ApiResponse<T>> => {
   try {
     const config: AxiosRequestConfig = {
@@ -42,12 +43,17 @@ export const sendRequest = async <T = any>(
     console.log(`✅ ${url} [${method}] Success:`, responseData);
 
     return responseData;
-  } catch (error: any) {
-    console.error(
-      `❌ ${url} [${method}] Error:`,
-      error?.response?.data || error
-    );
-    throw error;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        `❌ ${url} [${method}] Error:`,
+        error.response?.data || error.message
+      );
+      throw error; // 원래 AxiosError를 그대로 던짐
+    }
+
+    console.error(`❌ ${url} [${method}] Unknown error:`, error);
+    throw new Error("예상치 못한 오류가 발생했습니다.");
   }
 };
 

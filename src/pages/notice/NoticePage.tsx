@@ -16,6 +16,8 @@ import NoticeList from "./components/NoticeList/NoticeList";
 import QuestionIcon from "@/assets/icons/question.svg";
 import { noticeItems } from "./data/noticeItems";
 import { lostItems } from "./data/lostItems";
+import { sendRequest } from "@/api/request";
+import { lambdaInstance } from "@/api/instance";
 
 const STORAGE_KEY = "notice_tab";
 
@@ -32,9 +34,15 @@ const NoticePage = () => {
     }
   }, []);
 
+  const api = async () => {
+    const response = await sendRequest(lambdaInstance, "GET", "/notices");
+    console.log(response.data);
+  };
+
   const handleToggle = (selected: NoticeTabType) => {
     setTab(selected);
     sessionStorage.setItem(STORAGE_KEY, selected);
+    api();
   };
 
   return (

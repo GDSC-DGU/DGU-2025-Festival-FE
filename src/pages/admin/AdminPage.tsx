@@ -41,10 +41,10 @@ const AdminLoginPage = () => {
           navigate("/admin/booth");
         }
       } else {
-        setError(response.error || "로그인에 실패했습니다.");
+        setError("로그인에 실패했습니다.");
         return;
       }
-    } catch (e) {
+    } catch (_e) {
       setError("서버 오류가 발생했습니다.");
     }
   };
