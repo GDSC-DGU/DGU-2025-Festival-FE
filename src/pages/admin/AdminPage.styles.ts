@@ -12,6 +12,7 @@ export const LoginContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  padding-top: 40px;
   gap: 20px;
 `;
 
