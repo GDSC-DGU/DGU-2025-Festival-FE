@@ -14,8 +14,19 @@ import { topNotices } from "./data/topNotices";
 import BoothRanking from "./components/BoothRanking/BoothRanking";
 import { topBooths } from "./data/topBooths";
 import RankingIcon from "@/assets/icons/ranking.svg";
+import { booths } from "../booth/data/booths";
 
 const HomePage = () => {
+  const mappedBooths = topBooths.map((item, index) => {
+    const booth = booths.find((b) => b.id === `booth-${item.booth_id}`);
+    return {
+      ranking: index + 1,
+      booth_id: `booth-${item.booth_id}`,
+      name: booth?.name ?? "이름 없음",
+      intro: booth?.intro ?? "설명 없음",
+    };
+  });
+
   return (
     <Container>
       <Header />
@@ -39,7 +50,7 @@ const HomePage = () => {
             <Title>실시간 부스 순위</Title>
           </TitleContainer>
 
-          <BoothRanking booths={topBooths} />
+          <BoothRanking booths={mappedBooths} />
         </ContentContainer>
       </MainContainer>
     </Container>
