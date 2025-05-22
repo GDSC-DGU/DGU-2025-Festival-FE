@@ -8,6 +8,7 @@ import * as S from "./WaitingPage.styles";
 import type { Booth } from "@/types/booth";
 import QuestionIcon from "@/assets/icons/question.png";
 import TopBar from "@/components/topbar/TopBar";
+import { requestPermissionAndGetToken } from "@/firebase";
 
 const today = "2025-05-27"; // 실제 서비스에서는 new Date().toISOString().slice(0, 10) 등으로 대체
 
@@ -18,8 +19,15 @@ export default function WaitingPage() {
   const [showCancelConfirm, setShowCancelConfirm] = useState(false); // ✅ 추가
   const { activeWaiting, addWaiting, cancelWaiting } = useWaitingStore();
 
-  const handleClickBooth = (booth: Booth) => {
+  const handleClickBooth = async (booth: Booth) => {
     if (!activeWaiting || activeWaiting.boothId === booth.id) {
+      const token = await requestPermissionAndGetToken();
+      if (token) {
+        console.log('알림 권한 부여 및 토큰 발급 완료');
+      } else {
+        console.warn('사용자에게 알림 권한 거부됨');
+      }
+  
       setSelectedBooth(booth);
       setShowWaitingModal(true);
     }
@@ -64,7 +72,7 @@ export default function WaitingPage() {
                 {/* 나중에 → {getTotalWaitingCount()} */}
               </S.WaitingCardContent>
 
-              {/* ✅ 여기 변경 */}
+              {/* 여기 변경 */}
               <S.CancelButton onClick={() => setShowCancelConfirm(true)}>
                 웨이팅 취소
               </S.CancelButton>
