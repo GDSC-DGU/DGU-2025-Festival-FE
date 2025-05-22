@@ -1,7 +1,19 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1;
+  padding-top: 54px;
+`;
+
+export const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   padding: 20px;
+  box-sizing: border-box;
+  gap: 20px;
 `;
 
 export const MapWrapper = styled.div`

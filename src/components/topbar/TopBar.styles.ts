@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{ $isDark: boolean }>`
   height: 54px;
   display: flex;
   flex-direction: row;
@@ -9,7 +9,10 @@ export const Container = styled.div`
   top: 0;
   max-width: 430px;
   width: 100%;
-  background-color: white;
+  background-color: ${({ $isDark }) =>
+    $isDark ? "rgba(4, 0, 34, 0.6)" : "white"};
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 1000;
 `;
 
@@ -27,7 +30,7 @@ export const TitleContainer = styled.div`
   justify-content: center;
 `;
 
-export const Title = styled.p`
-  color: ${({ theme }) => theme.colors.gray700};
+export const Title = styled.p<{ $isDark: boolean }>`
+  color: ${({ theme, $isDark }) => ($isDark ? "white" : theme.colors.gray700)};
   ${({ theme }) => theme.fonts.Head2};
 `;
