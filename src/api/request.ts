@@ -61,7 +61,7 @@ export const sendRequest = async <T = unknown, D = unknown>(
 // ex) createUrl("/losts", { tag: "CLOTH" }); => /losts?tag=CLOTH
 export const createUrl = (
   path: string,
-  params: Record<string, any> = {}
+  params: Record<string, string> = {}
 ): string => {
   const query = new URLSearchParams(params).toString();
   return `${path}${query ? `?${query}` : ""}`;

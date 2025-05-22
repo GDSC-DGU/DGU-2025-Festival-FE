@@ -44,7 +44,7 @@ const AdminLoginPage = () => {
         setError("로그인에 실패했습니다.");
         return;
       }
-    } catch (_e) {
+    } catch (error: unknown) {
       setError("서버 오류가 발생했습니다.");
     }
   };
