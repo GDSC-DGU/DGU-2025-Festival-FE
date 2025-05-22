@@ -46,6 +46,7 @@ export default function BoothPage() {
             boothId={booth.id}
             name={booth.name}
             intro={booth.intro}
+            image={booth.image}
           />
         ))}
       </ContentContainer>

@@ -1,21 +1,39 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-  padding: 20px;
+  padding: 16px;
   background: white;
   border-radius: 8px;
   display: flex;
-  justify-content: left;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  height: 56px;
-  box-shadow: 0 0 10px 0 ${({ theme }) => theme.colors.gray300};
+  gap: 16px;
+  box-shadow: 0 0 4px 0 ${({ theme }) => theme.colors.gray300};
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const Image = styled.img`
+  height: 80px;
+  width: 80px;
+  border-radius: 8px;
+  object-fit: cover;
 `;
 
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-left: 10px;
+  gap: 8px;
+  align-items: start;
+  height: 100%;
+  justify-content: space-between;
 `;
 
 export const BoothName = styled.div`

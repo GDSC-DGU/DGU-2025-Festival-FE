@@ -12,7 +12,7 @@ export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
       token: null,
-      isAdminLoggedIn: false,
+      isAdminLoggedIn: true,
       login: (token: string) => set({ token, isAdminLoggedIn: true }),
       logout: () => set({ token: null, isAdminLoggedIn: false }),
     }),

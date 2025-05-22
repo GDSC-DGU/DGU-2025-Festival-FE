@@ -23,6 +23,8 @@ import {
   ReserveButton,
   ScrollWrapper,
   ContentContainer,
+  SubContainer,
+  Title,
 } from "./BoothDetailPage.styles";
 
 export default function BoothDetailPage() {
@@ -109,7 +111,7 @@ export default function BoothDetailPage() {
 
   return (
     <Container>
-      <TopBar title="부스 상세" showBackButton={true} isDark={true} />
+      <TopBar title="부스 상세" showBackButton={true} />
       <ContentContainer>
         <MapWrapper>
           <MapContainer
@@ -123,35 +125,37 @@ export default function BoothDetailPage() {
           <Header>
             <Info>
               <BoothName>{booth.name}</BoothName>
-              <BoothIntro>{booth.intro}</BoothIntro>
+              {booth.waitingAvailable && (
+                <ReserveButton onClick={() => setShowWaitingModal(true)}>
+                  웨이팅하기
+                </ReserveButton>
+              )}
             </Info>
-            <Like onClick={() => toggleLike(booth.id)}>
-              <img src={isLiked ? HeartOn : HeartOff} alt="찜" width={30} />
-              <LikeCount>{likeCount}</LikeCount>
-            </Like>
+            <BoothIntro>{booth.intro}</BoothIntro>
           </Header>
           <BoothImage src={booth.image} alt="부스 이미지" />
-          {booth.waitingAvailable && (
-            <ReserveButton onClick={() => setShowWaitingModal(true)}>
-              웨이팅 하기
-            </ReserveButton>
-          )}
+          <Like onClick={() => toggleLike(booth.id)}>
+            <LikeCount>{likeCount}</LikeCount>
+            <img src={isLiked ? HeartOn : HeartOff} alt="찜" width={24} />
+          </Like>
         </Card>
-
-        {relatedBooths.length > 0 && (
-          <ScrollWrapper ref={scrollRef}>
-            {loopedBooths.map((b, index) => (
-              <MiniBoothCard
-                key={`${b.id}-${index}`}
-                id={`${b.id}-${index}`}
-                name={b.name}
-                image={b.image}
-                intro={b.intro}
-                onClick={() => navigate(`/booth/${b.id}`)}
-              />
-            ))}
-          </ScrollWrapper>
-        )}
+        <SubContainer>
+          <Title>근처 부스 둘러보기</Title>
+          {relatedBooths.length > 0 && (
+            <ScrollWrapper ref={scrollRef}>
+              {loopedBooths.map((b, index) => (
+                <MiniBoothCard
+                  key={`${b.id}-${index}`}
+                  id={`${b.id}-${index}`}
+                  name={b.name}
+                  image={b.image}
+                  intro={b.intro}
+                  onClick={() => navigate(`/booth/${b.id}`)}
+                />
+              ))}
+            </ScrollWrapper>
+          )}
+        </SubContainer>
 
         {showWaitingModal && booth && (
           <WaitingModal
