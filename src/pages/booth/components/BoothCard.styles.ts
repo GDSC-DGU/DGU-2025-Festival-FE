@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Card = styled.div`
   padding: 20px;
@@ -8,6 +8,7 @@ export const Card = styled.div`
   justify-content: left;
   align-items: center;
   height: 56px;
+  box-shadow: 0 0 10px 0 ${({ theme }) => theme.colors.gray300};
 `;
 
 export const Info = styled.div`
@@ -22,7 +23,6 @@ export const BoothName = styled.div`
   font-size: 16px;
   color: var(--gray-700);
   line-height: 1.5;
-
 `;
 
 export const Intro = styled.div`

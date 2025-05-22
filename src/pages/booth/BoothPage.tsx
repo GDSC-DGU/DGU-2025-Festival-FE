@@ -25,7 +25,7 @@ export default function BoothPage() {
 
   return (
     <PageWrapper>
-      <TopBar title="부스" isDark={true} />
+      <TopBar title="부스" />
       <ContentContainer>
         <DateSelector selected={selectedDate} onChange={setSelectedDate} />
         <Wrapper apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>

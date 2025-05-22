@@ -6,10 +6,12 @@ import mainBgImage from "@/assets/background/main_bg.png";
 export default function Layout() {
   const { pathname } = useLocation();
 
-  const isBgPage =
-    pathname === "/" ||
-    pathname === "/timetable" ||
-    pathname.startsWith("/booth");
+  // const isBgPage =
+  //   pathname === "/" ||
+  //   pathname === "/timetable" ||
+  //   pathname.startsWith("/booth");
+
+  const isBgPage = pathname === "/" || pathname === "/timetable";
   const backgroundImage = isBgPage ? mainBgImage : undefined;
   const isAdmin = pathname.startsWith("/admin");
   return (

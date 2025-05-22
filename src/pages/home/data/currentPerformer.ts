@@ -1,8 +1,8 @@
 export const currentPerformer = {
-  name: "일리",
+  name: "백상응원단",
   description: "교내 동아리 공연",
   imageUrl:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazrguvyGZzs_9h8pJ9gbIpBKWYuTbjuARbw&s",
+    "https://yt3.googleusercontent.com/TE-mU5LNkIUFHhaTvppyAXTgjviiU7G0JQuOJhC3VvVvXNwdoPmpzh10oL7YN5JbqQ_9OEZ_=s900-c-k-c0x00ffffff-no-rj",
   startTime: "18:00",
   endTime: "19:00",
 };
