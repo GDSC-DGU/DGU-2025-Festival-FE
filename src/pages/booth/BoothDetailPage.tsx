@@ -49,61 +49,61 @@ export default function BoothDetailPage() {
   }, [relatedBooths]);
 
   // 중앙 부스를 기준으로 시작 위치 설정
-  useEffect(() => {
-    const middleIndex = relatedBooths.length;
-    const middleId = loopedBooths[middleIndex]?.id;
-    const el = scrollRef.current?.querySelector(
-      `[data-booth-id="${middleId}-${middleIndex}"]`
-    );
-    if (el) {
-      (el as HTMLElement).scrollIntoView({
-        behavior: "auto",
-        inline: "center",
-      });
-      autoScrollIndex.current = middleIndex;
-    }
-  }, [relatedBooths.length]);
+  // useEffect(() => {
+  //   const middleIndex = relatedBooths.length;
+  //   const middleId = loopedBooths[middleIndex]?.id;
+  //   const el = scrollRef.current?.querySelector(
+  //     `[data-booth-id="${middleId}-${middleIndex}"]`
+  //   );
+  //   if (el) {
+  //     (el as HTMLElement).scrollIntoView({
+  //       behavior: "auto",
+  //       inline: "center",
+  //     });
+  //     autoScrollIndex.current = middleIndex;
+  //   }
+  // }, [relatedBooths.length]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   // 자동 스크롤 기능(컨펌 후 뺄수도 있음)
-  // useEffect(() => {
-  //   if (!scrollRef.current || loopedBooths.length === 0) return;
+  useEffect(() => {
+    if (!scrollRef.current || loopedBooths.length === 0) return;
 
-  //   const scrollEl = scrollRef.current;
-  //   const cards = scrollEl.querySelectorAll("[data-booth-id]");
+    const scrollEl = scrollRef.current;
+    const cards = scrollEl.querySelectorAll("[data-booth-id]");
 
-  //   const interval = setInterval(() => {
-  //     autoScrollIndex.current++;
-  //     if (
-  //       autoScrollIndex.current >=
-  //       loopedBooths.length - relatedBooths.length
-  //     ) {
-  //       // 거의 끝에 도달하면 → 중간 위치로 순간 점프
-  //       autoScrollIndex.current = relatedBooths.length;
-  //       const jumpTarget = cards[autoScrollIndex.current] as HTMLElement;
-  //       scrollEl.scrollTo({
-  //         left:
-  //           jumpTarget.offsetLeft -
-  //           scrollEl.offsetWidth / 2 +
-  //           jumpTarget.offsetWidth / 2,
-  //         behavior: "auto",
-  //       });
-  //       return;
-  //     }
+    const interval = setInterval(() => {
+      autoScrollIndex.current++;
+      if (
+        autoScrollIndex.current >=
+        loopedBooths.length - relatedBooths.length
+      ) {
+        // 거의 끝에 도달하면 → 중간 위치로 순간 점프
+        autoScrollIndex.current = relatedBooths.length;
+        const jumpTarget = cards[autoScrollIndex.current] as HTMLElement;
+        scrollEl.scrollTo({
+          left:
+            jumpTarget.offsetLeft -
+            scrollEl.offsetWidth / 2 +
+            jumpTarget.offsetWidth / 2,
+          behavior: "auto",
+        });
+        return;
+      }
 
-  //     const target = cards[autoScrollIndex.current] as HTMLElement;
-  //     scrollEl.scrollTo({
-  //       left:
-  //         target.offsetLeft - scrollEl.offsetWidth / 2 + target.offsetWidth / 2,
-  //       behavior: "smooth",
-  //     });
-  //   }, 3000); // 3초마다 슬라이드
+      const target = cards[autoScrollIndex.current] as HTMLElement;
+      scrollEl.scrollTo({
+        left:
+          target.offsetLeft - scrollEl.offsetWidth / 2 + target.offsetWidth / 2,
+        behavior: "smooth",
+      });
+    }, 3000); // 3초마다 슬라이드
 
-  //   return () => clearInterval(interval);
-  // }, [loopedBooths, relatedBooths]);
+    return () => clearInterval(interval);
+  }, [loopedBooths, relatedBooths]);
 
   if (!booth) return <div>부스를 찾을 수 없습니다.</div>;
 
