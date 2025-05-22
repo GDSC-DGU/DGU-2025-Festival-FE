@@ -1,11 +1,18 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const PageWrapper = styled.div`
-  margin: 0 auto;
-  padding: 20px;
+  width: 100%;
   box-sizing: border-box;
+  flex: 1;
+  padding-top: 54px;
+`;
+
+export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
   gap: 20px;
 `;
 
@@ -13,6 +20,7 @@ export const ToolbarRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 `;
 
 export const WaitingCheckButton = styled.button`

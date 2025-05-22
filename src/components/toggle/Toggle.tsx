@@ -1,27 +1,29 @@
 import { ToggleContainer, TabButton } from "./Toggle.styles";
 
-interface ToggleProps {
-  options: [string, string];
-  isLeftSelected: boolean;
-  setIsLeftSelected: (val: boolean) => void;
+export type ToggleOption = string;
+
+export interface ToggleProps<T extends ToggleOption = string> {
+  options: [T, T];
+  current: T;
+  onChange: (val: T) => void;
 }
 
-const Toggle = ({
+const Toggle = <T extends ToggleOption>({
   options,
-  isLeftSelected,
-  setIsLeftSelected,
-}: ToggleProps) => {
+  current,
+  onChange,
+}: ToggleProps<T>) => {
   return (
     <ToggleContainer>
       <TabButton
-        $isActive={isLeftSelected}
-        onClick={() => setIsLeftSelected(true)}
+        $isActive={current === options[0]}
+        onClick={() => onChange(options[0])}
       >
         {options[0]}
       </TabButton>
       <TabButton
-        $isActive={!isLeftSelected}
-        onClick={() => setIsLeftSelected(false)}
+        $isActive={current === options[1]}
+        onClick={() => onChange(options[1])}
       >
         {options[1]}
       </TabButton>
