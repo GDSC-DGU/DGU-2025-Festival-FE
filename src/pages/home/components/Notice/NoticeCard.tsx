@@ -1,10 +1,10 @@
 import { NoticeContent, NoticeText } from "./Notice.styles";
-import type { NoticeItem } from "@/types/notice";
+import type { NoticeItemType } from "@/pages/notice/types/noticeItems";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 import { useNavigate } from "react-router-dom";
 
 interface NoticeCardProps {
-  notice: NoticeItem;
+  notice: NoticeItemType;
 }
 
 const NoticeCard = ({ notice }: NoticeCardProps) => {

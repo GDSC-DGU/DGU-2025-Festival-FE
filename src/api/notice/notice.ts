@@ -1,13 +1,10 @@
 import { sendRequest } from "../request";
 import { lambdaInstance } from "../instance";
-
-interface NoticeListResponse {
-  booth_id: string;
-  score: string;
-}
+import { useNoticeStore } from "@/stores/useNoticeStore";
+import type { NoticeItem } from "@/types/notice";
 
 export const NoticeListAPI = async () => {
-  const response = await sendRequest<NoticeListResponse[]>(
+  const response = await sendRequest<NoticeItem[]>(
     lambdaInstance,
     "GET",
     "/notices"
@@ -15,6 +12,9 @@ export const NoticeListAPI = async () => {
 
   if (response.success) {
     console.log(`전체 공지사항 불러오기 성공: `, response.data);
+    useNoticeStore.getState().setNoticeList(response.data);
+    const data = response.data.slice(0, 3);
+    useNoticeStore.getState().setNoticeList(data);
     return response.data;
   } else {
     return response.error;
