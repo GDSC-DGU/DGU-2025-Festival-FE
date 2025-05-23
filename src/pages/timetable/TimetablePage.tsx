@@ -12,6 +12,7 @@ import { useState, useMemo } from "react";
 import DaySelectorList from "./components/DaySelectorList/DaySelectorList";
 import { dates } from "./data/dates";
 import TimetableSection from "./components/TimetableSection/TimetableSection";
+import Lineup from "./components/Lineup/Lineup";
 
 const TimetablePage = () => {
   const [selectedDate, setSelectedDate] = useState<string>(dates[0].value);
@@ -36,7 +37,9 @@ const TimetablePage = () => {
       </HeaderContainer>
       <BodyContainer>
         <ContentContainer>
-          {dayIndex && <Banner>🎉 DAY {dayIndex} 공연 타임테이블</Banner>}
+          <Banner>Line Up</Banner>
+          <Lineup />
+          {dayIndex && <Banner>DAY {dayIndex} Time Table</Banner>}
           <TimetableSection selectedDate={selectedDate} />
         </ContentContainer>
       </BodyContainer>

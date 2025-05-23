@@ -40,6 +40,7 @@ export const BodyContainer = styled.div`
   overflow-y: auto;
   padding: 32px;
   padding-top: 200px;
+  scrollbar-width: none;
 `;
 
 export const SelectorContainer = styled.div`
@@ -60,15 +61,16 @@ export const ContentContainer = styled.div`
 
 export const Banner = styled.div`
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  /* border: 1px solid rgba(255, 255, 255, 0.4);
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.2) 0%,
     rgba(255, 255, 255, 0.1) 100%
-  );
-  border-radius: 8px;
-  padding: 10px;
-  box-sizing: border-box;
+  ); */
+  /* border-radius: 8px; */
+  /* padding: 10px; */
+  /* box-sizing: border-box; */
+  ${({ theme }) => theme.fonts.TimeTableSub}
   color: white;
-  text-align: center;
+  text-align: left;
 `;

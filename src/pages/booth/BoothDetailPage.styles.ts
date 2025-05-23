@@ -13,30 +13,38 @@ export const ContentContainer = styled.div`
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  gap: 20px;
+  gap: 24px;
 `;
 
 export const MapWrapper = styled.div`
   border-radius: 8px;
   overflow: hidden;
-  margin-bottom: 20px;
 `;
 
 export const Card = styled.div`
   background: white;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
   padding: 16px;
   border: 1px solid #d7d7d7;
 `;
 
 export const Header = styled.div`
   display: flex;
+  gap: 4px;
+  width: 100%;
+  flex-direction: column;
   justify-content: space-between;
 `;
 
 export const Info = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
   gap: 4px;
 `;
 
@@ -55,32 +63,32 @@ export const BoothIntro = styled.div`
 
 export const Like = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  right: 0;
   align-items: center;
   gap: 3px;
 `;
 
 export const LikeCount = styled.div`
-  font-size: 10px;
+  ${({ theme }) => theme.fonts.Body2}
   color: #333c55;
 `;
 
 export const BoothImage = styled.img`
   width: 100%;
   height: 230px;
-  margin-top: 16px;
   border-radius: 8px;
   object-fit: cover;
 `;
 
 export const ReserveButton = styled.button`
-  display: block;
-  margin: 16px auto 0;
-  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px;
   background-color: var(--indigo-600);
   color: white;
-  font-weight: 600;
-  font-size: 16px;
+  ${({ theme }) => theme.fonts.Button2}
   border-radius: 16px;
   cursor: pointer;
   border: none;
@@ -90,7 +98,6 @@ export const ScrollWrapper = styled.div`
   display: flex;
   overflow-x: auto;
   gap: 12px;
-  margin: 24px 0;
   padding-bottom: 8px;
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
@@ -98,4 +105,16 @@ export const ScrollWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+export const Title = styled.p`
+  text-align: center;
+  ${({ theme }) => theme.fonts.Head2}
+`;
+
+export const SubContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 `;

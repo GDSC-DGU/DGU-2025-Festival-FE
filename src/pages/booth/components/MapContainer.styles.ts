@@ -1,10 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MapWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 250px;
   border-radius: 8px;
+  box-shadow: 0 0 5px 0 ${({ theme }) => theme.colors.gray300};
 `;
 
 export const MapBox = styled.div`
@@ -22,7 +23,8 @@ export const FilterButton = styled.button<FilterButtonProps>`
   position: absolute;
   top: 12px;
   right: 12px;
-  background: ${({ $active }) => ($active ? 'var(--indigo-500)' : 'var(--gray-300)')};
+  background: ${({ $active }) =>
+    $active ? "var(--indigo-500)" : "var(--gray-300)"};
   color: white;
   font-size: 12px;
   font-weight: 600;

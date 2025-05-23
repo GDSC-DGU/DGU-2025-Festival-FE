@@ -5,6 +5,12 @@ export const fonts = {
     fontWeight: "500",
     lineHeight: "60px",
   },
+  TimeTableSub: {
+    fontFamily: "Playfair Display",
+    fontSize: 30,
+    fontWeight: "600",
+    lineHeight: "40px",
+  },
   Head1: {
     fontFamily: "Pretendard",
     fontSize: 24,
