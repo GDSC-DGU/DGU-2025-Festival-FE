@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   align-items: center;
-  width: 90%;
+  width: 80%;
 `;
 
-export const NoticeContent = styled.button<{ $rank: number }>`
+export const NoticeContent = styled.div`
   padding: 10px 20px;
   border-radius: 8px;
   display: flex;
@@ -17,14 +17,7 @@ export const NoticeContent = styled.button<{ $rank: number }>`
   border: none;
   width: 100%;
 
-  background: ${({ theme, $rank }) =>
-    $rank === 0
-      ? "white"
-      : $rank === 1
-        ? theme.gradients.rankingBox1
-        : $rank === 2
-          ? theme.gradients.rankingBox2
-          : "white"};
+  background: ${({ theme }) => theme.gradients.rankingBox1};
   border: 1.5px solid white;
   color: ${({ theme }) => theme.colors.gray700};
 `;

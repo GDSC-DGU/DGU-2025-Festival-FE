@@ -17,7 +17,6 @@ import { boothRankingAPI } from "@/api/booth/booth";
 import { useEffect, useState } from "react";
 import type { BoothRankingItem } from "@/types/booth";
 import { NoticeListAPI } from "@/api/notice/notice";
-import type { NoticeItem } from "@/types/notice";
 import { useNoticeStore } from "@/stores/useNoticeStore";
 
 const HomePage = () => {
