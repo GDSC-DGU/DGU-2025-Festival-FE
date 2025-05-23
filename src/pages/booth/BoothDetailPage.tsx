@@ -29,12 +29,8 @@ import { useLike } from "@/api/likes/hooks/useLike";
 
 export default function BoothDetailPage() {
   const { id } = useParams<{ id: string }>();
-  if (!id) return <div>부스 정보가 없어요.</div>;
-
   const booth = booths.find((b) => b.id === id);
-  if (!booth) return <div>부스 정보가 없어요.</div>;
-
-  const boothId = Number(id); 
+  const boothId = Number(id);
   const navigate = useNavigate();
   const [showWaitingModal, setShowWaitingModal] = useState(false);
   const addWaiting = useWaitingStore((state) => state.addWaiting);
@@ -47,9 +43,13 @@ export default function BoothDetailPage() {
     isLiked,
   } = useLike(boothId);
 
-  const relatedBooths = booths.filter(
-    (b) =>
-      b.date === booth?.date && b.type === booth?.type && b.id !== booth?.id
+  const relatedBooths = useMemo(
+    () =>
+      booths.filter(
+        (b) =>
+          b.date === booth?.date && b.type === booth?.type && b.id !== booth?.id
+      ),
+    [booth]
   );
 
   const loopedBooths = useMemo(() => {
@@ -98,7 +98,8 @@ export default function BoothDetailPage() {
     return () => clearInterval(interval);
   }, [loopedBooths, relatedBooths]);
 
-  if (isLoading) return <div>Loding...</div>; // 로딩 스켈레톤 추가 예정
+  if (!booth) return <div>부스를 찾을 수 없습니다.</div>;
+  if (isLoading) return <div>로딩 중...</div>; // 로딩 상태 수정 예정
 
   return (
     <Container>
