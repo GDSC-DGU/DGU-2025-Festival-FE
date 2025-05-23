@@ -7,6 +7,7 @@ import {
   ContentContainer,
   BodyContainer,
   Banner,
+  Section,
 } from "./TimetablePage.styles";
 import { useState, useMemo } from "react";
 import DaySelectorList from "./components/DaySelectorList/DaySelectorList";
@@ -37,10 +38,14 @@ const TimetablePage = () => {
       </HeaderContainer>
       <BodyContainer>
         <ContentContainer>
-          <Banner>Line Up</Banner>
-          <Lineup />
-          {dayIndex && <Banner>DAY {dayIndex} Time Table</Banner>}
-          <TimetableSection selectedDate={selectedDate} />
+          <Section>
+            <Banner>Line Up</Banner>
+            <Lineup selectedDate={selectedDate} />
+          </Section>
+          <Section>
+            <Banner>DAY {dayIndex} Time Table</Banner>
+            <TimetableSection selectedDate={selectedDate} />
+          </Section>
         </ContentContainer>
       </BodyContainer>
     </Container>

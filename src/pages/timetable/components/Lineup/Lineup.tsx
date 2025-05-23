@@ -1,26 +1,47 @@
 import { Container, SliderWrapper, Slide } from "./Lineup.styles";
-import { useEffect, useState } from "react";
-import Artist1 from "@/assets/lineup/다듀.png";
+import { useEffect, useState, useMemo } from "react";
+import Artist7 from "@/assets/lineup/다듀.png";
 import Artist2 from "@/assets/lineup/빈지노.png";
-import Artist3 from "@/assets/lineup/씨엔블루.png";
-import Artist4 from "@/assets/lineup/윤하.png";
-// import Artist5 from "@/assets/lineup/카더가든.png";
-// import Artist6 from "@/assets/lineup/크러쉬.png";
-// import Artist7 from "@/assets/lineup/키오라.png";
+import Artist3 from "@/assets/lineup/엔시티드림.png";
+import Artist6 from "@/assets/lineup/씨엔블루.png";
+import Artist8 from "@/assets/lineup/윤하.png";
+import Artist1 from "@/assets/lineup/카더가든.png";
+import Artist4 from "@/assets/lineup/크러쉬.png";
+import Artist5 from "@/assets/lineup/키오라.png";
 
-const images = [Artist1, Artist2, Artist3, Artist4];
+interface LineupProps {
+  selectedDate: string;
+}
 
-const Lineup = () => {
+const Lineup = ({ selectedDate }: LineupProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const images = useMemo(() => {
+    switch (selectedDate) {
+      case "2025-05-28": // 둘째날
+        return [Artist1, Artist2, Artist3, Artist4];
+      case "2025-05-29": // 셋째날
+        return [Artist5, Artist6, Artist7, Artist8];
+      default:
+        return []; // 첫째날 등 나머지는 없음
+    }
+  }, [selectedDate]);
+
   useEffect(() => {
+    setCurrentIndex(0); // 날짜 바뀔 때 초기화
+  }, [selectedDate]);
+
+  useEffect(() => {
+    if (images.length === 0) return;
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 3000); // 3초마다 전환
+    }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [images]);
 
+  if (images.length === 0) return <div>오늘은 라인업이 없습니다.</div>;
   return (
     <Container>
       <SliderWrapper>
