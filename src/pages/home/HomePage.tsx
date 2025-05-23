@@ -22,8 +22,7 @@ import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 
 const HomePage = () => {
   const [mappedBooths, setMappedBooths] = useState<BoothRankingItem[]>([]);
-  const { noticeList, setNoticeList } = useNoticeStore();
-
+  const previewNotices = useNoticeStore((state) => state.previewNotices);
   const timelineAnimation = useOnScreenAnimation<HTMLDivElement>();
   const noticeAnimation = useOnScreenAnimation<HTMLDivElement>();
   const rankingAnimation = useOnScreenAnimation<HTMLDivElement>();
@@ -33,7 +32,7 @@ const HomePage = () => {
       const rankingData = await boothRankingAPI();
       if (!Array.isArray(rankingData)) return;
       const mapped = rankingData.map((item, index) => {
-        const booth = booths.find((b) => b.id === `booth-${item.booth_id}`);
+        const booth = booths.find((b) => b.id === item.booth_id);
         return {
           ranking: index + 1,
           id: booth?.id ?? `booth-${item.id}`,
@@ -48,10 +47,7 @@ const HomePage = () => {
     };
 
     const fetchNoticeList = async () => {
-      const noticeListData = await NoticeListAPI();
-      if (!Array.isArray(noticeListData)) return;
-
-      setNoticeList(noticeListData.slice(0, 3));
+      await NoticeListAPI();
     };
 
     fetchRanking();
@@ -79,7 +75,7 @@ const HomePage = () => {
           >
             <Title>공지사항</Title>
           </TitleContainer>
-          <Notice notices={noticeList} />
+          <Notice notices={previewNotices} />
         </ContentContainer>
         <ContentContainer>
           <TitleContainer

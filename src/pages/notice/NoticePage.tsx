@@ -14,14 +14,17 @@ import {
 } from "./NoticePage.styles";
 import NoticeList from "./components/NoticeList/NoticeList";
 import QuestionIcon from "@/assets/icons/question.svg";
-import { noticeItems } from "./data/noticeItems";
-import { lostItems } from "./data/lostItems";
-import { sendRequest } from "@/api/request";
-import { lambdaInstance } from "@/api/instance";
+import { LostListAPI } from "@/api/notice/lost";
+import { NoticeListAPI } from "@/api/notice/notice";
+import { useNoticeStore } from "@/stores/useNoticeStore";
+import { useLostStore } from "@/stores/useLostStore";
 
 const STORAGE_KEY = "notice_tab";
 
 const NoticePage = () => {
+  const noticeList = useNoticeStore((state) => state.noticeList);
+  const lostList = useLostStore((state) => state.lostList);
+
   type NoticeTabType = "공지사항" | "분실물";
   const [tab, setTab] = useState<NoticeTabType>("공지사항");
   const [showQuestionContent, setShowQuestionContent] =
@@ -34,16 +37,23 @@ const NoticePage = () => {
     }
   }, []);
 
-  const api = async () => {
-    const response = await sendRequest(lambdaInstance, "GET", "/notices");
-    console.log(response.data);
-  };
-
   const handleToggle = (selected: NoticeTabType) => {
     setTab(selected);
     sessionStorage.setItem(STORAGE_KEY, selected);
-    api();
   };
+
+  useEffect(() => {
+    const fetchNoticeList = async () => {
+      await NoticeListAPI();
+    };
+
+    const fetchLostList = async () => {
+      await LostListAPI();
+    };
+
+    fetchNoticeList();
+    fetchLostList();
+  }, []);
 
   return (
     <Container>
@@ -75,9 +85,9 @@ const NoticePage = () => {
 
         <ToggleContainer>
           {tab === "공지사항" ? (
-            <NoticeList notices={noticeItems} />
+            <NoticeList notices={noticeList} />
           ) : (
-            <LostGrid lostItems={lostItems} />
+            <LostGrid lostItems={lostList} />
           )}
         </ToggleContainer>
       </ContentContainer>

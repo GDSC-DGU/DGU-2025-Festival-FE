@@ -9,9 +9,10 @@ import {
 import LostItem from "../LostItem/LostItem";
 import Tag from "../Tag/Tag";
 import { useNavigate } from "react-router-dom";
-import type { LostItemType } from "../../data/lostItems";
+import type { LostItemType } from "../../types/lostItems";
 import DeleteModal from "@/pages/admin/notice/components/DeleteModal/DeleteModal";
 import { LostTag } from "@/types/enums";
+import { getEnumValueByKey } from "@/utils/enumUtils";
 
 interface LostGridProps {
   isAdmin?: boolean;
@@ -28,7 +29,10 @@ const LostGrid = ({ isAdmin = false, lostItems }: LostGridProps) => {
   const filteredItems =
     selectedTag === "전체"
       ? lostItems
-      : lostItems.filter((item) => item.lost_tag_name === selectedTag);
+      : lostItems.filter((item) => {
+          const displayName = getEnumValueByKey(LostTag, item.lost_tag_name);
+          return displayName === selectedTag;
+        });
 
   const handleDelete = () => {
     if (targetId === null) return;

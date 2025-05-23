@@ -2,7 +2,7 @@ import { ListContainer } from "./NoticeList.styles";
 import NoticeItem from "../NoticeItem/NoticeItem";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import type { NoticeItemType } from "../../data/noticeItems";
+import type { NoticeItemType } from "../../types/noticeItems";
 import DeleteModal from "@/pages/admin/notice/components/DeleteModal/DeleteModal";
 
 interface NoticeListProps {

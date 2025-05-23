@@ -1,9 +1,9 @@
 import { Container } from "./Notice.styles";
-import type { NoticeItem } from "@/types/notice";
+import type { NoticeItemType } from "@/pages/notice/types/noticeItems";
 import NoticeCard from "./NoticeCard";
 
 interface NoticeProps {
-  notices: NoticeItem[];
+  notices: NoticeItemType[];
 }
 
 const Notice = ({ notices }: NoticeProps) => {

@@ -11,14 +11,12 @@ export const BottomNav = styled.nav`
 
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
   z-index: 1000;
 
   ul {
     display: flex;
     width: 100%;
-    height: 56px; 
+    height: 56px;
     margin: 0;
     padding: 0;
     list-style: none;
