@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
-
+import { Role } from "@/pages/admin/types/role";
 import HomePage from "@/pages/home/HomePage";
 import TimetablePage from "@/pages/timetable/TimetablePage";
 import NoticePage from "@/pages/notice/NoticePage";
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
       {
         path: "booth",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute allowedRoles={[Role.ADPUB]}>
             <BoothAdminEntry />
           </ProtectedRoute>
         ),
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
       {
         path: "notice",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute allowedRoles={[Role.ADFESTA]}>
             <AdminNoticePage />
           </ProtectedRoute>
         ),
@@ -57,7 +57,7 @@ export const router = createBrowserRouter([
       {
         path: "notice/:id",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute allowedRoles={[Role.ADFESTA]}>
             <NoticeDetailPage />
           </ProtectedRoute>
         ),
@@ -65,7 +65,7 @@ export const router = createBrowserRouter([
       {
         path: "notice/lost/:id",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute allowedRoles={[Role.ADFESTA]}>
             <LostDetailPage />
           </ProtectedRoute>
         ),
@@ -73,7 +73,7 @@ export const router = createBrowserRouter([
       {
         path: "write",
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute allowedRoles={[Role.ADFESTA]}>
             <WritePage />
           </ProtectedRoute>
         ),

@@ -5,7 +5,11 @@ interface SubmitButtonProps {
   title: string;
 }
 const SubmitButton = ({ onClick, title }: SubmitButtonProps) => {
-  return <ButtonContainer onClick={onClick}>{title}</ButtonContainer>;
+  return (
+    <ButtonContainer type="button" onClick={onClick}>
+      {title}
+    </ButtonContainer>
+  );
 };
 
 export default SubmitButton;

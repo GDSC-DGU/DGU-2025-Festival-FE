@@ -86,7 +86,7 @@ export const applyInterceptors = (instance: AxiosInstance): void => {
         config.headers.set("Authorization", `Bearer ${token}`);
         return config;
       }
-      window.location.href = "/admin";
+      // window.location.href = "/admin";
       return config;
     },
     (error) => {

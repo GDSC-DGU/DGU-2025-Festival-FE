@@ -16,7 +16,7 @@ import ConfirmDeleteModal from "./Modal/ConfirmDeleteModal";
 import BoothCloseModal from "./Modal/BoothCloseModal";
 import PhoneModal from "./Modal/PhoneModal";
 import TopBar from "@/components/topbar/TopBar";
-
+import RoleTag from "@/components/role/RoleTag";
 const BoothAdminAppView = () => {
   const {
     tab,
@@ -51,6 +51,7 @@ const BoothAdminAppView = () => {
 
   return (
     <Wrapper>
+      <RoleTag />
       <TopBar title="야간 부스 웨이팅 관리" />
 
       <Section>

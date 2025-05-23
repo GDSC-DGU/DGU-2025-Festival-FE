@@ -1,4 +1,4 @@
-import BoothAdminAppView from './app/BoothAdminAppView';
+import BoothAdminAppView from "./app/BoothAdminAppView";
 // import BoothAdminWebView from './web/BoothAdminWebView';
 
 const BoothAdminEntry = () => {

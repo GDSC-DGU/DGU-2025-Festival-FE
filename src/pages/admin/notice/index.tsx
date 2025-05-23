@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import TopBar from "@/components/topbar/TopBar";
 import Toggle from "@/components/toggle/Toggle";
+import RoleTag from "@/components/role/RoleTag";
 import {
   Container,
   ContentContainer,
@@ -41,6 +42,7 @@ const AdminNoticePage = () => {
   return (
     <Container>
       <TopBar title="공지사항 및 분실물" />
+      <RoleTag />
       <ContentContainer>
         <Section>
           <Toggle
