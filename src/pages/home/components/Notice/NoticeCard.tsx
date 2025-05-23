@@ -16,7 +16,7 @@ const NoticeCard = ({ notice }: NoticeCardProps) => {
       key={notice.notice_id}
       ref={ref}
       className={`fade-up ${isVisible ? "visible" : ""}`}
-      onClick={() => navigate(`/booth/${notice.notice_id}`)}
+      onClick={() => navigate(`/notice/${notice.notice_id}`)}
     >
       <NoticeText>{notice.notice_title}</NoticeText>
     </NoticeContent>
