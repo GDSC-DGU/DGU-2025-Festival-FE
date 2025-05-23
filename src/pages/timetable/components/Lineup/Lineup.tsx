@@ -1,4 +1,9 @@
-import { Container, SliderWrapper, Slide } from "./Lineup.styles";
+import {
+  Container,
+  SliderWrapper,
+  Slide,
+  EmptyContainer,
+} from "./Lineup.styles";
 import { useEffect, useState, useMemo } from "react";
 import Artist7 from "@/assets/lineup/다듀.png";
 import Artist2 from "@/assets/lineup/빈지노.png";
@@ -41,7 +46,8 @@ const Lineup = ({ selectedDate }: LineupProps) => {
     return () => clearInterval(interval);
   }, [images]);
 
-  if (images.length === 0) return <div>오늘은 라인업이 없습니다.</div>;
+  if (images.length === 0)
+    return <EmptyContainer>오늘은 라인업이 없습니다.</EmptyContainer>;
   return (
     <Container>
       <SliderWrapper>

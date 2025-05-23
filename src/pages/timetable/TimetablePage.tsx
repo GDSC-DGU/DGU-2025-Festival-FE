@@ -9,7 +9,7 @@ import {
   Banner,
   Section,
 } from "./TimetablePage.styles";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import DaySelectorList from "./components/DaySelectorList/DaySelectorList";
 import { dates } from "./data/dates";
 import TimetableSection from "./components/TimetableSection/TimetableSection";
@@ -21,6 +21,10 @@ const TimetablePage = () => {
   const dayIndex = useMemo(() => {
     const index = dates.findIndex((d) => d.value === selectedDate);
     return index >= 0 ? index + 1 : null;
+  }, [selectedDate]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [selectedDate]);
 
   return (

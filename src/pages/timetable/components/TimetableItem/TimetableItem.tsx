@@ -32,7 +32,7 @@ const TimetableItem = ({
   description,
   imageUrl,
 }: TimetableItemProps) => {
-  const { ref, isVisible } = useOnScreenAnimation<HTMLDivElement>(0.2);
+  const { ref, isVisible } = useOnScreenAnimation<HTMLDivElement>(0.5);
 
   const [showModal, setShowModal] = useState<boolean>(false);
   const handleDetail = () => {
