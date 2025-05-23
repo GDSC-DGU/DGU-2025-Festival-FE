@@ -5,8 +5,9 @@ import HeartOn from "@/assets/icons/heart-on.png";
 import HeartOff from "@/assets/icons/heart-off.png";
 import MapContainer from "@/pages/booth/components/MapContainer";
 import MiniBoothCard from "./components/MiniBoothCard";
-import WaitingModal from "@/components/waitingModal/WaitingModal";
-import { useWaitingStore } from "@/stores/useWaitingStore";
+// import WaitingModal from "@/components/waitingModal/WaitingModal"; // 비활성화
+import WaitingClosedModal from "@/pages/waiting/components/WaitingClosedModal";
+// import { useWaitingStore } from "@/stores/useWaitingStore";
 import TopBar from "@/components/topbar/TopBar";
 import {
   Container,
@@ -33,7 +34,7 @@ export default function BoothDetailPage() {
   const boothId = Number(id);
   const navigate = useNavigate();
   const [showWaitingModal, setShowWaitingModal] = useState(false);
-  const addWaiting = useWaitingStore((state) => state.addWaiting);
+  // const addWaiting = useWaitingStore((state) => state.addWaiting);
 
   const {
     isLoading,
@@ -99,7 +100,7 @@ export default function BoothDetailPage() {
   }, [loopedBooths, relatedBooths]);
 
   if (!booth) return <div>부스를 찾을 수 없습니다.</div>;
-  if (isLoading) return <div>로딩 중...</div>; // 로딩 상태 수정 예정
+  if (isLoading) return <div>로딩 중...</div>;
 
   return (
     <Container>
@@ -159,6 +160,8 @@ export default function BoothDetailPage() {
           )}
         </SubContainer>
 
+        {/* 기존 웨이팅 모달 비활성화, 대체 모달 사용 */}
+        {/* 
         {showWaitingModal && booth && (
           <WaitingModal
             booth={booth}
@@ -167,6 +170,10 @@ export default function BoothDetailPage() {
             }}
             onCancel={() => setShowWaitingModal(false)}
           />
+        )} 
+        */}
+        {showWaitingModal && (
+          <WaitingClosedModal onClose={() => setShowWaitingModal(false)} />
         )}
       </ContentContainer>
     </Container>
