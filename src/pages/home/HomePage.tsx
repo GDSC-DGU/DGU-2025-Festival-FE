@@ -10,16 +10,18 @@ import Flower from "@/assets/images/flower.png";
 import TimeLine from "./components/TimeLine/TimeLine";
 import { currentPerformer } from "./data/currentPerformer";
 import Notice from "./components/Notice/Notice";
-import { topNotices } from "./data/topNotices";
 import BoothRanking from "./components/BoothRanking/BoothRanking";
 import RankingIcon from "@/assets/icons/ranking.svg";
 import { booths } from "../booth/data/booths";
 import { boothRankingAPI } from "@/api/booth/booth";
 import { useEffect, useState } from "react";
 import type { BoothRankingItem } from "@/types/booth";
+import { NoticeListAPI } from "@/api/notice/notice";
+import type { NoticeItem } from "@/types/notice";
 
 const HomePage = () => {
   const [mappedBooths, setMappedBooths] = useState<BoothRankingItem[]>([]);
+  const [noticeList, setNoticeList] = useState<NoticeItem[]>([]);
 
   useEffect(() => {
     const fetchRanking = async () => {
@@ -40,7 +42,15 @@ const HomePage = () => {
       setMappedBooths(mapped);
     };
 
+    const fetchNoticeList = async () => {
+      const noticeListData = await NoticeListAPI();
+      if (!Array.isArray(noticeListData)) return;
+
+      setNoticeList(noticeListData.slice(0, 3)); // 상위 3개만
+    };
+
     fetchRanking();
+    fetchNoticeList();
   }, []);
 
   return (
@@ -58,7 +68,7 @@ const HomePage = () => {
           <TitleContainer>
             <Title>공지사항</Title>
           </TitleContainer>
-          <Notice notices={topNotices} />
+          <Notice notices={noticeList} />
         </ContentContainer>
         <ContentContainer>
           <TitleContainer>
