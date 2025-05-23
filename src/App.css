@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap');
 
 body,
 html {
@@ -22,10 +22,31 @@ html {
     box-sizing: border-box;
 }
 
+.logo-img {
+    width: 320px;
+    margin: 0 auto;
+    display: block;
+}
+
+.gdg-subtext {
+    font-size: 17px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    margin-top: 6px;
+    text-align: right;
+    margin-right: 10px;
+
+    background: linear-gradient(to right, #060032, #E0E7FF, #DFE4F3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .graphic-layer {
     position: relative;
     width: 100%;
     transform: translateX(-20px);
+    margin-top: 80px;
 }
 
 .hand-img {
@@ -56,36 +77,5 @@ html {
 
     100% {
         transform: translate(-50%, 0);
-    }
-}
-
-.coming-soon {
-    color: white;
-    font-size: 2.5rem;
-    margin-top: 1.5rem;
-}
-
-.festival-date {
-    font-family: 'Pretendard Variable', sans-serif;
-    font-variation-settings: "wght" 100;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
-    margin-top: 0.5rem;
-    letter-spacing: 0.05em;
-}
-
-@media (max-width: 480px) {
-    .flower-img {
-        width: 70px;
-        top: 14%;
-        left: 46%;
-    }
-
-    .coming-soon {
-        font-size: 2rem;
-    }
-
-    .festival-date {
-        font-size: 0.9rem;
     }
 }
