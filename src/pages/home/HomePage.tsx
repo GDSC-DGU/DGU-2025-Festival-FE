@@ -18,10 +18,15 @@ import { useEffect, useState } from "react";
 import type { BoothRankingItem } from "@/types/booth";
 import { NoticeListAPI } from "@/api/notice/notice";
 import { useNoticeStore } from "@/stores/useNoticeStore";
+import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 
 const HomePage = () => {
   const [mappedBooths, setMappedBooths] = useState<BoothRankingItem[]>([]);
   const { noticeList, setNoticeList } = useNoticeStore();
+
+  const timelineAnimation = useOnScreenAnimation<HTMLDivElement>();
+  const noticeAnimation = useOnScreenAnimation<HTMLDivElement>();
+  const rankingAnimation = useOnScreenAnimation<HTMLDivElement>();
 
   useEffect(() => {
     const fetchRanking = async () => {
@@ -59,19 +64,28 @@ const HomePage = () => {
       <MainContainer>
         <img src={Flower} height={100} alt="flower" />
         <ContentContainer>
-          <TitleContainer>
+          <TitleContainer
+            ref={timelineAnimation.ref}
+            className={`fade-up ${timelineAnimation.isVisible ? "visible" : ""}`}
+          >
             <Title>타임라인</Title>
           </TitleContainer>
           <TimeLine currentPerformer={currentPerformer} />
         </ContentContainer>
         <ContentContainer>
-          <TitleContainer>
+          <TitleContainer
+            ref={noticeAnimation.ref}
+            className={`fade-up ${noticeAnimation.isVisible ? "visible" : ""}`}
+          >
             <Title>공지사항</Title>
           </TitleContainer>
           <Notice notices={noticeList} />
         </ContentContainer>
         <ContentContainer>
-          <TitleContainer>
+          <TitleContainer
+            ref={rankingAnimation.ref}
+            className={`fade-up ${rankingAnimation.isVisible ? "visible" : ""}`}
+          >
             <img src={RankingIcon} alt="ranking" width={20} height={16} />
             <Title>실시간 부스 순위</Title>
           </TitleContainer>
