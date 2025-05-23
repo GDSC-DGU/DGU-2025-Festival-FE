@@ -33,7 +33,7 @@ const HomePage = () => {
       const rankingData = await boothRankingAPI();
       if (!Array.isArray(rankingData)) return;
       const mapped = rankingData.map((item, index) => {
-        const booth = booths.find((b) => b.id === `booth-${item.booth_id}`);
+        const booth = booths.find((b) => b.id === item.booth_id);
         return {
           ranking: index + 1,
           id: booth?.id ?? `booth-${item.id}`,
