@@ -11,6 +11,7 @@ import {
   TitleContainer,
 } from "./BoothCard.styles";
 import { useNavigate } from "react-router-dom";
+import { useLikeBoothMutation } from "@/api/likes/useLikeBoothMutation";
 
 interface BoothCardProps {
   boothId: string;
@@ -25,21 +26,29 @@ export default function BoothCard({
   intro,
   image,
 }: BoothCardProps) {
-  const toggleLike = useBoothStore((state) => state.toggleLike);
   const isLiked = useBoothStore((state) => state.isLiked(boothId));
+  const setSelectedBoothId = useBoothStore((state) => state.setSelectedBoothId);
   const navigate = useNavigate();
+  const { mutate } = useLikeBoothMutation();
 
   return (
-    <Card onClick={() => navigate(`/booth/${boothId}`)}>
+    <Card
+      onClick={() => {
+        setSelectedBoothId(boothId);
+        navigate(`/booth/${boothId}`);
+      }}
+    >
       <Image src={image} alt="부스 이미지" />
-
       <Info>
         <TitleContainer>
           <BoothName>{name}</BoothName>
           <LikeButton
+            disabled={isLiked}
             onClick={(e) => {
               e.stopPropagation();
-              toggleLike(boothId);
+              if (!isLiked) {
+                mutate(Number(boothId.replace(/[^0-9]/g, "")));
+              }
             }}
           >
             <img
