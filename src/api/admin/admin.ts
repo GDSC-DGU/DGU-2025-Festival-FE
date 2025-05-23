@@ -31,7 +31,6 @@ export const loginAPI = async (payload: LoginPayload) => {
     console.log(`로그인 성공: ${useAuthStore.getState().role}`);
     return response;
   } else {
-    alert(`로그인 실패: ${response.error}`);
     return response;
   }
 };
