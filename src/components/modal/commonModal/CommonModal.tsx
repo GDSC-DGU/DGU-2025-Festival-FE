@@ -8,7 +8,7 @@ import {
   ConfirmButton,
   ContentContainer,
 } from "./CommonModal.styles";
-import ModalPortal from "../common/ModalPortal";
+import ModalPortal from "@/components/common/ModalPortal";
 
 interface CommonModalProps {
   title: string;
