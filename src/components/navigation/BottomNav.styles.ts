@@ -3,34 +3,46 @@ import styled from "styled-components";
 export const BottomNav = styled.nav`
   max-width: 430px;
   width: 100%;
-  height: 56px;
+  height: calc(56px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px); /* iOS 노치 대응 */
   background-color: white;
   box-shadow: 0 -2px 8px rgba(79, 70, 229, 0.1);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  ${({ theme }) => theme.fonts.Body3}
+  ${({ theme }) => theme.fonts.Body3};
+
   position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
   ul {
     display: flex;
     width: 100%;
-    justify-content: space-around;
-    list-style: none;
-    padding: 0;
+    height: 56px; 
     margin: 0;
+    padding: 0;
+    list-style: none;
 
     li {
       flex: 1;
-      text-align: center;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      a {
+      a,
+      button {
+        all: unset;
+        width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 4px;
-        text-decoration: none;
+        cursor: pointer;
         color: var(--gray-400);
+        text-decoration: none;
 
         &.active,
         .active {
@@ -44,6 +56,10 @@ export const BottomNav = styled.nav`
           width: 20px;
           height: 20px;
           object-fit: contain;
+        }
+
+        span {
+          font-size: 12px;
         }
       }
     }

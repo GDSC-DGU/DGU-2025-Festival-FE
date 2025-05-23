@@ -81,17 +81,33 @@ export const BoothImage = styled.img`
   object-fit: cover;
 `;
 
+// 기존 스타일 주석 처리
+// export const ReserveButton = styled.button`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   padding: 4px 16px;
+//   background-color: var(--indigo-600);
+//   color: white;
+//   ${({ theme }) => theme.fonts.Button2}
+//   border-radius: 16px;
+//   cursor: pointer;
+//   border: none;
+// `;
+
+// 비활성화(회색) 스타일로 대체
 export const ReserveButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 4px 16px;
-  background-color: var(--indigo-600);
-  color: white;
+  background-color: #F1F3F9;
+  color: #949DB8;
   ${({ theme }) => theme.fonts.Button2}
   border-radius: 16px;
-  cursor: pointer;
+  cursor: not-allowed;
   border: none;
+  opacity: 0.7;
 `;
 
 export const ScrollWrapper = styled.div`
