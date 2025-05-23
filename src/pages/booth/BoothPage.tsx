@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import BoothTypeToggle from "./components/BoothTypeToggle";
 import DateSelector from "./components/DateSelector";
 import MapContainer from "./components/MapContainer";
@@ -13,11 +13,13 @@ import {
 } from "./BoothPage.styles";
 import { booths } from "./data/booths";
 import TopBar from "@/components/topbar/TopBar";
+import WaitingClosedModal from "@/pages/waiting/components/WaitingClosedModal"; // 추가
 
 export default function BoothPage() {
   const [selectedDate, setSelectedDate] = useState("2025-05-27");
   const [boothType, setBoothType] = useState<"day" | "night">("day");
-  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false); // 모달 상태
+  // const navigate = useNavigate(); // 임시 주석
 
   const filteredBooths = booths.filter(
     (booth) => booth.date === selectedDate && booth.type === boothType
@@ -34,8 +36,7 @@ export default function BoothPage() {
 
         <ToolbarRow>
           <BoothTypeToggle value={boothType} onChange={setBoothType} />
-
-          <WaitingCheckButton onClick={() => navigate("/waiting")}>
+          <WaitingCheckButton onClick={() => setShowModal(true)}>
             웨이팅 확인
           </WaitingCheckButton>
         </ToolbarRow>
@@ -50,6 +51,8 @@ export default function BoothPage() {
           />
         ))}
       </ContentContainer>
+
+      {showModal && <WaitingClosedModal onClose={() => setShowModal(false)} />}
     </PageWrapper>
   );
 }

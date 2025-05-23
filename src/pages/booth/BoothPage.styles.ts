@@ -23,21 +23,34 @@ export const ToolbarRow = styled.div`
   width: 100%;
 `;
 
+// export const WaitingCheckButton = styled.button`
+//   position: relative;
+//   background-color: white;
+//   color: #575bdf;
+//   border: 2px solid #575bdf;
+//   border-radius: 32px;
+//   padding: 10px 20px;
+//   font-weight: 600;
+//   font-size: 16px;
+//   cursor: pointer;
+//   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+//   &:hover {
+//     opacity: 0.95;
+//   }
+// `;
+
 export const WaitingCheckButton = styled.button`
   position: relative;
-  background-color: white;
-  color: #575bdf;
-  border: 2px solid #575bdf;
+  background-color: #F1F3F9;
+  color: #949DB8;
+  border: none;
   border-radius: 32px;
   padding: 10px 20px;
   font-weight: 600;
   font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    opacity: 0.95;
-  }
+  cursor: not-allowed;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  opacity: 0.7;
 `;
 
 export const Badge = styled.div`
