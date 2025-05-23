@@ -12,20 +12,36 @@ import { currentPerformer } from "./data/currentPerformer";
 import Notice from "./components/Notice/Notice";
 import { topNotices } from "./data/topNotices";
 import BoothRanking from "./components/BoothRanking/BoothRanking";
-import { topBooths } from "./data/topBooths";
 import RankingIcon from "@/assets/icons/ranking.svg";
 import { booths } from "../booth/data/booths";
+import { boothRankingAPI } from "@/api/booth/booth";
+import { useEffect, useState } from "react";
+import type { BoothRankingItem } from "@/types/booth";
 
 const HomePage = () => {
-  const mappedBooths = topBooths.map((item, index) => {
-    const booth = booths.find((b) => b.id === `booth-${item.booth_id}`);
-    return {
-      ranking: index + 1,
-      booth_id: `booth-${item.booth_id}`,
-      name: booth?.name ?? "이름 없음",
-      intro: booth?.intro ?? "설명 없음",
+  const [mappedBooths, setMappedBooths] = useState<BoothRankingItem[]>([]);
+
+  useEffect(() => {
+    const fetchRanking = async () => {
+      const rankingData = await boothRankingAPI();
+      if (!Array.isArray(rankingData)) return;
+      const mapped = rankingData.map((item, index) => {
+        const booth = booths.find((b) => b.id === `booth-${item.booth_id}`);
+        return {
+          ranking: index + 1,
+          id: booth?.id ?? `booth-${item.id}`,
+          name: booth?.name ?? "이름 없음",
+          intro: booth?.intro ?? "설명 없음",
+          image: booth?.image ?? "",
+          score: item.score,
+        };
+      });
+
+      setMappedBooths(mapped);
     };
-  });
+
+    fetchRanking();
+  }, []);
 
   return (
     <Container>

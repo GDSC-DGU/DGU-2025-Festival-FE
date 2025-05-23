@@ -11,28 +11,22 @@ import {
 } from "./BoothRanking.styles";
 import ArrowIcon from "@/assets/icons/arrow.svg";
 import { useNavigate } from "react-router-dom";
-
-interface BoothItem {
-  ranking: number;
-  booth_id: string;
-  name: string;
-  intro: string;
-}
+import type { BoothRankingItem } from "@/types/booth";
 
 interface BoothRankingItemProps {
-  booths: BoothItem[];
+  booths: BoothRankingItem[];
 }
 
 const BoothRanking = ({ booths }: BoothRankingItemProps) => {
   const navigate = useNavigate();
-
+  console.log(booths);
   return (
     <Container>
       {booths.slice(0, 3).map((booth) => (
         <BoothCard
           key={booth.ranking}
           $rank={booth.ranking}
-          onClick={() => navigate(`/booth/${booth.booth_id}`)}
+          onClick={() => navigate(`/booth/${booth.id}`)}
         >
           <LeftSide>
             <NumberCard>
