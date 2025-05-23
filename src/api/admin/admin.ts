@@ -21,8 +21,6 @@ export const loginAPI = async (payload: LoginPayload) => {
     payload
   );
 
-  console.log(response);
-
   if (response.success) {
     useAuthStore
       .getState()

@@ -18,10 +18,11 @@ import { useEffect, useState } from "react";
 import type { BoothRankingItem } from "@/types/booth";
 import { NoticeListAPI } from "@/api/notice/notice";
 import type { NoticeItem } from "@/types/notice";
+import { useNoticeStore } from "@/stores/useNoticeStore";
 
 const HomePage = () => {
   const [mappedBooths, setMappedBooths] = useState<BoothRankingItem[]>([]);
-  const [noticeList, setNoticeList] = useState<NoticeItem[]>([]);
+  const { noticeList, setNoticeList } = useNoticeStore();
 
   useEffect(() => {
     const fetchRanking = async () => {
@@ -46,7 +47,7 @@ const HomePage = () => {
       const noticeListData = await NoticeListAPI();
       if (!Array.isArray(noticeListData)) return;
 
-      setNoticeList(noticeListData.slice(0, 3)); // 상위 3개만
+      setNoticeList(noticeListData.slice(0, 3));
     };
 
     fetchRanking();

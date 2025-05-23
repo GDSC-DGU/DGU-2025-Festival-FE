@@ -19,7 +19,6 @@ interface BoothRankingItemProps {
 
 const BoothRanking = ({ booths }: BoothRankingItemProps) => {
   const navigate = useNavigate();
-  console.log(booths);
   return (
     <Container>
       {booths.slice(0, 3).map((booth) => (
