@@ -12,13 +12,13 @@ export default function BoothTypeToggle({
   return (
     <ToggleContainer>
       <ToggleButton selected={value === "day"} onClick={() => onChange("day")}>
-        부스
+        낮 부스
       </ToggleButton>
       <ToggleButton
         selected={value === "night"}
         onClick={() => onChange("night")}
       >
-        주점
+        야간 부스
       </ToggleButton>
     </ToggleContainer>
   );

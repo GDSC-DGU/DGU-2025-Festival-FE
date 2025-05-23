@@ -11,6 +11,7 @@ interface BoothState {
   getLikeCount: (id: string) => number;
   toggleShowOnlyLiked: () => void;
   setSelectedBoothId: (id: string | null) => void;
+  setLikeCount: (id: string, count: number) => void;
 }
 
 export const useBoothStore = create<BoothState>()(
@@ -41,11 +42,18 @@ export const useBoothStore = create<BoothState>()(
         set((state) => ({ showOnlyLiked: !state.showOnlyLiked }));
       },
       setSelectedBoothId: (id) => set({ selectedBoothId: id }),
+      setLikeCount: (id: string, count: number) =>
+        set((state) => ({
+          likeCounts: {
+            ...state.likeCounts,
+            [id]: count,
+          },
+        })),
     }),
     {
       name: 'liked-booths-storage',
       partialize: (state) => ({
-        likedBooths: Array.from(state.likedBooths), // Set → string[]
+        likedBooths: Array.from(state.likedBooths), 
         likeCounts: state.likeCounts,
         showOnlyLiked: state.showOnlyLiked,
         selectedBoothId: state.selectedBoothId,
