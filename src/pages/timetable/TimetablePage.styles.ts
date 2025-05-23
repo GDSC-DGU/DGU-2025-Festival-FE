@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
   overflow: hidden;
   position: relative;
 `;
@@ -55,22 +54,21 @@ export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
   padding: 0;
 `;
 
 export const Banner = styled.div`
   width: 100%;
-  /* border: 1px solid rgba(255, 255, 255, 0.4);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0.1) 100%
-  ); */
-  /* border-radius: 8px; */
-  /* padding: 10px; */
-  /* box-sizing: border-box; */
   ${({ theme }) => theme.fonts.TimeTableSub}
   color: white;
   text-align: left;
+`;
+
+export const Section = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 40px;
+  width: 100%;
 `;

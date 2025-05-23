@@ -13,6 +13,7 @@ import {
 } from "./TimetableItem.styles";
 import { useState } from "react";
 import DetailModal from "../DetailModal/DetailModal";
+import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 
 interface TimetableItemProps {
   id: number;
@@ -31,13 +32,18 @@ const TimetableItem = ({
   description,
   imageUrl,
 }: TimetableItemProps) => {
+  const { ref, isVisible } = useOnScreenAnimation<HTMLDivElement>(0.5);
+
   const [showModal, setShowModal] = useState<boolean>(false);
   const handleDetail = () => {
     setShowModal(true);
   };
 
   return (
-    <ItemContainer>
+    <ItemContainer
+      ref={ref}
+      className={`fade-up ${isVisible ? "visible" : ""}`}
+    >
       <TimeText>
         {start}
         <br />~{end}

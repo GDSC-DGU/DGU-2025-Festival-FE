@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   align-items: center;
   width: 90%;
 `;
@@ -19,14 +19,8 @@ export const BoothCard = styled.div<{ $rank: number }>`
   width: 100%;
   box-sizing: border-box;
   justify-content: space-between;
-  background: ${({ theme, $rank }) =>
-    $rank === 1
-      ? "white"
-      : $rank === 2
-        ? theme.gradients.rankingBox1
-        : $rank === 3
-          ? theme.gradients.rankingBox2
-          : "white"};
+  background: ${({ theme }) => theme.gradients.rankingBox1};
+
   border: 1.5px solid white;
   color: ${({ theme }) => theme.colors.gray700};
 `;

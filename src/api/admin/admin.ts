@@ -14,15 +14,12 @@ interface LoginPayload {
 }
 
 export const loginAPI = async (payload: LoginPayload) => {
-  console.log("loginAPI 호출");
   const response = await sendRequest<LoginResponse>(
     adminInstance,
     "POST",
     "/login",
     payload
   );
-
-  console.log(response);
 
   if (response.success) {
     useAuthStore

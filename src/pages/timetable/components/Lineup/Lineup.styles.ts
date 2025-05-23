@@ -9,6 +9,22 @@ export const Container = styled.div`
   min-height: 260px;
 `;
 
+export const EmptyContainer = styled.div`
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  width: 100%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  color: ${({ theme }) => theme.colors.white};
+  text-align: center;
+  ${({ theme }) => theme.fonts.Body1}
+  border: 1px solid rgba(255, 255, 255, 0.5);
+`;
+
 export const SliderWrapper = styled.div`
   position: relative;
   width: 100%;

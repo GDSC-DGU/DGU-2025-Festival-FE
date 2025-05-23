@@ -6,6 +6,7 @@ import {
   Description,
   TimeDescription,
 } from "./TimeLine.styles";
+import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 
 interface TimeLineProps {
   currentPerformer: {
@@ -18,8 +19,9 @@ interface TimeLineProps {
 }
 
 const TimeLine = ({ currentPerformer }: TimeLineProps) => {
+  const { ref, isVisible } = useOnScreenAnimation<HTMLDivElement>();
   return (
-    <Container>
+    <Container ref={ref} className={`fade-up ${isVisible ? "visible" : ""}`}>
       <PerformerImage src={currentPerformer.imageUrl} alt="profile" />
       <PerformerInfo>
         <Performer>{currentPerformer.name}</Performer>

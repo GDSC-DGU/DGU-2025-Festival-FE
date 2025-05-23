@@ -10,18 +10,17 @@ export const Container = styled.div`
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 50px;
   align-items: center;
-  padding: 20px;
+  padding: 40px 20px;
+  padding-bottom: 80px;
 `;
 
 export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0;
   align-items: center;
-  padding: 20px;
-  gap: 8px;
+  gap: 12px;
 `;
 
 export const Title = styled.h1`
@@ -33,7 +32,7 @@ export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   width: 100%;
-  padding: 0 10px;
+  padding: 0px 10px;
 `;

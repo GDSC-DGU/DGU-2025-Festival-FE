@@ -1,4 +1,4 @@
-export type BoothType = 'day' | 'night';
+export type BoothType = "day" | "night";
 
 export interface Booth {
   id: string;
@@ -15,4 +15,13 @@ export interface Booth {
   waitingAvailable?: boolean;
   waitingCount?: number;
   department?: string;
+}
+
+export interface BoothRankingItem {
+  ranking: number;
+  id: string;
+  name: string;
+  intro: string;
+  image?: string;
+  score: string;
 }
