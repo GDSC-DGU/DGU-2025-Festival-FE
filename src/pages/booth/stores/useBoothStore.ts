@@ -12,6 +12,7 @@ interface BoothState {
   toggleShowOnlyLiked: () => void;
   setSelectedBoothId: (id: string | null) => void;
   setLikeCount: (id: string, count: number) => void;
+  setIsLiked: (id: string) => void; 
 }
 
 export const useBoothStore = create<BoothState>()(
@@ -49,16 +50,21 @@ export const useBoothStore = create<BoothState>()(
             [id]: count,
           },
         })),
+      setIsLiked: (id: string) => 
+        set((state) => {
+          const updated = new Set(state.likedBooths);
+          updated.add(id);
+          return { likedBooths: updated };
+        }),
     }),
     {
       name: 'liked-booths-storage',
       partialize: (state) => ({
-        likedBooths: Array.from(state.likedBooths), 
+        likedBooths: Array.from(state.likedBooths),
         likeCounts: state.likeCounts,
         showOnlyLiked: state.showOnlyLiked,
         selectedBoothId: state.selectedBoothId,
       }),
-      
       merge: (persisted, current) => {
         const state = persisted as Partial<BoothState>;
         return {
@@ -68,7 +74,7 @@ export const useBoothStore = create<BoothState>()(
           showOnlyLiked: state.showOnlyLiked ?? false,
           selectedBoothId: state.selectedBoothId ?? null,
         };
-      }         
+      }
     }
   )
 );

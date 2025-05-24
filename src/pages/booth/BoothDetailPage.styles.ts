@@ -101,8 +101,8 @@ export const ReserveButton = styled.button`
   align-items: center;
   justify-content: center;
   padding: 4px 16px;
-  background-color: #F1F3F9;
-  color: #949DB8;
+  background-color: #f1f3f9;
+  color: #949db8;
   ${({ theme }) => theme.fonts.Button2}
   border-radius: 16px;
   cursor: not-allowed;
@@ -114,14 +114,21 @@ export const ScrollWrapper = styled.div`
   display: flex;
   overflow-x: auto;
   gap: 12px;
-  padding-bottom: 8px;
-  scrollbar-width: none;
+  padding: 16px 0;
   scroll-snap-type: x mandatory;
+  width: 100%; /* ✅ 추가 */
 
   &::-webkit-scrollbar {
     display: none;
   }
+
+  > * {
+    flex-shrink: 0;
+    scroll-snap-align: center;
+  }
 `;
+
+
 
 export const Title = styled.p`
   text-align: center;
@@ -131,6 +138,5 @@ export const Title = styled.p`
 export const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 16px;
 `;

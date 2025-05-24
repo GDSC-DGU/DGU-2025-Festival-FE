@@ -153,13 +153,13 @@ export default function BoothDetailPage() {
             <ScrollWrapper ref={scrollRef}>
               {loopedBooths.map((b, index) => (
                 <MiniBoothCard
-                  key={`${b.id}-${index}`}
-                  id={`${b.id}-${index}`}
-                  name={b.name}
-                  image={b.image}
-                  intro={b.intro}
-                  onClick={() => navigate(`/booth/${b.id}`)}
-                />
+                key={`${b.id}-${index}`}
+                id={`${b.id}-${index}`} 
+                name={b.name}
+                image={b.image}
+                intro={b.intro}
+                onClick={() => navigate(`/booth/${b.id}`)}
+              />              
               ))}
             </ScrollWrapper>
           )}
