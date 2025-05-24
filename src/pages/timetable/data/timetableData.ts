@@ -9,7 +9,7 @@ export const timetableData: PerformanceItemType[] = [
     title: "21 Guns",
     tag: "밴드 동아리",
     description: "동국대학교 밴드 동아리",
-    instagram: "insta",
+    instagram: "",
     songs: [
       { title: "Star Walkin’ - Lil Nas X" },
       { title: "Welcome to the show - DAY6" },
@@ -33,7 +33,7 @@ export const timetableData: PerformanceItemType[] = [
     title: "아미타불 밴드",
     tag: "밴드 동아리",
     description: "동국대학교 밴드 동아리 .",
-    instagram: "insta",
+    instagram: "",
     songs: [
       { title: "Psycho - Muse" },
       { title: "Champagne Supernova - Oasis" },

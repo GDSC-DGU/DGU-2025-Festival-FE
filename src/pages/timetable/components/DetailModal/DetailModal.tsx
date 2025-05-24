@@ -7,7 +7,6 @@ import {
   Avatar,
   Title,
   Description,
-  InstaID,
   SongCard,
   SongContent,
   SongRank,
@@ -15,12 +14,14 @@ import {
   SongList,
   ClubContent,
   NullContainer,
+  Section,
 } from "./DetailModal.styles";
 import { useEffect } from "react";
 import ModalPortal from "@/components/common/ModalPortal";
 import { timetableData } from "../../data/timetableData";
 import CloseIcon from "@/assets/icons/close.svg";
 import DefaultImage from "@/assets/images/timelineImage.png";
+import InstagramLinkButton from "../InstagramLinkButton/InstagramLinkButton";
 
 interface DetailModalProps {
   id: number;
@@ -62,24 +63,31 @@ const DetailModal = ({ id, onClose }: DetailModalProps) => {
     <ModalPortal>
       <Overlay onClick={onClose}>
         <ModalWrapper onClick={(e) => e.stopPropagation()}>
-          <TopBar>
-            <Tag>{data.tag}</Tag>
-            <CloseButton onClick={onClose}>
-              <img src={CloseIcon} alt="닫기" width={18} height={18} />
-            </CloseButton>
-          </TopBar>
-          <Avatar
-            src={data.imageUrl == "" ? DefaultImage : data.imageUrl}
-            alt="image"
-          />
-          <ClubContent>
-            <Title>{data.title}</Title>
-            <Description>{data.description}</Description>
-            <InstaID>@{data.instagram}</InstaID>
-          </ClubContent>
-          <SongList>
-            <SongsData />
-          </SongList>
+          <Section>
+            <TopBar>
+              <Tag>동아리 공연 정보</Tag>
+              <CloseButton onClick={onClose}>
+                <img src={CloseIcon} alt="닫기" width={18} height={18} />
+              </CloseButton>
+            </TopBar>
+
+            <Avatar
+              src={data.imageUrl == "" ? DefaultImage : data.imageUrl}
+              alt="image"
+            />
+            <ClubContent>
+              <Title>{data.title}</Title>
+              <Description>{data.description}</Description>
+              {data.instagram != "" && (
+                <InstagramLinkButton instagramId={data.instagram} />
+              )}
+            </ClubContent>
+          </Section>
+          <Section>
+            <SongList>
+              <SongsData />
+            </SongList>
+          </Section>
         </ModalWrapper>
       </Overlay>
     </ModalPortal>
