@@ -10,7 +10,7 @@ import powerIcon from "@/assets/icons/power.svg";
 import menuIcon from "@/assets/icons/menu.png";
 import closeIcon from "@/assets/icons/close-menu.png";
 import BoothCloseModal from "../Modal/BoothCloseModal";
-import LogoutModal from "../../../../../components/logoutModal/LogoutModal";
+import LogoutModal from "@/components/modal/logoutModal/LogoutModal";
 
 const FloatingButton = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,4 +1,4 @@
-import CommonModal from "@/components/commonModal/CommonModal";
+import CommonModal from "@/components/modal/commonModal/CommonModal";
 
 interface ConfirmVisitModalProps {
   boothName: string;

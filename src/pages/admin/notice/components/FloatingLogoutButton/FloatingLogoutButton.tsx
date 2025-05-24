@@ -1,6 +1,6 @@
 import { StyledButton } from "./FloatingLogoutButton.styles";
 import LogoutIcon from "@/assets/icons/logout-icon.svg";
-import LogoutModal from "@/components/logoutModal/LogoutModal";
+import LogoutModal from "@/components/modal/logoutModal/LogoutModal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

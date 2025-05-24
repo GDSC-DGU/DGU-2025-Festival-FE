@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import CommonModal from "@/components/commonModal/CommonModal";
+import CommonModal from "@/components/modal/commonModal/CommonModal";
 
 interface BoothCloseModalProps {
   onCancel: () => void;
