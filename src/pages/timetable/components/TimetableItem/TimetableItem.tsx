@@ -14,7 +14,7 @@ import {
 import { useState } from "react";
 import DetailModal from "../DetailModal/DetailModal";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
-
+import DefaultImage from "@/assets/images/timelineImage.png";
 interface TimetableItemProps {
   id: number;
   start: string;
@@ -39,6 +39,8 @@ const TimetableItem = ({
     setShowModal(true);
   };
 
+  const image = imageUrl == "" ? DefaultImage : imageUrl;
+
   return (
     <ItemContainer
       ref={ref}
@@ -53,7 +55,7 @@ const TimetableItem = ({
         <VerticalLine />
       </LineContainer>
       <Card>
-        <Avatar src={imageUrl} alt="image" />
+        <Avatar src={image} alt="image" />
         <Content>
           <Title>{title}</Title>
           {description && <Description>{description}</Description>}

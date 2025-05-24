@@ -50,7 +50,9 @@ export const Card = styled.div`
   border: 1.5px solid white;
 `;
 
-export const Avatar = styled.img`
+export const Avatar = styled.img.attrs({
+  referrerPolicy: "no-referrer",
+})`
   width: 60px;
   height: 60px;
   border-radius: 50%;

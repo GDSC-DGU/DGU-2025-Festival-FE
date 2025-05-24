@@ -23,6 +23,8 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 18px;
+  max-height: 90vh;
+  overflow-y: auto;
 `;
 
 export const TopBar = styled.div`
@@ -67,7 +69,7 @@ export const ClubContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
 `;
 
 export const CloseButton = styled.button`
@@ -85,16 +87,16 @@ export const Avatar = styled.img`
 `;
 
 export const Title = styled.h2`
-  ${({ theme }) => theme.fonts.Head1}
+  ${({ theme }) => theme.fonts.Head3}
 `;
 
 export const Description = styled.p`
-  ${({ theme }) => theme.fonts.Body2B}
+  ${({ theme }) => theme.fonts.Body3}
   color: black;
 `;
 
 export const InstaID = styled.p`
-  ${({ theme }) => theme.fonts.Body2}
+  ${({ theme }) => theme.fonts.Caption}
   color: ${({ theme }) => theme.colors.gray500};
 `;
 
@@ -103,7 +105,15 @@ export const SongList = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 16px;
+  gap: 10px;
+  max-height: 240px;
+  overflow-y: auto;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
 `;
 
 export const SongCard = styled.div`
@@ -112,7 +122,7 @@ export const SongCard = styled.div`
   align-items: center;
   gap: 20px;
   width: 100%;
-  padding: 12px 16px;
+  padding: 10px 12px;
   box-sizing: border-box;
   border-radius: 8px;
   position: relative;
@@ -138,10 +148,10 @@ export const SongRank = styled.div`
   background: ${({ theme }) => theme.gradients.orange};
   color: white;
   border-radius: 4px;
-  ${({ theme }) => theme.fonts.Head3}
+  ${({ theme }) => theme.fonts.Body2B}
   text-align: center;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,11 +166,5 @@ export const SongContent = styled.div`
 
 export const SongTitle = styled.p`
   margin: 0;
-  font-weight: bold;
-`;
-
-export const SongCoverer = styled.p`
-  margin: 0;
-  font-size: 12px;
-  color: gray;
+  ${({ theme }) => theme.fonts.Body2B}
 `;
