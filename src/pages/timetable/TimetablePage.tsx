@@ -20,7 +20,7 @@ const TimetablePage = () => {
 
   const dayIndex = useMemo(() => {
     const index = dates.findIndex((d) => d.value === selectedDate);
-    return index >= 0 ? index + 1 : null;
+    return index >= 0 ? index + 2 : null;
   }, [selectedDate]);
 
   useEffect(() => {
