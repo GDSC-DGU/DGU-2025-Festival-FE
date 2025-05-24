@@ -11,7 +11,7 @@ import NotFoundPage from "@/pages/not-found/NotFoundPage";
 import NoticeDetailPage from "@/pages/notice-detail/NoticeDetailPage";
 import LostDetailPage from "@/pages/lost-detail/LostDetailPage";
 import BoothDetailPage from "@/pages/booth/BoothDetailPage";
-
+import AboutPage from "@/pages/about/AboutPage";
 import AdminLoginPage from "@/pages/admin/AdminPage";
 import BoothAdminEntry from "@/pages/admin/booth";
 import AdminNoticePage from "@/pages/admin/notice";
@@ -30,6 +30,7 @@ export const router = createBrowserRouter([
       { path: "booth", element: <BoothPage /> },
       { path: "booth/:id", element: <BoothDetailPage /> },
       { path: "waiting", element: <WaitingPage /> },
+      { path: "about", element: <AboutPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

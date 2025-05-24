@@ -29,7 +29,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const TitleText = styled.h1`
-  ${({ theme }) => theme.fonts.Head3};
+  ${({ theme }) => theme.fonts.Head2};
   color: ${({ theme }) => theme.colors.gray700};
 `;
 

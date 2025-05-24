@@ -1,4 +1,4 @@
-import { Container, Image, IconContainer } from "./LostItem.styles";
+import { Container, Image, IconContainer, Icon } from "./LostItem.styles";
 import EditIcon from "@/assets/icons/edit.svg";
 import TrashIcon from "@/assets/icons/trash.svg";
 
@@ -31,8 +31,12 @@ const LostItem = ({
       <Image src={imageUrl} alt="분실물 사진" />
       {isAdmin && (
         <IconContainer>
-          <img src={EditIcon} width={20} onClick={handleEditClick} />
-          <img src={TrashIcon} width={20} onClick={handleDeleteClick} />
+          <Icon>
+            <img src={EditIcon} width={20} onClick={handleEditClick} />
+          </Icon>
+          <Icon>
+            <img src={TrashIcon} width={20} onClick={handleDeleteClick} />
+          </Icon>
         </IconContainer>
       )}
     </Container>

@@ -7,7 +7,7 @@ import {
   DeleteButton,
   EditButton,
 } from "./NoticeItem.styles";
-import { formatDate } from "@/utils/date";
+import dayjs from "dayjs";
 
 interface NoticeItemProps {
   title: string;
@@ -40,7 +40,7 @@ const NoticeItem = ({
     <Container onClick={onClick}>
       <ContentContainer>
         <TitleText>{title}</TitleText>
-        <DateText>{formatDate(date)}</DateText>
+        <DateText>{dayjs(date).fromNow()}</DateText>
       </ContentContainer>
       {isAdmin && (
         <AdminContainer>

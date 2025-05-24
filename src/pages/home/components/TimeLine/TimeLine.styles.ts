@@ -39,15 +39,11 @@ export const TimeDescription = styled.p`
 `;
 
 export const EmptyContainer = styled.div`
-  padding: 20px;
+  padding: 20px 0;
   width: 90%;
   text-align: center;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.1) 100%
-  );
-  color: white;
+  background: ${({ theme }) => theme.gradients.rankingBox2};
+  color: black;
   ${({ theme }) => theme.fonts.Head3}
   box-sizing: border-box;
   border-radius: 8px;

@@ -5,6 +5,7 @@ export const Container = styled.div`
   width: 100%;
   padding: 20px;
   border-radius: 8px;
+  gap: 10px;
   background-color: white;
   box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.gray300};
   display: flex;
@@ -25,15 +26,18 @@ export const DateText = styled.p`
 
 export const ContentContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: start;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
   gap: 4px;
 `;
 
 export const AdminContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 0px;
   align-items: center;
 `;
 
@@ -42,6 +46,7 @@ export const EditButton = styled.button`
   border: none;
   color: black;
   ${({ theme }) => theme.fonts.Body3}
+  white-space: nowrap;
 `;
 
 export const DeleteButton = styled.button`
@@ -49,4 +54,5 @@ export const DeleteButton = styled.button`
   border: none;
   color: red;
   ${({ theme }) => theme.fonts.Body3}
+  white-space: nowrap;
 `;

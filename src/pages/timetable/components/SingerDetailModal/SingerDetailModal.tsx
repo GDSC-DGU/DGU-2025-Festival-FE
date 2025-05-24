@@ -19,7 +19,7 @@ import { useEffect } from "react";
 import ModalPortal from "@/components/common/ModalPortal";
 import CloseIcon from "@/assets/icons/close.svg";
 import DefaultImage from "@/assets/images/timelineImage.png";
-import InstagramLinkButton from "../InstagramLinkButton/InstagramLinkButton";
+import InstagramSvgButton from "../InstagramLinkButton/InstagramSvgButton";
 import { singerData } from "../../data/singerData";
 
 interface DetailModalProps {
@@ -42,8 +42,8 @@ const SingerDetailModal = ({ id, onClose }: DetailModalProps) => {
 
   // 날짜 → Day 변환 함수
   const getDayTag = (date: string) => {
-    if (date === "2025-05-28") return "Day 2";
-    if (date === "2025-05-29") return "Day 3";
+    if (date === "2025-05-28") return "Day 2 | 5/28 WED";
+    if (date === "2025-05-29") return "Day 3 | 5/29 THU";
   };
 
   return (
@@ -64,7 +64,7 @@ const SingerDetailModal = ({ id, onClose }: DetailModalProps) => {
             <ClubContent>
               <Title>{singer.name}</Title>
               {singer.instagram != "" && (
-                <InstagramLinkButton instagramId={singer.instagram} />
+                <InstagramSvgButton instagramId={singer.instagram} />
               )}
             </ClubContent>
             {singer.hashtags && singer.hashtags.length > 0 && (

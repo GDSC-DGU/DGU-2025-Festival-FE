@@ -18,30 +18,22 @@ interface TimeLineProps {
 const TimeLine = ({ currentPerformer }: TimeLineProps) => {
   const { ref, isVisible } = useOnScreenAnimation<HTMLDivElement>();
 
-  return (
+  return currentPerformer ? (
     <Container ref={ref} className={`fade-up ${isVisible ? "visible" : ""}`}>
-      {currentPerformer ? (
-        <>
-          <PerformerImage
-            src={
-              currentPerformer.imageUrl == ""
-                ? DefaultImage
-                : currentPerformer.imageUrl
-            }
-            alt="profile"
-          />
-          <PerformerInfo>
-            <Performer>{currentPerformer.title}</Performer>
-            <Description>{currentPerformer.description}</Description>
-          </PerformerInfo>
-          <TimeDescription>
-            {currentPerformer.start} ~ {currentPerformer.end}
-          </TimeDescription>
-        </>
-      ) : (
-        <EmptyContainer>현재 진행중인 공연이 없어요!</EmptyContainer>
-      )}
+      <PerformerImage
+        src={currentPerformer.imageUrl || DefaultImage}
+        alt="profile"
+      />
+      <PerformerInfo>
+        <Performer>{currentPerformer.title}</Performer>
+        <Description>{currentPerformer.description}</Description>
+      </PerformerInfo>
+      <TimeDescription>
+        {currentPerformer.start} ~ {currentPerformer.end}
+      </TimeDescription>
     </Container>
+  ) : (
+    <EmptyContainer>현재 진행중인 공연이 없어요!</EmptyContainer>
   );
 };
 
