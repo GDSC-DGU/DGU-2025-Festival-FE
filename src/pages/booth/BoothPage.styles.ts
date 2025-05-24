@@ -68,3 +68,44 @@ export const Badge = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const BoothListWrapper = styled.div`
+  position: relative;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 15px 4px;  
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    background: linear-gradient(to bottom, white, transparent);
+  }
+
+  &::after {
+    bottom: 0;
+    background: linear-gradient(to top, white, transparent);
+  }
+`;
+

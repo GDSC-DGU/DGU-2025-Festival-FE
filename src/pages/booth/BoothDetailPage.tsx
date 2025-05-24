@@ -5,9 +5,7 @@ import HeartOn from "@/assets/icons/heart-on.png";
 import HeartOff from "@/assets/icons/heart-off.png";
 import MapContainer from "@/pages/booth/components/MapContainer";
 import MiniBoothCard from "./components/MiniBoothCard";
-// import WaitingModal from "@/components/waitingModal/WaitingModal"; // 비활성화
 import WaitingClosedModal from "@/pages/waiting/components/WaitingClosedModal";
-// import { useWaitingStore } from "@/stores/useWaitingStore";
 import TopBar from "@/components/topbar/TopBar";
 import {
   Container,
@@ -19,14 +17,20 @@ import {
   BoothIntro,
   Like,
   LikeCount,
-  BoothImage,
   ReserveButton,
   ScrollWrapper,
   ContentContainer,
   SubContainer,
   Title,
+  Description,
+  Dot,
+  DotWrapper,
+  ImageSlider,
+  SlideImage,
+  SliderArea,
 } from "./BoothDetailPage.styles";
 import { useLike } from "@/api/likes/hooks/useLike";
+import SkeletonLoading from "@/components/common/SkeletonLoading";
 
 export default function BoothDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -34,7 +38,7 @@ export default function BoothDetailPage() {
   const boothId = Number(id);
   const navigate = useNavigate();
   const [showWaitingModal, setShowWaitingModal] = useState(false);
-  // const addWaiting = useWaitingStore((state) => state.addWaiting);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const {
     isLoading,
@@ -72,10 +76,7 @@ export default function BoothDetailPage() {
 
     const interval = setInterval(() => {
       autoScrollIndex.current++;
-      if (
-        autoScrollIndex.current >=
-        loopedBooths.length - relatedBooths.length
-      ) {
+      if (autoScrollIndex.current >= loopedBooths.length - relatedBooths.length) {
         autoScrollIndex.current = relatedBooths.length;
         const jumpTarget = cards[autoScrollIndex.current] as HTMLElement;
         scrollEl.scrollTo({
@@ -100,11 +101,13 @@ export default function BoothDetailPage() {
   }, [loopedBooths, relatedBooths]);
 
   if (!booth) return <div>부스를 찾을 수 없습니다.</div>;
-  if (isLoading) return <div>로딩 중...</div>;
+  if (isLoading) return <SkeletonLoading message="부스 정보를 불러오는 중입니다..." />;
+
+  const totalSlides = booth.images.length + 1;
 
   return (
     <Container>
-      <TopBar title="부스 상세" showBackButton={true} />
+      <TopBar title="부스 상세" showBackButton={true} onBack={() => navigate("/booth")} />
       <ContentContainer>
         <MapWrapper>
           <MapContainer
@@ -126,7 +129,29 @@ export default function BoothDetailPage() {
             </Info>
             <BoothIntro>{booth.intro}</BoothIntro>
           </Header>
-          <BoothImage src={booth.image} alt="부스 이미지" />
+
+          {/* 이미지 슬라이더 영역 */}
+          <SliderArea onClick={() => setCurrentSlide((prev) => (prev + 1) % totalSlides)}>
+            <ImageSlider>
+              {booth.images.map((img, index) => (
+                <SlideImage
+                  key={index}
+                  src={img}
+                  alt={`부스 이미지 ${index + 1}`}
+                  style={{ opacity: currentSlide === index ? 1 : 0 }}
+                />
+              ))}
+              {currentSlide === booth.images.length && (
+                <Description>{booth.description}</Description>
+              )}
+            </ImageSlider>
+            <DotWrapper>
+              {[...booth.images, "desc"].map((_, i) => (
+                <Dot key={i} active={i === currentSlide} />
+              ))}
+            </DotWrapper>
+          </SliderArea>
+
           <Like
             as="button"
             disabled={isToggling || isLiked}
@@ -142,6 +167,7 @@ export default function BoothDetailPage() {
             <img src={isLiked ? HeartOn : HeartOff} alt="찜" width={24} />
           </Like>
         </Card>
+
         <SubContainer>
           <Title>근처 부스 둘러보기</Title>
           {relatedBooths.length > 0 && (
@@ -151,7 +177,7 @@ export default function BoothDetailPage() {
                   key={`${b.id}-${index}`}
                   id={`${b.id}-${index}`}
                   name={b.name}
-                  image={b.image}
+                  image={b.images[0]}
                   intro={b.intro}
                   onClick={() => navigate(`/booth/${b.id}`)}
                 />
@@ -160,18 +186,6 @@ export default function BoothDetailPage() {
           )}
         </SubContainer>
 
-        {/* 기존 웨이팅 모달 비활성화, 대체 모달 사용 */}
-        {/* 
-        {showWaitingModal && booth && (
-          <WaitingModal
-            booth={booth}
-            onConfirm={({ boothId, people, phone }) => {
-              addWaiting({ boothId, people, phone });
-            }}
-            onCancel={() => setShowWaitingModal(false)}
-          />
-        )} 
-        */}
         {showWaitingModal && (
           <WaitingClosedModal onClose={() => setShowWaitingModal(false)} />
         )}
