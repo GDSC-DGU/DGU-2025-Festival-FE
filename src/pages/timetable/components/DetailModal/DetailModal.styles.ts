@@ -13,6 +13,16 @@ export const Overlay = styled.div`
   z-index: 9999;
 `;
 
+export const NullContainer = styled.div`
+  padding: 20px;
+  ${({ theme }) => theme.fonts.Button2}
+  background-color: ${({ theme }) => theme.colors.gray100};
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+`;
+
 export const ModalWrapper = styled.div`
   background: white;
   border-radius: 20px;
