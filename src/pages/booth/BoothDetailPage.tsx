@@ -40,13 +40,12 @@ export default function BoothDetailPage() {
   const [showWaitingModal, setShowWaitingModal] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const {
-    isLoading,
-    totalLikes,
-    toggleLike,
-    isToggling,
-    isLiked,
-  } = useLike(boothId);
+  const { isLoading, totalLikes, toggleLike, isToggling, isLiked } =
+    useLike(boothId);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [boothId]);
 
   const relatedBooths = useMemo(
     () =>
@@ -76,7 +75,10 @@ export default function BoothDetailPage() {
 
     const interval = setInterval(() => {
       autoScrollIndex.current++;
-      if (autoScrollIndex.current >= loopedBooths.length - relatedBooths.length) {
+      if (
+        autoScrollIndex.current >=
+        loopedBooths.length - relatedBooths.length
+      ) {
         autoScrollIndex.current = relatedBooths.length;
         const jumpTarget = cards[autoScrollIndex.current] as HTMLElement;
         scrollEl.scrollTo({
@@ -101,13 +103,18 @@ export default function BoothDetailPage() {
   }, [loopedBooths, relatedBooths]);
 
   if (!booth) return <div>부스를 찾을 수 없습니다.</div>;
-  if (isLoading) return <SkeletonLoading message="부스 정보를 불러오는 중입니다..." />;
+  if (isLoading)
+    return <SkeletonLoading message="부스 정보를 불러오는 중입니다..." />;
 
   const totalSlides = booth.images.length + 1;
 
   return (
     <Container>
-      <TopBar title="부스 상세" showBackButton={true} onBack={() => navigate("/booth")} />
+      <TopBar
+        title="부스 상세"
+        showBackButton={true}
+        onBack={() => navigate("/booth")}
+      />
       <ContentContainer>
         <MapWrapper>
           <MapContainer
@@ -131,7 +138,9 @@ export default function BoothDetailPage() {
           </Header>
 
           {/* 이미지 슬라이더 영역 */}
-          <SliderArea onClick={() => setCurrentSlide((prev) => (prev + 1) % totalSlides)}>
+          <SliderArea
+            onClick={() => setCurrentSlide((prev) => (prev + 1) % totalSlides)}
+          >
             <ImageSlider>
               {booth.images.map((img, index) => (
                 <SlideImage
