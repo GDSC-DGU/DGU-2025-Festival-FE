@@ -25,7 +25,6 @@ export const loginAPI = async (payload: LoginPayload) => {
     useAuthStore
       .getState()
       .login(response.data.accessToken, payload.role as Role);
-    console.log(`로그인 성공: ${useAuthStore.getState().role}`);
     return response;
   } else {
     return response;

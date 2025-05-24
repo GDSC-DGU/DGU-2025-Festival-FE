@@ -43,8 +43,6 @@ const AdminLoginPage = () => {
       role: selectedRole,
     };
 
-    console.log("payload: ", payload);
-
     try {
       const response = await loginAPI(payload);
       if (response.success) {

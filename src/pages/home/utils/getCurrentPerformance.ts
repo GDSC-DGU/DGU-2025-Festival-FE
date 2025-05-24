@@ -6,9 +6,6 @@ export const getCurrentPerformance = () => {
 
   const currentTime = now.getHours() * 60 + now.getMinutes();
 
-  console.log("🔍 오늘 날짜:", today);
-  console.log("🔍 현재 시각 (분):", currentTime);
-
   return timetableData.find((item) => {
     if (item.date !== today) return false;
 
