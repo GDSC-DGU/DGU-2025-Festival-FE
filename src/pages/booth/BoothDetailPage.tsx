@@ -106,8 +106,12 @@ export default function BoothDetailPage() {
 
   return (
     <Container>
-      <TopBar title="부스 상세" showBackButton={true} />
-      <ContentContainer>
+      <TopBar
+    title="부스 상세"
+    showBackButton={true}
+    onBack={() => navigate("/booth")} 
+  />
+     <ContentContainer>
         <MapWrapper>
           <MapContainer
             date={booth.date}
