@@ -28,7 +28,7 @@ export const NoticeDetailAPI = async (noticeId: number) => {
     `/notices/${noticeId}`
   );
 
-  if (response.success) {
+  if (response.data) {
     console.log(`공지사항 디테일 불러오기 성공: `, response.data);
     useNoticeStore.getState().setNoticeDetail(response.data);
     return response.data;
