@@ -1,17 +1,22 @@
-import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import theme from "./styles/theme";
+import { router } from "./routes";
+import GlobalFCMListener from "./components/GlobalFCMListener";
+import InAppLanding from "@/components/common/InAppLanding";
+import { isInAppBrowser } from "./utils/isInApp";
+import dayjs from "dayjs";
+import "@/utils/dayjs";
 
-function App() {
+export default function App() {
+  const inApp = isInAppBrowser();
+
+  dayjs.locale("ko-numeric");
+
   return (
-    <div className="landing-wrapper">
-      <img src="/logo.png" alt="logo" className="logo-img" />
-      <div className="gdg-subtext">with GDG on Campus</div>
-      <p className="comming-soon">Comming Soon 05/25 10:00</p>
-      <div className="graphic-layer">
-        <img src="/hand.png" alt="hand" className="hand-img" />
-        <img src="/flower.png" alt="flower" className="flower-img" />
-      </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalFCMListener />
+      {inApp ? <InAppLanding /> : <RouterProvider router={router} />}
+    </ThemeProvider>
   );
 }
-
-export default App;

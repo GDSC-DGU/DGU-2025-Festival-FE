@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+.history
 
 # Editor directories and files
 .vscode/*
@@ -31,4 +32,3 @@ dist-ssr
 .env.development.local
 .env.test.local
 .env.production.local
-

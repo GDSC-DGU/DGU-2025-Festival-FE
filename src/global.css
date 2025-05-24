@@ -1,0 +1,62 @@
+@import url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2107@1.0/Pretendard-Regular.woff2");
+
+:root {
+  /* Color Palette - Indigo */
+  --indigo-50: #eef2ff;
+  --indigo-100: #e0e7ff;
+  --indigo-200: #c7d2fe;
+  --indigo-300: #a5b4fc;
+  --indigo-400: #818cf8;
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5;
+  --indigo-700: #4338ca;
+  --indigo-800: #3730a3;
+  --indigo-900: #312e81;
+
+  /* Gray Scale */
+  --gray-50: #f8f9fc;
+  --gray-100: #f1f3f9;
+  --gray-200: #e2e5f0;
+  --gray-300: #cbd1e1;
+  --gray-400: #949db8;
+  --gray-500: #646e8b;
+  --gray-600: #475069;
+  --gray-700: #333c55;
+  --gray-800: #1e253b;
+  --gray-900: #0f162a;
+
+  /* Gradient */
+  --gradient-purple: linear-gradient(180deg, #060032 0%, #575bdf 89%);
+  --gradient-orange: linear-gradient(180deg, #f04f37 0%, #ffccb0 100%);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Pretendard", sans-serif;
+  background-color: #ffffff;
+  color: var(--gray-900);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
