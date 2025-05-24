@@ -1,9 +1,4 @@
-import booth_1 from '@/assets/images/booth_1.webp';
-import booth_2 from '@/assets/images/booth_2.jpeg';
-import booth_3 from '@/assets/images/booth_3.jpg';
-import booth_4 from '@/assets/images/booth_4.jpg';
-import booth_5 from '@/assets/images/booth_5.png';
-import booth_6 from '@/assets/images/booth_6.jpg';
+
 import booth_1_1 from '@/assets/booth/donggam/KakaoTalk_20250524_180638808.jpg';
 import booth_1_2 from '@/assets/booth/donggam/KakaoTalk_20250524_180638808_01.jpg';
 import booth_1_3 from '@/assets/booth/donggam/KakaoTalk_20250524_180638808_02.jpg';
