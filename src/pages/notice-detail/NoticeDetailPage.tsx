@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import ImagePagination from "./components/ImagePagination/ImagePagination";
 import TopBar from "@/components/topbar/TopBar";
 import {
@@ -16,27 +16,35 @@ import {
 import { formatDate } from "@/utils/date";
 import { useNoticeStore } from "@/stores/useNoticeStore";
 import { NoticeDetailAPI } from "@/api/notice/notice";
+import { useLoading } from "@/hooks/useLoading";
+import SkeletonLoading from "@/components/common/SkeletonLoading";
 
 const NoticeDetailPage = () => {
   const { id } = useParams();
   const noticeId = Number(id);
+  const { loading } = useLoading(async () => {
+    await NoticeDetailAPI(noticeId);
+    return true;
+  }, [noticeId]);
+
   const [pageIndex, setPageIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const notice = useNoticeStore((state) => state.noticeDetail);
 
-  useEffect(() => {
-    const fetchDetail = async () => {
-      await NoticeDetailAPI(noticeId);
-    };
-
-    fetchDetail();
-  }, [noticeId]);
+  if (loading) {
+    return (
+      <Container>
+        <TopBar title="공지사항" showBackButton />
+        <SkeletonLoading message="페이지를 불러오고 있습니다." />
+      </Container>
+    );
+  }
 
   if (!notice) {
     return (
       <Container>
         <TopBar title="공지사항" showBackButton />
-        <center>존재하지 않는 공지입니다.</center>
+        <center>존재하지 않는 페이지입니다.</center>
       </Container>
     );
   }

@@ -5,7 +5,9 @@ interface SkeletonLoadingProps {
   message?: string;
 }
 
-export default function SkeletonLoading({ message = "Loading..." }: SkeletonLoadingProps) {
+export default function SkeletonLoading({
+  message = "Loading...",
+}: SkeletonLoadingProps) {
   return (
     <SkeletonWrapper>
       <FloatingImage src={FlowerImg} alt="loading flower" />
@@ -22,7 +24,6 @@ const float = keyframes`
 
 const SkeletonWrapper = styled.div`
   height: 100vh;
-  width: 100vw;
   background: white;
   display: flex;
   flex-direction: column;
@@ -31,7 +32,7 @@ const SkeletonWrapper = styled.div`
 `;
 
 const FloatingImage = styled.img`
-  width: 80px;
+  width: 50px;
   animation: ${float} 2s ease-in-out infinite;
 `;
 
