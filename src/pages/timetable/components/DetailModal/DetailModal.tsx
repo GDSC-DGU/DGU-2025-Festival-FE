@@ -15,6 +15,7 @@ import {
   SongList,
   ClubContent,
 } from "./DetailModal.styles";
+import { useEffect } from "react";
 import ModalPortal from "@/components/common/ModalPortal";
 import { timetableData } from "../../data/timetableData";
 import CloseIcon from "@/assets/icons/close.svg";
@@ -49,6 +50,13 @@ const DetailModal = ({ id, onClose }: DetailModalProps) => {
     }
   };
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto"; // 모달 닫힐 때 복원
+    };
+  }, []);
   return (
     <ModalPortal>
       <Overlay onClick={onClose}>
