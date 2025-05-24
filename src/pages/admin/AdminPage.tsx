@@ -46,7 +46,8 @@ const AdminLoginPage = () => {
     try {
       const response = await loginAPI(payload);
       if (response.success) {
-        if (role === ("ADFESTA" as Role)) {
+        const userRole = payload.role;
+        if (userRole === ("ADFESTA" as Role)) {
           navigate("/admin/notice");
         } else {
           navigate("/admin/booth");
