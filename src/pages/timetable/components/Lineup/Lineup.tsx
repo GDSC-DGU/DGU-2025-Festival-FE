@@ -5,14 +5,14 @@ import {
   EmptyContainer,
 } from "./Lineup.styles";
 import { useEffect, useState, useMemo } from "react";
-import Artist7 from "@/assets/lineup/다듀.png";
-import Artist2 from "@/assets/lineup/빈지노.png";
-import Artist3 from "@/assets/lineup/엔시티드림.png";
-import Artist6 from "@/assets/lineup/씨엔블루.png";
-import Artist8 from "@/assets/lineup/윤하.png";
-import Artist1 from "@/assets/lineup/카더가든.png";
-import Artist4 from "@/assets/lineup/크러쉬.png";
-import Artist5 from "@/assets/lineup/키오라.png";
+import Artist7 from "@/assets/lineup/다듀.webp";
+import Artist2 from "@/assets/lineup/빈지노.webp";
+import Artist3 from "@/assets/lineup/엔시티드림.webp";
+import Artist6 from "@/assets/lineup/씨엔블루.webp";
+import Artist8 from "@/assets/lineup/윤하.webp";
+import Artist1 from "@/assets/lineup/카더가든.webp";
+import Artist4 from "@/assets/lineup/크러쉬.webp";
+import Artist5 from "@/assets/lineup/키오라.webp";
 
 interface LineupProps {
   selectedDate: string;
