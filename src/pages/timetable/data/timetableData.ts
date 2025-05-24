@@ -111,7 +111,7 @@ export const timetableData: PerformanceItemType[] = [
     title: "두둠칫",
     tag: "댄스 동아리",
     description: "동국대학교 중앙 커버댄스 동아리 두둠칫",
-    instagram: "do_doom_chit",
+    instagram: "_do_doom_chit_",
     songs: [
       { title: "DRIP - BABYMONSTER" },
       { title: "What is Loe? - TWICE" },
