@@ -14,6 +14,7 @@ import {
   SongTitle,
   SongList,
   ClubContent,
+  NullContainer,
 } from "./DetailModal.styles";
 import { useEffect } from "react";
 import ModalPortal from "@/components/common/ModalPortal";
@@ -33,7 +34,7 @@ const DetailModal = ({ id, onClose }: DetailModalProps) => {
 
   const SongsData = () => {
     if (!data.songs || data.songs.length === 0) {
-      return <div>노래 미공개</div>;
+      return <NullContainer>노래가 공개되지 않았어요!</NullContainer>;
     } else {
       return (
         <>
