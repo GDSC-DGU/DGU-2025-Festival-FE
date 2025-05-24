@@ -37,3 +37,19 @@ export const Description = styled.p`
 export const TimeDescription = styled.p`
   ${({ theme }) => theme.fonts.Body2}
 `;
+
+export const EmptyContainer = styled.div`
+  padding: 20px;
+  width: 90%;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  color: white;
+  ${({ theme }) => theme.fonts.Head3}
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+`;
