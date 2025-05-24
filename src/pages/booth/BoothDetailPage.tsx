@@ -22,7 +22,6 @@ import {
   ContentContainer,
   SubContainer,
   Title,
-  Description,
   Dot,
   DotWrapper,
   ImageSlider,
