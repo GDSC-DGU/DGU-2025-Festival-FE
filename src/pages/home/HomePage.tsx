@@ -45,7 +45,6 @@ const HomePage = () => {
           id: booth?.id ?? `booth-${item.id}`,
           name: booth?.name ?? "이름 없음",
           intro: booth?.intro ?? "설명 없음",
-          image: booth?.image ?? "",
           score: item.score,
         };
       });
