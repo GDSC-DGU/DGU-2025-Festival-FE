@@ -30,6 +30,14 @@ interface DetailModalProps {
 const DetailModal = ({ id, onClose }: DetailModalProps) => {
   const data = timetableData.find((item) => item.id === id);
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto"; // 모달 닫힐 때 복원
+    };
+  }, []);
+
   if (!data) return null;
 
   const SongsData = () => {
@@ -50,14 +58,6 @@ const DetailModal = ({ id, onClose }: DetailModalProps) => {
       );
     }
   };
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = "auto"; // 모달 닫힐 때 복원
-    };
-  }, []);
   return (
     <ModalPortal>
       <Overlay onClick={onClose}>
