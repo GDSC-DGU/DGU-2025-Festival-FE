@@ -41,15 +41,22 @@ export default function BoothPage() {
           </WaitingCheckButton>
         </ToolbarRow>
 
-        {filteredBooths.map((booth) => (
-          <BoothCard
-            key={booth.id}
-            boothId={booth.id}
-            name={booth.name}
-            intro={booth.intro}
-            image={booth.images[0]}
-          />
-        ))}
+        {filteredBooths.length > 0 ? (
+  filteredBooths.map((booth) => (
+    <BoothCard
+      key={booth.id}
+      boothId={booth.id}
+      name={booth.name}
+      intro={booth.intro}
+      image={booth.images[0]}
+    />
+  ))
+) : (
+  <div style={{ padding: "40px 0", textAlign: "center", color: "#949db8", fontSize: "14px" }}>
+     곧 업데이트 예정이에요.
+  </div>
+)}
+
       </ContentContainer>
 
       {showModal && <WaitingClosedModal onClose={() => setShowModal(false)} />}

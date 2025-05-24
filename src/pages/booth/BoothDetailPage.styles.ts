@@ -166,10 +166,12 @@ export const SlideImage = styled.img`
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; 
+  background-color: transparent; 
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
 `;
+
 
 export const Description = styled.div`
   padding: 16px;

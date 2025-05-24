@@ -28,8 +28,8 @@ export default function MapContainer({ date, boothType, boothId }: MapContainerP
     if (!window.google || !mapRef.current) return;
   
     const map = new window.google.maps.Map(mapRef.current, {
-      center: { lat: 37.5585, lng: 126.9982 },
-      zoom: 17,
+      center: { lat: 37.558141, lng: 127.000258 },
+      zoom: 18,
       disableDefaultUI: true,
     });
   
