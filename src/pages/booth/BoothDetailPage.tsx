@@ -119,7 +119,6 @@ export default function BoothDetailPage() {
             boothId={booth.id}
           />
         </MapWrapper>
-
         <Card>
           <Header>
             <Info>
