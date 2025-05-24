@@ -64,10 +64,6 @@ export default function BoothDetailPage() {
   const autoScrollIndex = useRef(0);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     if (!scrollRef.current || loopedBooths.length === 0) return;
 
     const scrollEl = scrollRef.current;
