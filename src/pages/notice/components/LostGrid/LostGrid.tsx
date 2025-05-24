@@ -41,7 +41,6 @@ const LostGrid = ({ isAdmin = false, lostItems }: LostGridProps) => {
   };
 
   const handleEdit = (id: number) => {
-    console.log("수정하기 이동");
     navigate(`/admin/edit/${id}?type=lost`);
   };
 

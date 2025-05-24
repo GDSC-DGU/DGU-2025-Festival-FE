@@ -2,6 +2,27 @@ import type { PerformanceItemType } from "../types/performanceItem";
 
 export const timetableData: PerformanceItemType[] = [
   {
+    id: 0,
+    date: "2025-05-24",
+    start: "00:01",
+    end: "24:00",
+    title: "21 Guns",
+    tag: "밴드 동아리",
+    description: "동국대학교 밴드 동아리",
+    instagram: "",
+    songs: [
+      { title: "Star Walkin’ - Lil Nas X" },
+      { title: "Welcome to the show - DAY6" },
+      { title: "The Great Escape - Boys Like Girls" },
+
+      { title: "The Great Escape - All Time Low" },
+
+      { title: "21 Guns - Green Day" },
+    ],
+    imageUrl: "",
+  },
+
+  {
     id: 1,
     date: "2025-05-28",
     start: "14:50",
@@ -9,7 +30,7 @@ export const timetableData: PerformanceItemType[] = [
     title: "21 Guns",
     tag: "밴드 동아리",
     description: "동국대학교 밴드 동아리",
-    instagram: "insta",
+    instagram: "",
     songs: [
       { title: "Star Walkin’ - Lil Nas X" },
       { title: "Welcome to the show - DAY6" },
@@ -24,16 +45,13 @@ export const timetableData: PerformanceItemType[] = [
 
   {
     id: 2,
-    // date: "2025-05-28",
-    // start: "15:20",
-    // end: "15:50",
-    date: "2025-05-24",
-    start: "00:01",
-    end: "24:00",
+    date: "2025-05-28",
+    start: "15:20",
+    end: "15:50",
     title: "아미타불 밴드",
     tag: "밴드 동아리",
     description: "동국대학교 밴드 동아리 .",
-    instagram: "insta",
+    instagram: "",
     songs: [
       { title: "Psycho - Muse" },
       { title: "Champagne Supernova - Oasis" },

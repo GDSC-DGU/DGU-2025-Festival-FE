@@ -11,7 +11,6 @@ export const NoticeListAPI = async () => {
   );
 
   if (response.success) {
-    console.log(`전체 공지사항 불러오기 성공: `, response.data);
     useNoticeStore.getState().setNoticeList(response.data);
     const data = response.data.slice(0, 3);
     useNoticeStore.getState().setPreviewNotices(data);
@@ -29,7 +28,6 @@ export const NoticeDetailAPI = async (noticeId: number) => {
   );
 
   if (response.data) {
-    console.log(`공지사항 디테일 불러오기 성공: `, response.data);
     useNoticeStore.getState().setNoticeDetail(response.data);
     return response.data;
   } else {

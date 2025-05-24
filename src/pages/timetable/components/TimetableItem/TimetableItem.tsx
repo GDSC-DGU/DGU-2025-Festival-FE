@@ -12,7 +12,7 @@ import {
   Content,
 } from "./TimetableItem.styles";
 import { useState } from "react";
-import DetailModal from "../DetailModal/DetailModal";
+import ClubDetailModal from "../ClubDetailModal/ClubDetailModal";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 import DefaultImage from "@/assets/images/timelineImage.png";
 interface TimetableItemProps {
@@ -63,7 +63,9 @@ const TimetableItem = ({
 
         <Button onClick={handleDetail}>상세보기</Button>
       </Card>
-      {showModal && <DetailModal id={id} onClose={() => setShowModal(false)} />}
+      {showModal && (
+        <ClubDetailModal id={id} onClose={() => setShowModal(false)} />
+      )}
     </ItemContainer>
   );
 };

@@ -22,7 +22,6 @@ const NoticeList = ({ isAdmin = false, notices }: NoticeListProps) => {
   };
 
   const handleEdit = (id: number) => {
-    console.log("수정하기 이동");
     navigate(`/admin/edit/${id}?type=notice`);
   };
 

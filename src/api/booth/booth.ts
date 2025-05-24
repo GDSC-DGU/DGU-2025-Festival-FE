@@ -14,7 +14,6 @@ export const boothRankingAPI = async () => {
   );
 
   if (response.success) {
-    console.log(`부스 랭킹 불러오기 성공: `, response.data);
     return response.data;
   } else {
     return response.error;
