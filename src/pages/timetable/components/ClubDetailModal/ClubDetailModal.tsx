@@ -15,7 +15,7 @@ import {
   ClubContent,
   NullContainer,
   Section,
-} from "./DetailModal.styles";
+} from "./ClubDetailModal.styles";
 import { useEffect } from "react";
 import ModalPortal from "@/components/common/ModalPortal";
 import { timetableData } from "../../data/timetableData";
@@ -28,7 +28,7 @@ interface DetailModalProps {
   onClose: () => void;
 }
 
-const DetailModal = ({ id, onClose }: DetailModalProps) => {
+const ClubDetailModal = ({ id, onClose }: DetailModalProps) => {
   const data = timetableData.find((item) => item.id === id);
 
   useEffect(() => {
@@ -94,4 +94,4 @@ const DetailModal = ({ id, onClose }: DetailModalProps) => {
   );
 };
 
-export default DetailModal;
+export default ClubDetailModal;
