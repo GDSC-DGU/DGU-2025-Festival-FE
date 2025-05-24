@@ -1,4 +1,6 @@
-export const timetableData = [
+import type { PerformanceItemType } from "../types/performanceItem";
+
+export const timetableData: PerformanceItemType[] = [
   {
     id: 1,
     date: "2025-05-28",
@@ -22,9 +24,12 @@ export const timetableData = [
 
   {
     id: 2,
-    date: "2025-05-28",
-    start: "15:20",
-    end: "15:50",
+    // date: "2025-05-28",
+    // start: "15:20",
+    // end: "15:50",
+    date: "2025-05-24",
+    start: "00:01",
+    end: "24:00",
     title: "아미타불 밴드",
     tag: "밴드 동아리",
     description: "동국대학교 밴드 동아리 .",

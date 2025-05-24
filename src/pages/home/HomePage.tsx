@@ -14,7 +14,6 @@ import {
 import Header from "./components/Header/Header";
 import Flower from "@/assets/images/flower.png";
 import TimeLine from "./components/TimeLine/TimeLine";
-import { currentPerformer } from "./data/currentPerformer";
 import Notice from "./components/Notice/Notice";
 import BoothRanking from "./components/BoothRanking/BoothRanking";
 import RankingIcon from "@/assets/icons/ranking.svg";
@@ -27,12 +26,17 @@ import { useNoticeStore } from "@/stores/useNoticeStore";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 import HandImage from "@/assets/images/hand.webp";
 import Logo from "@/assets/icons/logo.svg";
+import { getCurrentPerformance } from "./utils/getCurrentPerformance";
+import type { PerformanceItemType } from "../timetable/types/performanceItem";
+
 const HomePage = () => {
   const [mappedBooths, setMappedBooths] = useState<BoothRankingItem[]>([]);
   const previewNotices = useNoticeStore((state) => state.previewNotices);
   const timelineAnimation = useOnScreenAnimation<HTMLDivElement>();
   const noticeAnimation = useOnScreenAnimation<HTMLDivElement>();
   const rankingAnimation = useOnScreenAnimation<HTMLDivElement>();
+  const [currentPerformance, setCurrentPerformance] =
+    useState<PerformanceItemType | null>(null);
 
   useEffect(() => {
     const fetchRanking = async () => {
@@ -64,6 +68,11 @@ const HomePage = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  useEffect(() => {
+    const performer = getCurrentPerformance();
+    setCurrentPerformance(performer ?? null); // undefined → null
+  }, []);
+
   return (
     <Container>
       <Header />
@@ -85,9 +94,9 @@ const HomePage = () => {
             ref={timelineAnimation.ref}
             className={`fade-up ${timelineAnimation.isVisible ? "visible" : ""}`}
           >
-            <Title>타임라인</Title>
+            <Title>실시간 공연 타임라인</Title>
           </TitleContainer>
-          <TimeLine currentPerformer={currentPerformer} />
+          <TimeLine currentPerformer={currentPerformance} />
         </ContentContainer>
         <ContentContainer>
           <TitleContainer

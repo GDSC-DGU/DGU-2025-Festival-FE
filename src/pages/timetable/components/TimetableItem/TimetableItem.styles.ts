@@ -33,7 +33,11 @@ export const Circle = styled.div`
 export const VerticalLine = styled.div`
   width: 2px;
   height: 100%;
-  background: ${({ theme }) => theme.gradients.rankingBox2};
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 30%,
+    rgba(255, 255, 255, 0) 100%
+  );
   flex-grow: 1;
 `;
 
