@@ -1,120 +1,73 @@
-import booth_1 from '@/assets/images/booth_1.webp';
-import booth_2 from '@/assets/images/booth_2.jpeg';
-import booth_3 from '@/assets/images/booth_3.jpg';
-import booth_4 from '@/assets/images/booth_4.jpg';
-import booth_5 from '@/assets/images/booth_5.png';
-import booth_6 from '@/assets/images/booth_6.jpg';
+
+import booth_1_1 from '@/assets/booth/donggam/KakaoTalk_20250524_180638808.jpg';
+import booth_1_2 from '@/assets/booth/donggam/KakaoTalk_20250524_180638808_01.jpg';
+import booth_1_3 from '@/assets/booth/donggam/KakaoTalk_20250524_180638808_02.jpg';
+import booth_1_4 from '@/assets/booth/donggam/KakaoTalk_20250524_180740993.jpg';
+import booth_1_5 from '@/assets/booth/donggam/KakaoTalk_20250524_180740993_01.png';
+import booth_1_6 from '@/assets/booth/donggam/KakaoTalk_20250524_180740993_02.png';
+import booth_1_7 from '@/assets/booth/donggam/KakaoTalk_20250524_180740993_03.png';
+import booth_2_1 from '@/assets/booth/108/[빽투더백팔] 최종 포스터.jpg';
+import booth_2_2 from '@/assets/booth/108/005.jpg';
+import booth_2_3 from '@/assets/booth/108/006.jpg';
+import booth_3_1 from '@/assets/booth/chinese/KakaoTalk_20250522_155923571_01.jpg';
+import booth_3_2 from '@/assets/booth/chinese/KakaoTalk_20250522_155923571_02.jpg';
+import booth_4_1 from '@/assets/booth/history/KakaoTalk_20250522_194504003.png';
+import booth_4_2 from '@/assets/booth/history/KakaoTalk_20250522_194504003_01.png';
+import booth_4_3 from '@/assets/booth/history/KakaoTalk_20250522_194504003_02.png'; 
+import booth_5_1 from '@/assets/booth/buddhism/image.png';
+import booth_5_2 from '@/assets/booth/buddhism/image (1).png';
+
+
 
 export const booths = [
   {
     id: '1',
-    name: '불교학과 체험존',
-    intro: '명상 체험과 함께 나만의 연등 만들기를 경험해보세요!',
-    description: '연등 만들기 외에도 조용한 명상과 향 피우기 체험이 준비되어 있습니다.',
-    date: '2025-05-27',
-    type: 'day',
-    position: { lat: 37.5589, lng: 126.9980 },
-    images: [booth_1, booth_4, booth_5],
+    name: '동감 사파리 월드',
+    intro: ' 속보입니다! 동감랜드 사파리에서 아코 24마리가 탈출했습니다. 포획에 동참하시겠습니까?',
+    date: '2025-05-28',
+    type: 'night',
+    position: { lat: 37.557685, lng: 127.000223 },
+    images: [booth_1_1, booth_1_2, booth_1_3, booth_1_4, booth_1_5, booth_1_6, booth_1_7],
     waitingAvailable: true,
   },
   {
     id: '2',
-    name: '컴퓨터공학과 AI 전시관',
-    intro: 'AI로 움직이는 로봇팔 시연과 학생 작품 전시를 보러오세요!',
-    description: '최신 AI 기술과 학생들의 창의적인 프로젝트를 직접 체험할 수 있습니다.',
+    name: ' 빽투-더 백팔',
+    intro: '108리더스 19기 레트로 야간주점',
     date: '2025-05-27',
-    type: 'day',
-    position: { lat: 37.5593, lng: 126.9986 },
-    images: [booth_2, booth_3, booth_1],
+    type: 'night',
+    position: { lat: 37.557735, lng: 127.000246},
+    images: [booth_2_1, booth_2_2, booth_2_3],
     waitingAvailable: false,
   },
   {
     id: '3',
-    name: '경영학과 스타트업 부스',
-    intro: '동국대 경영학과 학생들의 스타트업 제품을 체험해보세요!',
-    description: '혁신적인 아이디어와 다양한 창업 아이템을 만나볼 수 있습니다.',
+    name: '辛서유기',
+    intro: '중어중문학과',
     date: '2025-05-27',
-    type: 'day',
-    position: { lat: 37.5590, lng: 126.9972 },
-    images: [booth_3, booth_2, booth_6],
+    type: 'night',
+    position: { lat: 37.557821, lng: 126.999844 },
+    images: [booth_3_1, booth_3_2],
     waitingAvailable: false,
   },
   {
     id: '4',
-    name: '동국대 응원 부스',
-    intro: '재학생과 졸업생을 위한 응원 메시지를 남겨주세요!',
-    description: '따뜻한 메시지와 함께 작은 선물도 받아가세요.',
+    name: '분노의 삼국시대',
+    intro: '“천하삼분(天下三分), 술로 통일하라!”',
     date: '2025-05-27',
-    type: 'day',
+    type: 'night',
     position: { lat: 37.5583, lng: 126.9975 },
-    images: [booth_4, booth_1, booth_5],
-    waitingAvailable: true,
+    images: [booth_4_1, booth_4_2, booth_4_3],
+    waitingAvailable: false,
   },
   {
     id: '5',
-    name: '미디어커뮤니케이션학과 게임존',
-    intro: '미디어와 게임 콘텐츠를 활용한 퀴즈 이벤트에 참여해보세요!',
-    description: '퀴즈, 미니게임, 포토존 등 다양한 즐길 거리가 준비되어 있습니다.',
-    date: '2025-05-28',
-    type: 'day',
+    name: '속세 한 잔',
+    intro: '불교학부',
+    date: '2025-05-27',
+    type: 'night',
     position: { lat: 37.5586, lng: 126.9967 },
-    images: [booth_5, booth_2, booth_3],
-    waitingAvailable: true,
-  },
-  {
-    id: '6',
-    name: '동국 플리마켓',
-    intro: '재학생들이 준비한 중고책, 학과 굿즈, 간식 판매!',
-    description: '다양한 중고물품과 수공예품, 맛있는 간식이 가득한 플리마켓입니다.',
-    date: '2025-05-29',
-    type: 'night',
-    position: { lat: 37.5581, lng: 126.9988 },
-    images: [booth_6, booth_1, booth_4],
-    waitingAvailable: true,
-  },
-  // 더미 데이터 추가
-  {
-    id: '7',
-    name: '문과대학 체험부스',
-    intro: '문과대학 학생들이 준비한 다양한 체험 프로그램!',
-    description: '문학, 역사, 철학 등 인문학적 체험과 퀴즈 이벤트가 준비되어 있습니다.',
-    date: '2025-05-29',
-    type: 'night',
-    position: { lat: 37.5585, lng: 126.9979 },
-    images: [booth_2, booth_5, booth_3],
+    images: [booth_5_1, booth_5_2],
     waitingAvailable: false,
-  },
-  {
-    id: '8',
-    name: '자연과학대학 실험쇼',
-    intro: '과학 실험과 신기한 현상을 직접 체험해보세요!',
-    description: '화학, 물리, 생명과학 등 다양한 실험을 직접 보고 체험할 수 있습니다.',
-    date: '2025-05-29',
-    type: 'night',
-    position: { lat: 37.5587, lng: 126.9983 },
-    images: [booth_3, booth_6, booth_1],
-    waitingAvailable: true,
-  },
-  {
-    id: '9',
-    name: '동아리 연합 부스',
-    intro: '동아리들의 다양한 공연과 체험 부스!',
-    description: '음악, 댄스, 미술 등 동아리별 특색 있는 프로그램이 준비되어 있습니다.',
-    date: '2025-05-28',
-    type: 'day',
-    position: { lat: 37.5591, lng: 126.9978 },
-    images: [booth_4, booth_5, booth_2],
-    waitingAvailable: false,
-  },
-  {
-    id: '10',
-    name: '글로벌 푸드 페스티벌',
-    intro: '세계 각국의 다양한 음식을 맛볼 수 있는 기회!',
-    description: '아시아, 유럽, 미주 등 다양한 나라의 음식 부스가 한자리에 모였습니다.',
-    date: '2025-05-28',
-    type: 'day',
-    position: { lat: 37.5582, lng: 126.9985 },
-    images: [booth_5, booth_1, booth_6],
-    waitingAvailable: true,
-  },
+  }
 ] as const;

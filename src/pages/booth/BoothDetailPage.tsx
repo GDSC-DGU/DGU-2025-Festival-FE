@@ -22,7 +22,6 @@ import {
   ContentContainer,
   SubContainer,
   Title,
-  Description,
   Dot,
   DotWrapper,
   ImageSlider,
@@ -102,7 +101,7 @@ export default function BoothDetailPage() {
   if (isLoading)
     return <SkeletonLoading message="부스 정보를 불러오는 중입니다..." />;
 
-  const totalSlides = booth.images.length + 1;
+  const totalSlides = booth.images.length;
 
   return (
     <Container>
@@ -146,12 +145,9 @@ export default function BoothDetailPage() {
                   style={{ opacity: currentSlide === index ? 1 : 0 }}
                 />
               ))}
-              {currentSlide === booth.images.length && (
-                <Description>{booth.description}</Description>
-              )}
             </ImageSlider>
             <DotWrapper>
-              {[...booth.images, "desc"].map((_, i) => (
+              {booth.images.map((_, i) => (
                 <Dot key={i} active={i === currentSlide} />
               ))}
             </DotWrapper>

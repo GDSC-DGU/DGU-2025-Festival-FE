@@ -6,10 +6,11 @@ export const Card = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start; /* 텍스트와 이미지 수직 정렬 */
   gap: 16px;
   box-shadow: 0 0 4px 0 ${({ theme }) => theme.colors.gray300};
+  cursor: pointer;
 `;
 
 export const TitleContainer = styled.div`
@@ -25,15 +26,16 @@ export const Image = styled.img`
   width: 80px;
   border-radius: 8px;
   object-fit: cover;
+  flex-shrink: 0;
 `;
 
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  align-items: start;
-  height: 100%;
-  justify-content: space-between;
+  gap: 4px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex: 1;
 `;
 
 export const BoothName = styled.div`
@@ -46,11 +48,7 @@ export const BoothName = styled.div`
 export const Intro = styled.div`
   font-size: 12px;
   color: var(--gray-500);
-`;
-
-export const LikeButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
+  line-height: 1.4;
 `;
 
 export const LikeButton = styled.button`
