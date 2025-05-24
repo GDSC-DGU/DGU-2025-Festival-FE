@@ -5,9 +5,13 @@ import { router } from "./routes";
 import GlobalFCMListener from "./components/GlobalFCMListener";
 import InAppLanding from "@/components/common/InAppLanding";
 import { isInAppBrowser } from "./utils/isInApp";
+import dayjs from "dayjs";
+import "@/utils/dayjs";
 
 export default function App() {
   const inApp = isInAppBrowser();
+
+  dayjs.locale("ko-numeric");
 
   return (
     <ThemeProvider theme={theme}>
