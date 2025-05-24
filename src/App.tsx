@@ -7,7 +7,7 @@ function App() {
       <div className="gdg-subtext">with GDG on Campus</div>
       <p className="comming-soon">Comming Soon 05/24 22:00</p>
       <div className="graphic-layer">
-        <img src="/hand.svg" alt="hand" className="hand-img" />
+        <img src="/hand.png" alt="hand" className="hand-img" />
         <img src="/flower.png" alt="flower" className="flower-img" />
       </div>
     </div>
