@@ -116,7 +116,7 @@ export const ScrollWrapper = styled.div`
   gap: 12px;
   padding: 16px 0;
   scroll-snap-type: x mandatory;
-  width: 100%; /* ✅ 추가 */
+  width: 100%; 
 
   &::-webkit-scrollbar {
     display: none;
