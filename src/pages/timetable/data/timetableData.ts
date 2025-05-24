@@ -1,12 +1,12 @@
 export const timetableData = [
   {
     id: 1,
-    date: "2025-05-27",
-    start: "18:00",
-    end: "18:30",
-    title: "일리",
+    date: "2025-05-28",
+    start: "14:50",
+    end: "15:20",
+    title: "21 Guns",
     tag: "교내 동아리",
-    description: "동국대학교 밴드 동아리 일리입니다.",
+    description: "동국대학교 밴드 동아리",
     instagram: "illie_band",
     songs: [
       { title: "노래1 - 가수1", coveredBy: "홍길동" },

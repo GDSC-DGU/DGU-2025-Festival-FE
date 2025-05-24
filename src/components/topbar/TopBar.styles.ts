@@ -12,7 +12,7 @@ export const Container = styled.div<{ $isDark: boolean }>`
   background-color: ${({ $isDark }) =>
     $isDark ? "rgba(4, 0, 34, 0.6)" : "white"};
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
 `;
 

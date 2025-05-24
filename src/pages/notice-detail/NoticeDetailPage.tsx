@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ImagePagination from "./components/ImagePagination/ImagePagination";
 import TopBar from "@/components/topbar/TopBar";
-import { dummyNotices } from "./data/noticeDetails";
 import {
   Container,
   ContentContainer,
@@ -15,14 +14,23 @@ import {
   ContentText,
 } from "./NoticeDetailPage.styles";
 import { formatDate } from "@/utils/date";
+import { useNoticeStore } from "@/stores/useNoticeStore";
+import { NoticeDetailAPI } from "@/api/notice/notice";
 
 const NoticeDetailPage = () => {
   const { id } = useParams();
   const noticeId = Number(id);
   const [pageIndex, setPageIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const notice = useNoticeStore((state) => state.noticeDetail);
 
-  const notice = dummyNotices.find((n) => n.id === noticeId);
+  useEffect(() => {
+    const fetchDetail = async () => {
+      await NoticeDetailAPI(noticeId);
+    };
+
+    fetchDetail();
+  }, []);
 
   if (!notice) {
     return (
@@ -33,7 +41,7 @@ const NoticeDetailPage = () => {
     );
   }
 
-  const imageUrls = notice.imageUrls ?? [];
+  const imageUrls = notice.image_urls ?? [];
 
   const handleScroll = () => {
     if (!scrollRef.current) return;
@@ -58,8 +66,8 @@ const NoticeDetailPage = () => {
       <TopBar title="공지사항" showBackButton />
       <ContentContainer>
         <ContentHeader>
-          <TitleText>{notice.title}</TitleText>
-          <DateText>{formatDate(notice.date)}</DateText>
+          <TitleText>{notice.notice_title}</TitleText>
+          <DateText>{formatDate(notice.publish_time)}</DateText>
         </ContentHeader>
         <Divider />
         {imageUrls.length > 0 && (
@@ -67,7 +75,10 @@ const NoticeDetailPage = () => {
             <ImageScrollContainer ref={scrollRef} onScroll={handleScroll}>
               {imageUrls.slice(0, 5).map((url, i) => (
                 <ImageItem key={i}>
-                  <img src={url} alt={`공지 이미지 ${i + 1}`} />
+                  <img
+                    src={url.notice_image_url}
+                    alt={`공지 이미지 ${i + 1}`}
+                  />
                 </ImageItem>
               ))}
             </ImageScrollContainer>
@@ -80,7 +91,7 @@ const NoticeDetailPage = () => {
           </>
         )}
 
-        <ContentText>{notice.content}</ContentText>
+        <ContentText>{notice.notice_content}</ContentText>
       </ContentContainer>
     </Container>
   );

@@ -4,6 +4,12 @@ import {
   Title,
   ContentContainer,
   TitleContainer,
+  ImageContainer,
+  Image,
+  FlowerImage,
+  Slogan,
+  Row,
+  MainSlogan,
 } from "./HomePage.styles";
 import Header from "./components/Header/Header";
 import Flower from "@/assets/images/flower.png";
@@ -19,7 +25,8 @@ import type { BoothRankingItem } from "@/types/booth";
 import { NoticeListAPI } from "@/api/notice/notice";
 import { useNoticeStore } from "@/stores/useNoticeStore";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
-
+import HandImage from "@/assets/images/hand.webp";
+import Logo from "@/assets/icons/logo.svg";
 const HomePage = () => {
   const [mappedBooths, setMappedBooths] = useState<BoothRankingItem[]>([]);
   const previewNotices = useNoticeStore((state) => state.previewNotices);
@@ -38,7 +45,6 @@ const HomePage = () => {
           id: booth?.id ?? `booth-${item.id}`,
           name: booth?.name ?? "이름 없음",
           intro: booth?.intro ?? "설명 없음",
-          image: booth?.image ?? "",
           score: item.score,
         };
       });
@@ -54,11 +60,26 @@ const HomePage = () => {
     fetchNoticeList();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <Container>
       <Header />
+      <ImageContainer>
+        <FlowerImage src={Flower} alt="flower" />
+        <MainSlogan>동국대학교 대동제</MainSlogan>
+        <img src={Logo} alt="무위열반" width={"100%"} />
+        <Row>
+          <Slogan>(비우는) 만큼 </Slogan>
+          <Slogan>(자유로워)지리라</Slogan>
+        </Row>
+
+        <Image src={HandImage} alt="hand.png" />
+      </ImageContainer>
+
       <MainContainer>
-        <img src={Flower} height={100} alt="flower" />
         <ContentContainer>
           <TitleContainer
             ref={timelineAnimation.ref}
