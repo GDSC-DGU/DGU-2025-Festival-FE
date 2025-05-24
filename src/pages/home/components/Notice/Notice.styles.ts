@@ -13,7 +13,7 @@ export const NoticeContent = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: row;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
   border: none;
   width: 100%;

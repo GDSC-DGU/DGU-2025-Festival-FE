@@ -3,6 +3,7 @@ import type { NoticeItemType } from "@/pages/notice/types/noticeItems";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "@/utils/date";
+import dayjs from "dayjs";
 
 interface NoticeCardProps {
   notice: NoticeItemType;
@@ -20,7 +21,7 @@ const NoticeCard = ({ notice }: NoticeCardProps) => {
       onClick={() => navigate(`/notice/${notice.notice_id}`)}
     >
       <NoticeText>{notice.notice_title}</NoticeText>
-      <DateText>{formatDate(notice.publish_time)}</DateText>
+      <DateText>{dayjs(notice.publish_time).fromNow()}</DateText>
     </NoticeContent>
   );
 };
