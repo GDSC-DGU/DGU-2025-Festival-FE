@@ -27,6 +27,8 @@ import {
   Title,
 } from "./BoothDetailPage.styles";
 import { useLike } from "@/api/likes/hooks/useLike";
+import SkeletonLoading from "@/components/common/SkeletonLoading";
+
 
 export default function BoothDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -100,7 +102,7 @@ export default function BoothDetailPage() {
   }, [loopedBooths, relatedBooths]);
 
   if (!booth) return <div>부스를 찾을 수 없습니다.</div>;
-  if (isLoading) return <div>로딩 중...</div>;
+  if (isLoading) return <SkeletonLoading message="부스 정보를 불러오는 중입니다..." />;
 
   return (
     <Container>
