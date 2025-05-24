@@ -31,8 +31,10 @@ const NoticePage = () => {
 
   useEffect(() => {
     const saved = sessionStorage.getItem(STORAGE_KEY);
-    if (saved === "분실물") {
-      setTab("분실물");
+    if (saved === "공지사항" || saved === "분실물") {
+      setTab(saved);
+    } else {
+      setTab("공지사항");
     }
   }, []);
 

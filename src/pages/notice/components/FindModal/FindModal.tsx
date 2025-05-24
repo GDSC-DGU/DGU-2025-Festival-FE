@@ -7,8 +7,8 @@ interface FindModalProps {
 const FindModal = ({ onClose }: FindModalProps) => {
   const content = (
     <>
-      잃어버린 분실물은 OOO에서 찾으면 됩니다. <br /> 분실물을 습득하셨다면
-      OOO으로 가져와주세요!
+      잃어버린 분실물은 축제기획단 부스에서 찾으면 됩니다. <br /> 분실물을
+      습득하셨다면 축제기획단 부스로 가져와주세요.
     </>
   );
 
