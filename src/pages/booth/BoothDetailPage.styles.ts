@@ -157,7 +157,7 @@ export const ImageSlider = styled.div`
   aspect-ratio: 1 / 1;
   border-radius: 8px;
   overflow: hidden;
-  background: #f5f5f5;
+  background:rgba(245, 245, 245, 0);
 `;
 
 export const SlideImage = styled.img`
