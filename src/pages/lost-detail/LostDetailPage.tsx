@@ -25,6 +25,7 @@ import { useState, useRef, useEffect } from "react";
 import ImagePagination from "../notice-detail/components/ImagePagination/ImagePagination";
 import { LostDetailAPI } from "@/api/notice/lost";
 import { useLostStore } from "@/stores/useLostStore";
+import { LostTag } from "@/types/enums";
 
 const LostDetailPage = () => {
   const { id } = useParams();
@@ -76,7 +77,7 @@ const LostDetailPage = () => {
         <ContentHeader>
           <TitleContainer>
             <TitleText>{lost.lost_title}</TitleText>
-            <Tag>{lost.lost_tag}</Tag>
+            <Tag>{LostTag[lost.lost_tag as keyof typeof LostTag]}</Tag>
           </TitleContainer>
 
           <DateText>{formatDate(lost.publish_time)}</DateText>

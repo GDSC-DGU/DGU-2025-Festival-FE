@@ -1,8 +1,8 @@
-import { LostTag } from "@/types/enums";
+// import { LostTag } from "@/types/enums";
 
 export type LostDetailType = {
   lost_id: number;
-  lost_tag: LostTag;
+  lost_tag: string;
   lost_title: string;
   lost_color: string;
   lost_brand: string;
