@@ -9,8 +9,13 @@ const InstagramSvgButton = ({ instagramId }: Props) => {
 
   return (
     <InstagramIconWrapper>
-      <a href={url} target="_blank" rel="noopener noreferrer">
-        <img src={InstagramIcon} alt="Instagram" width={20} height={20} />
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ width: 14, height: 14 }}
+      >
+        <img src={InstagramIcon} alt="Instagram" width={14} height={14} />
       </a>
     </InstagramIconWrapper>
   );
