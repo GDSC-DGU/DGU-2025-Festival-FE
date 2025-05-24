@@ -46,6 +46,7 @@ export const Info = styled.div`
   justify-content: space-between;
   width: 100%;
   gap: 4px;
+  
 `;
 
 export const BoothName = styled.div`
@@ -59,6 +60,7 @@ export const BoothIntro = styled.div`
   font-size: 14px;
   font-weight: 500;
   color: var(--gray-500);
+  margin-top: 15px;
 `;
 
 export const Like = styled.div`
@@ -139,4 +141,52 @@ export const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+`;
+
+export const SliderArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+`;
+
+export const ImageSlider = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f5f5f5;
+`;
+
+export const SlideImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+`;
+
+export const Description = styled.div`
+  padding: 16px;
+  font-size: 13px;
+  color: #333;
+  line-height: 1.5;
+`;
+
+export const DotWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+`;
+
+export const Dot = styled.div<{ active: boolean }>`
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: ${({ active }) => (active ? "#333" : "#ccc")};
 `;

@@ -10,7 +10,6 @@ import {
   ToolbarRow,
   WaitingCheckButton,
   ContentContainer,
-  BoothListWrapper
 } from "./BoothPage.styles";
 import { booths } from "./data/booths";
 import TopBar from "@/components/topbar/TopBar";
@@ -41,17 +40,16 @@ export default function BoothPage() {
             웨이팅 확인
           </WaitingCheckButton>
         </ToolbarRow>
-        <BoothListWrapper>
+
         {filteredBooths.map((booth) => (
           <BoothCard
             key={booth.id}
             boothId={booth.id}
             name={booth.name}
             intro={booth.intro}
-            image={booth.image}
+            image={booth.images[0]}
           />
         ))}
-        </BoothListWrapper>
       </ContentContainer>
 
       {showModal && <WaitingClosedModal onClose={() => setShowModal(false)} />}
