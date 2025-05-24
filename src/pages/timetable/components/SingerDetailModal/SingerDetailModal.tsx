@@ -42,8 +42,8 @@ const SingerDetailModal = ({ id, onClose }: DetailModalProps) => {
 
   // 날짜 → Day 변환 함수
   const getDayTag = (date: string) => {
-    if (date === "2025-05-28") return "Day 2";
-    if (date === "2025-05-29") return "Day 3";
+    if (date === "2025-05-28") return "Day 2 | 5/28 WED";
+    if (date === "2025-05-29") return "Day 3 | 5/29 THU";
   };
 
   return (
