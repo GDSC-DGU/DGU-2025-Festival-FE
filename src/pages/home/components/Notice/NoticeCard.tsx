@@ -2,7 +2,6 @@ import { NoticeContent, NoticeText, DateText } from "./Notice.styles";
 import type { NoticeItemType } from "@/pages/notice/types/noticeItems";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 import { useNavigate } from "react-router-dom";
-import { formatDate } from "@/utils/date";
 import dayjs from "dayjs";
 
 interface NoticeCardProps {

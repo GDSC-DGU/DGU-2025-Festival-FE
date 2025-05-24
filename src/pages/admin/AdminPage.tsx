@@ -13,7 +13,6 @@ import {
 import SubmitButton from "@/components/button/SubmitButton";
 import { loginAPI } from "@/api/admin/admin";
 import { useState } from "react";
-import { useAuthStore } from "@/stores/useAuthStore";
 import { Role } from "./types/role";
 import PubRoleIcon from "@/assets/icons/pub-role.svg";
 import FestaRoleIcon from "@/assets/icons/festa-role.svg";
@@ -24,7 +23,6 @@ const AdminLoginPage = () => {
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { role } = useAuthStore();
 
   const handleLogin = async () => {
     if (!username || !password) {
