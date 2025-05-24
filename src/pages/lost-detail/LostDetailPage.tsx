@@ -21,7 +21,7 @@ import {
 } from "./LostDetailPage.styles";
 import { formatDate } from "@/utils/date";
 import QuestionIcons from "@/assets/icons/question.svg";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import ImagePagination from "../notice-detail/components/ImagePagination/ImagePagination";
 import { LostDetailAPI } from "@/api/notice/lost";
 import { useLostStore } from "@/stores/useLostStore";
