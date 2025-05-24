@@ -132,7 +132,7 @@ export default function BoothDetailPage() {
           {/* 이미지 슬라이더 영역 */}
           <SliderArea onClick={() => setCurrentSlide((prev) => (prev + 1) % totalSlides)}>
             <ImageSlider>
-              {booth.images.map((img, index) => (
+              {booth.images.map((img: string, index: number) => (
                 <SlideImage
                   key={index}
                   src={img}
@@ -142,7 +142,7 @@ export default function BoothDetailPage() {
               ))}
             </ImageSlider>
             <DotWrapper>
-              {booth.images.map((_, i) => (
+              {booth.images.map((_: string, i: number) => (
                 <Dot key={i} active={i === currentSlide} />
               ))}
             </DotWrapper>

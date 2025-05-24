@@ -43,6 +43,20 @@ import booth_13_2 from '@/assets/booth/robot/스크린샷 2025-05-25 033908.png'
 import booth_14_1 from '@/assets/booth/electronic/image (3).png';
 import booth_14_2 from '@/assets/booth/electronic/image (4).png';
 import booth_14_3 from '@/assets/booth/electronic/image (5).png';
+import booth_15_1 from '@/assets/booth/art/KakaoTalk_20250524_182551200.jpg';
+import booth_15_2 from '@/assets/booth/art/KakaoTalk_20250524_182551200_01.jpg';
+import booth_15_3 from '@/assets/booth/art/KakaoTalk_20250524_182551200_02.jpg';
+import booth_15_4 from '@/assets/booth/art/KakaoTalk_20250524_182551200_03.jpg';
+import booth_16_1 from '@/assets/booth/sport/스크린샷 2025-05-25 042036.png';
+import booth_16_2 from '@/assets/booth/sport/스크린샷 2025-05-25 042051.png';  
+import booth_17_1 from '@/assets/booth/korean/스크린샷 2025-05-25 042113.png';
+import booth_17_2 from '@/assets/booth/korean/스크린샷 2025-05-25 042142.png';
+import booth_18_1 from '@/assets/booth/math/스크린샷 2025-05-25 042216.png';
+import booth_18_2 from '@/assets/booth/math/스크린샷 2025-05-25 042230.png';
+import booth_19_1 from '@/assets/booth/fusion/스크린샷 2025-05-25 042342.png';
+import booth_19_2 from '@/assets/booth/fusion/스크린샷 2025-05-25 042401.png';
+import booth_20_1 from '@/assets/booth/drawing/스크린샷 2025-05-25 042518.png';
+import booth_20_2 from '@/assets/booth/drawing/스크린샷 2025-05-25 042537.png';
 
 export const booths = [
   {
@@ -158,7 +172,7 @@ export const booths = [
   {
     id: '12',
     name: '회계 신병',
-    intro: '군대 컨셉 인기 드라마 ‘신병’ 모티브 주점',
+    intro: '군대 컨셉 인기 드라마 ‘신병’ 모티브 야간 부스',
     date: '2025-05-27',
     type: 'night',
     position: { lat:  37.557182, lng: 127.001541 },
@@ -185,4 +199,65 @@ export const booths = [
     images: [booth_14_1, booth_14_2, booth_14_3],
     waitingAvailable: false,
   },
+  {
+    id: '15',
+    name: '연극이 끝난 후',
+    intro: '예술대학의 공연 감성 가득한 야간 부스',
+    date: '2025-05-27',
+    type: 'night',
+    position: { lat:  37.558027, lng: 127.003338 },
+    images: [booth_15_1, booth_15_2, booth_15_3, booth_15_4],
+    waitingAvailable: false,
+  },
+  {
+    id: '16',
+    name: '두근두근 야구클럽',
+    intro: '동국대학교 야구부 프런트 야간 부스',
+    date: '2025-05-27',
+    type: 'night',
+    position: { lat:  37.558790, lng: 126.999132 },
+    images: [booth_16_1, booth_16_2],
+    waitingAvailable: false,
+  },
+  {
+    id: '17',
+    name: '티라노의 쩝쩝월드',
+    intro: '국어교육과의 공룡과 원시시대 야간 부스',
+    date: '2025-05-27',
+    type: 'night',
+    position: { lat:  37.560146, lng: 127.000028 },
+    images: [booth_17_1, booth_17_2],
+    waitingAvailable: false,
+  },
+  {
+    id: '18',
+    name: '새참의 정석',
+    intro: '수학교육과 야간 부스',
+    date: '2025-05-27',
+    type: 'night',
+    position: { lat:  37.560261, lng: 126.999551 },
+    images: [booth_18_1, booth_18_2],
+    waitingAvailable: false,
+  },
+  {
+    id: '19',
+    name: '7080 청춘레코드',
+    intro: '첨단융합대학의 7080 감성 가득한 레트로 야간 부스',
+    date: '2025-05-27',
+    type: 'night',
+    position: { lat:  37.559356, lng: 126.999593 },
+    images: [booth_19_1, booth_19_2],
+    waitingAvailable: false,
+  },
+  {
+    id: '20',
+    name: '그리고그림 야간 전시회',
+    intro: '전시회 콘셉트의 감성 가득 그림 동아리 야간 부스',
+    date: '2025-05-27',
+    type: 'night',
+    position: { lat:  37.559541, lng: 126.999386 },
+    images: [booth_20_1, booth_20_2],
+    waitingAvailable: false,
+  },
+
 ] as const;
