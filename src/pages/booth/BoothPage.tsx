@@ -10,6 +10,7 @@ import {
   ToolbarRow,
   WaitingCheckButton,
   ContentContainer,
+  BoothListWrapper
 } from "./BoothPage.styles";
 import { booths } from "./data/booths";
 import TopBar from "@/components/topbar/TopBar";
@@ -42,20 +43,30 @@ export default function BoothPage() {
         </ToolbarRow>
 
         {filteredBooths.length > 0 ? (
-  filteredBooths.map((booth) => (
-    <BoothCard
-      key={booth.id}
-      boothId={booth.id}
-      name={booth.name}
-      intro={booth.intro}
-      image={booth.images[0]}
-    />
-  ))
+  <BoothListWrapper>
+    {filteredBooths.map((booth) => (
+      <BoothCard
+        key={booth.id}
+        boothId={booth.id}
+        name={booth.name}
+        intro={booth.intro}
+        image={booth.images[0]}
+      />
+    ))}
+  </BoothListWrapper>
 ) : (
-  <div style={{ padding: "40px 0", textAlign: "center", color: "#949db8", fontSize: "14px" }}>
-     곧 업데이트 예정이에요.
+  <div
+    style={{
+      padding: "40px 0",
+      textAlign: "center",
+      color: "#949db8",
+      fontSize: "14px",
+    }}
+  >
+    곧 업데이트 예정이에요.
   </div>
 )}
+
 
       </ContentContainer>
 
