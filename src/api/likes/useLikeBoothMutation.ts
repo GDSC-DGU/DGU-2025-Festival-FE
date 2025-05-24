@@ -4,6 +4,7 @@ import { useBoothStore } from "@/pages/booth/stores/useBoothStore";
 
 export const useLikeBoothMutation = () => {
   const setLikeCount = useBoothStore((state) => state.setLikeCount);
+  const setIsLiked = useBoothStore((state) => state.setIsLiked); // ✅ 추가
 
   return useMutation({
     mutationFn: likeBooth,
@@ -12,9 +13,7 @@ export const useLikeBoothMutation = () => {
         const boothId = String(res.data.booth_id);
         const newLikes = res.data.new_likes;
         setLikeCount(boothId, newLikes);
-      } else {
-        // 에러 메시지 어떻게 할까
-        // 필요하다면 사용자 알림 등으로 대체
+        setIsLiked(boothId); 
       }
     },
   });

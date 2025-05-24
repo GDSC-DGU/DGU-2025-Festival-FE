@@ -6,16 +6,22 @@ interface TopBarProps {
   showBackButton?: boolean;
   isDark?: boolean;
   title: string;
+  onBack?: () => void; 
 }
 
 const TopBar = ({
   showBackButton = false,
   isDark = false,
   title,
+  onBack, 
 }: TopBarProps) => {
   const navigate = useNavigate();
   const handleBack = () => {
-    navigate(-1);
+    if (onBack) {
+      onBack(); 
+    } else {
+      navigate(-1);
+    }
   };
 
   return (
@@ -39,3 +45,4 @@ const TopBar = ({
 };
 
 export default TopBar;
+
