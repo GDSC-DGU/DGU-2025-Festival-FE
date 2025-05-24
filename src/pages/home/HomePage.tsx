@@ -26,7 +26,6 @@ import { NoticeListAPI } from "@/api/notice/notice";
 import { useNoticeStore } from "@/stores/useNoticeStore";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 import HandImage from "@/assets/images/hand.webp";
-import SubLogo from "@/assets/icons/subLogo.webp";
 import Logo from "@/assets/icons/logo.svg";
 const HomePage = () => {
   const [mappedBooths, setMappedBooths] = useState<BoothRankingItem[]>([]);
