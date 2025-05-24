@@ -21,9 +21,10 @@ import {
 } from "./LostDetailPage.styles";
 import { formatDate } from "@/utils/date";
 import QuestionIcons from "@/assets/icons/question.svg";
-import { lostDetails } from "./data/lostDetails";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ImagePagination from "../notice-detail/components/ImagePagination/ImagePagination";
+import { LostDetailAPI } from "@/api/notice/lost";
+import { useLostStore } from "@/stores/useLostStore";
 
 const LostDetailPage = () => {
   const { id } = useParams();
@@ -31,7 +32,15 @@ const LostDetailPage = () => {
   const [pageIndex, setPageIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const lost = lostDetails.find((n) => n.lost_id === lostId);
+  const lost = useLostStore((state) => state.lostDetail);
+
+  useEffect(() => {
+    const fetchDetail = async () => {
+      await LostDetailAPI(lostId);
+    };
+
+    fetchDetail();
+  }, [lostId]);
 
   if (!lost) {
     return (
@@ -97,7 +106,7 @@ const LostDetailPage = () => {
         </InfoField>
         <InfoField>
           <Label>종류</Label>
-          <Value>{lost.lost_category_name}</Value>
+          <Value>{lost.lost_category}</Value>
         </InfoField>
         <InfoField>
           <Label>브랜드</Label>

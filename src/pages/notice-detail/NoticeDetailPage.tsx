@@ -30,7 +30,7 @@ const NoticeDetailPage = () => {
     };
 
     fetchDetail();
-  }, []);
+  }, [noticeId]);
 
   if (!notice) {
     return (
