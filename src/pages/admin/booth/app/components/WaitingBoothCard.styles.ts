@@ -56,7 +56,7 @@ const baseButton = `
   padding: 8px 12px;
   border-radius: 16px;
   font-size: 12px;
-  font-family: 'Pretendard', sans-serif;
+  font-family: 'Pretendard Variable', sans-serif;
   font-weight: 600;
   line-height: 16px;
   display: flex;
@@ -102,14 +102,14 @@ export const DeleteButton = styled.button`
 export const VisitedText = styled.div`
   font-size: 14px;
   color: #6b7280;
-  font-family: "Pretendard", sans-serif;
+  font-family: "Pretendard Variable", sans-serif;
 `;
 
 // 대기 취소 텍스트
 export const CancelledText = styled.div`
   font-size: 14px;
   color: #9ca3af;
-  font-family: "Pretendard", sans-serif;
+  font-family: "Pretendard Variable", sans-serif;
   font-style: italic;
 `;
 
