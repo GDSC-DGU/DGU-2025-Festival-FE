@@ -4,7 +4,7 @@ import {
   TagScrollWrapper,
   TagList,
   GridContainer,
-  NullContainer,
+  EmptyText,
 } from "./LostGrid.styles";
 import LostItem from "../LostItem/LostItem";
 import Tag from "../Tag/Tag";
@@ -63,7 +63,7 @@ const LostGrid = ({ isAdmin = false, lostItems }: LostGridProps) => {
         </TagList>
       </TagScrollWrapper>
       {filteredItems.length === 0 ? (
-        <NullContainer>등록된 분실물이 없습니다.</NullContainer>
+        <EmptyText>등록된 분실물이 없습니다.</EmptyText>
       ) : (
         <GridContainer>
           {filteredItems.map((lost, index) => (

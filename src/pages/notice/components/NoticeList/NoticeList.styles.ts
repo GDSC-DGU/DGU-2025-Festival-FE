@@ -8,3 +8,10 @@ export const ListContainer = styled.div`
   height: 100%;
   flex: 1;
 `;
+
+export const EmptyText = styled.p`
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray400};
+  ${({ theme }) => theme.fonts.Body2};
+  padding: 40px 0;
+`;

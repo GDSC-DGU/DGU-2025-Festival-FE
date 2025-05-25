@@ -28,10 +28,17 @@ import {
 } from "react-router-dom";
 import { formatDate } from "@/utils/date";
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
+import {
+  NoticePostAPI,
+  NoticeDetailAPI,
+  NoticePatchAPI,
+} from "@/api/notice/notice";
+import { useNoticeStore } from "@/stores/useNoticeStore";
 
 const WritePage = () => {
   const isEditMode = useMatch("/admin/edit/:id") !== null;
-  const { id } = useParams();
+  const { id: idParam } = useParams();
+  const id = idParam ? Number(idParam) : undefined;
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const type = searchParams.get("type");
@@ -40,19 +47,39 @@ const WritePage = () => {
   const now = new Date();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>([]); // 미리보기용
+  const [imageFiles, setImageFiles] = useState<File[]>([]); // 전송용
   const [pageIndex, setPageIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [inputKey, setInputKey] = useState(0);
   const [shouldScrollToEnd, setShouldScrollToEnd] = useState(false);
   const [title, setTitle] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [description, setDescription] = useState("");
+
+  const { noticeDetail } = useNoticeStore();
 
   useEffect(() => {
-    if (isEditMode) {
-      // fetch 내용 세팅
+    const fetchData = async () => {
+      if (isEditMode && id) {
+        try {
+          await NoticeDetailAPI(id);
+        } catch (error) {
+          navigate("/admin/notice");
+        }
+      }
+    };
+    fetchData();
+  }, [id, isEditMode]);
+
+  useEffect(() => {
+    if (isEditMode && noticeDetail) {
+      setTitle(noticeDetail.notice_title);
+      setDescription(noticeDetail.notice_content);
+      const urls = noticeDetail.image_urls.map((img) => img.notice_image_url);
+      setImages(urls);
     }
-  }, [id]);
+  }, [noticeDetail, isEditMode]);
 
   const handleScroll = () => {
     if (!scrollRef.current) return;
@@ -79,6 +106,39 @@ const WritePage = () => {
     }
   }, [shouldScrollToEnd, images.length]);
 
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    imageFiles.forEach((file) => {
+      formData.append("images", file); // 서버가 'images'라는 키로 받는다고 가정
+    });
+
+    try {
+      let response: { success: boolean } | undefined;
+      response = { success: false };
+      if (isNotice) {
+        if (isEditMode && id !== undefined) {
+          formData.append("noticeId", id.toString());
+          response = await NoticePatchAPI(formData);
+        } else {
+          response = await NoticePostAPI(formData);
+        }
+      } else {
+        // await LostPostAPI(payload);
+      }
+
+      if (response.success || typeof response === "string") {
+        setIsModalOpen(true);
+      } else {
+        alert("게시에 실패했습니다. 다시 시도해주세요.");
+      }
+    } catch (err) {
+      console.error("게시 실패:", err);
+      alert("게시에 실패했습니다. 다시 시도해주세요.");
+    }
+  };
+
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files) return;
@@ -96,9 +156,9 @@ const WritePage = () => {
           reader.readAsDataURL(file);
         });
       })
-    ).then((newImages) => {
-      const newImageList = [...images, ...newImages];
-      setImages(newImageList);
+    ).then((newPreviews) => {
+      setImages((prev) => [...prev, ...newPreviews]);
+      setImageFiles((prev) => [...prev, ...limitedFiles]);
       setShouldScrollToEnd(true);
       setInputKey((prev) => prev + 1);
     });
@@ -117,11 +177,8 @@ const WritePage = () => {
       setTimeout(() => scrollToIndex(newIndex), 0);
       return newList;
     });
-  };
 
-  const handleSubmit = () => {
-    // 전송 로직
-    setIsModalOpen(true);
+    setImageFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleCloseModal = () => {
@@ -129,12 +186,7 @@ const WritePage = () => {
     navigate("/admin/notice");
   };
 
-  const handleGoToPage = () => {
-    const mockId = 1;
-    navigate(
-      isNotice ? `/admin/notice/${mockId}` : `/admin/notice/lost/${mockId}`
-    );
-  };
+  const isFormValid = title.trim() !== "" && description.trim() !== "";
 
   return (
     <Container>
@@ -203,16 +255,19 @@ const WritePage = () => {
           />
         )}
 
-        {isNotice ? <NoticeForm /> : <LostForm />}
+        {isNotice ? (
+          <NoticeForm content={description} setContent={setDescription} />
+        ) : (
+          <LostForm />
+        )}
       </PostContainer>
 
       <BottomButton
         title={isEditMode ? "수정하기" : "입력하기"}
         onClick={handleSubmit}
+        disabled={!isFormValid}
       />
-      {isModalOpen && (
-        <CompleteModal onClose={handleCloseModal} onNavigate={handleGoToPage} />
-      )}
+      {isModalOpen && <CompleteModal onClose={handleCloseModal} />}
     </Container>
   );
 };
