@@ -25,7 +25,7 @@ import { NoticeListAPI } from "@/api/notice/notice";
 import { useNoticeStore } from "@/stores/useNoticeStore";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 import HandImage from "@/assets/images/hand.webp";
-import Logo from "@/assets/icons/logo.svg";
+import Logo from "/assets/landing/logo.svg";
 import { getCurrentPerformance } from "./utils/getCurrentPerformance";
 import type { PerformanceItemType } from "../timetable/types/performanceItem";
 
@@ -79,7 +79,11 @@ const HomePage = () => {
       <ImageContainer>
         <FlowerImage src={Flower} alt="flower" />
         <MainSlogan>동국대학교 대동제</MainSlogan>
-        <img src={Logo} alt="무위열반" width={"100%"} />
+        <img
+          src={Logo}
+          alt="무위열반"
+          style={{ width: "100%", height: "auto" }}
+        />
         <Row>
           <Slogan>(비우는) 만큼 </Slogan>
           <Slogan>(자유로워)지리라</Slogan>
