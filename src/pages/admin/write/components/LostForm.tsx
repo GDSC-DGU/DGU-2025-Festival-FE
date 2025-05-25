@@ -9,20 +9,30 @@ import {
   SelectWrapper,
   ArrowIcon,
 } from "../index.styles";
-import { useState } from "react";
 import { LostTag } from "@/types/enums";
 
-const LostForm = () => {
-  const [content, setContent] = useState("");
-  const [tag, setTag] = useState<LostTag>();
-  const [color, setColor] = useState("");
-  const [category, setCategory] = useState("");
-  const [brand, setBrand] = useState("");
-  const [location, setLocation] = useState("");
+export interface LostFormData {
+  tag?: LostTag;
+  color: string;
+  category: string;
+  brand: string;
+  location: string;
+  content: string;
+}
+
+export interface LostFormProps {
+  form: LostFormData;
+  setForm: React.Dispatch<React.SetStateAction<LostFormData>>;
+}
+
+const LostForm = ({ form, setForm }: LostFormProps) => {
+  const handleChange = (key: keyof typeof form, value: string) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  };
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= 300) {
-      setContent(e.target.value);
+      handleChange("content", e.target.value);
     }
   };
 
@@ -33,8 +43,8 @@ const LostForm = () => {
           <Label>태그</Label>
           <SelectWrapper>
             <Select
-              value={tag ?? ""}
-              onChange={(e) => setTag(e.target.value as LostTag)}
+              value={form.tag ?? ""}
+              onChange={(e) => handleChange("tag", e.target.value as LostTag)}
             >
               <option value="" disabled>
                 태그를 선택하세요
@@ -53,8 +63,8 @@ const LostForm = () => {
           <Label>색상</Label>
           <FieldInput
             placeholder="예) 빨간색"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
+            value={form.color}
+            onChange={(e) => handleChange("color", e.target.value)}
           />
         </FieldWrapper>
 
@@ -62,8 +72,8 @@ const LostForm = () => {
           <Label>카테고리</Label>
           <FieldInput
             placeholder="예) 우산, 지갑, 핸드폰"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            value={form.category}
+            onChange={(e) => handleChange("category", e.target.value)}
           />
         </FieldWrapper>
 
@@ -71,8 +81,8 @@ const LostForm = () => {
           <Label>브랜드</Label>
           <FieldInput
             placeholder="예) Nike, Samsung"
-            value={brand}
-            onChange={(e) => setBrand(e.target.value)}
+            value={form.brand}
+            onChange={(e) => handleChange("brand", e.target.value)}
           />
         </FieldWrapper>
 
@@ -80,8 +90,8 @@ const LostForm = () => {
           <Label>분실 장소</Label>
           <FieldInput
             placeholder="예) 중앙도서관, 학생회관"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+            value={form.location}
+            onChange={(e) => handleChange("location", e.target.value)}
           />
         </FieldWrapper>
       </InputGroup>
@@ -90,10 +100,10 @@ const LostForm = () => {
         <Label>특징 / 상세 설명</Label>
         <ContentInput
           placeholder="분실물에 대한 설명을 작성하세요."
-          value={content}
+          value={form.content}
           onChange={handleContentChange}
         />
-        <ContentLength>{`${content.length}/300`}</ContentLength>
+        <ContentLength>{`${form.content?.length ?? 0}/300`}</ContentLength>
       </FieldWrapper>
     </>
   );

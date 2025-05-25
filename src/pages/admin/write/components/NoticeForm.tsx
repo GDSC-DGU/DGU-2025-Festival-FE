@@ -19,7 +19,7 @@ const NoticeForm = ({ content, setContent }: NoticeFormProps) => {
         value={content}
         onChange={handleContentChange}
       />
-      <ContentLength>{`${content.length}/300`}</ContentLength>
+      <ContentLength>{`${content?.length ?? 0}/300`}</ContentLength>
     </>
   );
 };
