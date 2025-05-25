@@ -17,9 +17,10 @@ export const ModalWrapper = styled.div`
   background: white;
   border-radius: 10px;
   padding: 24px;
-  max-width: 360px;
+  max-width: 340px;
   min-width: 280px;
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
   align-items: center;
   gap: 20px;

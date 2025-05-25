@@ -16,10 +16,16 @@ interface TimeLineProps {
 }
 
 const TimeLine = ({ currentPerformer }: TimeLineProps) => {
-  const { ref, isVisible } = useOnScreenAnimation<HTMLDivElement>();
+  const { ref: performerRef, isVisible: performerVisible } =
+    useOnScreenAnimation<HTMLDivElement>();
+  const { ref: emptyRef, isVisible: emptyVisible } =
+    useOnScreenAnimation<HTMLDivElement>();
 
   return currentPerformer ? (
-    <Container ref={ref} className={`fade-up ${isVisible ? "visible" : ""}`}>
+    <Container
+      ref={performerRef}
+      className={`fade-up ${performerVisible ? "visible" : ""}`}
+    >
       <PerformerImage
         src={currentPerformer.imageUrl || DefaultImage}
         alt="profile"
@@ -33,7 +39,12 @@ const TimeLine = ({ currentPerformer }: TimeLineProps) => {
       </TimeDescription>
     </Container>
   ) : (
-    <EmptyContainer>현재 진행중인 공연이 없어요!</EmptyContainer>
+    <EmptyContainer
+      ref={emptyRef}
+      className={`fade-up ${emptyVisible ? "visible" : ""}`}
+    >
+      현재 진행중인 공연이 없어요!
+    </EmptyContainer>
   );
 };
 

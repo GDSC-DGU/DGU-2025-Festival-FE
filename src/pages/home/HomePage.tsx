@@ -42,17 +42,20 @@ const HomePage = () => {
     const fetchRanking = async () => {
       const rankingData = await boothRankingAPI();
       if (!Array.isArray(rankingData)) return;
-      const mapped = rankingData.map((item, index) => {
-        const booth = booths.find((b) => b.id === item.booth_id);
-        return {
-          ranking: index + 1,
-          id: booth?.id ?? `booth-${item.id}`,
-          name: booth?.name ?? "이름 없음",
-          intro: booth?.intro ?? "설명 없음",
-          score: item.score,
-        };
-      });
-
+      const mapped = rankingData
+        .map((item, index): BoothRankingItem | null => {
+          const booth = booths.find((b) => b.id === item.booth_id);
+          if (!booth) return null;
+          return {
+            ranking: index + 1,
+            id: booth.id,
+            name: booth.name,
+            intro: booth.intro,
+            image: booth.images?.[0],
+            score: item.score,
+          };
+        })
+        .filter((b): b is BoothRankingItem => b !== null); // ✅ 타입 좁히기
       setMappedBooths(mapped);
     };
 
@@ -77,13 +80,9 @@ const HomePage = () => {
     <Container>
       <Header />
       <ImageContainer>
-        <FlowerImage src={Flower} alt="flower" />
+        <FlowerImage data={Flower} />
         <MainSlogan>동국대학교 대동제</MainSlogan>
-        <img
-          src={Logo}
-          alt="무위열반"
-          style={{ width: "100%", height: "auto" }}
-        />
+        <object data={Logo} style={{ width: "100%", height: "auto" }} />
         <Row>
           <Slogan>(비우는) 만큼 </Slogan>
           <Slogan>(자유로워)지리라</Slogan>
