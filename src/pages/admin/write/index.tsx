@@ -60,6 +60,7 @@ const WritePage = () => {
   const [title, setTitle] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [description, setDescription] = useState("");
+  const [deletedImageUrls, setDeletedImageUrls] = useState<string[]>([]); // 삭제할 이미지 url
 
   const [lostForm, setLostForm] = useState<LostFormData>({
     tag: undefined,
@@ -141,36 +142,62 @@ const WritePage = () => {
   }, [shouldScrollToEnd, images.length]);
 
   const handleSubmit = async () => {
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    imageFiles.forEach((file) => {
-      formData.append("images", file); // 서버가 'images'라는 키로 받는다고 가정
-    });
-
     try {
-      let response: { success: boolean } | undefined;
-      response = { success: false };
+      let response: { success: boolean } | undefined = { success: false };
+
       if (isNotice) {
         if (isEditMode && id !== undefined) {
+          const formData = new FormData();
+          formData.append("title", title);
+          formData.append("description", description);
+          imageFiles.forEach((file) => {
+            formData.append("images", file);
+          });
+          deletedImageUrls.forEach((url) => {
+            formData.append("deleteUrls", url);
+          });
           formData.append("noticeId", id.toString());
           response = await NoticePatchAPI(formData);
         } else {
+          const formData = new FormData();
+          formData.append("title", title);
+          formData.append("description", description);
+          imageFiles.forEach((file) => {
+            formData.append("images", file);
+          });
           response = await NoticePostAPI(formData);
         }
       } else {
-        // 분실물 데이터 추가
-        formData.append("tag", lostForm.tag || "");
-        formData.append("color", lostForm.color);
-        formData.append("category", lostForm.category);
-        formData.append("brand", lostForm.brand);
-        formData.append("location", lostForm.location);
-        formData.append("note", lostForm.note);
-
         if (isEditMode && id !== undefined) {
+          const formData = new FormData();
+          formData.append("title", title);
+          formData.append("tag", lostForm.tag || "");
+          formData.append("color", lostForm.color);
+          formData.append("category", lostForm.category);
+          formData.append("brand", lostForm.brand);
+          formData.append("location", lostForm.location);
+          formData.append("note", lostForm.note);
+
+          imageFiles.forEach((file) => {
+            formData.append("images", file);
+          });
+          deletedImageUrls.forEach((url) => {
+            formData.append("deleteUrls", url);
+          });
           formData.append("lostId", id.toString());
           response = await LostPatchAPI(formData);
         } else {
+          const formData = new FormData();
+          formData.append("title", title);
+          formData.append("tag", lostForm.tag || "");
+          formData.append("color", lostForm.color);
+          formData.append("category", lostForm.category);
+          formData.append("brand", lostForm.brand);
+          formData.append("location", lostForm.location);
+          formData.append("note", lostForm.note);
+          imageFiles.forEach((file) => {
+            formData.append("images", file);
+          });
           response = await LostPostAPI(formData);
         }
       }
@@ -180,8 +207,7 @@ const WritePage = () => {
       } else {
         alert("게시에 실패했습니다. 다시 시도해주세요.");
       }
-    } catch (err) {
-      console.error("게시 실패:", err);
+    } catch {
       alert("게시에 실패했습니다. 다시 시도해주세요.");
     }
   };
@@ -217,6 +243,15 @@ const WritePage = () => {
   };
 
   const handleDeleteImage = (index: number) => {
+    const deletedUrl = images[index];
+
+    // 기존 이미지인지 확인 (URL로 판별)
+    const isExistingImage =
+      deletedUrl.startsWith("https://") || deletedUrl.startsWith("http://");
+
+    if (isExistingImage) {
+      setDeletedImageUrls((prev) => [...prev, deletedUrl]);
+    }
     setImages((prev) => {
       const newList = prev.filter((_, i) => i !== index);
       const newIndex = Math.max(0, Math.min(pageIndex, newList.length - 1));
@@ -224,8 +259,6 @@ const WritePage = () => {
       setTimeout(() => scrollToIndex(newIndex), 0);
       return newList;
     });
-
-    setImageFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleCloseModal = () => {

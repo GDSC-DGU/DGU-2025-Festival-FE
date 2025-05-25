@@ -33,6 +33,7 @@ export const NumberCard = styled.div`
   background-color: ${({ theme }) => theme.colors.indigo800};
   width: 30px;
   height: 30px;
+  flex-shrink: 0;
 `;
 
 export const Number = styled.p`

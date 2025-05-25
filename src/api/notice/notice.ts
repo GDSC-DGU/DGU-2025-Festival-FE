@@ -36,18 +36,11 @@ export const NoticePostAPI = async (formData: FormData) => {
   }
 };
 
-// interface NoticePatchRequest {
-//   noticeId: number;
-//   title: string;
-//   description: string;
-//   images: File[];
-// }
-
 export const NoticePatchAPI = async (formData: FormData) => {
   const response = await sendRequest<string>(
     adminInstance,
     "PATCH",
-    `/festa/notices/${formData.get("noticeId")}`,
+    `/festa/notices`,
     formData,
     { "Content-Type": "multipart/form-data" }
   );

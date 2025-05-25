@@ -18,7 +18,7 @@ import PhoneModal from "./Modal/PhoneModal";
 import TopBar from "@/components/topbar/TopBar";
 import RoleTag from "@/components/role/RoleTag";
 import BottomNav from "./components/BottomNav";
-
+import { useEffect } from "react";
 import { useState } from "react"; 
 
 const BoothAdminAppView = () => {
@@ -35,7 +35,13 @@ const BoothAdminAppView = () => {
     confirmVisit,
     confirmDelete,
     confirmCloseBooth,
+    fetchBooths,
+    // openModal,
   } = useBoothAdminStore();
+
+  useEffect(() => {
+    fetchBooths();
+  }, []);
 
   const now = Date.now();
   const LATE_MINUTES = 5;
@@ -68,27 +74,23 @@ const BoothAdminAppView = () => {
       </Section>
 
       {bottomTab === "late" && lateBooths.length > 0 && (
-  <Section>
-    <SectionTitle>늦은 대기자</SectionTitle>
-    <SectionDescription>
-      호출 후 5분 이상 지났지만 아직 방문하지 않은 대기자입니다.
-    </SectionDescription>
-    
-    <TotalCount>늦은 대기 {lateBooths.length}팀</TotalCount>
-
-    <BoothListWrapper>
-      {lateBooths.map((booth) => (
-        <WaitingBoothCard
-          key={booth.id}
-          booth={booth}
-          showDeleteButton={true}
-          highlightLate
-        />
-      ))}
-    </BoothListWrapper>
-  </Section>
-)}
-
+        <Section>
+          <SectionTitle>늦은 대기자</SectionTitle>
+          <SectionDescription>
+            호출 후 5분 이상 지났지만 아직 방문하지 않은 대기자입니다.
+          </SectionDescription>
+          <BoothListWrapper>
+            {lateBooths.map((booth) => (
+              <WaitingBoothCard
+                key={booth.id}
+                booth={booth}
+                showDeleteButton={true}
+                highlightLate
+              />
+            ))}
+          </BoothListWrapper>
+        </Section>
+      )}
 
 {bottomTab === "waiting" && (
   <Section>
@@ -108,18 +110,19 @@ const BoothAdminAppView = () => {
 
         const isLate = lateBooths.some((late) => late.id === booth.id); 
 
-        return (
-          <WaitingBoothCard
-            key={booth.id}
-            booth={booth}
-            showDeleteButton={!!showDeleteButton}
-            highlightLate={isLate} 
-          />
-        );
+return (
+  <WaitingBoothCard
+    key={booth.id}
+    booth={booth}
+    showDeleteButton={!!showDeleteButton}
+    highlightLate={isLate}
+  />
+);
       })}
     </BoothListWrapper>
   </Section>
 )}
+
 
 
       <FloatingButton />
