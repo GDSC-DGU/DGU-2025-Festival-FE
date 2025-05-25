@@ -62,7 +62,7 @@ export const ImageItem = styled.div`
   img {
     width: 100%;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
 

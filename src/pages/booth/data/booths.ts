@@ -57,6 +57,14 @@ import booth_19_1 from '@/assets/booth/fusion/스크린샷 2025-05-25 042342.png
 import booth_19_2 from '@/assets/booth/fusion/스크린샷 2025-05-25 042401.png';
 import booth_20_1 from '@/assets/booth/drawing/스크린샷 2025-05-25 042518.png';
 import booth_20_2 from '@/assets/booth/drawing/스크린샷 2025-05-25 042537.png';
+import booth_21_1 from '@/assets/booth/japan/KakaoTalk_20250523_160903233 (1).png';
+import booth_21_2 from '@/assets/booth/japan/KakaoTalk_20250523_160903233_01 (1).png';
+import booth_21_3 from '@/assets/booth/japan/KakaoTalk_20250523_160903233_02 (1).png';
+import booth_25_1 from '@/assets/booth/political/image.png';
+import booth_26_1 from '@/assets/booth/trade/image (1).png';
+import booth_26_2 from '@/assets/booth/trade/image (2).png';
+import booth_26_3 from '@/assets/booth/trade/image (3).png';
+
 
 export const booths = [
   {
@@ -102,7 +110,7 @@ export const booths = [
   {
     id: '5',
     name: '속세 한 잔',
-    intro: '불교학부',
+    intro: '불교학부 야간 부스',
     date: '2025-05-27',
     type: 'night',
     position: { lat: 37.5586, lng: 126.9967 },
@@ -259,5 +267,76 @@ export const booths = [
     images: [booth_20_1, booth_20_2],
     waitingAvailable: false,
   },
+  {
+    id: '21',
+    name: '진격의 일본학과',
+    intro: '애니메이션 ‘진격의 거인’ 콘셉트 야간부스',
+    date: '2025-05-28',
+    type: 'night',
+    position: { lat:  37.557817, lng:  127.000100 },
+    images: [booth_21_1, booth_21_2, booth_21_3],
+    waitingAvailable: false,
+  },
+  {
+    id: '22',
+    name: '속세 한 잔',
+    intro: '불교학부 야간 부스',
+    date: '2025-05-28',
+    type: 'night',
+    position: { lat: 37.558010, lng: 127.000550},
+    images: [booth_5_1, booth_5_2],
+    waitingAvailable: false,
+  },
+  {
+    id: '23',
+    name: 'LAWTTE CINEMA',
+    intro: '법과대학 영화관 컨셉 야간 부스',
+    date: '2025-05-28',
+    type: 'night',
+    position: { lat: 37.558333, lng: 127.000677 },
+    images: [booth_6_1, booth_6_2, booth_6_3],
+    waitingAvailable: false,
+  },
+  {
+    id: '24',
+    name: '경제학과',
+    intro: '[흑자요리사: 주식(酒食) 계급 전쟁], 오직 돈으로 승부하라!',
+    date: '2025-05-28',
+    type: 'night',
+    position: { lat: 37.557517, lng: 127.002339 },
+    images: [booth_10_1, booth_10_2, booth_10_3, booth_10_4, booth_10_5],
+    waitingAvailable: false,
+  },
+  {
+    id: '25',
+    name: '‘선 택 2 0 2 5’',
+    intro: '정치외교학전공 야간 부스',
+    date: '2025-05-28',
+    type: 'night',
+    position: { lat: 37.557211, lng: 127.002434 },
+    images: [booth_25_1],
+    waitingAvailable: false,
+  },
+  {
+    id: '26',
+    name: '국제통상학과',
+    intro: 'International Trade ALL⭐️STAR TICKET OPEN! ⚾️',
+    date: '2025-05-28',
+    type: 'night',
+    position: { lat: 37.557812, lng: 127.002459 },
+    images: [booth_26_1, booth_26_2, booth_26_3],
+    waitingAvailable: false,
+  },
+  {
+    id: '27',
+    name: '경찰사범대학',
+    intro: '올해 대동제에서는 낮과 밤이 모두 수사 작전으로 물듭니다.',
+    date: '2025-05-28',
+    type: 'night',
+    position: { lat: 37.557557, lng: 127.002006 },
+    images: [booth_8_1, booth_8_2, booth_8_3],
+    waitingAvailable: false,
+  },
+
 
 ] as const;

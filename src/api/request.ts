@@ -19,6 +19,7 @@ interface ApiFailure {
   success: false;
   data: null;
   error: unknown;
+  headers?: Record<string, string>;
 }
 
 export type ApiResponse<T> = ApiSuccess<T> | ApiFailure;
@@ -27,12 +28,14 @@ export const sendRequest = async <T = unknown, D = unknown>(
   instance: AxiosInstance,
   method: Method,
   url: string,
-  data?: D
+  data?: D,
+  headers?: Record<string, string>
 ): Promise<ApiResponse<T>> => {
   try {
     const config: AxiosRequestConfig = {
       method,
       url,
+      headers,
       ...(method.toUpperCase() === "GET" ? { params: data } : { data }),
     };
 
@@ -40,7 +43,7 @@ export const sendRequest = async <T = unknown, D = unknown>(
       await instance.request(config);
 
     const responseData = response.data;
-    console.log(`✅ ${url} [${method}] Success:`, responseData);
+    // console.log(`✅ ${url} [${method}] Success:`, responseData);
 
     return responseData;
   } catch (error: unknown) {

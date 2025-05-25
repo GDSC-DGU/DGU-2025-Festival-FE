@@ -4,11 +4,16 @@ import SubmitButton from "@/components/button/SubmitButton";
 interface BottomButtonProps {
   onClick: () => void;
   title: string;
+  disabled?: boolean;
 }
-const BottomButton = ({ onClick, title }: BottomButtonProps) => {
+const BottomButton = ({
+  onClick,
+  title,
+  disabled = false,
+}: BottomButtonProps) => {
   return (
     <Container>
-      <SubmitButton onClick={onClick} title={title} />
+      <SubmitButton disable={disabled} onClick={onClick} title={title} />
     </Container>
   );
 };

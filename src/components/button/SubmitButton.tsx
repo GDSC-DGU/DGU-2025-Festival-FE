@@ -3,10 +3,20 @@ import { ButtonContainer } from "./SubmitButton.styles";
 interface SubmitButtonProps {
   onClick: () => void;
   title: string;
+  disable?: boolean;
 }
-const SubmitButton = ({ onClick, title }: SubmitButtonProps) => {
+const SubmitButton = ({
+  onClick,
+  title,
+  disable = false,
+}: SubmitButtonProps) => {
   return (
-    <ButtonContainer type="button" onClick={onClick}>
+    <ButtonContainer
+      $disabled={disable}
+      disabled={disable}
+      type="button"
+      onClick={onClick}
+    >
       {title}
     </ButtonContainer>
   );
