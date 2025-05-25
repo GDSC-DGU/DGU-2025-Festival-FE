@@ -2,21 +2,28 @@ import styled, { keyframes } from "styled-components";
 import LogoImg from "/assets/landing/logo.png";
 import HandSvg from "/assets/landing/hand.svg";
 import FlowerImage from "/assets/landing/flower.png";
+import { useEffect } from "react";
 
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
 
 export default function InAppLanding() {
-  const handleClick = () => {
-    const url = window.location.href;
-    const targetUrl = "https://dirvana.co.kr";
-
+  useEffect(() => {
     if (isIOS) {
-      // window.open(url, "_blank");
+      const targetUrl = "https://dirvana.co.kr";
       const newTab = window.open(targetUrl, "_blank");
 
       if (!newTab) {
-        alert("Safari로 열 수 있도록 팝업 차단을 해제해주세요!");
+        // 팝업 차단된 경우 강제로 이동
+        window.location.href = targetUrl;
       }
+    }
+  }, [isIOS]);
+
+  const handleClick = () => {
+    const url = window.location.href;
+
+    if (isIOS) {
+      window.open(url, "_blank");
     } else {
       const intentUrl = `intent://${url.replace(/^https?:\/\//, "")}#Intent;scheme=https;package=com.android.chrome;end`;
       window.location.href = intentUrl;
