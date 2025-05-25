@@ -3,7 +3,7 @@ import { booths } from '../data/booths';
 import { useBoothStore } from '../stores/useBoothStore';
 import markerLiked from '@/assets/icons/marker-liked.svg';
 import markerDefault from '@/assets/icons/marker-default.svg';
-import Heart from '@/assets/icons/heart-null.png'
+import Heart from '@/assets/icons/heart-null.png';
 
 import {
   MapWrapper,
@@ -14,9 +14,10 @@ import {
 interface MapContainerProps {
   date: string;
   boothType: 'day' | 'night';
-  boothId?: string; 
+  boothId?: string;
+  centerLat?: number;
+  centerLng?: number;
 }
-
 
 export default function MapContainer({ date, boothType, boothId }: MapContainerProps) {
   const mapRef = useRef<HTMLDivElement | null>(null);
@@ -26,22 +27,26 @@ export default function MapContainer({ date, boothType, boothId }: MapContainerP
 
   useEffect(() => {
     if (!window.google || !mapRef.current) return;
-  
+
+    const boothCenter = boothId
+      ? booths.find((booth) => booth.id === boothId)?.position
+      : { lat: 37.558141, lng: 127.000258 };
+
     const map = new window.google.maps.Map(mapRef.current, {
-      center: { lat: 37.558141, lng: 127.000258 },
+      center: boothCenter || { lat: 37.558141, lng: 127.000258 },
       zoom: 18,
       disableDefaultUI: true,
     });
-  
+
     const filtered = booths.filter((booth) => {
       const isSameDate = booth.date === date;
       const isSameType = booth.type === boothType;
       if (!isSameDate || !isSameType) return false;
-      if (boothId) return booth.id === boothId; 
+      if (boothId) return booth.id === boothId;
       if (showOnlyLiked) return isLiked(booth.id);
       return true;
     });
-  
+
     filtered.forEach((booth) => {
       new window.google.maps.Marker({
         position: booth.position,
@@ -54,24 +59,22 @@ export default function MapContainer({ date, boothType, boothId }: MapContainerP
       });
     });
   }, [date, boothType, showOnlyLiked, isLiked, boothId]);
-  
 
   return (
     <MapWrapper>
       <MapBox ref={mapRef} />
-      {!boothId && ( 
+      {!boothId && (
         <FilterButton onClick={toggleShowOnlyLiked} $active={showOnlyLiked}>
-        <img
-          src={Heart}
-          alt="찜한 목록"
-          width={14}
-          height={14}
-          style={{ marginRight: '6px' }}
-        />
-        찜한 목록
-      </FilterButton>
-      
+          <img
+            src={Heart}
+            alt="찜한 목록"
+            width={14}
+            height={14}
+            style={{ marginRight: '6px' }}
+          />
+          찜한 목록
+        </FilterButton>
       )}
     </MapWrapper>
-  );   
+  );
 }
