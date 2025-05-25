@@ -1,6 +1,7 @@
 import { Container, Image, IconContainer, Icon } from "./LostItem.styles";
 import EditIcon from "@/assets/icons/edit.svg";
 import TrashIcon from "@/assets/icons/trash.svg";
+import DefaultImage from "@/assets/images/boothImage.png";
 
 interface LostItemProps {
   onClick: () => void;
@@ -26,9 +27,11 @@ const LostItem = ({
     e.stopPropagation();
     onDelete?.();
   };
+
+  const image = imageUrl ? imageUrl : DefaultImage;
   return (
     <Container onClick={onClick}>
-      <Image src={imageUrl} alt="분실물 사진" />
+      <Image src={image} alt="분실물 사진" />
       {isAdmin && (
         <IconContainer>
           <Icon>

@@ -32,3 +32,15 @@ export const DateText = styled.p`
   ${({ theme }) => theme.fonts.Caption}
   color: ${({ theme }) => theme.colors.gray500};
 `;
+
+export const EmptyContainer = styled.div`
+  padding: 20px 0;
+  width: 90%;
+  text-align: center;
+  background: ${({ theme }) => theme.gradients.rankingBox2};
+  color: black;
+  ${({ theme }) => theme.fonts.Head3}
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+`;
