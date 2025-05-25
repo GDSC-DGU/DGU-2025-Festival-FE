@@ -11,6 +11,7 @@ interface WaitingModalProps {
   booth: Booth;
   onConfirm: (data: { boothId: string; people: number; phone: string }) => void;
   onCancel: () => void;
+  onClose: () => void;
 }
 
 export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModalProps) {

@@ -98,7 +98,7 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
       waitingTotalCount: number;
       lateTotalCount: number;
       reserveList: {
-        reserveId: number;
+        reserveId: string;
         reserveName: string;
         phoneNumber: string;
         reserveMembers: number;
@@ -108,20 +108,25 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
     }>(adminInstance, "GET", "/pub");
   
     if (res.success) {
+      console.log("✅ 예약 목록 조회 성공:", res.data);
       const booths = res.data.reserveList.map((item, index) => ({
         id: String(item.reserveId),
         name: item.reserveName,
         waitingCount: item.reserveMembers,
         isCalling: item.status === "CALLED" || item.status === "LATE",
-        calledAt: item.status === "CALLED" || item.status === "LATE"
-          ? new Date(Date.now() - (item.elapsedTime ?? 0) * 60000).toISOString()
-          : undefined,
+        calledAt:
+  (item.status === "CALLED" || item.status === "LATE") &&
+  item.elapsedTime !== null && Number.isFinite(item.elapsedTime)
+    ? new Date(Date.now() - item.elapsedTime * 60000).toISOString()
+    : undefined,
+
+
         phone: item.phoneNumber,
         visited: false, // 실제 방문 상태를 구분하려면 서버 응답에 필드가 있어야 합니다
         cancelled: false,
         order: index + 1,
       }));
-  
+  console.log("부스 목록:", booths);
       set({ waitingBooths: booths });
     } else {
       console.error("❌ 예약 목록 조회 실패:", res.error);
