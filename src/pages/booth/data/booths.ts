@@ -112,6 +112,27 @@ import booth_40_2 from '@/assets/morningbooth/bita/2.png';
 import booth_41_1 from '@/assets/morningbooth/cellfu/1.png';
 import booth_41_2 from '@/assets/morningbooth/cellfu/2.png';
 import booth_41_3 from '@/assets/morningbooth/cellfu/3.png';
+import booth_42_1 from '@/assets/booth/globaltrade/1.png';
+import booth_42_2 from '@/assets/booth/globaltrade/2.png';
+import booth_42_3 from '@/assets/booth/globaltrade/3.png';
+import booth_42_4 from '@/assets/booth/globaltrade/스크린샷 2025-05-25 103144.png';
+import booth_42_5 from '@/assets/booth/globaltrade/스크린샷 2025-05-25 103209.png';
+import booth_43_1 from '@/assets/booth/socialwelfare/KakaoTalk_20250525_005854645.png';
+import booth_43_2 from '@/assets/booth/socialwelfare/KakaoTalk_20250525_005854645_01.png';
+import booth_43_3 from '@/assets/booth/socialwelfare/KakaoTalk_20250525_005854645_02.jpg';
+import booth_43_4 from '@/assets/booth/socialwelfare/스크린샷 2025-05-25 103330.png';
+import booth_43_5 from '@/assets/booth/socialwelfare/스크린샷 2025-05-25 103347.png';
+import booth_44_1 from '@/assets/booth/business/스크린샷 2025-05-25 103518.png';
+import booth_44_2 from '@/assets/booth/business/스크린샷 2025-05-25 103557.png';
+import booth_45_1 from '@/assets/booth/system/image (4).png';
+import booth_45_2 from '@/assets/booth/system/image (5).png';
+import booth_45_3 from '@/assets/booth/system/image (6).png';
+import booth_46_1 from '@/assets/booth/homeHistory/KakaoTalk_20250524_212926313.png';
+import booth_46_2 from '@/assets/booth/homeHistory/KakaoTalk_20250524_212926313_01.png';
+import booth_46_3 from '@/assets/booth/homeHistory/KakaoTalk_20250524_212926313_02.png';
+import booth_46_4 from '@/assets/booth/homeHistory/스크린샷 2025-05-25 103743.png';
+import booth_46_5 from '@/assets/booth/homeHistory/스크린샷 2025-05-25 103913.png';
+import booth_47_1 from '@/assets/morningbooth/engineering/1.png';
 
 export const booths = [
     {
@@ -612,6 +633,76 @@ export const booths = [
         type: 'day',
         position: { lat: 37.559316, lng: 126.999574 },
         images: [booth_31_1, booth_31_2, booth_31_3, booth_31_4],
+        waitingAvailable: false,
+    },
+    {
+        id: '51',
+        name: '중구 갈매기 앞치마단',
+        intro: '🐦 수산시장 감성 가득한 밤, 친구들과 특별한 추억을 만들어보세요!',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.557238, lng: 127.001939 },
+        images: [booth_42_1, booth_42_2, booth_42_3, booth_42_4, booth_42_5],
+        waitingAvailable: false,
+    },
+    {
+        id: '52',
+        name: '감정이들의 요리조리',
+        intro: '💙 감정이들의 요리조리에서 감정도 나누고, 맛도 즐기고, 추억도 쌓으세요!',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.557063, lng: 127.002285 },
+        images: [booth_43_1, booth_43_2, booth_43_3, booth_43_4, booth_43_5],
+        waitingAvailable: false,
+    },
+    {
+        id: '53',
+        name: '강철상사',
+        intro: '끝나지 않는 N차 회식, 강철경영 야간 부스',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.557077, lng: 127.001851 },
+        images: [booth_44_1, booth_44_2],
+        waitingAvailable: false,
+    },
+    {
+        id: '54',
+        name: '산업시스템공학과 수산시장',
+        intro: '📣 2025 동국대 봄 대동제 특급 이벤트 산업시스템공학과 수산시장 개장합니다!!',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.559377, lng: 126.999495 },
+        images: [booth_45_1, booth_45_2, booth_45_3],
+        waitingAvailable: false,
+    },
+    {
+        id: '55',
+        name: '다시 돌아온 역전할가',
+        intro: '🔄 다시 돌아온 역전할가에서 맛과 재미, 추억까지 모두 챙겨가세요!',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.56017, lng: 126.999884 },
+        images: [booth_46_1, booth_46_2, booth_46_3, booth_46_4, booth_46_5],
+        waitingAvailable: false,
+    },
+    {
+        id: '56',
+        name: '연극이 끝난 후',
+        intro: '예술대학의 공연 감성 가득한 야간 부스',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.558027, lng: 127.003338 },
+        images: [booth_15_1, booth_15_2, booth_15_3, booth_15_4],
+        waitingAvailable: false,
+    },
+    {
+        id: '57',
+        name: '웨이브 뽈 파크',
+        intro: '⚾ 웨이브 뽈 파크에서 야구의 재미와 맛있는 음식을 함께 즐기세요!',
+        date: '2025-05-29',
+        type: 'day',
+        position: { lat: 37.558585, lng: 127.000345 },
+        images: [booth_47_1],
         waitingAvailable: false,
     },
 ] as const;
