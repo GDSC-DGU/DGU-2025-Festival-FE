@@ -56,3 +56,9 @@ export const fetchMyReservation = (phoneNumber: string) => {
   const url = `/reserve?number=${phoneNumber}`;
   return sendRequest<ReservationInfo>(defaultInstance, "GET", url);
 };
+
+// 6) 야간부스 예약 취소 (/reserve/cancel)
+export const cancelReservation = (phoneNumber: string) => {
+  const url = `/reserve?number=${phoneNumber}`;
+  return sendRequest<boolean>(defaultInstance, "PATCH", url);
+};

@@ -14,6 +14,7 @@ import {
   type PubStatus,
   fetchMyReservation,
   type ReservationInfo,
+  cancelReservation
 } from "@/api/reservation";
 
 // const today = "2025-05-27"; // 실제 서비스에서는 new Date().toISOString().slice(0, 10) 등으로 대체
@@ -174,15 +175,36 @@ export default function WaitingPage() {
           <WaitingInfoModal onClose={() => setShowInfoModal(false)} />
         )}
 
-        {showCancelConfirm && (
-          <CancelConfirmModal
-            onConfirm={() => {
-              cancelWaiting(activeWaiting!.boothId);
-              setShowCancelConfirm(false);
-            }}
-            onCancel={() => setShowCancelConfirm(false)}
-          />
-        )}
+{showCancelConfirm && (
+  <CancelConfirmModal
+    onConfirm={async () => {
+      const phoneNumber = localStorage.getItem("userPhoneNumber");
+      if (!phoneNumber) {
+        alert("전화번호를 확인할 수 없습니다.");
+        return;
+      }
+
+      try {
+        const res = await cancelReservation(phoneNumber);
+        if (res.success) {
+          cancelWaiting(activeWaiting!.boothId);
+          localStorage.removeItem("userPhoneNumber"); 
+          setMyReservation(null); 
+          alert("예약이 취소되었습니다.");
+        } else {
+          alert("예약 취소에 실패했습니다.");
+        }
+      } catch (err) {
+        alert("오류가 발생했습니다.");
+        console.error("예약 취소 실패:", err);
+      }
+
+      setShowCancelConfirm(false);
+    }}
+    onCancel={() => setShowCancelConfirm(false)}
+  />
+)}
+
       </S.ContentContainer>
     </S.Page>
   );
