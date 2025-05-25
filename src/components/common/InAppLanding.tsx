@@ -8,9 +8,15 @@ const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
 export default function InAppLanding() {
   const handleClick = () => {
     const url = window.location.href;
+    const targetUrl = "https://dirvana.co.kr";
 
     if (isIOS) {
-      window.open(url, "_blank");
+      // window.open(url, "_blank");
+      const newTab = window.open(targetUrl, "_blank");
+
+      if (!newTab) {
+        alert("Safari로 열 수 있도록 팝업 차단을 해제해주세요!");
+      }
     } else {
       const intentUrl = `intent://${url.replace(/^https?:\/\//, "")}#Intent;scheme=https;package=com.android.chrome;end`;
       window.location.href = intentUrl;
@@ -108,4 +114,3 @@ const StartButton = styled.button`
     backdrop-filter: blur(2px);
   }
 `;
-
