@@ -59,7 +59,7 @@ export const LostPatchAPI = async (formData: FormData) => {
   const response = await sendRequest<string>(
     adminInstance,
     "PATCH",
-    `/festa/losts/${formData.get("lostId")}`,
+    `/festa/losts`,
     formData,
     { "Content-Type": "multipart/form-data" }
   );
