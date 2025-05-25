@@ -18,10 +18,8 @@ import PhoneModal from "./Modal/PhoneModal";
 import TopBar from "@/components/topbar/TopBar";
 import RoleTag from "@/components/role/RoleTag";
 import BottomNav from "./components/BottomNav";
-
-import { useState } from "react"; 
 import { useEffect } from "react";
-
+import { useState } from "react"; 
 
 const BoothAdminAppView = () => {
   const [bottomTab, setBottomTab] = useState<"waiting" | "late">("waiting");
@@ -124,6 +122,7 @@ return (
     </BoothListWrapper>
   </Section>
 )}
+
 
 
       <FloatingButton />
