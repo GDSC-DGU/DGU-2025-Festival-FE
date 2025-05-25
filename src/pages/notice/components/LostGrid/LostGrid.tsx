@@ -13,6 +13,7 @@ import type { LostItemType } from "../../types/lostItems";
 import DeleteModal from "@/pages/admin/notice/components/DeleteModal/DeleteModal";
 import { LostTag } from "@/types/enums";
 import { getEnumValueByKey } from "@/utils/enumUtils";
+import { LostDeleteAPI } from "@/api/notice/lost";
 
 interface LostGridProps {
   isAdmin?: boolean;
@@ -34,10 +35,19 @@ const LostGrid = ({ isAdmin = false, lostItems }: LostGridProps) => {
           return displayName === selectedTag;
         });
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (targetId === null) return;
-    // 삭제 처리
-    setIsModalOpen(false);
+    try {
+      const response = await LostDeleteAPI(targetId);
+      if (!response.success) {
+        alert("삭제에 실패했습니다. 서버 관리자에게 문의하세요.");
+      }
+    } catch {
+      alert("삭제 도중 문제가 발생했습니다. 서버 관리자에게 문의하세요.");
+    } finally {
+      setIsModalOpen(false);
+      setTargetId(null);
+    }
   };
 
   const handleEdit = (id: number) => {

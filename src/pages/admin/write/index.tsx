@@ -20,6 +20,8 @@ import ImagePagination from "@/pages/notice-detail/components/ImagePagination/Im
 import CompleteModal from "./components/CompleteModal/ComplateModal";
 import NoticeForm from "./components/NoticeForm";
 import LostForm from "./components/LostForm";
+import { LostTag } from "@/types/enums";
+import { LostPostAPI, LostPatchAPI, LostDetailAPI } from "@/api/notice/lost";
 import {
   useNavigate,
   useSearchParams,
@@ -34,6 +36,8 @@ import {
   NoticePatchAPI,
 } from "@/api/notice/notice";
 import { useNoticeStore } from "@/stores/useNoticeStore";
+import { useLostStore } from "@/stores/useLostStore";
+import type { LostFormData } from "./components/LostForm";
 
 const WritePage = () => {
   const isEditMode = useMatch("/admin/edit/:id") !== null;
@@ -57,13 +61,27 @@ const WritePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [description, setDescription] = useState("");
 
+  const [lostForm, setLostForm] = useState<LostFormData>({
+    tag: undefined,
+    color: "",
+    category: "",
+    brand: "",
+    location: "",
+    content: "",
+  });
+
   const { noticeDetail } = useNoticeStore();
+  const { lostDetail } = useLostStore();
 
   useEffect(() => {
     const fetchData = async () => {
       if (isEditMode && id) {
         try {
-          await NoticeDetailAPI(id);
+          if (isNotice) {
+            await NoticeDetailAPI(id);
+          } else {
+            await LostDetailAPI(id);
+          }
         } catch {
           navigate("/admin/notice");
         }
@@ -73,13 +91,29 @@ const WritePage = () => {
   }, [id, isEditMode]);
 
   useEffect(() => {
-    if (isEditMode && noticeDetail) {
-      setTitle(noticeDetail.notice_title);
-      setDescription(noticeDetail.notice_content);
-      const urls = noticeDetail.image_urls.map((img) => img.notice_image_url);
-      setImages(urls);
+    if (isEditMode) {
+      if (isNotice && noticeDetail) {
+        setTitle(noticeDetail.notice_title);
+        setDescription(noticeDetail.notice_content);
+        const urls = noticeDetail.image_urls.map((img) => img.notice_image_url);
+        setImages(urls);
+      } else if (!isNotice && lostDetail) {
+        setTitle(lostDetail.lost_title); // 또는 lostDetail.lost_title
+        setDescription(lostDetail.lost_category); // 또는 lostDetail.lost_content
+        const urls = lostDetail.lost_item_image_urls.map((img) => img);
+        setImages(urls);
+
+        setLostForm({
+          tag: lostDetail.lost_tag as LostTag,
+          color: lostDetail.lost_color,
+          category: lostDetail.lost_category,
+          brand: lostDetail.lost_brand,
+          location: lostDetail.lost_location,
+          content: lostDetail.lost_note,
+        });
+      }
     }
-  }, [noticeDetail, isEditMode]);
+  }, [isEditMode, isNotice, noticeDetail, lostDetail]);
 
   const handleScroll = () => {
     if (!scrollRef.current) return;
@@ -125,7 +159,19 @@ const WritePage = () => {
           response = await NoticePostAPI(formData);
         }
       } else {
-        // await LostPostAPI(payload);
+        // 분실물 데이터 추가
+        formData.append("tag", lostForm.tag || "");
+        formData.append("color", lostForm.color);
+        formData.append("category", lostForm.category);
+        formData.append("brand", lostForm.brand);
+        formData.append("location", lostForm.location);
+
+        if (isEditMode && id !== undefined) {
+          formData.append("lostId", id.toString());
+          response = await LostPatchAPI(formData);
+        } else {
+          response = await LostPostAPI(formData);
+        }
       }
 
       if (response.success || typeof response === "string") {
@@ -186,7 +232,17 @@ const WritePage = () => {
     navigate("/admin/notice");
   };
 
-  const isFormValid = title.trim() !== "" && description.trim() !== "";
+  const isNoticeFormValid = title.trim() !== "" && description.trim() !== "";
+  const isLostFormValid =
+    title?.trim() !== "" &&
+    lostForm.tag !== undefined &&
+    lostForm.color?.trim() !== "" &&
+    lostForm.category?.trim() !== "" &&
+    lostForm.brand?.trim() !== "" &&
+    lostForm.location?.trim() !== "" &&
+    lostForm.content?.trim() !== "";
+
+  const isFormValid = isNotice ? isNoticeFormValid : isLostFormValid;
 
   return (
     <Container>
@@ -258,7 +314,7 @@ const WritePage = () => {
         {isNotice ? (
           <NoticeForm content={description} setContent={setDescription} />
         ) : (
-          <LostForm />
+          <LostForm form={lostForm} setForm={setLostForm} />
         )}
       </PostContainer>
 
