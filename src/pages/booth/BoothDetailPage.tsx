@@ -40,6 +40,10 @@ export default function BoothDetailPage() {
   const [showWaitingModal, setShowWaitingModal] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [boothId]);
+
   const { isLoading, totalLikes, toggleLike, isToggling, isLiked } =
     useLike(boothId);
 

@@ -77,13 +77,9 @@ const HomePage = () => {
     <Container>
       <Header />
       <ImageContainer>
-        <FlowerImage src={Flower} alt="flower" />
+        <FlowerImage data={Flower} />
         <MainSlogan>동국대학교 대동제</MainSlogan>
-        <img
-          src={Logo}
-          alt="무위열반"
-          style={{ width: "100%", height: "auto" }}
-        />
+        <object data={Logo} style={{ width: "100%", height: "auto" }} />
         <Row>
           <Slogan>(비우는) 만큼 </Slogan>
           <Slogan>(자유로워)지리라</Slogan>
