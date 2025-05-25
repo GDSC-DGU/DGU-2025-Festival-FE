@@ -225,7 +225,7 @@ export const timetableData: PerformanceItemType[] = [
       { title: "아들란티스 소녀 - 보아" },
       { title: "한 페이지가 될 수 있게  - DAY6" },
       { title: "S.A.D - The Volunteers" },
-      { title: "집 - 한로로" },
+      { title: "ㅈㅣㅂ - 한로로" },
       { title: "Alive - 터치드" },
       { title: "Legends never die - Against The Current" },
     ],
@@ -244,14 +244,14 @@ export const timetableData: PerformanceItemType[] = [
     instagram: "jamjam_official",
 
     songs: [
-      { title: "01. Mamma Mia! (From. 뮤지컬 <맘마미아>)" },
-      { title: "02. 찢겨진 페이지처럼 (From. 뮤지컬<브론테>)" },
-      { title: "03. 그런가 봐 (From. 뮤지컬 <번지점프를 하다>)" },
+      { title: "Mamma Mia! (From. 뮤지컬 <맘마미아>)" },
+      { title: "찢겨진 페이지처럼 (From. 뮤지컬<브론테>)" },
+      { title: "그런가 봐 (From. 뮤지컬 <번지점프를 하다>)" },
       {
-        title: "04. 눈 속의 천사들 (From. 뮤지컬 <스토리오브마이라이프>) ",
+        title: "눈 속의 천사들 (From. 뮤지컬 <스토리오브마이라이프>) ",
       },
 
-      { title: "05. Dream High (From. 뮤지컬 <드림하이>)" },
+      { title: "Dream High (From. 뮤지컬 <드림하이>)" },
     ],
 
     imageUrl: "/images/image9.jpg",
@@ -285,11 +285,11 @@ export const timetableData: PerformanceItemType[] = [
     end: "17:50",
     title: "음샘",
     tag: "밴드 동아리",
-    description: "",
+    description: "🎶 동국대학교 중앙밴드동아리 음샘 🎶",
     instagram: "eumsaim_official",
 
     songs: [
-      { title: "입수 - 한로로" },
+      { title: "입춘 - 한로로" },
       { title: "자처 - 한로로" },
       { title: "Sweet Child O' Mine - Guns N' Roses" },
       { title: "알루미늄 - 브로큰 발렌타인" },
