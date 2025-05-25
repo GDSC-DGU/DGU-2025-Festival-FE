@@ -9,15 +9,13 @@ const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
 export default function InAppLanding() {
   useEffect(() => {
     if (isIOS) {
-      const targetUrl = "https://dirvana.co.kr";
-      const newTab = window.open(targetUrl, "_blank");
-
-      if (!newTab) {
-        // 팝업 차단된 경우 강제로 이동
-        window.location.href = targetUrl;
-      }
+      setTimeout(() => {
+        const targetUrl = "https://dirvana.co.kr";
+        const newTab = window.open(targetUrl, "_blank");
+        if (!newTab) window.location.href = targetUrl;
+      }, 1000); // 1초 후 실행
     }
-  }, [isIOS]);
+  }, []);
 
   const handleClick = () => {
     const url = window.location.href;
