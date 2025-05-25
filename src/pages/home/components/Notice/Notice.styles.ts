@@ -5,7 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 12px;
   align-items: center;
-  width: 80%;
+  width: 90%;
+  box-sizing: border-box;
 `;
 
 export const NoticeContent = styled.div`
@@ -16,7 +17,7 @@ export const NoticeContent = styled.div`
   align-items: center;
   justify-content: space-between;
   border: none;
-  width: 100%;
+  width: 90%;
   gap: 10px;
   background: ${({ theme }) => theme.gradients.rankingBox1};
   border: 1.5px solid white;
@@ -35,12 +36,11 @@ export const DateText = styled.p`
 
 export const EmptyContainer = styled.div`
   padding: 20px 0;
-  width: 90%;
+  width: 100%;
   text-align: center;
   background: ${({ theme }) => theme.gradients.rankingBox2};
   color: black;
   ${({ theme }) => theme.fonts.Head3}
-  box-sizing: border-box;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.5);
 `;
