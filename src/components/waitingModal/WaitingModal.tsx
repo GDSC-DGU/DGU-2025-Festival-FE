@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import ModalPortal from '@/components/common/ModalPortal';
 import * as S from './WaitingModal.styles';
+import { useEffect } from 'react';
+import {
+  requestPhoneCert,
+  verifyPhoneCode,
+  reserveBooth,
+} from "@/api/reservation";
+import { requestPermissionAndGetToken } from '@/firebase'; 
+
 
 interface Booth {
   id: string;
@@ -23,37 +31,115 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
   const [codeSent, setCodeSent] = useState(false);
   const [verified, setVerified] = useState(false);
 
+  useEffect(() => {
+    const askPermissionAndGetToken = async () => {
+      try {
+        if (Notification.permission === 'default') {
+          const permission = await Notification.requestPermission();
+          console.log('알림 권한 상태:', permission);
+  
+          if (permission === 'granted') {
+            const token = await requestPermissionAndGetToken();
+            if (token) {
+              console.log('FCM 토큰:', token);
+            }
+          }
+        } else if (Notification.permission === 'granted') {
+          console.log('이미 알림 권한 허용됨');
+          const token = await requestPermissionAndGetToken();
+          if (token) {
+            console.log('FCM 토큰:', token);
+          }
+        } else {
+          console.log('알림 권한 거부됨');
+        }
+      } catch (err) {
+        console.error('알림 권한 요청 또는 토큰 발급 실패:', err);
+      }
+    };
+  
+    askPermissionAndGetToken();
+  }, []);
+  
+
   const handleNext = () => {
     if (people > 0) {
       setStep('phone');
     }
   };
 
-  const handleSendCode = () => {
+  const handleSendCode = async () => {
     if (phone.length === 11) {
-      const generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
-      setSentCode(generatedCode);
-      setCodeSent(true);
-      console.log('전송된 인증번호:', generatedCode);
+      try {
+        const res = await requestPhoneCert(phone); 
+  
+        if (res.success) {
+          setCodeSent(true);
+          alert("인증번호가 발송되었습니다!");
+        } else {
+          alert("인증번호 요청에 실패했습니다.");
+        }
+      } catch (err) {
+        alert("오류가 발생했습니다. 다시 시도해주세요.");
+      }
     }
   };
+  
+  
 
-  const handleVerify = () => {
-    if (verifyCode === sentCode) {
-      setVerified(true);
-      alert('인증번호가 확인되었습니다!');
-    } else {
-      alert('인증번호가 일치하지 않습니다.');
+  const handleVerify = async () => {
+    try {
+      const token = await requestPermissionAndGetToken();
+      if (!token) {
+        alert("알림 권한이 필요합니다.");
+        return;
+      }
+  
+      const res = await verifyPhoneCode({
+        phoneNumber: phone,
+        certificationNumber: verifyCode,
+        browserToken: token,
+      });
+  
+      if (res.success) {
+        setVerified(true);
+        alert("인증이 완료되었습니다.");
+      } else {
+        alert("인증 실패: 코드가 일치하지 않습니다.");
+      }
+    } catch (err) {
+      alert("오류가 발생했습니다. 다시 시도해주세요.");
     }
   };
-
-  const handleConfirm = () => {
-    if (verified) {
-      onConfirm({ boothId: booth.id, people, phone });
-      setStep('done');
+  
+  const handleConfirm = async () => {
+    if (!verified) return;
+  
+    try {
+      const token = await requestPermissionAndGetToken();
+  
+      if (!token) {
+        alert("알림 권한이 필요합니다.");
+        return;
+      }
+      const res = await reserveBooth(booth.id, {
+        browserToken: token,
+        phoneNumber: phone,
+        name: "김수빈", // 또는 사용자 상태에서 name을 가져오기
+        attendance: people,
+      });
+  
+      if (res.success) {
+        onConfirm({ boothId: booth.id, people, phone });
+        setStep("done");
+      } else {
+        alert("예약에 실패했습니다.");
+      }
+    } catch (err) {
+      alert("예약 중 오류가 발생했습니다.");
     }
   };
-
+  
   return (
     <ModalPortal>
       <S.Overlay>
@@ -114,12 +200,12 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
                     <S.Input
                       id="code"
                       type="text"
-                      placeholder="6자리 숫자"
-                      maxLength={6}
+                      placeholder="4자리 숫자"
+                      maxLength={4}
                       value={verifyCode}
                       onChange={(e) => setVerifyCode(e.target.value)}
                     />
-                    <S.SendCodeButton onClick={handleVerify} disabled={verifyCode.length !== 6}>
+                    <S.SendCodeButton onClick={handleVerify} disabled={verifyCode.length !== 4}>
                       확인
                     </S.SendCodeButton>
                   </S.PhoneInputWrapper>
