@@ -153,7 +153,7 @@ export default function BoothDetailPage() {
             </ImageSlider>
             <DotWrapper>
               {booth.images.map((_: string, i: number) => (
-                <Dot key={i} active={i === currentSlide} />
+                <Dot key={i} $active={i === currentSlide} />
               ))}
             </DotWrapper>
           </SliderArea>

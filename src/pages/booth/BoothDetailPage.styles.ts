@@ -46,7 +46,6 @@ export const Info = styled.div`
   justify-content: space-between;
   width: 100%;
   gap: 4px;
-  
 `;
 
 export const BoothName = styled.div`
@@ -118,7 +117,7 @@ export const ScrollWrapper = styled.div`
   gap: 12px;
   padding: 16px 0;
   scroll-snap-type: x mandatory;
-  width: 100%; 
+  width: 100%;
 
   &::-webkit-scrollbar {
     display: none;
@@ -129,8 +128,6 @@ export const ScrollWrapper = styled.div`
     scroll-snap-align: center;
   }
 `;
-
-
 
 export const Title = styled.p`
   text-align: center;
@@ -157,7 +154,7 @@ export const ImageSlider = styled.div`
   aspect-ratio: 1 / 1;
   border-radius: 8px;
   overflow: hidden;
-  background:rgba(245, 245, 245, 0);
+  background: rgba(245, 245, 245, 0);
 `;
 
 export const SlideImage = styled.img`
@@ -166,12 +163,11 @@ export const SlideImage = styled.img`
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain; 
-  background-color: transparent; 
+  object-fit: contain;
+  background-color: transparent;
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
 `;
-
 
 export const Description = styled.div`
   padding: 16px;
@@ -186,9 +182,9 @@ export const DotWrapper = styled.div`
   gap: 6px;
 `;
 
-export const Dot = styled.div<{ active: boolean }>`
+export const Dot = styled.div<{ $active: boolean }>`
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: ${({ active }) => (active ? "#333" : "#ccc")};
+  background-color: ${({ $active }) => ($active ? "#333" : "#ccc")};
 `;
