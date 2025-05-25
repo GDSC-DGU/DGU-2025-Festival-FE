@@ -42,7 +42,7 @@ const LostGrid = ({ isAdmin = false, lostItems }: LostGridProps) => {
       if (!response.success) {
         alert("삭제에 실패했습니다. 서버 관리자에게 문의하세요.");
       }
-    } catch (err) {
+    } catch {
       alert("삭제 도중 문제가 발생했습니다. 서버 관리자에게 문의하세요.");
     } finally {
       setIsModalOpen(false);
