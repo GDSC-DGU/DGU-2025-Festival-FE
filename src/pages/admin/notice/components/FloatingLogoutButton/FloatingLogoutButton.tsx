@@ -3,14 +3,15 @@ import LogoutIcon from "@/assets/icons/logout-icon.svg";
 import LogoutModal from "@/components/modal/logoutModal/LogoutModal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const FloatingLogoutButton = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const navigate = useNavigate();
+  const logout = useAuthStore((state) => state.logout);
 
   const handleLogout = () => {
-    console.log("로그아웃 처리 실행");
-    setIsModalOpen(true);
+    logout();
     navigate("/admin");
   };
 
