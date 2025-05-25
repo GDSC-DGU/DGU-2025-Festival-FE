@@ -59,7 +59,6 @@ export const BoothIntro = styled.div`
   font-size: 14px;
   font-weight: 500;
   color: var(--gray-500);
-  margin-top: 15px;
 `;
 
 export const Like = styled.div`
@@ -73,13 +72,6 @@ export const Like = styled.div`
 export const LikeCount = styled.div`
   ${({ theme }) => theme.fonts.Body2}
   color: #333c55;
-`;
-
-export const BoothImage = styled.img`
-  width: 100%;
-  height: 230px;
-  border-radius: 8px;
-  object-fit: cover;
 `;
 
 // 기존 스타일 주석 처리
@@ -140,35 +132,6 @@ export const SubContainer = styled.div`
   gap: 16px;
 `;
 
-export const SliderArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-  margin-top: 8px;
-`;
-
-export const ImageSlider = styled.div`
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 8px;
-  overflow: hidden;
-  background: rgba(245, 245, 245, 0);
-`;
-
-export const SlideImage = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background-color: transparent;
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0;
-`;
-
 export const Description = styled.div`
   padding: 16px;
   font-size: 13px;
@@ -176,15 +139,42 @@ export const Description = styled.div`
   line-height: 1.5;
 `;
 
-export const DotWrapper = styled.div`
+// 이미지 스크롤 부분 스타일
+export const ImageScrollContainer = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 6px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
-export const Dot = styled.div<{ $active: boolean }>`
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: ${({ $active }) => ($active ? "#333" : "#ccc")};
+export const ImageItem = styled.div`
+  flex: 0 0 100%;
+  position: relative;
+  scroll-snap-align: start;
+  border-radius: 8px;
+  background: rgba(245, 245, 245, 0);
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+`;
+
+export const ImageScrollWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
 `;

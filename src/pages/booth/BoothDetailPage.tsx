@@ -7,6 +7,7 @@ import MapContainer from "@/pages/booth/components/MapContainer";
 import MiniBoothCard from "./components/MiniBoothCard";
 import WaitingClosedModal from "@/pages/waiting/components/WaitingClosedModal";
 import TopBar from "@/components/topbar/TopBar";
+import ImagePagination from "../notice-detail/components/ImagePagination/ImagePagination";
 import {
   Container,
   MapWrapper,
@@ -22,11 +23,9 @@ import {
   ContentContainer,
   SubContainer,
   Title,
-  Dot,
-  DotWrapper,
-  ImageSlider,
-  SlideImage,
-  SliderArea,
+  ImageScrollContainer,
+  ImageItem,
+  ImageScrollWrapper,
 } from "./BoothDetailPage.styles";
 import { useLike } from "@/api/likes/hooks/useLike";
 import SkeletonLoading from "@/components/common/SkeletonLoading";
@@ -38,6 +37,8 @@ export default function BoothDetailPage() {
   const navigate = useNavigate();
   const [showWaitingModal, setShowWaitingModal] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const imageScrollRef = useRef<HTMLDivElement>(null);
+  const boothScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setCurrentSlide(0);
@@ -63,13 +64,12 @@ export default function BoothDetailPage() {
     return [...relatedBooths, ...relatedBooths];
   }, [relatedBooths]);
 
-  const scrollRef = useRef<HTMLDivElement | null>(null);
   const autoScrollIndex = useRef(0);
 
   useEffect(() => {
-    if (!scrollRef.current || loopedBooths.length === 0) return;
+    if (!boothScrollRef.current || loopedBooths.length === 0) return;
 
-    const scrollEl = scrollRef.current;
+    const scrollEl = boothScrollRef.current;
     const cards = scrollEl.querySelectorAll("[data-booth-id]");
 
     const interval = setInterval(() => {
@@ -101,11 +101,26 @@ export default function BoothDetailPage() {
     return () => clearInterval(interval);
   }, [loopedBooths, relatedBooths]);
 
+  const scrollToIndex = (index: number) => {
+    if (!imageScrollRef.current) return;
+    const width = imageScrollRef.current.clientWidth;
+    imageScrollRef.current.scrollTo({
+      left: index * width,
+      behavior: "smooth",
+    });
+  };
+
+  const handleScroll = () => {
+    if (!imageScrollRef.current) return;
+    const scrollX = imageScrollRef.current.scrollLeft;
+    const width = imageScrollRef.current.clientWidth;
+    const index = Math.round(scrollX / width);
+    setCurrentSlide(index);
+  };
+
   if (!booth) return <div>부스를 찾을 수 없습니다.</div>;
   if (isLoading)
     return <SkeletonLoading message="부스 정보를 불러오는 중입니다..." />;
-
-  const totalSlides = booth.images.length;
 
   return (
     <Container>
@@ -137,26 +152,27 @@ export default function BoothDetailPage() {
             <BoothIntro>{booth.intro}</BoothIntro>
           </Header>
 
-          {/* 이미지 슬라이더 영역 */}
-          <SliderArea
-            onClick={() => setCurrentSlide((prev) => (prev + 1) % totalSlides)}
-          >
-            <ImageSlider>
-              {booth.images.map((img: string, index: number) => (
-                <SlideImage
-                  key={index}
-                  src={img}
-                  alt={`부스 이미지 ${index + 1}`}
-                  style={{ opacity: currentSlide === index ? 1 : 0 }}
+          {booth.images.length > 0 && (
+            <ImageScrollWrapper>
+              <ImageScrollContainer
+                ref={imageScrollRef}
+                onScroll={handleScroll}
+              >
+                {booth.images.map((img: string, index: number) => (
+                  <ImageItem key={index}>
+                    <img src={img} alt={`부스 이미지 ${index + 1}`} />
+                  </ImageItem>
+                ))}
+              </ImageScrollContainer>
+              {booth.images.length > 1 && (
+                <ImagePagination
+                  total={booth.images.length}
+                  current={currentSlide}
+                  onDotClick={scrollToIndex}
                 />
-              ))}
-            </ImageSlider>
-            <DotWrapper>
-              {booth.images.map((_: string, i: number) => (
-                <Dot key={i} $active={i === currentSlide} />
-              ))}
-            </DotWrapper>
-          </SliderArea>
+              )}
+            </ImageScrollWrapper>
+          )}
 
           <Like
             as="button"
@@ -177,7 +193,7 @@ export default function BoothDetailPage() {
         <SubContainer>
           <Title>근처 부스 둘러보기</Title>
           {relatedBooths.length > 0 && (
-            <ScrollWrapper ref={scrollRef}>
+            <ScrollWrapper ref={boothScrollRef}>
               {loopedBooths.map((b, index) => (
                 <MiniBoothCard
                   key={`${b.id}-${index}`}
