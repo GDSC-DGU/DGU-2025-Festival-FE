@@ -7,6 +7,9 @@ interface WaitingBoothCardProps {
   booth: WaitingBooth;
   showDeleteButton: boolean;
   highlightLate?: boolean;
+  onCallClick?: () => void;     
+  onVisitClick?: () => void;    
+  onDeleteClick?: () => void;   
 }
 
 const WaitingBoothCard = ({

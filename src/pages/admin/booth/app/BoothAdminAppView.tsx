@@ -20,6 +20,8 @@ import RoleTag from "@/components/role/RoleTag";
 import BottomNav from "./components/BottomNav";
 
 import { useState } from "react"; 
+import { useEffect } from "react";
+
 
 const BoothAdminAppView = () => {
   const [bottomTab, setBottomTab] = useState<"waiting" | "late">("waiting");
@@ -35,7 +37,13 @@ const BoothAdminAppView = () => {
     confirmVisit,
     confirmDelete,
     confirmCloseBooth,
+    fetchBooths,
+    openModal,
   } = useBoothAdminStore();
+
+  useEffect(() => {
+    fetchBooths();
+  }, []);
 
   const now = Date.now();
   const LATE_MINUTES = 5;
@@ -68,27 +76,23 @@ const BoothAdminAppView = () => {
       </Section>
 
       {bottomTab === "late" && lateBooths.length > 0 && (
-  <Section>
-    <SectionTitle>늦은 대기자</SectionTitle>
-    <SectionDescription>
-      호출 후 5분 이상 지났지만 아직 방문하지 않은 대기자입니다.
-    </SectionDescription>
-    
-    <TotalCount>늦은 대기 {lateBooths.length}팀</TotalCount>
-
-    <BoothListWrapper>
-      {lateBooths.map((booth) => (
-        <WaitingBoothCard
-          key={booth.id}
-          booth={booth}
-          showDeleteButton={true}
-          highlightLate
-        />
-      ))}
-    </BoothListWrapper>
-  </Section>
-)}
-
+        <Section>
+          <SectionTitle>늦은 대기자</SectionTitle>
+          <SectionDescription>
+            호출 후 5분 이상 지났지만 아직 방문하지 않은 대기자입니다.
+          </SectionDescription>
+          <BoothListWrapper>
+            {lateBooths.map((booth) => (
+              <WaitingBoothCard
+                key={booth.id}
+                booth={booth}
+                showDeleteButton={true}
+                highlightLate
+              />
+            ))}
+          </BoothListWrapper>
+        </Section>
+      )}
 
 {bottomTab === "waiting" && (
   <Section>
@@ -110,11 +114,15 @@ const BoothAdminAppView = () => {
 
         return (
           <WaitingBoothCard
-            key={booth.id}
-            booth={booth}
-            showDeleteButton={!!showDeleteButton}
-            highlightLate={isLate} 
-          />
+  key={booth.id}
+  booth={booth}
+  showDeleteButton={!!showDeleteButton}
+  highlightLate={isLate}
+  onCallClick={() => openModal("call", booth)}
+  onVisitClick={() => openModal("visit", booth)}
+  onDeleteClick={() => openModal("delete", booth)}
+/>
+
         );
       })}
     </BoothListWrapper>
