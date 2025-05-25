@@ -48,14 +48,21 @@ import booth_15_3 from '@/assets/booth/art/KakaoTalk_20250524_182551200_02.jpg';
 import booth_15_4 from '@/assets/booth/art/KakaoTalk_20250524_182551200_03.jpg';
 import booth_16_1 from '@/assets/booth/sport/스크린샷 2025-05-25 042036.png';
 import booth_16_2 from '@/assets/booth/sport/스크린샷 2025-05-25 042051.png';
-import booth_17_1 from '@/assets/booth/korean/스크린샷 2025-05-25 042113.png';
-import booth_17_2 from '@/assets/booth/korean/스크린샷 2025-05-25 042142.png';
-import booth_18_1 from '@/assets/booth/math/스크린샷 2025-05-25 042216.png';
-import booth_18_2 from '@/assets/booth/math/스크린샷 2025-05-25 042230.png';
+import booth_17_1 from '@/assets/booth/korean/KakaoTalk_20250524_212939804.jpg';
+import booth_17_2 from '@/assets/booth/korean/KakaoTalk_20250524_212939804_01.jpg';
+import booth_17_3 from '@/assets/booth/korean/스크린샷 2025-05-25 042113.png';
+import booth_17_4 from '@/assets/booth/korean/스크린샷 2025-05-25 042142.png';
+import booth_18_1 from '@/assets/booth/math/KakaoTalk_20250524_212950292.jpg';
+import booth_18_2 from '@/assets/booth/math/KakaoTalk_20250524_212950292_01.jpg';
+import booth_18_3 from '@/assets/booth/math/KakaoTalk_20250524_212950292_02.jpg';
+import booth_18_4 from '@/assets/booth/math/스크린샷 2025-05-25 042216.png';
+import booth_18_5 from '@/assets/booth/math/스크린샷 2025-05-25 042230.png';
 import booth_19_1 from '@/assets/booth/fusion/스크린샷 2025-05-25 042342.png';
 import booth_19_2 from '@/assets/booth/fusion/스크린샷 2025-05-25 042401.png';
-import booth_20_1 from '@/assets/booth/drawing/스크린샷 2025-05-25 042518.png';
-import booth_20_2 from '@/assets/booth/drawing/스크린샷 2025-05-25 042537.png';
+import booth_20_1 from '@/assets/booth/drawing/1.jpg';
+import booth_20_2 from '@/assets/booth/drawing/2.jpg';
+import booth_20_3 from '@/assets/booth/drawing/스크린샷 2025-05-25 042518.png';
+import booth_20_4 from '@/assets/booth/drawing/스크린샷 2025-05-25 042537.png';
 import booth_21_1 from '@/assets/booth/japan/KakaoTalk_20250523_160903233 (1).png';
 import booth_21_2 from '@/assets/booth/japan/KakaoTalk_20250523_160903233_01 (1).png';
 import booth_21_3 from '@/assets/booth/japan/KakaoTalk_20250523_160903233_02 (1).png';
@@ -274,7 +281,7 @@ export const booths = [
         date: '2025-05-27',
         type: 'night',
         position: { lat: 37.560146, lng: 127.000028 },
-        images: [booth_17_1, booth_17_2],
+        images: [booth_17_1, booth_17_2, booth_17_3, booth_17_4],
         waitingAvailable: false,
     },
     {
@@ -284,7 +291,7 @@ export const booths = [
         date: '2025-05-27',
         type: 'night',
         position: { lat: 37.560261, lng: 126.999551 },
-        images: [booth_18_1, booth_18_2],
+        images: [booth_18_1, booth_18_2, booth_18_3, booth_18_4, booth_18_5],
         waitingAvailable: false,
     },
     {
@@ -304,7 +311,7 @@ export const booths = [
         date: '2025-05-27',
         type: 'night',
         position: { lat: 37.559541, lng: 126.999386 },
-        images: [booth_20_1, booth_20_2],
+        images: [booth_20_1, booth_20_2, booth_20_3, booth_20_4],
         waitingAvailable: false,
     },
     {
