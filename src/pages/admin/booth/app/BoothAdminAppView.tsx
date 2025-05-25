@@ -38,7 +38,7 @@ const BoothAdminAppView = () => {
     confirmDelete,
     confirmCloseBooth,
     fetchBooths,
-    openModal,
+    // openModal,
   } = useBoothAdminStore();
 
   useEffect(() => {
@@ -112,18 +112,14 @@ const BoothAdminAppView = () => {
 
         const isLate = lateBooths.some((late) => late.id === booth.id); 
 
-        return (
-          <WaitingBoothCard
-  key={booth.id}
-  booth={booth}
-  showDeleteButton={!!showDeleteButton}
-  highlightLate={isLate}
-  onCallClick={() => openModal("call", booth)}
-  onVisitClick={() => openModal("visit", booth)}
-  onDeleteClick={() => openModal("delete", booth)}
-/>
-
-        );
+return (
+  <WaitingBoothCard
+    key={booth.id}
+    booth={booth}
+    showDeleteButton={!!showDeleteButton}
+    highlightLate={isLate}
+  />
+);
       })}
     </BoothListWrapper>
   </Section>
