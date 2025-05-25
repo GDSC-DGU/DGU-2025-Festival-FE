@@ -11,11 +11,13 @@ import menuIcon from "@/assets/icons/menu.png";
 import closeIcon from "@/assets/icons/close-menu.png";
 import BoothCloseModal from "../Modal/BoothCloseModal";
 import LogoutModal from "@/components/modal/logoutModal/LogoutModal";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const FloatingButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCloseModal, setShowCloseModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const logout = useAuthStore((state) => state.logout);
 
   const handleBoothCloseConfirm = (type: "soldout" | "timeover") => {
     console.log(`부스 종료 타입: ${type}`);
@@ -23,7 +25,7 @@ const FloatingButton = () => {
   };
 
   const handleLogoutConfirm = () => {
-    console.log("로그아웃 처리 실행");
+    logout();
     setShowLogoutModal(false);
   };
 
