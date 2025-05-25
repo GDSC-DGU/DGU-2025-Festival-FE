@@ -6,7 +6,7 @@ import HomePage from "@/pages/home/HomePage";
 import TimetablePage from "@/pages/timetable/TimetablePage";
 import NoticePage from "@/pages/notice/NoticePage";
 import BoothPage from "@/pages/booth/BoothPage";
-import WaitingPage from "@/pages/waiting/WaitingPage";
+// import WaitingPage from "@/pages/waiting/WaitingPage";
 import NotFoundPage from "@/pages/not-found/NotFoundPage";
 import NoticeDetailPage from "@/pages/notice-detail/NoticeDetailPage";
 import LostDetailPage from "@/pages/lost-detail/LostDetailPage";
@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
       { path: "notice/lost/:id", element: <LostDetailPage /> },
       { path: "booth", element: <BoothPage /> },
       { path: "booth/:id", element: <BoothDetailPage /> },
-      { path: "waiting", element: <WaitingPage /> },
+      // { path: "waiting", element: <WaitingPage /> },
       { path: "about", element: <AboutPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
