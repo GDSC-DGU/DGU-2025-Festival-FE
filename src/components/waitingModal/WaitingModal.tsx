@@ -69,10 +69,14 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
               <S.Label htmlFor="people">인원수</S.Label>
               <S.Input
                 id="people"
-                type="number"
-                min={1}
-                value={people}
-                onChange={(e) => setPeople(Number(e.target.value))}
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                value={people === 0 ? '' : people}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (/^\d*$/.test(val)) setPeople(val === '' ? 0 : Number(val));
+                }}
               />
               <S.Notice>
                 안내 후 10분 안에 오시지 않으면<br />
