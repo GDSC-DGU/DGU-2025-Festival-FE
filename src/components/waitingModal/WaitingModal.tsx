@@ -66,7 +66,7 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
         } else {
           alert("인증번호 요청에 실패했습니다.");
         }
-      } catch (_) {
+      } catch {
         alert("오류가 발생했습니다. 다시 시도해주세요.");
       }
     }
@@ -93,7 +93,7 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
       } else {
         alert("인증 실패: 코드가 일치하지 않습니다.");
       }
-    } catch (_) {
+    } catch {
       alert("오류가 발생했습니다. 다시 시도해주세요.");
     }
   };
@@ -125,7 +125,7 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
       } else {
         alert("예약에 실패했습니다.");
       }
-    } catch (_) {
+    } catch {
       alert("예약 중 오류가 발생했습니다.");
     }
   };
