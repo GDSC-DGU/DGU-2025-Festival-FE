@@ -1,6 +1,6 @@
 import { defineConfig, mergeConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path'; 
+import path from 'path';
 
 const vitestConfig = {
   test: {
@@ -13,12 +13,15 @@ const vitestConfig = {
   },
 };
 
+const basePath = process.env.DEPLOY_PATH ? `/${process.env.DEPLOY_PATH}/` : '/';
+
 export default mergeConfig(
   defineConfig({
+    base: basePath,
     plugins: [react()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src'), 
+        '@': path.resolve(__dirname, 'src'),
       },
     },
   }),
