@@ -113,9 +113,10 @@ export default function BoothDetailPage() {
             date={booth.date}
             boothType={booth.type as "day" | "night"}
             boothId={booth.id}
+            centerLat={booth.position.lat}
+            centerLng={booth.position.lng}
           />
         </MapWrapper>
-
         <Card>
           <Header>
             <Info>
