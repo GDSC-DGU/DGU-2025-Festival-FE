@@ -165,6 +165,7 @@ const WritePage = () => {
         formData.append("category", lostForm.category);
         formData.append("brand", lostForm.brand);
         formData.append("location", lostForm.location);
+        formData.append("note", lostForm.note);
 
         if (isEditMode && id !== undefined) {
           formData.append("lostId", id.toString());
