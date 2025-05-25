@@ -1,7 +1,7 @@
 import TopBar from "@/components/topbar/TopBar";
 import Toggle from "@/components/toggle/Toggle";
 import LostGrid from "./components/LostGrid/LostGrid";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Container,
   ContentContainer,
@@ -21,7 +21,7 @@ import FindModal from "./components/FindModal/FindModal";
 const STORAGE_KEY = "notice_tab";
 
 const NoticePage = () => {
-  const noticeList = useNoticeStore((state) => state.noticeList);
+  const { noticeList, setNoticeList } = useNoticeStore();
   const lostList = useLostStore((state) => state.lostList);
 
   type NoticeTabType = "공지사항" | "분실물";
@@ -43,18 +43,21 @@ const NoticePage = () => {
     sessionStorage.setItem(STORAGE_KEY, selected);
   };
 
+  const fetchNoticeList = useCallback(async () => {
+    const newList = await NoticeListAPI();
+    if (Array.isArray(newList)) {
+      setNoticeList(newList);
+    }
+  }, [setNoticeList]);
+
+  const fetchLostList = async () => {
+    await LostListAPI();
+  };
+
   useEffect(() => {
-    const fetchNoticeList = async () => {
-      await NoticeListAPI();
-    };
-
-    const fetchLostList = async () => {
-      await LostListAPI();
-    };
-
     fetchNoticeList();
     fetchLostList();
-  }, []);
+  }, [fetchNoticeList]);
 
   return (
     <Container>

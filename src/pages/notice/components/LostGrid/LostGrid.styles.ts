@@ -33,13 +33,9 @@ export const GridContainer = styled.div`
   gap: 16px;
 `;
 
-export const NullContainer = styled.div`
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const EmptyText = styled.p`
   text-align: center;
-  color: ${({ theme }) => theme.colors.gray600};
-  ${({ theme }) => theme.fonts.Body1};
+  color: ${({ theme }) => theme.colors.gray400};
+  ${({ theme }) => theme.fonts.Body2};
+  padding: 40px 0;
 `;

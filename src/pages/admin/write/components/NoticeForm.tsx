@@ -1,8 +1,11 @@
 import { ContentInput, ContentLength } from "../index.styles";
-import { useState } from "react";
 
-const NoticeForm = () => {
-  const [content, setContent] = useState("");
+interface NoticeFormProps {
+  content: string;
+  setContent: (value: string) => void;
+}
+
+const NoticeForm = ({ content, setContent }: NoticeFormProps) => {
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= 300) {
       setContent(e.target.value);
