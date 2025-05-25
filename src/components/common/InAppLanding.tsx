@@ -2,10 +2,20 @@ import styled, { keyframes } from "styled-components";
 import LogoImg from "/assets/landing/logo.png";
 import HandSvg from "/assets/landing/hand.svg";
 import FlowerImage from "/assets/landing/flower.png";
+import { useEffect } from "react";
 
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
 
 export default function InAppLanding() {
+  useEffect(() => {
+    if (isIOS) {
+      setTimeout(() => {
+        const targetUrl = "https://dirvana.co.kr";
+        const newTab = window.open(targetUrl, "_blank");
+        if (!newTab) window.location.href = targetUrl;
+      }, 1000); // 1초 후 실행
+    }
+  }, []);
 
   const handleClick = () => {
     const url = window.location.href;

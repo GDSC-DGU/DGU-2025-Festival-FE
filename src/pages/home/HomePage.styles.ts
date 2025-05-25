@@ -71,7 +71,7 @@ export const Image = styled.img`
   mask-repeat: no-repeat;
 `;
 
-export const FlowerImage = styled.object`
+export const FlowerImage = styled.img`
   width: 40%;
   position: absolute;
   left: 50%;
