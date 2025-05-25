@@ -64,7 +64,7 @@ const WritePage = () => {
       if (isEditMode && id) {
         try {
           await NoticeDetailAPI(id);
-        } catch (_error) {
+        } catch {
           navigate("/admin/notice");
         }
       }
