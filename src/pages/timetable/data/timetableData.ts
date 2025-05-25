@@ -289,7 +289,7 @@ export const timetableData: PerformanceItemType[] = [
     instagram: "eumsaim_official",
 
     songs: [
-      { title: "입수 - 한로로" },
+      { title: "입춘 - 한로로" },
       { title: "자처 - 한로로" },
       { title: "Sweet Child O' Mine - Guns N' Roses" },
       { title: "알루미늄 - 브로큰 발렌타인" },
