@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface LogoutModalProps {
   onCancel: () => void;
@@ -10,8 +10,9 @@ const LogoutModal = ({ onCancel, onConfirm }: LogoutModalProps) => {
     <Backdrop>
       <ModalContainer>
         <Title>로그아웃 하시겠어요?</Title>
-        <SubMessage>현재 진행 중인 데이터는 저장되지 않을 수 있어요.</SubMessage>
-
+        <SubMessage>
+          현재 진행 중인 데이터는 저장되지 않을 수 있어요.
+        </SubMessage>
         <ButtonGroup>
           <CancelButton onClick={onCancel}>취소</CancelButton>
           <ConfirmButton onClick={onConfirm}>로그아웃</ConfirmButton>
