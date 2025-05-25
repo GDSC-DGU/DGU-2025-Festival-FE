@@ -1,29 +1,29 @@
-import { useEffect, useRef } from "react";
-import { booths } from "../data/booths";
-import { useBoothStore } from "../stores/useBoothStore";
-import Heart from "@/assets/icons/heart-null.png";
-import { createRoundedMarkerIcon } from "../utils/createRoundedMarkerIcon";
-import { MapWrapper, MapBox, FilterButton } from "./MapContainer.styles";
+import { useEffect, useRef } from 'react';
+import { booths } from '../data/booths';
+import { useBoothStore } from '../stores/useBoothStore';
+import markerLiked from '@/assets/icons/marker-liked.svg';
+import markerDefault from '@/assets/icons/marker-default.svg';
+import Heart from '@/assets/icons/heart-null.png';
+
+import {
+  MapWrapper,
+  MapBox,
+  FilterButton,
+} from './MapContainer.styles';
 
 interface MapContainerProps {
   date: string;
-  boothType: "day" | "night";
+  boothType: 'day' | 'night';
   boothId?: string;
   centerLat?: number;
   centerLng?: number;
 }
 
-export default function MapContainer({
-  date,
-  boothType,
-  boothId,
-}: MapContainerProps) {
+export default function MapContainer({ date, boothType, boothId }: MapContainerProps) {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const isLiked = useBoothStore((state) => state.isLiked);
   const showOnlyLiked = useBoothStore((state) => state.showOnlyLiked);
-  const toggleShowOnlyLiked = useBoothStore(
-    (state) => state.toggleShowOnlyLiked
-  );
+  const toggleShowOnlyLiked = useBoothStore((state) => state.toggleShowOnlyLiked);
 
   useEffect(() => {
     if (!window.google || !mapRef.current) return;
@@ -47,35 +47,17 @@ export default function MapContainer({
       return true;
     });
 
-    (async () => {
-      for (const booth of filtered) {
-        try {
-          const iconUrl = await createRoundedMarkerIcon(booth.images[0]);
-
-          const marker = new window.google.maps.Marker({
-            position: booth.position,
-            map,
-            title: booth.name,
-            icon: {
-              url: iconUrl,
-              scaledSize: new window.google.maps.Size(56, 56),
-              labelOrigin: new window.google.maps.Point(28, 68),
-            },
-            label: {
-              text: booth.name,
-              color: "#333c55",
-              fontSize: "10px",
-              fontWeight: "bold",
-            },
-          });
-          marker.addListener("click", () => {
-            window.location.href = `/booth/${booth.id}`;
-          });
-        } catch {
-          console.error(`마커 렌더링 실패: ${booth.name}`);
-        }
-      }
-    })();
+    filtered.forEach((booth) => {
+      new window.google.maps.Marker({
+        position: booth.position,
+        map,
+        title: booth.name,
+        icon: {
+          url: isLiked(booth.id) ? markerLiked : markerDefault,
+          scaledSize: new window.google.maps.Size(36, 36),
+        },
+      });
+    });
   }, [date, boothType, showOnlyLiked, isLiked, boothId]);
 
   return (
@@ -88,7 +70,7 @@ export default function MapContainer({
             alt="찜한 목록"
             width={14}
             height={14}
-            style={{ marginRight: "6px" }}
+            style={{ marginRight: '6px' }}
           />
           찜한 목록
         </FilterButton>
