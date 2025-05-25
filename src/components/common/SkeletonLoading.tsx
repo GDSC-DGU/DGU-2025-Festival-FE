@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import FlowerImg from "@/assets/landing/flower.png";
+import FlowerImg from "/assets/landing/flower.png";
 
 interface SkeletonLoadingProps {
   message?: string;

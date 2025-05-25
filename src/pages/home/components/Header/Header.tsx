@@ -1,7 +1,6 @@
 import { Container } from "./Header.styles";
 import Logo from "@/assets/icons/logo.svg";
-import GdgLogo from "@/assets/icons/gdgLogo.svg";
-
+import GdgLogo from "/assets/landing/gdgLogo.svg";
 const Header = () => {
   return (
     <Container>

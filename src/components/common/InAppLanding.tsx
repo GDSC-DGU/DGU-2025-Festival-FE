@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
-import LogoImg from "@/assets/landing/logo.png";
-import HandSvg from "@/assets/landing/hand.svg";
-import FlowerImage from "@/assets/landing/flower.png";
+import LogoImg from "/assets/landing/logo.png";
+import HandSvg from "/assets/landing/hand.svg";
+import FlowerImage from "/assets/landing/flower.png";
 
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
 
