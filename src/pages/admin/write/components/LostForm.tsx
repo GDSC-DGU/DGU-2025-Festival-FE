@@ -17,7 +17,7 @@ export interface LostFormData {
   category: string;
   brand: string;
   location: string;
-  content: string;
+  note: string;
 }
 
 export interface LostFormProps {
@@ -28,12 +28,6 @@ export interface LostFormProps {
 const LostForm = ({ form, setForm }: LostFormProps) => {
   const handleChange = (key: keyof typeof form, value: string) => {
     setForm((prev) => ({ ...prev, [key]: value }));
-  };
-
-  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value.length <= 300) {
-      handleChange("content", e.target.value);
-    }
   };
 
   return (
@@ -100,10 +94,10 @@ const LostForm = ({ form, setForm }: LostFormProps) => {
         <Label>특징 / 상세 설명</Label>
         <ContentInput
           placeholder="분실물에 대한 설명을 작성하세요."
-          value={form.content}
-          onChange={handleContentChange}
+          value={form.note}
+          onChange={(e) => handleChange("note", e.target.value)}
         />
-        <ContentLength>{`${form.content?.length ?? 0}/300`}</ContentLength>
+        <ContentLength>{`${form.note?.length ?? 0}/300`}</ContentLength>
       </FieldWrapper>
     </>
   );

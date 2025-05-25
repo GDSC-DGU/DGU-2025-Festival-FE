@@ -67,7 +67,7 @@ const WritePage = () => {
     category: "",
     brand: "",
     location: "",
-    content: "",
+    note: "",
   });
 
   const { noticeDetail } = useNoticeStore();
@@ -109,7 +109,7 @@ const WritePage = () => {
           category: lostDetail.lost_category,
           brand: lostDetail.lost_brand,
           location: lostDetail.lost_location,
-          content: lostDetail.lost_note,
+          note: lostDetail.lost_note,
         });
       }
     }
@@ -240,7 +240,7 @@ const WritePage = () => {
     lostForm.category?.trim() !== "" &&
     lostForm.brand?.trim() !== "" &&
     lostForm.location?.trim() !== "" &&
-    lostForm.content?.trim() !== "";
+    lostForm.note?.trim() !== "";
 
   const isFormValid = isNotice ? isNoticeFormValid : isLostFormValid;
 
