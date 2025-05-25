@@ -27,7 +27,7 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
   const [people, setPeople] = useState<number>(1);
   const [phone, setPhone] = useState('');
   const [verifyCode, setVerifyCode] = useState('');
-  const [sentCode, setSentCode] = useState('');
+  // const [sentCode, setSentCode] = useState('');
   const [codeSent, setCodeSent] = useState(false);
   const [verified, setVerified] = useState(false);
 
@@ -75,7 +75,7 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
   
         if (res.success) {
           setCodeSent(true);
-          alert("인증번호가 발송되었습니다!");
+          alert("인증번호가 발송되었습니다.");
         } else {
           alert("인증번호 요청에 실패했습니다.");
         }
@@ -125,12 +125,13 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
       const res = await reserveBooth(booth.id, {
         browserToken: token,
         phoneNumber: phone,
-        name: "김수빈", // 또는 사용자 상태에서 name을 가져오기
+        name: "김수빈", 
         attendance: people,
       });
   
       if (res.success) {
         onConfirm({ boothId: booth.id, people, phone });
+        localStorage.setItem("userPhoneNumber", phone); 
         setStep("done");
       } else {
         alert("예약에 실패했습니다.");

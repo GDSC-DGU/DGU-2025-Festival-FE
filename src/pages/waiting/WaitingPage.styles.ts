@@ -137,21 +137,30 @@ export const BoothCard = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; 
+  gap: 10px;        
 `;
+
 
 interface BoothActionButtonProps {
   $isCancel?: boolean;
 }
-
 export const BoothActionButton = styled.button<BoothActionButtonProps>`
-  padding: 6px 12px;
+  padding: 6px 16px;
+  min-width: 90px;
+  height: 32px;
   border-radius: 100px;
   font-size: 12px;
   font-weight: 500;
   border: none;
   background-color: ${({ $isCancel }) => ($isCancel ? "#A7A7A7" : "#575bdf")};
   color: white;
+  white-space: nowrap;
+  text-align: center;
+  align-self: flex-end; 
+  margin-left: auto;  
 `;
+
 
 export const BoothIntro = styled.div`
   font-size: 12px;
@@ -159,6 +168,7 @@ export const BoothIntro = styled.div`
   margin-left: 5px;
   margin-bottom: 10px;
   margin-top: 5px;
+  margin-right: 5px;
 `;
 
 export const ImmediateEntryText = styled.div`

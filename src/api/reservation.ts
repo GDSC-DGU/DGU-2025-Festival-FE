@@ -34,3 +34,25 @@ export const reserveBooth = (
     data
   );
 };
+
+
+// 4) 야간부스 예약 리스트 조회 (/reserve)
+export interface PubStatus {
+  pubsId: number;
+  waitTeam: number;
+}
+
+export const fetchPubsStatus = () => {
+  return sendRequest<PubStatus[]>(defaultInstance, "GET", "/pubs");
+};
+
+// 5) 내 예약 정보 조회 (/reserve?number={phoneNumber})
+export interface ReservationInfo {
+  waitTeam: number;
+  reserveStatus: "WAITING" | "DONE" | "CANCELLED";
+}
+
+export const fetchMyReservation = (phoneNumber: string) => {
+  const url = `/reserve?number=${phoneNumber}`;
+  return sendRequest<ReservationInfo>(defaultInstance, "GET", url);
+};
