@@ -39,6 +39,7 @@ export default function WaitingPage() {
         const res = await fetchMyReservation(phoneNumber);
         if (res.success) {
           setMyReservation(res.data);
+          console.log("내 예약 정보:", res.data); // 디버깅 중
         } else {
           console.warn("예약 정보 없음");
         }
@@ -141,10 +142,16 @@ export default function WaitingPage() {
                 </div>
                 {waitingCount > 0 ? (
                   <S.BoothActionButton
-                    onClick={() => handleClickBooth(booth)}
-                    $isCancel={isMyWaiting}
-                  >
-                    {isMyWaiting ? "웨이팅 취소" : "웨이팅 하기"}
+                  onClick={() => {
+                    if (isMyWaiting) {
+                      setShowCancelConfirm(true); 
+                    } else {
+                      handleClickBooth(booth);   
+                    }
+                  }}
+                  $isCancel={isMyWaiting}
+                >
+                  {isMyWaiting ? "웨이팅 취소" : "웨이팅 하기"}
                   </S.BoothActionButton>
                 ) : (
                   <S.ImmediateEntryText>바로 입장 가능</S.ImmediateEntryText>
@@ -158,7 +165,7 @@ export default function WaitingPage() {
           <WaitingModal
             booth={selectedBooth}
             onConfirm={(data) => {
-              localStorage.setItem("userPhoneNumber", data.phone); // ✅ 전화번호 저장
+              localStorage.setItem("userPhoneNumber", data.phone); 
               addWaiting({
                 ...data,
                 name: selectedBooth.name,
