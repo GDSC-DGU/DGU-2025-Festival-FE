@@ -1,27 +1,47 @@
 import styled from "styled-components";
+import { updateBoothStatus } from "@/api/booth/adminBooth";
+import { useBoothAdminStore } from "../stores/useBoothAdminStore";
 
 export type TabType = "available" | "full";
 
-export interface TabsProps {
+type TabsProps = {
   current: TabType;
   onChange: (tab: TabType) => void;
-}
+};
 
 const Tabs: React.FC<TabsProps> = ({ current, onChange }) => {
+  const handleTabChange = async (tab: TabType) => {
+    const status = tab === "available" ? "AVAILABLE" : "FULL";
+  
+    try {
+      await updateBoothStatus(status);
+      alert(`부스 상태가 '${status}'로 변경되었습니다.`);
+      onChange(tab);
+    } catch (err) {
+      console.error("상태 변경 실패:", err);
+      alert("상태 변경에 실패했습니다.");
+    }
+  };
+  
+  
   return (
     <TabWrapper>
       <TabButton
         selected={current === "available"}
-        onClick={() => onChange("available")}
+        onClick={() => handleTabChange("available")}
       >
         자리 있음
       </TabButton>
-      <TabButton selected={current === "full"} onClick={() => onChange("full")}>
+      <TabButton
+        selected={current === "full"}
+        onClick={() => handleTabChange("full")}
+      >
         만석
       </TabButton>
     </TabWrapper>
   );
 };
+
 
 export default Tabs;
 
