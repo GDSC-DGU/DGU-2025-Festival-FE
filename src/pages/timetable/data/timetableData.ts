@@ -29,18 +29,18 @@ export const timetableData: PerformanceItemType[] = [
     end: "15:20",
     title: "21 Guns",
     tag: "밴드 동아리",
-    description: "동국대학교 밴드 동아리",
+    description: "멀티미니더공학과 21학번 밴드",
     instagram: "",
     songs: [
       { title: "Star Walkin’ - Lil Nas X" },
       { title: "Welcome to the show - DAY6" },
       { title: "The Great Escape - Boys Like Girls" },
 
-      { title: "The Great Escape - All Time Low" },
+      { title: "Time Bomb - All Time Low" },
 
       { title: "21 Guns - Green Day" },
     ],
-    imageUrl: "",
+    imageUrl: "/images/image12.jpeg",
   },
 
   {

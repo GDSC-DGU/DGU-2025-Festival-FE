@@ -131,6 +131,7 @@ export const HashtagWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  justify-content: center;
 `;
 
 export const Hashtag = styled.span`

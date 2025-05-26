@@ -43,7 +43,7 @@ const TimeLine = ({ currentPerformer }: TimeLineProps) => {
       ref={emptyRef}
       className={`fade-up ${emptyVisible ? "visible" : ""}`}
     >
-      현재 진행중인 공연이 없어요!
+      현재 진행중인 공연이 없어요
     </EmptyContainer>
   );
 };
