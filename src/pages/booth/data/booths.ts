@@ -21,9 +21,9 @@ import booth_6_3 from "@/assets/booth/law/law3.webp";
 import booth_7_1 from "@/assets/booth/medicine/medicine1.png";
 import booth_7_2 from "@/assets/booth/medicine/medicine2.png";
 import booth_7_3 from "@/assets/booth/medicine/medicine3.png";
-import booth_8_1 from "@/assets/booth/police/police1.png";
-import booth_8_2 from "@/assets/booth/police/police2.png";
-import booth_8_3 from "@/assets/booth/police/police3.png";
+import booth_8_1 from "@/assets/booth/police/police-night1.png";
+import booth_8_2 from "@/assets/booth/police/police-night2.png";
+import booth_8_3 from "@/assets/booth/police/police-night3.png";
 import booth_9_1 from "@/assets/booth/ad/ad1.png";
 import booth_9_2 from "@/assets/booth/ad/ad2.png";
 import booth_9_3 from "@/assets/booth/ad/ad3.png";
@@ -70,9 +70,6 @@ import booth_25_1 from "@/assets/booth/political/image.png";
 import booth_26_1 from "@/assets/booth/trade/image (1).png";
 import booth_26_2 from "@/assets/booth/trade/image (2).png";
 import booth_26_3 from "@/assets/booth/trade/image (3).png";
-import booth_27_1 from "@/assets/morningbooth/police/police1.png";
-import booth_27_2 from "@/assets/morningbooth/police/police2.png";
-import booth_27_3 from "@/assets/morningbooth/police/police3.png";
 import booth_28_1 from "@/assets/morningbooth/dreamer/1.jpg";
 import booth_28_2 from "@/assets/morningbooth/dreamer/2.jpg";
 import booth_28_3 from "@/assets/morningbooth/dreamer/3.jpg";
@@ -173,7 +170,46 @@ import booth_65_3 from "@/assets/booth/food/스크린샷 2025-05-27 오전 1.19.
 import booth_65_4 from "@/assets/booth/food/스크린샷 2025-05-27 오전 1.19.34.png";
 import booth_66_1 from "@/assets/booth/sport/스크린샷 2025-05-25 042036.png";
 import booth_66_2 from "@/assets/booth/sport/스크린샷 2025-05-25 042051.png";
-
+import booth_67_1 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.09.png";
+import booth_67_2 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.19.png";
+import booth_67_3 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.28.png";
+import booth_67_4 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.35.png";
+import booth_68_1 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 1.59.48.png";
+import booth_68_2 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 1.59.54.png";
+import booth_68_3 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.02.png";
+import booth_68_4 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.09.png";
+import booth_68_5 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.16.png";
+import booth_68_6 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.23.png";
+import booth_68_7 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.30.png";
+import booth_69_1 from "@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.33.44.png";
+import booth_69_2 from "@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.33.52.png";
+import booth_69_3 from "@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.33.58.png";
+import booth_69_4 from "@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.34.04.png";
+import booth_69_5 from "@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.34.11.png";
+import booth_70_1 from "@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.35.59.png";
+import booth_70_2 from "@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.36.06.png";
+import booth_70_3 from "@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.36.15.png";
+import booth_70_4 from "@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.36.23.png";
+import booth_72_1 from "@/assets/booth/police/police-day.png";
+import booth_73_1 from "@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.02.56.png";
+import booth_73_2 from "@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.03.10.png";
+import booth_73_3 from "@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.03.17.png";
+import booth_73_4 from "@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.03.25.png";
+import booth_81_1 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 3.28.46.png";
+import booth_81_2 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 3.28.56.png";
+import booth_81_3 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 3.29.06.png";
+import booth_81_4 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 3.29.12.png";
+import booth_89_1 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.18.png";
+import booth_89_2 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.25.png";
+import booth_89_3 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.31.png";
+import booth_89_4 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.36.png";
+import booth_89_5 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.43.png";
+import booth_89_6 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.50.png";
+import booth_89_7 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.55.png";
+import booth_98_1 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.24.png";
+import booth_98_2 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.06.png";
+import booth_98_3 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.12.png";
+import booth_98_4 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.18.png";
 export const booths = [
   {
     id: "3",
@@ -269,8 +305,9 @@ export const booths = [
   },
   {
     id: "8",
-    name: "경찰사범대학",
-    intro: "올해 대동제에서는 낮과 밤이 모두 수사 작전으로 물듭니다.",
+    name: "폐병원 수색 작전",
+    intro:
+      "경찰사법대학의 야간부스! 올해 대동제에서는 낮과 밤이 모두 수사 작전으로 물듭니다. ",
     date: "2025-05-27",
     type: "night",
     position: { lat: 37.557557, lng: 127.002006 },
@@ -459,26 +496,6 @@ export const booths = [
     waitingAvailable: false,
   },
   {
-    id: "27",
-    name: "경찰사범대학",
-    intro: "올해 대동제에서는 낮과 밤이 모두 수사 작전으로 물듭니다.",
-    date: "2025-05-28",
-    type: "night",
-    position: { lat: 37.557557, lng: 127.002006 },
-    images: [booth_8_1, booth_8_2, booth_8_3],
-    waitingAvailable: false,
-  },
-  {
-    id: "28",
-    name: "경찰사범대학",
-    intro: "올해 대동제에서는 낮과 밤이 모두 수사 작전으로 물듭니다.",
-    date: "2025-05-27",
-    type: "day",
-    position: { lat: 37.55832, lng: 127.000391 },
-    images: [booth_27_1, booth_27_2, booth_27_3],
-    waitingAvailable: false,
-  },
-  {
     id: "29",
     name: "D-caffeine",
     intro: "카페인 대신 꿈을 넣어 더 두근거리는 카페",
@@ -539,16 +556,7 @@ export const booths = [
     images: [booth_33_1, booth_33_2],
     waitingAvailable: false,
   },
-  {
-    id: "35",
-    name: "경찰사범대학",
-    intro: "올해 대동제에서는 낮과 밤이 모두 수사 작전으로 물듭니다.",
-    date: "2025-05-28",
-    type: "day",
-    position: { lat: 37.558288, lng: 127.000361 },
-    images: [booth_27_1, booth_27_2, booth_27_3],
-    waitingAvailable: false,
-  },
+
   {
     id: "36",
     name: "D-caffeine",
@@ -608,16 +616,6 @@ export const booths = [
     type: "day",
     position: { lat: 37.558427, lng: 127.000219 },
     images: [booth_35_1, booth_35_2, booth_35_3, booth_35_4, booth_35_5],
-    waitingAvailable: false,
-  },
-  {
-    id: "42",
-    name: "경찰사범대학",
-    intro: "올해 대동제에서는 낮과 밤이 모두 수사 작전으로 물듭니다.",
-    date: "2025-05-29",
-    type: "day",
-    position: { lat: 37.558288, lng: 127.000361 },
-    images: [booth_27_1, booth_27_2, booth_27_3],
     waitingAvailable: false,
   },
   {
@@ -875,6 +873,372 @@ export const booths = [
     type: "night",
     position: { lat: 37.55879, lng: 126.999132 },
     images: [booth_66_1, booth_66_2],
+    waitingAvailable: false,
+  },
+
+  {
+    id: "67",
+    name: "지피팅: 사랑을 도와드릴까요?💕",
+    intro:
+      "설렘이 가득한 2025 대동제 DIRVANA에서 서로에게 다가가기 어렵나요? 축제기획단 부스 지피팅에서 새로운 설렘을 느끼시길! ",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.55951, lng: 126.99934 },
+    images: [booth_67_1, booth_67_2, booth_67_3, booth_67_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "68",
+    name: "글로벌 홍보대사 DGLAM 부스",
+    intro:
+      "다양한 게임과 상품이 준비되어 있습니다! 또한 여러 나라의 과자도 맛볼 수 있으니 많은 참여 부탁드립니다🌸",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.558592, lng: 127.000318 },
+    images: [
+      booth_68_1,
+      booth_68_2,
+      booth_68_3,
+      booth_68_4,
+      booth_68_5,
+      booth_68_6,
+      booth_68_7,
+    ],
+    waitingAvailable: false,
+  },
+  {
+    id: "69",
+    name: "끼리끼리 포토부스",
+    intro: "2025 봄 대동제 끼리끼리 포토부스",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.558103, lng: 127.000293 },
+    images: [booth_69_1, booth_69_2, booth_69_3, booth_69_4, booth_69_5],
+    waitingAvailable: false,
+  },
+  {
+    id: "70",
+    name: "플리마켓 - 1",
+    intro: "플리마켓 - 1",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.558045, lng: 127.000578 },
+    images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "71",
+    name: "플리마켓 - 2",
+    intro: "플리마켓 - 2",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.558294, lng: 127.000679 },
+    images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "72",
+    name: "사격 체험 부스",
+    intro:
+      "경찰사법대학의 주간 부스! 20년 전, 미제로 남은 폐병원 사건의 단서를 찾기 위한 첫 관문! 권총과 소총 사격 체험을 통해 수사 요원으로서의 자격을 얻으세요🔫",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.55832, lng: 127.000391 },
+    images: [booth_72_1],
+    waitingAvailable: false,
+  },
+  {
+    id: "73",
+    name: "포토부스 네컷 소개팅 - 코동이 부스",
+    intro:
+      "올해 대동제, 재미만 있고 썸은 없다고? 📸 네컷소개팅 부스에서 네컷사진 한 장으로 운명의 상대를 만날 기회!",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.558417, lng: 127.000044 },
+    images: [booth_73_1, booth_73_2, booth_73_3, booth_73_4],
+    waitingAvailable: false,
+  },
+
+  {
+    id: "74",
+    name: "끼리끼리 포토부스",
+    intro: "2025 봄 대동제 끼리끼리 포토부스",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.559285, lng: 126.999397 },
+    images: [booth_69_1, booth_69_2, booth_69_3, booth_69_4, booth_69_5],
+    waitingAvailable: false,
+  },
+
+  {
+    id: "75",
+    name: "끼리끼리 포토부스",
+    intro: "2025 봄 대동제 끼리끼리 포토부스",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558123, lng: 127.000209 },
+    images: [booth_69_1, booth_69_2, booth_69_3, booth_69_4, booth_69_5],
+    waitingAvailable: false,
+  },
+  {
+    id: "76",
+    name: "끼리끼리 포토부스",
+    intro: "2025 봄 대동제 끼리끼리 포토부스",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.559274, lng: 126.999357 },
+    images: [booth_69_1, booth_69_2, booth_69_3, booth_69_4, booth_69_5],
+    waitingAvailable: false,
+  },
+
+  {
+    id: "77",
+    name: "끼리끼리 포토부스",
+    intro: "2025 봄 대동제 끼리끼리 포토부스",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558123, lng: 127.000209 },
+    images: [booth_69_1, booth_69_2, booth_69_3, booth_69_4, booth_69_5],
+    waitingAvailable: false,
+  },
+
+  {
+    id: "78",
+    name: "끼리끼리 포토부스",
+    intro: "2025 봄 대동제 끼리끼리 포토부스",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.559274, lng: 126.999357 },
+    images: [booth_69_1, booth_69_2, booth_69_3, booth_69_4, booth_69_5],
+    waitingAvailable: false,
+  },
+  {
+    id: "79",
+    name: "지피팅: 사랑을 도와드릴까요?💕",
+    intro:
+      "설렘이 가득한 2025 대동제 DIRVANA에서 서로에게 다가가기 어렵나요? 축제기획단 부스 지피팅에서 새로운 설렘을 느끼시길! ",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.55951, lng: 126.99934 },
+    images: [booth_67_1, booth_67_2, booth_67_3, booth_67_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "80",
+    name: "지피팅: 사랑을 도와드릴까요?💕",
+    intro:
+      "설렘이 가득한 2025 대동제 DIRVANA에서 서로에게 다가가기 어렵나요? 축제기획단 부스 지피팅에서 새로운 설렘을 느끼시길! ",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.55951, lng: 126.99934 },
+    images: [booth_67_1, booth_67_2, booth_67_3, booth_67_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "81",
+    name: "축제 기획단 부스 - 굿즈 현장 판매",
+    intro: "축제 기획단 부스에서 굿즈 현장 판매를 진행합니다!",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.55866, lng: 127.00003 },
+    images: [booth_81_1, booth_81_2, booth_81_3, booth_81_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "82",
+    name: "축제 기획단 부스 - 굿즈 현장 판매",
+    intro: "축제 기획단 부스에서 굿즈 현장 판매를 진행합니다!",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.55866, lng: 127.00003 },
+    images: [booth_81_1, booth_81_2, booth_81_3, booth_81_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "83",
+    name: "축제 기획단 부스 - 굿즈 현장 판매",
+    intro: "축제 기획단 부스에서 굿즈 현장 판매를 진행합니다!",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.55866, lng: 127.00003 },
+    images: [booth_81_1, booth_81_2, booth_81_3, booth_81_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "84",
+    name: "사격 체험 부스",
+    intro:
+      "경찰사법대학의 주간 부스! 20년 전, 미제로 남은 폐병원 사건의 단서를 찾기 위한 첫 관문! 권총과 소총 사격 체험을 통해 수사 요원으로서의 자격을 얻으세요🔫",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.55832, lng: 127.000391 },
+    images: [booth_72_1],
+    waitingAvailable: false,
+  },
+
+  {
+    id: "86",
+    name: "사격 체험 부스",
+    intro:
+      "경찰사법대학의 주간 부스! 20년 전, 미제로 남은 폐병원 사건의 단서를 찾기 위한 첫 관문! 권총과 소총 사격 체험을 통해 수사 요원으로서의 자격을 얻으세요🔫",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.55832, lng: 127.000391 },
+    images: [booth_72_1],
+    waitingAvailable: false,
+  },
+
+  {
+    id: "87",
+    name: "폐병원 수색 작전",
+    intro:
+      "경찰사법대학의 야간부스! 올해 대동제에서는 낮과 밤이 모두 수사 작전으로 물듭니다. ",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.557557, lng: 127.002006 },
+    images: [booth_8_1, booth_8_2, booth_8_3],
+    waitingAvailable: false,
+  },
+  {
+    id: "88",
+    name: "폐병원 수색 작전",
+    intro:
+      "경찰사법대학의 야간부스! 올해 대동제에서는 낮과 밤이 모두 수사 작전으로 물듭니다. ",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.557557, lng: 127.002006 },
+    images: [booth_8_1, booth_8_2, booth_8_3],
+    waitingAvailable: false,
+  },
+  {
+    id: "89",
+    name: "상록수 커피클럽",
+    intro:
+      "맛있는 핸드드립 커피와 시그니처 음료, 그리고 곁들이기 좋은 수제 디저트까지 준비했으니 편하게 놀러오세요 ☕️",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.558288, lng: 127.000361 },
+    images: [
+      booth_89_1,
+      booth_89_2,
+      booth_89_3,
+      booth_89_4,
+      booth_89_5,
+      booth_89_6,
+      booth_89_7,
+    ],
+    waitingAvailable: false,
+  },
+  {
+    id: "90",
+    name: "상록수 커피클럽",
+    intro:
+      "맛있는 핸드드립 커피와 시그니처 음료, 그리고 곁들이기 좋은 수제 디저트까지 준비했으니 편하게 놀러오세요 ☕️",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558288, lng: 127.000361 },
+    images: [
+      booth_89_1,
+      booth_89_2,
+      booth_89_3,
+      booth_89_4,
+      booth_89_5,
+      booth_89_6,
+      booth_89_7,
+    ],
+    waitingAvailable: false,
+  },
+  {
+    id: "91",
+    name: "상록수 커피클럽",
+    intro:
+      "맛있는 핸드드립 커피와 시그니처 음료, 그리고 곁들이기 좋은 수제 디저트까지 준비했으니 편하게 놀러오세요 ☕️",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558288, lng: 127.000361 },
+    images: [
+      booth_89_1,
+      booth_89_2,
+      booth_89_3,
+      booth_89_4,
+      booth_89_5,
+      booth_89_6,
+      booth_89_7,
+    ],
+    waitingAvailable: false,
+  },
+
+  {
+    id: "92",
+    name: "포토부스 네컷 소개팅 - 코동이 부스",
+    intro:
+      "올해 대동제, 재미만 있고 썸은 없다고? 📸 네컷소개팅 부스에서 네컷사진 한 장으로 운명의 상대를 만날 기회!",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558302, lng: 126.999951 },
+    images: [booth_73_1, booth_73_2, booth_73_3, booth_73_4],
+    waitingAvailable: false,
+  },
+
+  {
+    id: "93",
+    name: "포토부스 네컷 소개팅 - 코동이 부스",
+    intro:
+      "올해 대동제, 재미만 있고 썸은 없다고? 📸 네컷소개팅 부스에서 네컷사진 한 장으로 운명의 상대를 만날 기회!",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558302, lng: 126.999951 },
+    images: [booth_73_1, booth_73_2, booth_73_3, booth_73_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "94",
+    name: "플리마켓 - 1",
+    intro: "플리마켓 - 1",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558045, lng: 127.000578 },
+    images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "95",
+    name: "플리마켓 - 2",
+    intro: "플리마켓 - 2",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558294, lng: 127.000679 },
+    images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "96",
+    name: "플리마켓 - 1",
+    intro: "플리마켓 - 1",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558045, lng: 127.000578 },
+    images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "97",
+    name: "플리마켓 - 2",
+    intro: "플리마켓 - 2",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558294, lng: 127.000679 },
+    images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "98",
+    name: "CASS X 텐텐오락실",
+    intro: "CASS X 텐텐오락실 캠퍼스 어택 프로모션 부스",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.559381, lng: 126.99954 },
+    images: [booth_98_1, booth_98_2, booth_98_3, booth_98_4],
     waitingAvailable: false,
   },
 ] as const;
