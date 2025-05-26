@@ -1,6 +1,6 @@
-import { initializeApp } from 'firebase/app';
-import { getMessaging, getToken, onMessage } from 'firebase/messaging';
-import type { MessagePayload } from 'firebase/messaging';
+import { initializeApp } from "firebase/app";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import type { MessagePayload } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDqlKmIKqOkkkEwdID1_M-e7P0kth0Roxo",
@@ -16,25 +16,29 @@ const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
 // 알림 권한 요청 및 브라우저 토큰 발급
-export const requestPermissionAndGetToken = async (): Promise<string | null> => {
+export const requestPermissionAndGetToken = async (): Promise<
+  string | null
+> => {
   try {
     const permission = await Notification.requestPermission();
-    if (permission !== 'granted') {
-      console.warn('알림 권한 거부됨');
+    if (permission !== "granted") {
+      console.warn("알림 권한 거부됨");
       return null;
     }
 
-    const swReg = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+    const swReg = await navigator.serviceWorker.register(
+      "/firebase-messaging-sw.js"
+    );
 
     const token = await getToken(messaging, {
       vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY,
       serviceWorkerRegistration: swReg,
     });
 
-    console.log('FCM Token:', token);
+    console.log("FCM Token:", token);
     return token;
   } catch (err) {
-    console.error('FCM 토큰 요청 실패:', err);
+    console.error("FCM 토큰 요청 실패:", err);
     return null;
   }
 };
@@ -44,7 +48,7 @@ export const onForegroundMessage = (
   callback: (payload: MessagePayload) => void
 ): void => {
   onMessage(messaging, (payload) => {
-    console.log('포그라운드 메시지:', payload);
+    console.log("포그라운드 메시지:", payload);
     callback(payload);
   });
 };
