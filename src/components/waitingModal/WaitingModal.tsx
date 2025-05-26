@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import ModalPortal from '@/components/common/ModalPortal';
-import * as S from './WaitingModal.styles';
+import { useState } from "react";
+import ModalPortal from "@/components/common/ModalPortal";
+import * as S from "./WaitingModal.styles";
 
 interface Booth {
   id: string;
@@ -13,43 +13,51 @@ interface WaitingModalProps {
   onCancel: () => void;
 }
 
-export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModalProps) {
-  const [step, setStep] = useState<'people' | 'phone' | 'code' | 'done'>('people');
+export default function WaitingModal({
+  booth,
+  onConfirm,
+  onCancel,
+}: WaitingModalProps) {
+  const [step, setStep] = useState<"people" | "phone" | "code" | "done">(
+    "people"
+  );
   const [people, setPeople] = useState<number>(1);
-  const [phone, setPhone] = useState('');
-  const [verifyCode, setVerifyCode] = useState('');
-  const [sentCode, setSentCode] = useState('');
+  const [phone, setPhone] = useState("");
+  const [verifyCode, setVerifyCode] = useState("");
+  const [sentCode, setSentCode] = useState("");
   const [codeSent, setCodeSent] = useState(false);
   const [verified, setVerified] = useState(false);
 
   const handleNext = () => {
     if (people > 0) {
-      setStep('phone');
+      setStep("phone");
     }
   };
 
   const handleSendCode = () => {
     if (phone.length === 11) {
-      const generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
+      const generatedCode = Math.floor(
+        100000 + Math.random() * 900000
+      ).toString();
       setSentCode(generatedCode);
       setCodeSent(true);
-      console.log('전송된 인증번호:', generatedCode);
+      console.log("전송된 인증번호:", generatedCode);
     }
   };
 
   const handleVerify = () => {
     if (verifyCode === sentCode) {
       setVerified(true);
-      alert('인증번호가 확인되었습니다!');
+      alert("인증번호가 확인되었습니다!");
     } else {
-      alert('인증번호가 일치하지 않습니다.');
+      alert("인증번호가 일치하지 않습니다.");
     }
   };
 
   const handleConfirm = () => {
     if (verified) {
       onConfirm({ boothId: booth.id, people, phone });
-      setStep('done');
+      setStep("done");
     }
   };
 
@@ -58,12 +66,12 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
       <S.Overlay>
         <S.ModalBox>
           <S.Title>
-            {step === 'done'
+            {step === "done"
               ? `${booth.name} 웨이팅 완료`
               : `${booth.name} 웨이팅 하기`}
           </S.Title>
 
-          {step === 'people' && (
+          {step === "people" && (
             <>
               <S.Label htmlFor="people">인원수</S.Label>
               <S.Input
@@ -74,7 +82,8 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
                 onChange={(e) => setPeople(Number(e.target.value))}
               />
               <S.Notice>
-                안내 후 10분 안에 오시지 않으면<br />
+                안내 후 10분 안에 오시지 않으면
+                <br />
                 예약이 자동으로 취소될 수 있어요.
               </S.Notice>
               <S.ButtonGroup>
@@ -84,7 +93,7 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
             </>
           )}
 
-          {step === 'phone' && (
+          {step === "phone" && (
             <>
               <S.Label htmlFor="phone">전화번호</S.Label>
               <S.PhoneInputWrapper>
@@ -96,14 +105,19 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
-                <S.SendCodeButton onClick={handleSendCode} disabled={phone.length !== 11}>
+                <S.SendCodeButton
+                  onClick={handleSendCode}
+                  disabled={phone.length !== 11}
+                >
                   인증
                 </S.SendCodeButton>
               </S.PhoneInputWrapper>
 
               {codeSent && (
                 <>
-                  <S.SmallNotice>인증번호를 다시 받으려면 인증 버튼을 다시 눌러주세요.</S.SmallNotice>
+                  <S.SmallNotice>
+                    인증번호를 다시 받으려면 인증 버튼을 다시 눌러주세요.
+                  </S.SmallNotice>
                   <S.Label htmlFor="code">인증번호 입력</S.Label>
                   <S.PhoneInputWrapper>
                     <S.Input
@@ -114,7 +128,10 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
                       value={verifyCode}
                       onChange={(e) => setVerifyCode(e.target.value)}
                     />
-                    <S.SendCodeButton onClick={handleVerify} disabled={verifyCode.length !== 6}>
+                    <S.SendCodeButton
+                      onClick={handleVerify}
+                      disabled={verifyCode.length !== 6}
+                    >
                       확인
                     </S.SendCodeButton>
                   </S.PhoneInputWrapper>
@@ -130,7 +147,7 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
             </>
           )}
 
-          {step === 'done' && (
+          {step === "done" && (
             <>
               <S.Notice>
                 {booth.name}의 웨이팅이 확정되었습니다.
