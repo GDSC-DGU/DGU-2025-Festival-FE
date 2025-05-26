@@ -3,13 +3,77 @@ import LogoImg from "/assets/landing/logo.png";
 import HandSvg from "/assets/landing/hand.svg";
 import FlowerImage from "/assets/landing/flower.png";
 
-const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
+const userAgent = navigator.userAgent.toLowerCase();
+const isIOS = /iphone|ipad|ipod/i.test(userAgent);
+const isKakao = /kakaotalk/i.test(userAgent);
+const isLine = /line\//i.test(userAgent);
+const isOtherInApp =
+  /inapp|naver|snapchat|wirtschaftswoche|thunderbird|instagram|everytimeapp|whatsapp|electron|wadiz|aliapp|zumapp|kakaostory|band|twitter|daumapps|daumdevice\/mobile|fb_iab|fb4a|fban|fbios|fbss|trill/i.test(
+    userAgent
+  );
+
+const tryOpenChromeOrFallback = (url: string) => {
+  // chrome 앱 열기
+  const chromeUrl = url.replace(/^http/, "googlechrome");
+  // safari 열기
+  const safariUrl = url.replace(/^https?:\/\//, "x-safari-https://");
+
+  const now = Date.now();
+  // 크롬 앱 실행 시도
+  const iframe = document.createElement("iframe");
+  iframe.style.display = "none";
+  iframe.src = chromeUrl;
+  document.body.appendChild(iframe);
+
+  // fallback: 크롬 앱 실행 실패로 1.5초 안에 페이지 이탈이 없으면 사파리 열기(각자 커스텀)
+  setTimeout(() => {
+    const elapsed = Date.now() - now;
+    if (elapsed < 3000) {
+      window.location.href = safariUrl;
+    }
+    document.body.removeChild(iframe);
+  }, 1500);
+};
 
 export default function InAppLanding() {
-
   const handleClick = () => {
     const url = window.location.href;
 
+    // 카카오톡
+    if (isKakao) {
+      window.location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(url)}`;
+      setTimeout(() => {
+        window.location.href = isIOS
+          ? "kakaoweb://closeBrowser"
+          : "kakaotalk://inappbrowser/close";
+      }, 500);
+      return;
+    }
+
+    // 라인(LINE)
+    if (isLine) {
+      const lineUrl = url.includes("?")
+        ? `${url}&openExternalBrowser=1`
+        : `${url}?openExternalBrowser=1`;
+      window.location.href = lineUrl;
+      return;
+    }
+
+    // 그 외 인앱 브라우저(everytime, instagram, ...)
+    if (isOtherInApp) {
+      if (/android/i.test(userAgent)) {
+        const intentUrl = url.replace(
+          /^(https?):\/\/(.*)$/,
+          "intent://$2#Intent;scheme=$1;package=com.android.chrome;end"
+        );
+        window.location.href = intentUrl;
+      } else if (isIOS && isOtherInApp) {
+        tryOpenChromeOrFallback(url);
+        return;
+      }
+    }
+
+    // 기본 동작 (안드로이드 크롬 앱 열기)
     if (isIOS) {
       window.open(url, "_blank");
     } else {

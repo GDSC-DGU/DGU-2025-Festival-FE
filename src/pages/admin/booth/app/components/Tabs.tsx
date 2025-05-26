@@ -1,23 +1,29 @@
 import styled from "styled-components";
+import { useBoothAdminStore } from "../stores/useBoothAdminStore";
 
-export type TabType = "available" | "full";
+type PubStatus = "AVAILABLE" | "FULL";
 
-export interface TabsProps {
-  current: TabType;
-  onChange: (tab: TabType) => void;
-}
+const Tabs = () => {
+const { pubStatus, setBoothStatus } = useBoothAdminStore();
 
-const Tabs: React.FC<TabsProps> = ({ current, onChange }) => {
+const handleTabClick = (tab: PubStatus) => {
+  setBoothStatus(tab);
+};
+
+
   return (
     <TabWrapper>
       <TabButton
-        selected={current === "available"}
-        onClick={() => onChange("available")}
+        selected={pubStatus === "AVAILABLE"}
+        onClick={() => handleTabClick("AVAILABLE")}
       >
-        자리 있음
+        바로 입장 가능
       </TabButton>
-      <TabButton selected={current === "full"} onClick={() => onChange("full")}>
-        만석
+      <TabButton
+        selected={pubStatus === "FULL"}
+        onClick={() => handleTabClick("FULL")}
+      >
+        대기 예약 받기
       </TabButton>
     </TabWrapper>
   );

@@ -1,41 +1,28 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
-export interface WaitingData {
+interface ActiveWaiting {
   boothId: string;
-  people: number;
   phone: string;
-  name?: string;        
-  department?: string;  
 }
 
 interface WaitingState {
-  waitingList: WaitingData[];
-  activeWaiting: WaitingData | null;
+  activeWaiting: ActiveWaiting | null;
+  cancelledBoothId: string | null;
 
-  addWaiting: (data: WaitingData) => void;
+  addWaiting: (data: ActiveWaiting) => void;
   cancelWaiting: (boothId: string) => void;
-  confirmVisit: (boothId: string) => void;
+  setCancelledBooth: (id: string | null) => void;
 }
 
 export const useWaitingStore = create<WaitingState>((set) => ({
-  waitingList: [],
   activeWaiting: null,
+  cancelledBoothId: null,
 
   addWaiting: (data) =>
-    set((state) => ({
-      waitingList: [...state.waitingList, data],
-      activeWaiting: data,
-    })),
+    set({ activeWaiting: data, cancelledBoothId: null }),
 
   cancelWaiting: (boothId) =>
-    set((state) => ({
-      waitingList: state.waitingList.filter((w) => w.boothId !== boothId),
-      activeWaiting:
-        state.activeWaiting?.boothId === boothId ? null : state.activeWaiting,
-    })),
+    set({ activeWaiting: null, cancelledBoothId: boothId }),
 
-  confirmVisit: (boothId) => {
-    console.log(`Booth ${boothId} 방문 확정`);
-    // TODO: 방문 확정 처리 API 연결 예정
-  },
+  setCancelledBooth: (id) => set({ cancelledBoothId: id }),
 }));

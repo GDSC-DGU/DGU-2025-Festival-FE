@@ -140,17 +140,6 @@ export const BoothList = styled.div`
   gap: 20px;
 `;
 
-export const BoothCard = styled.div`
-  border-radius: 8px;
-  background-color: white;
-  box-shadow: 0 0 4px rgba(67, 56, 202, 0.25);
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; 
-  gap: 10px;        
-`;
 
 
 interface BoothActionButtonProps {
@@ -186,7 +175,10 @@ export const ImmediateEntryText = styled.div`
   font-size: 12px;
   font-weight: 500;
   color: #575bdf;
+  align-self: flex-end;
+  margin-left: auto;
 `;
+
 
 export const WaitingSummary = styled.div`
   padding: 4px 12px;
@@ -196,4 +188,55 @@ export const WaitingSummary = styled.div`
   font-weight: 400;
   display: inline-block;
   width: fit-content;
+`;
+
+export const PreparingText = styled.div`
+  color: #aaa;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: right;
+  align-self: flex-end;
+  margin-left: auto;
+`;
+
+export const EndedText = styled.div`
+  color: #ccc;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: right;
+  align-self: flex-end;
+  margin-left: auto;
+`;
+
+export const EmptyBoothMessage = styled.div`
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  padding: 40px 0;
+  line-height: 1.6;
+`;
+
+export const LateToggleButton = styled.button`
+  margin-left: 12px;
+  padding: 4px 10px;
+  font-size: 12px;
+  background-color: #ffdddd;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  border-radius: 12px;
+  cursor: pointer;
+`;
+
+export const BoothCard = styled.div<{ $isLate?: boolean }>`
+  border-radius: 8px;
+  background-color: ${({ $isLate }) => ($isLate ? "#fff0f0" : "white")};
+  box-shadow: 0 0 4px
+    ${({ $isLate }) =>
+      $isLate ? "rgba(202, 56, 56, 0.5)" : "rgba(67, 56, 202, 0.25)"};
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 `;

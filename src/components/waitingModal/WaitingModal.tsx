@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import ModalPortal from '@/components/common/ModalPortal';
-import * as S from './WaitingModal.styles';
+import { useState } from "react";
+import ModalPortal from "@/components/common/ModalPortal";
+import * as S from "./WaitingModal.styles";
 import {
   requestPhoneCert,
   verifyPhoneCode,
   reserveBooth,
 } from "@/api/reservation";
-import { requestPermissionAndGetToken } from '@/firebase';
+// import { requestPermissionAndGetToken } from "@/firebase";
 
 interface Booth {
   id: string;
@@ -15,45 +15,56 @@ interface Booth {
 
 interface WaitingModalProps {
   booth: Booth;
-  onConfirm: (data: { boothId: string; people: number; phone: string; name: string }) => void;
+  onConfirm: (data: {
+    boothId: string;
+    people: number;
+    phone: string;
+    name: string;
+  }) => void;
   onCancel: () => void;
   onClose: () => void;
 }
 
-export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModalProps) {
-  const [step, setStep] = useState<'people' | 'phone' | 'code' | 'name' | 'done'>('people');
+export default function WaitingModal({
+  booth,
+  onConfirm,
+  onCancel,
+}: WaitingModalProps) {
+  const [step, setStep] = useState<
+    "people" | "phone" | "code" | "name" | "done"
+  >("people");
   const [people, setPeople] = useState<number>(1);
-  const [phone, setPhone] = useState('');
-  const [verifyCode, setVerifyCode] = useState('');
+  const [phone, setPhone] = useState("");
+  const [verifyCode, setVerifyCode] = useState("");
   const [codeSent, setCodeSent] = useState(false);
   const [verified, setVerified] = useState(false);
-  const [name, setName] = useState('');
-  const [alreadyReserved, setAlreadyReserved] = useState(false); 
+  const [name, setName] = useState("");
+  const [alreadyReserved, setAlreadyReserved] = useState(false);
 
-  useEffect(() => {
-    const askPermissionAndGetToken = async () => {
-      try {
-        if (Notification.permission === 'default') {
-          const permission = await Notification.requestPermission();
-          if (permission === 'granted') {
-            const token = await requestPermissionAndGetToken();
-            if (token) console.log('FCM 토큰:', token);
-          }
-        } else if (Notification.permission === 'granted') {
-          const token = await requestPermissionAndGetToken();
-          if (token) console.log('FCM 토큰:', token);
-        } else {
-          console.log('알림 권한 거부됨');
-        }
-      } catch (err) {
-        console.error('알림 권한 요청 또는 토큰 발급 실패:', err);
-      }
-    };
-    askPermissionAndGetToken();
-  }, []);
+  // useEffect(() => {
+  //   const askPermissionAndGetToken = async () => {
+  //     try {
+  //       if (Notification.permission === "default") {
+  //         const permission = await Notification.requestPermission();
+  //         if (permission === "granted") {
+  //           // const token = await requestPermissionAndGetToken();
+  //           // if (token) console.log("FCM 토큰:", token);
+  //         }
+  //       } else if (Notification.permission === "granted") {
+  //         // const token = await requestPermissionAndGetToken();
+  //         // if (token) console.log("FCM 토큰:", token);
+  //       } else {
+  //         console.log("알림 권한 거부됨");
+  //       }
+  //     } catch (err) {
+  //       console.error("알림 권한 요청 또는 토큰 발급 실패:", err);
+  //     }
+  //   };
+  //   askPermissionAndGetToken();
+  // }, []);
 
   const handleNext = () => {
-    if (people > 0) setStep('phone');
+    if (people > 0) setStep("phone");
   };
 
   const handleSendCode = async () => {
@@ -74,16 +85,16 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
 
   const handleVerify = async () => {
     try {
-      const token = await requestPermissionAndGetToken();
-      if (!token) {
-        alert("알림 권한이 필요합니다.");
-        return;
-      }
+      // const token = await requestPermissionAndGetToken();
+      // if (!token) {
+      //   alert("알림 권한이 필요합니다.");
+      //   return;
+      // }
 
       const res = await verifyPhoneCode({
         phoneNumber: phone,
         certificationNumber: verifyCode,
-        browserToken: token,
+        browserToken: "dummy-token", // TODO: Replace with actual token logic
       });
 
       if (res.success) {
@@ -99,17 +110,17 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
   };
 
   const handleConfirm = async () => {
-    if (!verified || name.trim() === '') return;
+    if (!verified || name.trim() === "") return;
 
     try {
-      const token = await requestPermissionAndGetToken();
-      if (!token) {
-        alert("알림 권한이 필요합니다.");
-        return;
-      }
+      // const token = await requestPermissionAndGetToken();
+      // if (!token) {
+      //   alert("알림 권한이 필요합니다.");
+      //   return;
+      // }
 
       const res = await reserveBooth(booth.id, {
-        browserToken: token,
+        browserToken: "dummy-token", // TODO: Replace with actual token logic
         phoneNumber: phone,
         name: name.trim(),
         attendance: people,
@@ -119,7 +130,7 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
         localStorage.setItem("userPhoneNumber", phone);
         onConfirm({ boothId: booth.id, people, phone, name: name.trim() });
         setStep("done");
-      } else if ((res.error as { code: string })?.code === '40904') {
+      } else if ((res.error as { code: string })?.code === "40904") {
         setAlreadyReserved(true);
         setStep("done");
       } else {
@@ -135,15 +146,15 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
       <S.Overlay>
         <S.ModalBox>
           <S.Title>
-            {step === 'done'
+            {step === "done"
               ? alreadyReserved
-                ? '이미 예약됨'
+                ? "이미 예약됨"
                 : `${booth.name} 웨이팅 완료`
               : `${booth.name} 웨이팅 하기`}
           </S.Title>
 
           {/* STEP 1: 인원수 입력 */}
-          {step === 'people' && (
+          {step === "people" && (
             <>
               <S.Label htmlFor="people">인원수</S.Label>
               <S.Input
@@ -151,14 +162,16 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
                 type="text"
                 inputMode="numeric"
                 pattern="[0-9]*"
-                value={people === 0 ? '' : people}
+                value={people === 0 ? "" : people}
                 onChange={(e) => {
                   const val = e.target.value;
-                  if (/^\d*$/.test(val)) setPeople(val === '' ? 0 : Number(val));
+                  if (/^\d*$/.test(val))
+                    setPeople(val === "" ? 0 : Number(val));
                 }}
               />
               <S.Notice>
-                안내 후 10분 안에 오시지 않으면<br />
+                안내 후 10분 안에 오시지 않으면
+                <br />
                 예약이 자동으로 취소될 수 있어요.
               </S.Notice>
               <S.ButtonGroup>
@@ -169,7 +182,7 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
           )}
 
           {/* STEP 2: 전화번호 인증 */}
-          {step === 'phone' && (
+          {step === "phone" && (
             <>
               <S.Label htmlFor="phone">전화번호</S.Label>
               <S.PhoneInputWrapper>
@@ -181,14 +194,19 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
-                <S.SendCodeButton onClick={handleSendCode} disabled={phone.length !== 11}>
+                <S.SendCodeButton
+                  onClick={handleSendCode}
+                  disabled={phone.length !== 11}
+                >
                   인증
                 </S.SendCodeButton>
               </S.PhoneInputWrapper>
 
               {codeSent && (
                 <>
-                  <S.SmallNotice>인증번호를 다시 받으려면 인증 버튼을 다시 눌러주세요.</S.SmallNotice>
+                  <S.SmallNotice>
+                    인증번호를 다시 받으려면 인증 버튼을 다시 눌러주세요.
+                  </S.SmallNotice>
                   <S.Label htmlFor="code">인증번호 입력</S.Label>
                   <S.PhoneInputWrapper>
                     <S.Input
@@ -199,7 +217,10 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
                       value={verifyCode}
                       onChange={(e) => setVerifyCode(e.target.value)}
                     />
-                    <S.SendCodeButton onClick={handleVerify} disabled={verifyCode.length !== 4}>
+                    <S.SendCodeButton
+                      onClick={handleVerify}
+                      disabled={verifyCode.length !== 4}
+                    >
                       확인
                     </S.SendCodeButton>
                   </S.PhoneInputWrapper>
@@ -213,7 +234,7 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
           )}
 
           {/* STEP 3: 이름 입력 */}
-          {step === 'name' && (
+          {step === "name" && (
             <>
               <S.Label htmlFor="name">대표자 이름</S.Label>
               <S.Input
@@ -226,7 +247,10 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
               <S.Notice>입력하신 이름으로 예약이 진행됩니다.</S.Notice>
               <S.ButtonGroup>
                 <S.CancelButton onClick={onCancel}>취소</S.CancelButton>
-                <S.ConfirmButton onClick={handleConfirm} disabled={!name.trim()}>
+                <S.ConfirmButton
+                  onClick={handleConfirm}
+                  disabled={!name.trim()}
+                >
                   예약 확정
                 </S.ConfirmButton>
               </S.ButtonGroup>
@@ -234,19 +258,16 @@ export default function WaitingModal({ booth, onConfirm, onCancel }: WaitingModa
           )}
 
           {/* STEP 4: 완료 or 중복 안내 */}
-          {step === 'done' && (
+          {step === "done" && (
             <>
               <S.Notice>
                 {alreadyReserved ? (
                   <>
                     이미 웨이팅을 등록한 기록이 있어요.
-                    <br />
-                    한 사람당 1개의 웨이팅만 가능합니다.
+                    <br />한 사람당 1개의 웨이팅만 가능합니다.
                   </>
                 ) : (
-                  <>
-                    {booth.name}의 웨이팅이 확정되었습니다.
-                  </>
+                  <>{booth.name}의 웨이팅이 확정되었습니다.</>
                 )}
               </S.Notice>
               <S.ButtonGroup>

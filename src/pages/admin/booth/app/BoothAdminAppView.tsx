@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Wrapper,
   BoothListWrapper,
@@ -18,15 +19,11 @@ import PhoneModal from "./Modal/PhoneModal";
 import TopBar from "@/components/topbar/TopBar";
 import RoleTag from "@/components/role/RoleTag";
 import BottomNav from "./components/BottomNav";
-import { useEffect } from "react";
-import { useState } from "react"; 
 
 const BoothAdminAppView = () => {
   const [bottomTab, setBottomTab] = useState<"waiting" | "late">("waiting");
 
   const {
-    tab,
-    setTab,
     waitingBooths,
     modalType,
     selectedBooth,
@@ -36,15 +33,18 @@ const BoothAdminAppView = () => {
     confirmDelete,
     confirmCloseBooth,
     fetchBooths,
-    // openModal,
   } = useBoothAdminStore();
+
+  const now = Date.now();
+  const LATE_MINUTES = 10;
 
   useEffect(() => {
     fetchBooths();
+    const interval = setInterval(() => {
+      fetchBooths();
+    }, 10000);
+    return () => clearInterval(interval);
   }, []);
-
-  const now = Date.now();
-  const LATE_MINUTES = 5;
 
   const lateBooths = waitingBooths.filter(
     (booth) =>
@@ -54,9 +54,22 @@ const BoothAdminAppView = () => {
       (now - new Date(booth.calledAt).getTime()) / 60000 >= LATE_MINUTES
   );
 
-  const normalBooths = waitingBooths;
+  const calledBooths = waitingBooths.filter(
+    (booth) =>
+      booth.status === "CALLED" &&
+      !booth.visited &&
+      !booth.cancelled &&
+      !lateBooths.some((late) => late.id === booth.id)
+  );
 
-  const notEnteredCount = normalBooths.filter(
+  const waitingOnlyBooths = waitingBooths.filter(
+    (booth) =>
+      booth.status === "WAITING" &&
+      !booth.visited &&
+      !booth.cancelled
+  );
+
+  const notEnteredCount = waitingBooths.filter(
     (booth) => !booth.visited && !booth.cancelled
   ).length;
 
@@ -70,14 +83,15 @@ const BoothAdminAppView = () => {
         <SectionDescription>
           현재 부스의 좌석 상황을 설정하면, 방문자가 이를 확인할 수 있어요.
         </SectionDescription>
-        <Tabs current={tab} onChange={setTab} />
-      </Section>
+        <Tabs />
+        </Section>
 
+      {/* 늦은 대기자 */}
       {bottomTab === "late" && lateBooths.length > 0 && (
         <Section>
           <SectionTitle>늦은 대기자</SectionTitle>
           <SectionDescription>
-            호출 후 5분 이상 지났지만 아직 방문하지 않은 대기자입니다.
+            호출 후 10분 이상 지났지만 아직 방문하지 않은 대기자입니다.
           </SectionDescription>
           <BoothListWrapper>
             {lateBooths.map((booth) => (
@@ -92,41 +106,54 @@ const BoothAdminAppView = () => {
         </Section>
       )}
 
-{bottomTab === "waiting" && (
-  <Section>
-    <SectionTitle>전체 대기자 목록</SectionTitle>
-    <SectionDescription>
-      현재 등록된 모든 대기자를 확인할 수 있어요.
-    </SectionDescription>
-    <TotalCount>대기 {notEnteredCount}팀</TotalCount>
-    <BoothListWrapper>
-      {normalBooths.map((booth) => {
-        const isCalling = booth.calledAt;
-        const elapsedMinutes = booth.calledAt
-          ? (now - new Date(booth.calledAt).getTime()) / 60000
-          : 0;
-        const showDeleteButton =
-          isCalling && elapsedMinutes >= LATE_MINUTES;
+      {/* 전체 대기자 (호출 + 미호출 분리) */}
+      {bottomTab === "waiting" && (
+        <>
+          <Section>
+            <SectionTitle>전체 대기자 목록</SectionTitle>
+            <SectionDescription>
+              현재 등록된 모든 대기자를 확인할 수 있어요.
+            </SectionDescription>
+            <TotalCount>대기 {notEnteredCount}팀</TotalCount>
+          </Section>
 
-        const isLate = lateBooths.some((late) => late.id === booth.id); 
+          {calledBooths.length > 0 && (
+            <Section>
+              <SectionTitle>현재 호출된 인원입니다</SectionTitle>
+              <BoothListWrapper>
+                {calledBooths.map((booth) => (
+                  <WaitingBoothCard
+                    key={booth.id}
+                    booth={booth}
+                    showDeleteButton={true}
+                    highlightLate={false}
+                  />
+                ))}
+              </BoothListWrapper>
+            </Section>
+          )}
 
-return (
-  <WaitingBoothCard
-    key={booth.id}
-    booth={booth}
-    showDeleteButton={!!showDeleteButton}
-    highlightLate={isLate}
-  />
-);
-      })}
-    </BoothListWrapper>
-  </Section>
-)}
-
-
+          {waitingOnlyBooths.length > 0 && (
+            <Section>
+              <SectionTitle>대기 중인 인원입니다</SectionTitle>
+              <BoothListWrapper>
+                {waitingOnlyBooths.map((booth) => (
+                  <WaitingBoothCard
+                    key={booth.id}
+                    booth={booth}
+                    showDeleteButton={false}
+                    highlightLate={false}
+                  />
+                ))}
+              </BoothListWrapper>
+            </Section>
+          )}
+        </>
+      )}
 
       <FloatingButton />
 
+      {/* 모달들 */}
       {modalType === "call" && selectedBooth && (
         <ConfirmCallModal
           boothName={selectedBooth.name}
@@ -137,7 +164,6 @@ return (
           }}
         />
       )}
-
       {modalType === "visit" && selectedBooth && (
         <ConfirmVisitModal
           boothName={selectedBooth.name}
@@ -148,7 +174,6 @@ return (
           }}
         />
       )}
-
       {modalType === "delete" && selectedBooth && (
         <ConfirmDeleteModal
           boothName={selectedBooth.name}
@@ -159,7 +184,6 @@ return (
           }}
         />
       )}
-
       {modalType === "closeBooth" && (
         <BoothCloseModal
           onCancel={closeModal}

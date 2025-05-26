@@ -6,7 +6,7 @@ import HeartOff from "@/assets/icons/heart-off.png";
 import MapContainer from "@/pages/booth/components/MapContainer";
 import MiniBoothCard from "./components/MiniBoothCard";
 import WaitingClosedModal from "@/pages/waiting/components/WaitingClosedModal";
-// import WaitingModal from '@/components/waitingModal/WaitingModal';
+import WaitingModal from "@/components/waitingModal/WaitingModal";
 import TopBar from "@/components/topbar/TopBar";
 import ImagePagination from "../notice-detail/components/ImagePagination/ImagePagination";
 import {
@@ -27,9 +27,12 @@ import {
   ImageScrollContainer,
   ImageItem,
   ImageScrollWrapper,
+  EmptyContainer,
 } from "./BoothDetailPage.styles";
 import { useLike } from "@/api/likes/hooks/useLike";
 import SkeletonLoading from "@/components/common/SkeletonLoading";
+import { usePubStatus } from "@/api/hooks/usePubStatus";
+import getDistance from "./utils/getDistance";
 
 export default function BoothDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -37,39 +40,63 @@ export default function BoothDetailPage() {
   const boothId = Number(id);
   const navigate = useNavigate();
   const [showWaitingModal, setShowWaitingModal] = useState(false);
+  const [showWaitingClosedModal, setShowWaitingClosedModal] = useState(false);
+  const [waitingClosedModalMessage, setWaitingClosedModalMessage] =
+    useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
   const imageScrollRef = useRef<HTMLDivElement>(null);
   const boothScrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setCurrentSlide(0);
-  }, [boothId]);
+  const { data: boothStatus } = usePubStatus(id!);
+  const pubStatus = boothStatus?.status ?? null;
 
   const { isLoading, totalLikes, toggleLike, isToggling, isLiked } =
     useLike(boothId);
 
+  const [localLiked, setLocalLiked] = useState(isLiked);
+  const hasCalledLikeAPI = useRef(false);
+
+  const handleLikeClick = () => {
+    setLocalLiked((prev) => !prev);
+    if (!hasCalledLikeAPI.current && !isLiked) {
+      toggleLike();
+      hasCalledLikeAPI.current = true;
+    }
+  };
+
   useEffect(() => {
+    setCurrentSlide(0);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [boothId]);
 
-  const relatedBooths = useMemo(
-    () =>
-      booths.filter(
-        (b) =>
-          b.date === booth?.date && b.type === booth?.type && b.id !== booth?.id
-      ),
-    [booth]
+  const relatedBooths = useMemo(() => {
+    if (!booth) return [];
+
+    const sameDateAndType = booths.filter(
+      (b) => b.date === booth.date && b.type === booth.type && b.id !== booth.id
+    );
+
+    // 기준 좌표
+    const baseLat = booth.position.lat;
+    const baseLng = booth.position.lng;
+
+    return sameDateAndType
+      .map((b) => ({
+        ...b,
+        distance: getDistance(baseLat, baseLng, b.position.lat, b.position.lng),
+      }))
+      .filter((b) => b.distance < 50) // 50m 이내로 필터링
+      .sort((a, b) => a.distance - b.distance); // 가까운 순 정렬
+  }, [booth]);
+
+  const loopedBooths = useMemo(
+    () => [...relatedBooths, ...relatedBooths],
+    [relatedBooths]
   );
 
-  const loopedBooths = useMemo(() => {
-    return [...relatedBooths, ...relatedBooths];
-  }, [relatedBooths]);
-
   const autoScrollIndex = useRef(0);
-
   useEffect(() => {
     if (!boothScrollRef.current || loopedBooths.length === 0) return;
-
     const scrollEl = boothScrollRef.current;
     const cards = scrollEl.querySelectorAll("[data-booth-id]");
 
@@ -90,7 +117,6 @@ export default function BoothDetailPage() {
         });
         return;
       }
-
       const target = cards[autoScrollIndex.current] as HTMLElement;
       scrollEl.scrollTo({
         left:
@@ -127,7 +153,7 @@ export default function BoothDetailPage() {
     <Container>
       <TopBar
         title="부스 상세"
-        showBackButton={true}
+        showBackButton
         onBack={() => navigate("/booth")}
       />
       <ContentContainer>
@@ -140,30 +166,52 @@ export default function BoothDetailPage() {
             centerLng={booth.position.lng}
           />
         </MapWrapper>
+
         <Card>
           <Header>
             <Info>
               <BoothName>{booth.name}</BoothName>
               {booth.waitingAvailable && (
-                <ReserveButton onClick={() =>
-                  setShowWaitingModal(true)
-                }>
+                <ReserveButton
+                  onClick={() => {
+                    if (pubStatus === "AVAILABLE") {
+                      setWaitingClosedModalMessage(
+                        "현재 바로 입장 가능합니다."
+                      );
+                      setShowWaitingClosedModal(true);
+                    } else if (pubStatus === "PREPARING") {
+                      setWaitingClosedModalMessage(
+                        "아직 부스가 시작되지 않았어요. 조금만 더 기다려주세요!"
+                      );
+                      setShowWaitingClosedModal(true);
+                    } else if (pubStatus === "END") {
+                      setWaitingClosedModalMessage("운영이 종료된 부스입니다.");
+                      setShowWaitingClosedModal(true);
+                    } else if (pubStatus === "FULL") {
+                      setShowWaitingModal(true);
+                    } else {
+                      setWaitingClosedModalMessage(
+                        "부스 상태를 확인할 수 없습니다."
+                      );
+                      setShowWaitingClosedModal(true);
+                    }
+                  }}
+                >
                   웨이팅하기
                 </ReserveButton>
               )}
             </Info>
             <BoothIntro>{booth.intro}</BoothIntro>
           </Header>
-
           {booth.images.length > 0 && (
             <ImageScrollWrapper>
               <ImageScrollContainer
                 ref={imageScrollRef}
                 onScroll={handleScroll}
               >
-                {booth.images.map((img: string, index: number) => (
-                  <ImageItem key={index}>
-                    <img src={img} alt={`부스 이미지 ${index + 1}`} />
+                {booth.images.map((img, idx) => (
+                  <ImageItem key={idx}>
+                    <img src={img} alt={`부스 이미지 ${idx + 1}`} />
                   </ImageItem>
                 ))}
               </ImageScrollContainer>
@@ -176,31 +224,29 @@ export default function BoothDetailPage() {
               )}
             </ImageScrollWrapper>
           )}
-
           <Like
             as="button"
-            disabled={isToggling || isLiked}
-            onClick={() => toggleLike()}
+            disabled={isToggling}
+            onClick={handleLikeClick}
             style={{
-              cursor: isToggling || isLiked ? "not-allowed" : "pointer",
+              cursor: isToggling ? "not-allowed" : "pointer",
               background: "none",
               border: "none",
-              padding: 0,
             }}
           >
             <LikeCount>{totalLikes}</LikeCount>
-            <img src={isLiked ? HeartOn : HeartOff} alt="찜" width={24} />
+            <img src={localLiked ? HeartOn : HeartOff} alt="찜" width={24} />
           </Like>
         </Card>
 
         <SubContainer>
           <Title>근처 부스 둘러보기</Title>
-          {relatedBooths.length > 0 && (
+          {relatedBooths.length > 0 ? (
             <ScrollWrapper ref={boothScrollRef}>
-              {loopedBooths.map((b, index) => (
+              {loopedBooths.map((b, idx) => (
                 <MiniBoothCard
-                  key={`${b.id}-${index}`}
-                  id={`${b.id}-${index}`}
+                  key={`${b.id}-${idx}`}
+                  id={`${b.id}-${idx}`}
                   name={b.name}
                   image={b.images[0]}
                   intro={b.intro}
@@ -208,25 +254,26 @@ export default function BoothDetailPage() {
                 />
               ))}
             </ScrollWrapper>
+          ) : (
+            <EmptyContainer>근처에 있는 부스를 찾을 수 없어요</EmptyContainer>
           )}
         </SubContainer>
 
-{showWaitingModal && (
-  <>
-    <WaitingClosedModal onClose={() => setShowWaitingModal(false)} />
-    {/*
-      <WaitingModal
-        booth={booth}
-        onClose={() => setShowWaitingModal(false)}
-        onConfirm={() => {
-          // handle confirm action here
-          setShowWaitingModal(false);
-        }}
-        onCancel={() => setShowWaitingModal(false)}
-      />
-    */}
-  </>
-)}
+        {showWaitingModal && (
+          <WaitingModal
+            booth={booth}
+            onClose={() => setShowWaitingModal(false)}
+            onConfirm={() => setShowWaitingModal(false)}
+            onCancel={() => setShowWaitingModal(false)}
+          />
+        )}
+
+        {showWaitingClosedModal && (
+          <WaitingClosedModal
+            message={waitingClosedModalMessage}
+            onClose={() => setShowWaitingClosedModal(false)}
+          />
+        )}
       </ContentContainer>
     </Container>
   );
