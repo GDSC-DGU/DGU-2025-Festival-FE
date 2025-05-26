@@ -38,7 +38,7 @@ const BoothAdminAppView = () => {
   } = useBoothAdminStore();
 
   const now = Date.now();
-  const LATE_MINUTES = 5;
+  const LATE_MINUTES = 10;
 
   useEffect(() => {
     fetchBooths();
@@ -93,7 +93,7 @@ const BoothAdminAppView = () => {
         <Section>
           <SectionTitle>늦은 대기자</SectionTitle>
           <SectionDescription>
-            호출 후 5분 이상 지났지만 아직 방문하지 않은 대기자입니다.
+            호출 후 10분 이상 지났지만 아직 방문하지 않은 대기자입니다.
           </SectionDescription>
           <BoothListWrapper>
             {lateBooths.map((booth) => (
