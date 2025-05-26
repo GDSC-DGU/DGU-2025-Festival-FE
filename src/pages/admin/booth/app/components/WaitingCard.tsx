@@ -2,24 +2,8 @@ import * as S from "./WaitingBoothCard.styles";
 import { useBoothAdminStore } from "../stores/useBoothAdminStore";
 import Time from "@/assets/icons/time.png";
 
-
-export interface WaitingBooth {
-  id: string;
-  name: string;
-  waitingCount: number;
-  isCalling: boolean;
-  calledAt?: string;
-  phone: string;
-  order?: number;
-  visited?: boolean;
-  cancelled?: boolean;
-
-  status?: "WAITING" | "CALLED" | "COMPLETED" | "CANCELED";
-}
-
-
 interface WaitingBoothCardProps {
-  booth: WaitingBooth;
+  booth: import("../stores/useBoothAdminStore").WaitingBooth;
   showDeleteButton: boolean;
   highlightLate?: boolean;
 }
@@ -44,12 +28,10 @@ const WaitingBoothCard = ({
     ? `${Math.floor((Date.now() - new Date(booth.calledAt).getTime()) / 60000)}분 경과`
     : null;
 
-  const order = booth.order;
-
   return (
     <S.CardWrapper onClick={handleCardClick} highlightLate={highlightLate}>
       <S.LeftSection>
-        <S.OrderText>{order ? `${order}번째` : ""}</S.OrderText>
+        <S.OrderText>{booth.order ? `${booth.order}번째` : ""}</S.OrderText>
         <S.Title>{booth.name}</S.Title>
         <S.SubTitle>
           예약자 수 <span>{booth.waitingCount}명</span>
@@ -57,77 +39,70 @@ const WaitingBoothCard = ({
       </S.LeftSection>
 
       <S.ButtonGroup>
-  {booth.status === "CANCELED" ? (
-    <S.CancelledText>대기 취소됨</S.CancelledText>
-  ) : booth.status === "COMPLETED" ? (
-    <S.VisitedText>입장 완료</S.VisitedText>
-  ) : booth.calledAt ? (
-    <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-        }}
-      >
-        <S.CalledText style={{ marginLeft: 16 }}>호출 중</S.CalledText>
-        {elapsed && (
-          <S.ElapsedText style={{ marginLeft: 16 }}>
-            <img
-              src={Time}
-              alt="경과 시간"
-              style={{
-                width: 10,
-                height: 10,
-                marginRight: -3,
-                verticalAlign: "middle",
+        {booth.status === "CANCELED" ? (
+          <S.CancelledText>대기 취소됨</S.CancelledText>
+        ) : booth.status === "COMPLETED" || booth.visited ? (
+          <S.VisitedText>입장 완료</S.VisitedText>
+        ) : booth.status === "CALLED" ? (
+          <>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+              <S.CalledText style={{ marginLeft: 16 }}>호출 중</S.CalledText>
+              {elapsed && (
+                <S.ElapsedText style={{ marginLeft: 16 }}>
+                  <img
+                    src={Time}
+                    alt="경과 시간"
+                    style={{
+                      width: 10,
+                      height: 10,
+                      marginRight: -3,
+                      verticalAlign: "middle",
+                    }}
+                  />
+                  {elapsed}
+                </S.ElapsedText>
+              )}
+            </div>
+            <S.VisitButton
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClick("visit");
               }}
-            />
-            {elapsed}
-          </S.ElapsedText>
+            >
+              입장 완료
+            </S.VisitButton>
+            {showDeleteButton && (
+              <S.DeleteButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleClick("delete");
+                }}
+              >
+                대기 취소
+              </S.DeleteButton>
+            )}
+          </>
+        ) : (
+          <>
+            <S.CallButton
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClick("call");
+              }}
+            >
+              호출
+            </S.CallButton>
+            <S.DeleteButton
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClick("delete");
+              }}
+            >
+              대기 취소
+            </S.DeleteButton>
+          </>
         )}
-      </div>
-      <S.VisitButton
-        onClick={(e) => {
-          e.stopPropagation();
-          handleClick("visit");
-        }}
-      >
-        입장 완료
-      </S.VisitButton>
-      {showDeleteButton && (
-        <S.DeleteButton
-          onClick={(e) => {
-            e.stopPropagation();
-            handleClick("delete");
-          }}
-        >
-          대기 취소
-        </S.DeleteButton>
-      )}
-    </>
-  ) : (
-    <>
-      <S.CallButton
-        onClick={(e) => {
-          e.stopPropagation();
-          handleClick("call");
-        }}
-      >
-        호출
-      </S.CallButton>
-      <S.DeleteButton
-        onClick={(e) => {
-          e.stopPropagation();
-          handleClick("delete");
-        }}
-      >
-        대기 취소
-      </S.DeleteButton>
-    </>
-  )}
-</S.ButtonGroup>
-
+      </S.ButtonGroup>
     </S.CardWrapper>
   );
 };

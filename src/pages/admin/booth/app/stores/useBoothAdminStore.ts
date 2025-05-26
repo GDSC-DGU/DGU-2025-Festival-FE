@@ -1,7 +1,8 @@
+
 import { create } from "zustand";
 import { adminInstance } from "@/api/instance";
 import { sendRequest } from "@/api/request";
-import { updateBoothStatus } from "@/api/booth/adminBooth"; // 부스 상태 변경 API
+import { updateBoothStatus } from "@/api/booth/adminBooth";
 
 export type TabType = "available" | "full";
 export type ModalType = "call" | "visit" | "delete" | "closeBooth" | null;
@@ -16,6 +17,7 @@ export interface WaitingBooth {
   order?: number;
   visited?: boolean;
   cancelled?: boolean;
+  status?: "WAITING" | "CALLED" | "LATE" | "CANCELED";
 }
 
 interface BoothAdminState {
@@ -64,7 +66,7 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
     await sendRequest(adminInstance, "POST", "/pub/call", { reserveId: id });
     const updated = get().waitingBooths.map((b) =>
       b.id === id
-        ? { ...b, isCalling: true, calledAt: new Date().toISOString() }
+        ? { ...b, isCalling: true, calledAt: new Date().toISOString(), status: "CALLED" as WaitingBooth["status"] }
         : b
     );
     set({ waitingBooths: updated });
@@ -73,14 +75,16 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
   confirmVisit: async (id) => {
     await sendRequest(adminInstance, "PATCH", "/pub/reserve", { reserveId: id });
     const updated = get().waitingBooths.map((b) =>
-      b.id === id ? { ...b, visited: true } : b
+      b.id === id ? { ...b, visited: true, status: "CALLED" as WaitingBooth["status"] } : b
     );
     set({ waitingBooths: updated });
   },
 
   confirmDelete: async (id) => {
     await sendRequest(adminInstance, "DELETE", "/pub", { reserveId: id });
-    const updated = get().waitingBooths.filter((b) => b.id !== id);
+    const updated = get().waitingBooths.map((b) =>
+      b.id === id ? { ...b, cancelled: true, status: "CANCELED" as WaitingBooth["status"] } : b
+    );
     set({ waitingBooths: updated });
   },
 
@@ -101,7 +105,6 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
       console.warn("선택된 부스가 없습니다.");
       return;
     }
-
     try {
       await updateBoothStatus(status);
       console.log(`✅ 부스 상태 변경 완료: ${status}`);
@@ -120,26 +123,44 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
         reserveName: string;
         phoneNumber: string;
         reserveMembers: number;
-        status: "WAITING" | "CALLED" | "LATE";
+        status: "WAITING" | "CALLED" | "LATE" | "CANCELED";
         elapsedTime: number | null;
       }[];
     }>(adminInstance, "GET", "/pub");
 
     if (res.success) {
-      const booths = res.data.reserveList.map((item, index) => ({
-        id: String(item.reserveId),
-        name: item.reserveName,
-        waitingCount: item.reserveMembers,
-        isCalling: item.status === "CALLED" || item.status === "LATE",
-        calledAt:
-          item.status !== "WAITING" && item.elapsedTime !== null
-            ? new Date(Date.now() - item.elapsedTime * 60000).toISOString()
-            : undefined,
-        phone: item.phoneNumber,
-        visited: false,
-        cancelled: false,
-        order: index + 1,
-      }));
+      const booths = res.data.reserveList.map((item, index) => {
+        const isCalled = item.status === "CALLED" || item.status === "LATE";
+
+        let calledAt: string | undefined;
+        if (isCalled) {
+          if (
+            typeof item.elapsedTime === "number" &&
+            !isNaN(item.elapsedTime)
+          ) {
+            const calculatedDate = new Date(Date.now() - item.elapsedTime * 60000);
+            if (!isNaN(calculatedDate.getTime())) {
+              calledAt = calculatedDate.toISOString();
+            }
+          } else {
+            calledAt = new Date().toISOString(); // fallback
+          }
+        }
+
+        return {
+          id: String(item.reserveId),
+          name: item.reserveName,
+          waitingCount: item.reserveMembers,
+          isCalling: isCalled,
+          calledAt,
+          phone: item.phoneNumber,
+          visited: false,
+          cancelled: item.status === "CANCELED",
+          order: index + 1,
+          status: item.status,
+        };
+      });
+
       set({ waitingBooths: booths });
     } else {
       console.error("❌ 예약 목록 조회 실패:", res.error);

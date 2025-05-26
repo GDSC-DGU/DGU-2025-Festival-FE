@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Wrapper,
   BoothListWrapper,
@@ -18,8 +19,6 @@ import PhoneModal from "./Modal/PhoneModal";
 import TopBar from "@/components/topbar/TopBar";
 import RoleTag from "@/components/role/RoleTag";
 import BottomNav from "./components/BottomNav";
-import { useEffect } from "react";
-import { useState } from "react"; 
 
 const BoothAdminAppView = () => {
   const [bottomTab, setBottomTab] = useState<"waiting" | "late">("waiting");
@@ -36,16 +35,21 @@ const BoothAdminAppView = () => {
     confirmDelete,
     confirmCloseBooth,
     fetchBooths,
-    // openModal,
   } = useBoothAdminStore();
-
-  useEffect(() => {
-    fetchBooths();
-  }, []);
 
   const now = Date.now();
   const LATE_MINUTES = 5;
 
+  // ❶ 첫 렌더 + 주기적 fetch
+  useEffect(() => {
+    fetchBooths();
+    const interval = setInterval(() => {
+      fetchBooths();
+    }, 10000); // 10초마다 재요청
+    return () => clearInterval(interval);
+  }, []);
+
+  // ❷ 지각자
   const lateBooths = waitingBooths.filter(
     (booth) =>
       booth.calledAt &&
@@ -54,9 +58,10 @@ const BoothAdminAppView = () => {
       (now - new Date(booth.calledAt).getTime()) / 60000 >= LATE_MINUTES
   );
 
-  const normalBooths = waitingBooths;
+  // ❸ 전체 대기자 (취소 포함)
+  const allBooths = waitingBooths;
 
-  const notEnteredCount = normalBooths.filter(
+  const notEnteredCount = allBooths.filter(
     (booth) => !booth.visited && !booth.cancelled
   ).length;
 
@@ -73,6 +78,7 @@ const BoothAdminAppView = () => {
         <Tabs current={tab} onChange={setTab} />
       </Section>
 
+      {/* ❹ 늦은 대기자 */}
       {bottomTab === "late" && lateBooths.length > 0 && (
         <Section>
           <SectionTitle>늦은 대기자</SectionTitle>
@@ -92,41 +98,42 @@ const BoothAdminAppView = () => {
         </Section>
       )}
 
-{bottomTab === "waiting" && (
-  <Section>
-    <SectionTitle>전체 대기자 목록</SectionTitle>
-    <SectionDescription>
-      현재 등록된 모든 대기자를 확인할 수 있어요.
-    </SectionDescription>
-    <TotalCount>대기 {notEnteredCount}팀</TotalCount>
-    <BoothListWrapper>
-      {normalBooths.map((booth) => {
-        const isCalling = booth.calledAt;
-        const elapsedMinutes = booth.calledAt
-          ? (now - new Date(booth.calledAt).getTime()) / 60000
-          : 0;
-        const showDeleteButton =
-          isCalling && elapsedMinutes >= LATE_MINUTES;
+      {/* ❺ 전체 대기자 */}
+      {bottomTab === "waiting" && (
+        <Section>
+          <SectionTitle>전체 대기자 목록</SectionTitle>
+          <SectionDescription>
+            현재 등록된 모든 대기자를 확인할 수 있어요.
+          </SectionDescription>
+          <TotalCount>대기 {notEnteredCount}팀</TotalCount>
+          <BoothListWrapper>
+            {allBooths.map((booth) => {
+              const isCalling = booth.calledAt;
+              const elapsedMinutes = booth.calledAt
+                ? (now - new Date(booth.calledAt).getTime()) / 60000
+                : 0;
 
-        const isLate = lateBooths.some((late) => late.id === booth.id); 
+              const isLate = lateBooths.some((late) => late.id === booth.id);
 
-return (
-  <WaitingBoothCard
-    key={booth.id}
-    booth={booth}
-    showDeleteButton={!!showDeleteButton}
-    highlightLate={isLate}
-  />
-);
-      })}
-    </BoothListWrapper>
-  </Section>
-)}
+              const showDeleteButton =
+                !!(!booth.cancelled && isCalling && elapsedMinutes >= LATE_MINUTES);
 
-
+              return (
+                <WaitingBoothCard
+                  key={booth.id}
+                  booth={booth}
+                  showDeleteButton={showDeleteButton}
+                  highlightLate={isLate}
+                />
+              );
+            })}
+          </BoothListWrapper>
+        </Section>
+      )}
 
       <FloatingButton />
 
+      {/* 모달들 */}
       {modalType === "call" && selectedBooth && (
         <ConfirmCallModal
           boothName={selectedBooth.name}
@@ -137,7 +144,6 @@ return (
           }}
         />
       )}
-
       {modalType === "visit" && selectedBooth && (
         <ConfirmVisitModal
           boothName={selectedBooth.name}
@@ -148,7 +154,6 @@ return (
           }}
         />
       )}
-
       {modalType === "delete" && selectedBooth && (
         <ConfirmDeleteModal
           boothName={selectedBooth.name}
@@ -159,7 +164,6 @@ return (
           }}
         />
       )}
-
       {modalType === "closeBooth" && (
         <BoothCloseModal
           onCancel={closeModal}
