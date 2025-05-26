@@ -1,4 +1,3 @@
-// BoothDetailPage.tsx
 
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState, useMemo } from "react";
