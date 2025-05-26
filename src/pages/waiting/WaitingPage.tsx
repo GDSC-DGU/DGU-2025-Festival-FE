@@ -83,15 +83,16 @@ export default function WaitingPage() {
   };
 
   const filteredBooths: Booth[] = booths
-    .filter((b) => b.waitingAvailable && b.date === today)
-    .map((b) => {
-      const match = pubStatuses.find((s) => String(s.pubsId) === b.id);
-      return {
-        ...b,
-        image: b.images?.[0] ?? "",
-        waitingCount: match?.waitTeam ?? 0,
-      };
-    });
+  .filter((b) => b.waitingAvailable && b.date === today)
+  .map((b) => {
+    const match = pubStatuses.find((s) => String(s.pubsId) === b.id);
+    return {
+      ...b,
+      image: b.images?.[0] ?? "",
+      waitingCount: match?.waitTeam ?? 0,
+      pubStatus: match?.status ?? "PREPARING", 
+    };
+  });
 
   return (
     <S.Page>
@@ -129,36 +130,43 @@ export default function WaitingPage() {
 
         <S.SectionTitle>웨이팅 가능 부스</S.SectionTitle>
         <S.BoothList>
-          {filteredBooths.map((booth) => {
-            const isMyWaiting = activeWaiting?.boothId === booth.id;
-            const waitingCount = booth.waitingCount ?? 0;
+        {filteredBooths.map((booth) => {
+  const isMyWaiting = activeWaiting?.boothId === booth.id;
+  const waitingCount = booth.waitingCount ?? 0;
+  const status = booth.pubStatus;
 
-            return (
-              <S.BoothCard key={booth.id}>
-                <div>
-                  <S.BoothName>{booth.name}</S.BoothName>
-                  <S.BoothIntro>{booth.intro}</S.BoothIntro>
-                  <S.WaitingSummary>전체 대기 {waitingCount}팀</S.WaitingSummary>
-                </div>
-                {waitingCount > 0 ? (
-                  <S.BoothActionButton
-                  onClick={() => {
-                    if (isMyWaiting) {
-                      setShowCancelConfirm(true); 
-                    } else {
-                      handleClickBooth(booth);   
-                    }
-                  }}
-                  $isCancel={isMyWaiting}
-                >
-                  {isMyWaiting ? "웨이팅 취소" : "웨이팅 하기"}
-                  </S.BoothActionButton>
-                ) : (
-                  <S.ImmediateEntryText>바로 입장 가능</S.ImmediateEntryText>
-                )}
-              </S.BoothCard>
-            );
-          })}
+  return (
+    <S.BoothCard key={booth.id}>
+      <div>
+        <S.BoothName>{booth.name}</S.BoothName>
+        <S.BoothIntro>{booth.intro}</S.BoothIntro>
+        <S.WaitingSummary>전체 대기 {waitingCount}팀</S.WaitingSummary>
+      </div>
+
+      {status === "AVAILABLE" ? (
+        <S.ImmediateEntryText>바로 입장 가능</S.ImmediateEntryText>
+      ) : status === "FULL" ? (
+        <S.BoothActionButton
+          onClick={() => {
+            if (isMyWaiting) {
+              setShowCancelConfirm(true);
+            } else {
+              handleClickBooth(booth);
+            }
+          }}
+          $isCancel={isMyWaiting}
+        >
+          {isMyWaiting ? "웨이팅 취소" : "웨이팅 하기"}
+        </S.BoothActionButton>
+      ) : status === "PREPARING" ? (
+        <S.PreparingText>부스 준비 중</S.PreparingText>
+      ) : (
+        <S.EndedText>운영 종료</S.EndedText>
+      )}
+    </S.BoothCard>
+  );
+})}
+
         </S.BoothList>
 
         {showWaitingModal && selectedBooth && (

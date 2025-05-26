@@ -40,6 +40,7 @@ export const reserveBooth = (
 export interface PubStatus {
   pubsId: number;
   waitTeam: number;
+  status: "AVAILABLE" | "FULL" | "PREPARING" | "END";
 }
 
 export const fetchPubsStatus = () => {
