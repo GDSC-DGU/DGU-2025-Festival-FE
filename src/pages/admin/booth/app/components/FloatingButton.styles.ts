@@ -3,7 +3,7 @@ import styled from "styled-components";
 // 버튼 전체 래퍼 (화면 오른쪽 아래 고정)
 export const ButtonWrapper = styled.div`
   position: fixed;
-  bottom: 24px;
+  bottom: 80px; 
   right: 24px;
   display: flex;
   flex-direction: column;

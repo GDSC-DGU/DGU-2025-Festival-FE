@@ -6,6 +6,7 @@ import HeartOff from "@/assets/icons/heart-off.png";
 import MapContainer from "@/pages/booth/components/MapContainer";
 import MiniBoothCard from "./components/MiniBoothCard";
 import WaitingClosedModal from "@/pages/waiting/components/WaitingClosedModal";
+// import WaitingModal from '@/components/waitingModal/WaitingModal';
 import TopBar from "@/components/topbar/TopBar";
 import ImagePagination from "../notice-detail/components/ImagePagination/ImagePagination";
 import {
@@ -144,7 +145,9 @@ export default function BoothDetailPage() {
             <Info>
               <BoothName>{booth.name}</BoothName>
               {booth.waitingAvailable && (
-                <ReserveButton onClick={() => setShowWaitingModal(true)}>
+                <ReserveButton onClick={() =>
+                  setShowWaitingModal(true)
+                }>
                   웨이팅하기
                 </ReserveButton>
               )}
@@ -208,9 +211,22 @@ export default function BoothDetailPage() {
           )}
         </SubContainer>
 
-        {showWaitingModal && (
-          <WaitingClosedModal onClose={() => setShowWaitingModal(false)} />
-        )}
+{showWaitingModal && (
+  <>
+    <WaitingClosedModal onClose={() => setShowWaitingModal(false)} />
+    {/*
+      <WaitingModal
+        booth={booth}
+        onClose={() => setShowWaitingModal(false)}
+        onConfirm={() => {
+          // handle confirm action here
+          setShowWaitingModal(false);
+        }}
+        onCancel={() => setShowWaitingModal(false)}
+      />
+    */}
+  </>
+)}
       </ContentContainer>
     </Container>
   );

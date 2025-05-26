@@ -55,8 +55,13 @@ export const WaitingHint = styled.div`
 `;
 
 export const MyWaitingBox = styled.div`
-  padding: 20px;
+margin-top: 40px;
+  width: 100%;
+  max-width: 300px;
+  display: column;            
+  justify-content: center;   
 `;
+
 
 export const SubTitle = styled.h2`
   font-size: 16px;
@@ -67,19 +72,24 @@ export const SubTitle = styled.h2`
 `;
 
 export const WaitingCard = styled.div`
+  width: 100%;
+  max-width: 320px; 
   padding: 16px;
-  border: 1px solidrgb(225, 225, 225);
+  border: 1px solid #f2dede; 
   border-radius: 8px;
   background-color: #fff;
   display: flex;
   justify-content: space-between;
-  gap: 5px;
+  align-items: flex-start;
+  gap: 10px;
   box-shadow: 0 0 4px rgba(202, 56, 56, 0.25);
 `;
+
 export const WaitingCardContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
+  flex: 1; 
 `;
 
 export const BoothName = styled.div`
@@ -121,6 +131,7 @@ export const SectionTitle = styled.h3`
   font-weight: 600;
   color: #333c55;
   margin-left: 6px;
+  margin-top: 40px;
 `;
 
 export const BoothList = styled.div`
@@ -137,21 +148,30 @@ export const BoothCard = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; 
+  gap: 10px;        
 `;
+
 
 interface BoothActionButtonProps {
   $isCancel?: boolean;
 }
-
 export const BoothActionButton = styled.button<BoothActionButtonProps>`
-  padding: 6px 12px;
+  padding: 6px 16px;
+  min-width: 90px;
+  height: 32px;
   border-radius: 100px;
   font-size: 12px;
   font-weight: 500;
   border: none;
   background-color: ${({ $isCancel }) => ($isCancel ? "#A7A7A7" : "#575bdf")};
   color: white;
+  white-space: nowrap;
+  text-align: center;
+  align-self: flex-end; 
+  margin-left: auto;  
 `;
+
 
 export const BoothIntro = styled.div`
   font-size: 12px;
@@ -159,6 +179,7 @@ export const BoothIntro = styled.div`
   margin-left: 5px;
   margin-bottom: 10px;
   margin-top: 5px;
+  margin-right: 5px;
 `;
 
 export const ImmediateEntryText = styled.div`

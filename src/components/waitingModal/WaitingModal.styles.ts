@@ -68,15 +68,22 @@ export const CancelButton = styled.button`
 `;
 
 export const ConfirmButton = styled.button<{ disabled?: boolean }>`
-  flex: 1;
+  width: 100%;                 
+  max-width: 130px;           
+  height: 32px;               
+  border-radius: 16px;
+
   background: ${({ disabled, theme }) =>
     disabled ? theme.colors.gray400 : theme.colors.indigo600};
   color: white;
-  border-radius: 16px;
-  ${({ theme }) => theme.fonts.Button2}
+  ${({ theme }) => theme.fonts.Button2};
   border: none;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+
+  margin: 0 auto;            
+  display: block;
 `;
+
 
 export const PhoneInputWrapper = styled.div`
   display: flex;
