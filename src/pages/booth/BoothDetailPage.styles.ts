@@ -34,7 +34,7 @@ export const Card = styled.div`
 
 export const Header = styled.div`
   display: flex;
-  gap: 4px;
+  gap: 15px;
   width: 100%;
   flex-direction: column;
   justify-content: space-between;
@@ -59,6 +59,7 @@ export const BoothIntro = styled.div`
   font-size: 14px;
   font-weight: 500;
   color: var(--gray-500);
+  line-height: 1.5;
 `;
 
 export const Like = styled.div`
@@ -75,33 +76,33 @@ export const LikeCount = styled.div`
 `;
 
 // 기존 스타일 주석 처리
-// export const ReserveButton = styled.button`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   padding: 4px 16px;
-//   background-color: var(--indigo-600);
-//   color: white;
-//   ${({ theme }) => theme.fonts.Button2}
-//   border-radius: 16px;
-//   cursor: pointer;
-//   border: none;
-// `;
-
-// 비활성화(회색) 스타일로 대체
 export const ReserveButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 4px 16px;
-  background-color: #f1f3f9;
-  color: #949db8;
+  background-color: var(--indigo-600);
+  color: white;
   ${({ theme }) => theme.fonts.Button2}
   border-radius: 16px;
-  cursor: not-allowed;
+  cursor: pointer;
   border: none;
-  opacity: 0.7;
 `;
+
+// // 비활성화(회색) 스타일로 대체
+// export const ReserveButton = styled.button`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   padding: 4px 16px;
+//   background-color: #f1f3f9;
+//   color: #949db8;
+//   ${({ theme }) => theme.fonts.Button2}
+//   border-radius: 16px;
+//   cursor: not-allowed;
+//   border: none;
+//   opacity: 0.7;
+// `;
 
 export const ScrollWrapper = styled.div`
   display: flex;

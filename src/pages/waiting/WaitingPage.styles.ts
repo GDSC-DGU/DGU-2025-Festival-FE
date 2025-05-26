@@ -219,3 +219,10 @@ export const EndedText = styled.div`
   margin-left: auto;
 `;
 
+export const EmptyBoothMessage = styled.div`
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  padding: 40px 0;
+  line-height: 1.6;
+`;

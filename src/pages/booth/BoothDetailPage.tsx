@@ -5,8 +5,8 @@ import HeartOn from "@/assets/icons/heart-on.png";
 import HeartOff from "@/assets/icons/heart-off.png";
 import MapContainer from "@/pages/booth/components/MapContainer";
 import MiniBoothCard from "./components/MiniBoothCard";
-import WaitingClosedModal from "@/pages/waiting/components/WaitingClosedModal";
-// import WaitingModal from '@/components/waitingModal/WaitingModal';
+// import WaitingClosedModal from "@/pages/waiting/components/WaitingClosedModal";
+import WaitingModal from '@/components/waitingModal/WaitingModal';
 import TopBar from "@/components/topbar/TopBar";
 import ImagePagination from "../notice-detail/components/ImagePagination/ImagePagination";
 import {
@@ -30,6 +30,8 @@ import {
 } from "./BoothDetailPage.styles";
 import { useLike } from "@/api/likes/hooks/useLike";
 import SkeletonLoading from "@/components/common/SkeletonLoading";
+import { fetchPubsStatus, type PubStatus } from "@/api/reservation"; 
+
 
 export default function BoothDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -40,6 +42,25 @@ export default function BoothDetailPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const imageScrollRef = useRef<HTMLDivElement>(null);
   const boothScrollRef = useRef<HTMLDivElement>(null);
+  const [pubStatus, setPubStatus] = useState<PubStatus["status"] | null>(null);
+
+  useEffect(() => {
+    const loadPubStatus = async () => {
+      if (!["2", "3", "4", "5", "6"].includes(id!)) return; // 2~6만 호출
+  
+      try {
+        const res = await fetchPubsStatus();
+        if (res.success) {
+          const match = res.data.find((s) => String(s.pubsId) === id);
+          setPubStatus(match?.status ?? null);
+        }
+      } catch (err) {
+        console.error("부스 상태 불러오기 실패:", err);
+      }
+    };
+  
+    loadPubStatus();
+  }, [id]);
 
   useEffect(() => {
     setCurrentSlide(0);
@@ -145,11 +166,26 @@ export default function BoothDetailPage() {
             <Info>
               <BoothName>{booth.name}</BoothName>
               {booth.waitingAvailable && (
-                <ReserveButton onClick={() =>
-                  setShowWaitingModal(true)
-                }>
-                  웨이팅하기
-                </ReserveButton>
+              <ReserveButton
+              onClick={() => {
+                if (pubStatus === "AVAILABLE") {
+                  alert("현재 바로 입장 가능합니다.");
+                  return;
+                }
+                if (pubStatus === "FULL") {
+                  setShowWaitingModal(true);
+                } else if (pubStatus === "PREPARING") {
+                  alert("부스가 준비 중입니다.");
+                } else if (pubStatus === "END") {
+                  alert("운영이 종료된 부스입니다.");
+                } else {
+                  alert("부스 상태를 확인할 수 없습니다.");
+                }
+              }}
+            >
+              웨이팅하기
+            </ReserveButton>
+            
               )}
             </Info>
             <BoothIntro>{booth.intro}</BoothIntro>
@@ -213,8 +249,8 @@ export default function BoothDetailPage() {
 
 {showWaitingModal && (
   <>
-    <WaitingClosedModal onClose={() => setShowWaitingModal(false)} />
-    {/*
+    {/* <WaitingClosedModal onClose={() => setShowWaitingModal(false)} /> */}
+    
       <WaitingModal
         booth={booth}
         onClose={() => setShowWaitingModal(false)}
@@ -224,7 +260,7 @@ export default function BoothDetailPage() {
         }}
         onCancel={() => setShowWaitingModal(false)}
       />
-    */}
+   
   </>
 )}
       </ContentContainer>
