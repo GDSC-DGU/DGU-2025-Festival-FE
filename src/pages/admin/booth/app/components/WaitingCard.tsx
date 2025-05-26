@@ -24,9 +24,18 @@ const WaitingBoothCard = ({
     openPhoneModal(booth);
   };
 
-  const elapsed = booth.calledAt
-    ? `${Math.floor((Date.now() - new Date(booth.calledAt).getTime()) / 60000)}분 경과`
-    : null;
+  const minutesPassed = booth.calledAt
+  ? Math.floor((Date.now() - new Date(booth.calledAt).getTime()) / 60000)
+  : undefined;
+
+const elapsed =
+  minutesPassed !== undefined && !isNaN(minutesPassed)
+    ? minutesPassed === 0
+      ? "방금 호출됨"
+      : `${minutesPassed}분 경과`
+    : "시간 정보 없음";
+
+// 시간 정보 안뜸
 
   return (
     <S.CardWrapper onClick={handleCardClick} highlightLate={highlightLate}>
@@ -41,7 +50,7 @@ const WaitingBoothCard = ({
       <S.ButtonGroup>
         {booth.status === "CANCELED" ? (
           <S.CancelledText>대기 취소됨</S.CancelledText>
-        ) : booth.status === "COMPLETED" || booth.visited ? (
+        ) : booth.visited ? (
           <S.VisitedText>입장 완료</S.VisitedText>
         ) : booth.status === "CALLED" ? (
           <>

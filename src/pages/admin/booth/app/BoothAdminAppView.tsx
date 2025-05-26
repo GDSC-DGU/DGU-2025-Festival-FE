@@ -38,18 +38,16 @@ const BoothAdminAppView = () => {
   } = useBoothAdminStore();
 
   const now = Date.now();
-  const LATE_MINUTES = 5;
+  const LATE_MINUTES = 10;
 
-  // ❶ 첫 렌더 + 주기적 fetch
   useEffect(() => {
     fetchBooths();
     const interval = setInterval(() => {
       fetchBooths();
-    }, 10000); // 10초마다 재요청
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
-  // ❷ 지각자
   const lateBooths = waitingBooths.filter(
     (booth) =>
       booth.calledAt &&
@@ -58,10 +56,22 @@ const BoothAdminAppView = () => {
       (now - new Date(booth.calledAt).getTime()) / 60000 >= LATE_MINUTES
   );
 
-  // ❸ 전체 대기자 (취소 포함)
-  const allBooths = waitingBooths;
+  const calledBooths = waitingBooths.filter(
+    (booth) =>
+      booth.status === "CALLED" &&
+      !booth.visited &&
+      !booth.cancelled &&
+      !lateBooths.some((late) => late.id === booth.id)
+  );
 
-  const notEnteredCount = allBooths.filter(
+  const waitingOnlyBooths = waitingBooths.filter(
+    (booth) =>
+      booth.status === "WAITING" &&
+      !booth.visited &&
+      !booth.cancelled
+  );
+
+  const notEnteredCount = waitingBooths.filter(
     (booth) => !booth.visited && !booth.cancelled
   ).length;
 
@@ -78,12 +88,12 @@ const BoothAdminAppView = () => {
         <Tabs current={tab} onChange={setTab} />
       </Section>
 
-      {/* ❹ 늦은 대기자 */}
+      {/* 늦은 대기자 */}
       {bottomTab === "late" && lateBooths.length > 0 && (
         <Section>
           <SectionTitle>늦은 대기자</SectionTitle>
           <SectionDescription>
-            호출 후 5분 이상 지났지만 아직 방문하지 않은 대기자입니다.
+            호출 후 10분 이상 지났지만 아직 방문하지 않은 대기자입니다.
           </SectionDescription>
           <BoothListWrapper>
             {lateBooths.map((booth) => (
@@ -98,37 +108,49 @@ const BoothAdminAppView = () => {
         </Section>
       )}
 
-      {/* ❺ 전체 대기자 */}
+      {/* 전체 대기자 (호출 + 미호출 분리) */}
       {bottomTab === "waiting" && (
-        <Section>
-          <SectionTitle>전체 대기자 목록</SectionTitle>
-          <SectionDescription>
-            현재 등록된 모든 대기자를 확인할 수 있어요.
-          </SectionDescription>
-          <TotalCount>대기 {notEnteredCount}팀</TotalCount>
-          <BoothListWrapper>
-            {allBooths.map((booth) => {
-              const isCalling = booth.calledAt;
-              const elapsedMinutes = booth.calledAt
-                ? (now - new Date(booth.calledAt).getTime()) / 60000
-                : 0;
+        <>
+          <Section>
+            <SectionTitle>전체 대기자 목록</SectionTitle>
+            <SectionDescription>
+              현재 등록된 모든 대기자를 확인할 수 있어요.
+            </SectionDescription>
+            <TotalCount>대기 {notEnteredCount}팀</TotalCount>
+          </Section>
 
-              const isLate = lateBooths.some((late) => late.id === booth.id);
+          {calledBooths.length > 0 && (
+            <Section>
+              <SectionTitle>현재 호출된 인원입니다</SectionTitle>
+              <BoothListWrapper>
+                {calledBooths.map((booth) => (
+                  <WaitingBoothCard
+                    key={booth.id}
+                    booth={booth}
+                    showDeleteButton={true}
+                    highlightLate={false}
+                  />
+                ))}
+              </BoothListWrapper>
+            </Section>
+          )}
 
-              const showDeleteButton =
-                !!(!booth.cancelled && isCalling && elapsedMinutes >= LATE_MINUTES);
-
-              return (
-                <WaitingBoothCard
-                  key={booth.id}
-                  booth={booth}
-                  showDeleteButton={showDeleteButton}
-                  highlightLate={isLate}
-                />
-              );
-            })}
-          </BoothListWrapper>
-        </Section>
+          {waitingOnlyBooths.length > 0 && (
+            <Section>
+              <SectionTitle>대기 중인 인원입니다</SectionTitle>
+              <BoothListWrapper>
+                {waitingOnlyBooths.map((booth) => (
+                  <WaitingBoothCard
+                    key={booth.id}
+                    booth={booth}
+                    showDeleteButton={false}
+                    highlightLate={false}
+                  />
+                ))}
+              </BoothListWrapper>
+            </Section>
+          )}
+        </>
       )}
 
       <FloatingButton />

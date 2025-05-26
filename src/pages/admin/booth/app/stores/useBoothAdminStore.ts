@@ -1,8 +1,10 @@
-
 import { create } from "zustand";
-import { adminInstance } from "@/api/instance";
+import { fetchBoothList } from "@/api/booth/fetchBoothList";
+import { callBooth } from "@/api/booth/callBooth";
+import { completeVisit } from "@/api/booth/completeVisit";
+import { updateBoothStatus } from "@/api/booth/updateBoothStatus";
 import { sendRequest } from "@/api/request";
-import { updateBoothStatus } from "@/api/booth/adminBooth";
+import { adminInstance } from "@/api/instance";
 
 export type TabType = "available" | "full";
 export type ModalType = "call" | "visit" | "delete" | "closeBooth" | null;
@@ -63,7 +65,7 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
   closePhoneModal: () => set({ phoneModalBooth: null }),
 
   confirmCall: async (id) => {
-    await sendRequest(adminInstance, "POST", "/pub/call", { reserveId: id });
+    await callBooth(id);
     const updated = get().waitingBooths.map((b) =>
       b.id === id
         ? { ...b, isCalling: true, calledAt: new Date().toISOString(), status: "CALLED" as WaitingBooth["status"] }
@@ -73,7 +75,7 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
   },
 
   confirmVisit: async (id) => {
-    await sendRequest(adminInstance, "PATCH", "/pub/reserve", { reserveId: id });
+    await completeVisit(id);
     const updated = get().waitingBooths.map((b) =>
       b.id === id ? { ...b, visited: true, status: "CALLED" as WaitingBooth["status"] } : b
     );
@@ -107,7 +109,6 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
     }
     try {
       await updateBoothStatus(status);
-      console.log(`✅ 부스 상태 변경 완료: ${status}`);
       await get().fetchBooths();
     } catch (err) {
       console.error("❌ 부스 상태 변경 실패:", err);
@@ -115,36 +116,23 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
   },
 
   fetchBooths: async () => {
-    const res = await sendRequest<{
-      waitingTotalCount: number;
-      lateTotalCount: number;
-      reserveList: {
-        reserveId: string;
-        reserveName: string;
-        phoneNumber: string;
-        reserveMembers: number;
-        status: "WAITING" | "CALLED" | "LATE" | "CANCELED";
-        elapsedTime: number | null;
-      }[];
-    }>(adminInstance, "GET", "/pub");
-
+    const res = await fetchBoothList();
     if (res.success) {
       const booths = res.data.reserveList.map((item, index) => {
         const isCalled = item.status === "CALLED" || item.status === "LATE";
-
         let calledAt: string | undefined;
-        if (isCalled) {
-          if (
-            typeof item.elapsedTime === "number" &&
-            !isNaN(item.elapsedTime)
-          ) {
-            const calculatedDate = new Date(Date.now() - item.elapsedTime * 60000);
-            if (!isNaN(calculatedDate.getTime())) {
-              calledAt = calculatedDate.toISOString();
-            }
-          } else {
-            calledAt = new Date().toISOString(); // fallback
-          }
+
+        if (
+          isCalled &&
+          typeof item.elapsedTime === "string" &&
+          (item.elapsedTime as string).includes(":")
+        ) {
+          const [minutesStr, secondsStr] = (item.elapsedTime as string).split(":");
+          const minutes = parseInt(minutesStr, 10);
+          const seconds = parseInt(secondsStr, 10);
+          const elapsedMs = (minutes * 60 + seconds) * 1000;
+          const time = new Date(Date.now() - elapsedMs);
+          calledAt = !isNaN(time.getTime()) ? time.toISOString() : undefined;
         }
 
         return {
@@ -155,9 +143,9 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
           calledAt,
           phone: item.phoneNumber,
           visited: false,
-          cancelled: item.status === "CANCELED",
+          cancelled: item.status === "CANCELLED",
           order: index + 1,
-          status: item.status,
+          status: (item.status === "CANCELLED" ? "CANCELED" : item.status) as WaitingBooth["status"],
         };
       });
 

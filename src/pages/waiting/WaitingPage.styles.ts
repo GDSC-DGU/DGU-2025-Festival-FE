@@ -140,17 +140,6 @@ export const BoothList = styled.div`
   gap: 20px;
 `;
 
-export const BoothCard = styled.div`
-  border-radius: 8px;
-  background-color: white;
-  box-shadow: 0 0 4px rgba(67, 56, 202, 0.25);
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; 
-  gap: 10px;        
-`;
 
 
 interface BoothActionButtonProps {
@@ -225,4 +214,29 @@ export const EmptyBoothMessage = styled.div`
   text-align: center;
   padding: 40px 0;
   line-height: 1.6;
+`;
+
+export const LateToggleButton = styled.button`
+  margin-left: 12px;
+  padding: 4px 10px;
+  font-size: 12px;
+  background-color: #ffdddd;
+  color: #cc0000;
+  border: 1px solid #cc0000;
+  border-radius: 12px;
+  cursor: pointer;
+`;
+
+export const BoothCard = styled.div<{ $isLate?: boolean }>`
+  border-radius: 8px;
+  background-color: ${({ $isLate }) => ($isLate ? "#fff0f0" : "white")};
+  box-shadow: 0 0 4px
+    ${({ $isLate }) =>
+      $isLate ? "rgba(202, 56, 56, 0.5)" : "rgba(67, 56, 202, 0.25)"};
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
