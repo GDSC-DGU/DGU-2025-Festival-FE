@@ -41,7 +41,7 @@ const WaitingBoothCard = ({
       <S.ButtonGroup>
         {booth.status === "CANCELED" ? (
           <S.CancelledText>대기 취소됨</S.CancelledText>
-        ) : booth.status === "COMPLETED" || booth.visited ? (
+        ) : booth.visited ? (
           <S.VisitedText>입장 완료</S.VisitedText>
         ) : booth.status === "CALLED" ? (
           <>

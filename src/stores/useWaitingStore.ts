@@ -1,25 +1,28 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
-export interface WaitingData {
+interface ActiveWaiting {
   boothId: string;
   phone: string;
 }
 
 interface WaitingState {
-  activeWaiting: WaitingData | null;
+  activeWaiting: ActiveWaiting | null;
+  cancelledBoothId: string | null;
 
-  addWaiting: (data: WaitingData) => void;
+  addWaiting: (data: ActiveWaiting) => void;
   cancelWaiting: (boothId: string) => void;
+  setCancelledBooth: (id: string | null) => void;
 }
 
 export const useWaitingStore = create<WaitingState>((set) => ({
   activeWaiting: null,
+  cancelledBoothId: null,
 
-  addWaiting: (data) => set({ activeWaiting: data }),
+  addWaiting: (data) =>
+    set({ activeWaiting: data, cancelledBoothId: null }),
 
   cancelWaiting: (boothId) =>
-    set((state) => ({
-      activeWaiting:
-        state.activeWaiting?.boothId === boothId ? null : state.activeWaiting,
-    })),
+    set({ activeWaiting: null, cancelledBoothId: boothId }),
+
+  setCancelledBooth: (id) => set({ cancelledBoothId: id }),
 }));

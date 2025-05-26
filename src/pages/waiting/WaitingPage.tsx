@@ -13,8 +13,11 @@ import { cancelReservation, fetchMyReservation } from "@/api/reservation";
 import { useMyReservation } from "@/api/hooks/useMyReservation";
 import { usePubStatuses } from "@/api/hooks/usePubStatuses";
 
-// 오늘 날짜 (테스트용 고정값 → 실제 운영 시 new Date()로)
-const today = "2025-05-28";
+const today = (() => {
+  const now = new Date();
+  now.setHours(now.getHours() + 9); // 한국 시간으로 변환
+  return now.toISOString().slice(0, 10);
+})();
 
 export default function WaitingPage() {
   const [showWaitingModal, setShowWaitingModal] = useState(false);
