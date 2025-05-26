@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { booths } from "@/pages/booth/data/booths";
 import { useWaitingStore } from "@/stores/useWaitingStore";
 import WaitingModal from "@/components/waitingModal/WaitingModal";
@@ -9,13 +9,11 @@ import type { Booth } from "@/types/booth";
 import QuestionIcon from "@/assets/icons/question.png";
 import TopBar from "@/components/topbar/TopBar";
 import { requestPermissionAndGetToken } from "@/firebase";
-import {
-  cancelReservation,
-} from "@/api/reservation";
+import { cancelReservation, fetchMyReservation } from "@/api/reservation";
 import { useMyReservation } from "@/api/hooks/useMyReservation";
 import { usePubStatuses } from "@/api/hooks/usePubStatuses";
 
-// 실제 서비스용 날짜는 new Date().toISOString().slice(0, 10) 등으로 대체 가능
+// 오늘 날짜 (테스트용 고정값 → 실제 운영 시 new Date()로)
 const today = "2025-05-28";
 
 export default function WaitingPage() {
@@ -25,20 +23,32 @@ export default function WaitingPage() {
   const [showCancelConfirm, setShowCancelConfirm] = useState(false);
 
   const { activeWaiting, addWaiting, cancelWaiting } = useWaitingStore();
-
   const phoneNumber = localStorage.getItem("userPhoneNumber") ?? "";
+
   const { data: myReservation, refetch: refetchReservation } = useMyReservation(phoneNumber);
   const { data: pubStatuses = [] } = usePubStatuses();
+
+  // 새로고침 후 상태 복원
+  useEffect(() => {
+    if (phoneNumber && !activeWaiting) {
+      fetchMyReservation(phoneNumber).then((res) => {
+        if (res.success && res.data?.reserveStatus === "WAITING") {
+          const matchedBooth = booths.find((b) => b.date === today && b.waitingAvailable);
+          if (matchedBooth) {
+            addWaiting({
+              boothId: matchedBooth.id,
+              phone: phoneNumber,
+            });
+          }
+        }
+      });
+    }
+  }, []);
 
   const handleClickBooth = async (booth: Booth) => {
     if (!activeWaiting || activeWaiting.boothId === booth.id) {
       const token = await requestPermissionAndGetToken();
-      if (token) {
-        console.log("알림 권한 부여 및 토큰 발급 완료");
-      } else {
-        console.warn("사용자에게 알림 권한 거부됨");
-      }
-
+      if (token) console.log("알림 권한 OK:", token);
       setSelectedBooth(booth);
       setShowWaitingModal(true);
     }
@@ -69,16 +79,20 @@ export default function WaitingPage() {
           <S.WaitingHint>웨이팅 안내</S.WaitingHint>
         </S.QuestionWrapper>
 
+        {/* 내 웨이팅 정보 */}
         {activeWaiting && (
           <S.MyWaitingBox>
             <S.SubTitle>내 웨이팅 순서</S.SubTitle>
             <S.WaitingCard>
               <S.WaitingCardContent>
-                <S.BoothName>{activeWaiting.name}</S.BoothName>
-                <S.BoothInfo>{activeWaiting.department}</S.BoothInfo>
+                <S.BoothName>
+                  {booths.find((b) => b.id === activeWaiting.boothId)?.name ?? "-"}
+                </S.BoothName>
                 <S.Badge>내 순서 {myReservation?.waitTeam ?? "?"}번</S.Badge>
                 <S.WaitingSummary>
-                  전체 대기 {filteredBooths.find((b) => b.id === activeWaiting.boothId)?.waitingCount ?? "?"}팀
+                  전체 대기 {
+                    filteredBooths.find((b) => b.id === activeWaiting.boothId)?.waitingCount ?? "?"
+                  }팀
                 </S.WaitingSummary>
               </S.WaitingCardContent>
               <S.CancelButton onClick={() => setShowCancelConfirm(true)}>
@@ -88,6 +102,7 @@ export default function WaitingPage() {
           </S.MyWaitingBox>
         )}
 
+        {/* 예약 가능한 부스 */}
         <S.SectionTitle>웨이팅 가능 부스</S.SectionTitle>
         <S.BoothList>
           {filteredBooths.length === 0 ? (
@@ -98,8 +113,6 @@ export default function WaitingPage() {
           ) : (
             filteredBooths.map((booth) => {
               const isMyWaiting = activeWaiting?.boothId === booth.id;
-              const waitingCount = booth.waitingCount ?? 0;
-              const status = booth.pubStatus;
 
               return (
                 <S.BoothCard key={booth.id}>
@@ -107,26 +120,22 @@ export default function WaitingPage() {
                     <S.BoothName>{booth.name}</S.BoothName>
                     <S.BoothIntro>{booth.intro}</S.BoothIntro>
                     <S.WaitingSummary>
-                      전체 대기 {waitingCount}팀
+                      전체 대기 {booth.waitingCount}팀
                     </S.WaitingSummary>
                   </div>
 
-                  {status === "AVAILABLE" ? (
+                  {booth.pubStatus === "AVAILABLE" ? (
                     <S.ImmediateEntryText>바로 입장 가능</S.ImmediateEntryText>
-                  ) : status === "FULL" ? (
+                  ) : booth.pubStatus === "FULL" ? (
                     <S.BoothActionButton
-                      onClick={() => {
-                        if (isMyWaiting) {
-                          setShowCancelConfirm(true);
-                        } else {
-                          handleClickBooth(booth);
-                        }
-                      }}
+                      onClick={() =>
+                        isMyWaiting ? setShowCancelConfirm(true) : handleClickBooth(booth)
+                      }
                       $isCancel={isMyWaiting}
                     >
                       {isMyWaiting ? "웨이팅 취소" : "웨이팅 하기"}
                     </S.BoothActionButton>
-                  ) : status === "PREPARING" ? (
+                  ) : booth.pubStatus === "PREPARING" ? (
                     <S.PreparingText>부스 준비 중</S.PreparingText>
                   ) : (
                     <S.EndedText>운영 종료</S.EndedText>
@@ -137,16 +146,13 @@ export default function WaitingPage() {
           )}
         </S.BoothList>
 
+        {/* 웨이팅 모달 */}
         {showWaitingModal && selectedBooth && (
           <WaitingModal
             booth={selectedBooth}
             onConfirm={(data) => {
               localStorage.setItem("userPhoneNumber", data.phone);
-              addWaiting({
-                ...data,
-                name: selectedBooth.name,
-                department: selectedBooth.department,
-              });
+              addWaiting({ boothId: selectedBooth.id, phone: data.phone });
               setShowWaitingModal(false);
               refetchReservation();
             }}
@@ -162,11 +168,7 @@ export default function WaitingPage() {
         {showCancelConfirm && (
           <CancelConfirmModal
             onConfirm={async () => {
-              if (!phoneNumber) {
-                alert("전화번호를 확인할 수 없습니다.");
-                return;
-              }
-
+              if (!phoneNumber) return alert("전화번호를 확인할 수 없습니다.");
               try {
                 const res = await cancelReservation(phoneNumber);
                 if (res.success) {
@@ -178,10 +180,9 @@ export default function WaitingPage() {
                   alert("예약 취소에 실패했습니다.");
                 }
               } catch (err) {
-                alert("오류가 발생했습니다.");
                 console.error("예약 취소 실패:", err);
+                alert("오류가 발생했습니다.");
               }
-
               setShowCancelConfirm(false);
             }}
             onCancel={() => setShowCancelConfirm(false)}
