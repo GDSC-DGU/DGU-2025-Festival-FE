@@ -24,8 +24,6 @@ const BoothAdminAppView = () => {
   const [bottomTab, setBottomTab] = useState<"waiting" | "late">("waiting");
 
   const {
-    tab,
-    setTab,
     waitingBooths,
     modalType,
     selectedBooth,
