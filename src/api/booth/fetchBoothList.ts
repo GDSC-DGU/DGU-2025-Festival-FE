@@ -7,7 +7,7 @@ export interface Reserve {
   phoneNumber: string;
   reserveMembers: number;
   status: "WAITING" | "CALLED" | "LATE" | "VISITED" | "CANCELLED";
-  elapsedTime: number | null;
+  elapsedTime: number | string | null;
 }
 
 export const fetchBoothList = () =>
@@ -15,4 +15,5 @@ export const fetchBoothList = () =>
     reserveList: Reserve[];
     waitingTotalCount: number;
     lateTotalCount: number;
+    pubStatus: "AVAILABLE" | "FULL" | "END" | "PREPARING";
   }>(adminInstance, "GET", "/pub");

@@ -8,6 +8,7 @@ import { adminInstance } from "@/api/instance";
 
 export type TabType = "available" | "full";
 export type ModalType = "call" | "visit" | "delete" | "closeBooth" | null;
+export type PubStatus = "AVAILABLE" | "FULL" | "END" | "PREPARING";
 
 export interface WaitingBooth {
   id: string;
@@ -30,12 +31,14 @@ interface BoothAdminState {
   selectedBooth: WaitingBooth | null;
   modalType: ModalType;
   phoneModalBooth: WaitingBooth | null;
+  pubStatus: PubStatus;
 
   setSelectedBooth: (booth: WaitingBooth | null) => void;
   openModal: (type: ModalType, booth: WaitingBooth) => void;
   closeModal: () => void;
   openPhoneModal: (booth: WaitingBooth) => void;
   closePhoneModal: () => void;
+  setPubStatus: (status: PubStatus) => void;
 
   confirmCall: (id: string) => Promise<void>;
   confirmVisit: (id: string) => Promise<void>;
@@ -49,6 +52,11 @@ interface BoothAdminState {
   getBoothOrder: (id: string) => number | undefined;
 }
 
+const normalizeStatus = (status: string): WaitingBooth["status"] => {
+  if (status === "CANCELLED") return "CANCELED";
+  return status as WaitingBooth["status"];
+};
+
 export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
   tab: "available",
   setTab: (tab) => set({ tab }),
@@ -57,12 +65,14 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
   selectedBooth: null,
   modalType: null,
   phoneModalBooth: null,
+  pubStatus: "AVAILABLE",
 
   setSelectedBooth: (booth) => set({ selectedBooth: booth }),
   openModal: (type, booth) => set({ modalType: type, selectedBooth: booth }),
   closeModal: () => set({ modalType: null, selectedBooth: null }),
   openPhoneModal: (booth) => set({ phoneModalBooth: booth }),
   closePhoneModal: () => set({ phoneModalBooth: null }),
+  setPubStatus: (status) => set({ pubStatus: status }),
 
   confirmCall: async (id) => {
     await callBooth(id);
@@ -101,14 +111,10 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
     set({ waitingBooths: updated, modalType: null, selectedBooth: null });
   },
 
-  setBoothStatus: async (status) => {
-    const booth = get().selectedBooth;
-    if (!booth) {
-      console.warn("선택된 부스가 없습니다.");
-      return;
-    }
+  setBoothStatus: async (status: "AVAILABLE" | "FULL" | "END") => {
     try {
       await updateBoothStatus(status);
+      set({ pubStatus: status });
       await get().fetchBooths();
     } catch (err) {
       console.error("❌ 부스 상태 변경 실패:", err);
@@ -125,9 +131,9 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
         if (
           isCalled &&
           typeof item.elapsedTime === "string" &&
-          (item.elapsedTime as string).includes(":")
+          item.elapsedTime.includes(":")
         ) {
-          const [minutesStr, secondsStr] = (item.elapsedTime as string).split(":");
+          const [minutesStr, secondsStr] = item.elapsedTime.split(":");
           const minutes = parseInt(minutesStr, 10);
           const seconds = parseInt(secondsStr, 10);
           const elapsedMs = (minutes * 60 + seconds) * 1000;
@@ -145,11 +151,15 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
           visited: false,
           cancelled: item.status === "CANCELLED",
           order: index + 1,
-          status: (item.status === "CANCELLED" ? "CANCELED" : item.status) as WaitingBooth["status"],
+          status: normalizeStatus(item.status),
         };
       });
 
       set({ waitingBooths: booths });
+
+      if ("pubStatus" in res.data && typeof res.data.pubStatus === "string") {
+        set({ pubStatus: res.data.pubStatus as PubStatus });
+      }
     } else {
       console.error("❌ 예약 목록 조회 실패:", res.error);
     }
