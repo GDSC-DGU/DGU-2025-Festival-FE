@@ -1,5 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import {
+  getMessaging,
+  getToken,
+  onMessage,
+  isSupported,
+} from "firebase/messaging";
 import type { MessagePayload } from "firebase/messaging";
 
 const firebaseConfig = {
@@ -13,13 +18,22 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const messaging = getMessaging(app);
+
+// messaging 객체를 isSupported() 체크 후 동적으로 생성
+let messaging: ReturnType<typeof getMessaging> | null = null;
+(async () => {
+  if (await isSupported()) {
+    messaging = getMessaging(app);
+  }
+})();
 
 // 알림 권한 요청 및 브라우저 토큰 발급
 export const requestPermissionAndGetToken = async (): Promise<
   string | null
 > => {
   try {
+    const ua = navigator.userAgent;
+
     const permission = await Notification.requestPermission();
     if (permission !== "granted") {
       console.warn("알림 권한 거부됨");
@@ -29,6 +43,11 @@ export const requestPermissionAndGetToken = async (): Promise<
     const swReg = await navigator.serviceWorker.register(
       "/firebase-messaging-sw.js"
     );
+
+    if (!messaging) {
+      console.warn("messaging 객체가 초기화되지 않았습니다.");
+      return null;
+    }
 
     const token = await getToken(messaging, {
       vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY,
@@ -47,8 +66,10 @@ export const requestPermissionAndGetToken = async (): Promise<
 export const onForegroundMessage = (
   callback: (payload: MessagePayload) => void
 ): void => {
-  onMessage(messaging, (payload) => {
-    console.log("포그라운드 메시지:", payload);
-    callback(payload);
-  });
+  if (messaging) {
+    onMessage(messaging, (payload) => {
+      console.log("포그라운드 메시지:", payload);
+      callback(payload);
+    });
+  }
 };

@@ -2,71 +2,85 @@ import styled, { keyframes } from "styled-components";
 import LogoImg from "/assets/landing/logo.png";
 import HandSvg from "/assets/landing/hand.svg";
 import FlowerImage from "/assets/landing/flower.png";
-import { useEffect } from "react";
 
-const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
+const userAgent = navigator.userAgent.toLowerCase();
+const isIOS = /iphone|ipad|ipod/i.test(userAgent);
+const isKakao = /kakaotalk/i.test(userAgent);
+const isLine = /line\//i.test(userAgent);
+const isOtherInApp =
+  /inapp|naver|snapchat|wirtschaftswoche|thunderbird|instagram|everytimeapp|whatsapp|electron|wadiz|aliapp|zumapp|kakaostory|band|twitter|daumapps|daumdevice\/mobile|fb_iab|fb4a|fban|fbios|fbss|trill/i.test(
+    userAgent
+  );
+
+const tryOpenChromeOrFallback = (url: string) => {
+  // chrome 앱 열기
+  const chromeUrl = url.replace(/^http/, "googlechrome");
+  // safari 열기
+  const safariUrl = url.replace(/^https?:\/\//, "x-safari-https://");
+
+  const now = Date.now();
+  // 크롬 앱 실행 시도
+  const iframe = document.createElement("iframe");
+  iframe.style.display = "none";
+  iframe.src = chromeUrl;
+  document.body.appendChild(iframe);
+
+  // fallback: 크롬 앱 실행 실패로 1.5초 안에 페이지 이탈이 없으면 사파리 열기(각자 커스텀)
+  setTimeout(() => {
+    const elapsed = Date.now() - now;
+    if (elapsed < 3000) {
+      window.location.href = safariUrl;
+    }
+    document.body.removeChild(iframe);
+  }, 1500);
+};
 
 export default function InAppLanding() {
-  const url = "https://dirvana.co.kr";
-  useEffect(() => {
-    const ua = navigator.userAgent;
+  const handleClick = () => {
+    const url = window.location.href;
 
-    const setLink = (finalUrl: string) => {
+    // 카카오톡
+    if (isKakao) {
+      window.location.href = `kakaotalk://web/openExternal?url=${encodeURIComponent(url)}`;
       setTimeout(() => {
-        const bg = document.createElement("div");
-        const box = document.createElement("div");
-        const style = document.createElement("style");
-        bg.className = "__inappBg__";
-        box.className = "__inappBox__";
-        box.innerHTML = `
-        <p>인앱 브라우저에서는 일부 기능이 제한될 수 있습니다.</p>
-        <p>오른쪽 위의 <span class="__inappHilite__">&ctdot;</span> 메뉴에서
-        <span class="__inappHilite__">"Safari로 열기"</span>를 눌러주세요.</p>
-      `;
-        style.innerHTML = `
-        .__inappBg__ { position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:1000; background:black; opacity:.5; }
-        .__inappBox__ { position:fixed; min-width: 80vw; top:50%; left:50%; transform: translate(-50%, -50%); z-index:1001; font-size:1em; background:#25252b; color:#7cacf8; padding:5px; border-radius:5px; }
-        .__inappHilite__ { font-weight:bold; background:#413c26; color:#fdf3aa; }
-      `;
-        document.body.appendChild(bg);
-        document.body.appendChild(box);
-        document.body.appendChild(style);
+        window.location.href = isIOS
+          ? "kakaoweb://closeBrowser"
+          : "kakaotalk://inappbrowser/close";
+      }, 500);
+      return;
+    }
 
-        let click = 3;
-        bg.addEventListener("click", () => {
-          click--;
-          if (!click) {
-            document.body.removeChild(bg);
-            document.body.removeChild(box);
-            document.body.removeChild(style);
-          }
-        });
-      }, 1000);
+    // 라인(LINE)
+    if (isLine) {
+      const lineUrl = url.includes("?")
+        ? `${url}&openExternalBrowser=1`
+        : `${url}?openExternalBrowser=1`;
+      window.location.href = lineUrl;
+      return;
+    }
 
-      window.location.href = finalUrl;
-    };
-
-    if (/kakaotalk/i.test(ua)) {
-      setLink(`kakaotalk://web/openExternal?url=${encodeURIComponent(url)}`);
-    } else if (/line\//i.test(ua)) {
-      setLink(`${url}?openExternalBrowser=1`);
-    } else if (
-      /inapp|naver|snapchat|instagram|everytimeapp|whatsapp|electron|wadiz|aliapp|zumapp|kakaostory|band|twitter|daumapps|fb_iab|fb4a|fban|fbios|fbss|trill/i.test(
-        ua
-      )
-    ) {
-      if (/android/i.test(ua)) {
-        setLink(
-          url.replace(
-            /^(https?):\/\/(.*)$/,
-            "intent://$2#Intent;scheme=$1;package=com.android.chrome;end"
-          )
+    // 그 외 인앱 브라우저(everytime, instagram, ...)
+    if (isOtherInApp) {
+      if (/android/i.test(userAgent)) {
+        const intentUrl = url.replace(
+          /^(https?):\/\/(.*)$/,
+          "intent://$2#Intent;scheme=$1;package=com.android.chrome;end"
         );
-      } else if (/iphone|ipad/i.test(ua)) {
-        setLink(url.replace(/^https?:\/\//, "googlechrome://"));
+        window.location.href = intentUrl;
+      } else if (isIOS && isOtherInApp) {
+        tryOpenChromeOrFallback(url);
+        return;
       }
     }
-  }, []);
+
+    // 기본 동작 (안드로이드 크롬 앱 열기)
+    if (isIOS) {
+      window.open(url, "_blank");
+    } else {
+      const intentUrl = `intent://${url.replace(/^https?:\/\//, "")}#Intent;scheme=https;package=com.android.chrome;end`;
+      window.location.href = intentUrl;
+    }
+  };
 
   return (
     <Wrapper>
@@ -76,24 +90,7 @@ export default function InAppLanding() {
         <HandImg src={HandSvg} alt="hand" />
         <FlowerImg src={FlowerImage} alt="flower" />
       </GraphicLayer>
-      <StartButton
-        onClick={() => {
-          if (isIOS) {
-            const a = document.createElement("a");
-            a.href = url;
-            a.target = "_blank";
-            a.rel = "noopener noreferrer external";
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-          } else {
-            const chromeIntent = `intent://${url.replace(/^https?:\/\//, "")}#Intent;scheme=https;package=com.android.chrome;end`;
-            window.location.href = chromeIntent;
-          }
-        }}
-      >
-        축제 사이트 열기
-      </StartButton>
+      <StartButton onClick={handleClick}>축제 사이트 바로가기</StartButton>
     </Wrapper>
   );
 }
