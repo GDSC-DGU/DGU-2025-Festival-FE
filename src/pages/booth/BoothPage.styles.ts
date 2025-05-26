@@ -41,8 +41,8 @@ export const ToolbarRow = styled.div`
 
 export const WaitingCheckButton = styled.button`
   position: relative;
-  background-color: #F1F3F9;
-  color: #949DB8;
+  background-color: #f1f3f9;
+  color: #949db8;
   border: none;
   border-radius: 32px;
   padding: 10px 20px;
@@ -73,13 +73,25 @@ export const BoothListWrapper = styled.div`
   position: relative;
   max-height: 320px;
   overflow-y: auto;
-  padding: 15px 4px;  
+  padding: 15px 4px;
   display: flex;
   flex-direction: column;
   gap: 16px;
 
-  mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
 
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -109,3 +121,12 @@ export const BoothListWrapper = styled.div`
   }
 `;
 
+export const Update = styled.div`
+  /* margin-top: 16px; */
+  padding: 16px;
+  background-color: white;
+  color: ${({ theme }) => theme.colors.gray500};
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+`;
