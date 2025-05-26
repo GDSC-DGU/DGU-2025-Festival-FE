@@ -72,7 +72,6 @@ export default function BoothPage() {
           </div>
         )}
       </ContentContainer>
-
     </PageWrapper>
   );
 }

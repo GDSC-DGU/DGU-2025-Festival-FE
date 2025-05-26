@@ -29,7 +29,7 @@ export const Card = styled.div`
   align-items: flex-end;
   gap: 10px;
   padding: 16px;
-  border: 1px solid #d7d7d7;
+  border: 1px solid ${({ theme }) => theme.colors.gray300};
 `;
 
 export const Header = styled.div`
@@ -173,4 +173,14 @@ export const ImageScrollWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 16px;
+`;
+
+export const EmptyContainer = styled.div`
+  margin-top: 12px;
+  padding: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.gray300};
+  border-radius: 8px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray500};
+  background: white;
 `;

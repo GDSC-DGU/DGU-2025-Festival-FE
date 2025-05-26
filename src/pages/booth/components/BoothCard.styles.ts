@@ -57,6 +57,7 @@ export const Intro = styled.div`
   -webkit-line-clamp: 2; /* 2줄만 표시 */
   -webkit-box-orient: vertical;
   overflow: hidden;
+  word-break: keep-all;
 `;
 
 export const LikeButton = styled.button`

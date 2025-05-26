@@ -27,10 +27,12 @@ import {
   ImageScrollContainer,
   ImageItem,
   ImageScrollWrapper,
+  EmptyContainer,
 } from "./BoothDetailPage.styles";
 import { useLike } from "@/api/likes/hooks/useLike";
 import SkeletonLoading from "@/components/common/SkeletonLoading";
 import { usePubStatus } from "@/api/hooks/usePubStatus";
+import getDistance from "./utils/getDistance";
 
 export default function BoothDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -67,14 +69,25 @@ export default function BoothDetailPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [boothId]);
 
-  const relatedBooths = useMemo(
-    () =>
-      booths.filter(
-        (b) =>
-          b.date === booth?.date && b.type === booth?.type && b.id !== booth?.id
-      ),
-    [booth]
-  );
+  const relatedBooths = useMemo(() => {
+    if (!booth) return [];
+
+    const sameDateAndType = booths.filter(
+      (b) => b.date === booth.date && b.type === booth.type && b.id !== booth.id
+    );
+
+    // 기준 좌표
+    const baseLat = booth.position.lat;
+    const baseLng = booth.position.lng;
+
+    return sameDateAndType
+      .map((b) => ({
+        ...b,
+        distance: getDistance(baseLat, baseLng, b.position.lat, b.position.lng),
+      }))
+      .filter((b) => b.distance < 50) // 50m 이내로 필터링
+      .sort((a, b) => a.distance - b.distance); // 가까운 순 정렬
+  }, [booth]);
 
   const loopedBooths = useMemo(
     () => [...relatedBooths, ...relatedBooths],
@@ -228,7 +241,7 @@ export default function BoothDetailPage() {
 
         <SubContainer>
           <Title>근처 부스 둘러보기</Title>
-          {relatedBooths.length > 0 && (
+          {relatedBooths.length > 0 ? (
             <ScrollWrapper ref={boothScrollRef}>
               {loopedBooths.map((b, idx) => (
                 <MiniBoothCard
@@ -241,6 +254,8 @@ export default function BoothDetailPage() {
                 />
               ))}
             </ScrollWrapper>
+          ) : (
+            <EmptyContainer>근처에 있는 부스를 찾을 수 없어요!</EmptyContainer>
           )}
         </SubContainer>
 
