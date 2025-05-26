@@ -10,6 +10,8 @@ export default function InAppLanding() {
   const url = "https://dirvana.co.kr";
   useEffect(() => {
     const ua = navigator.userAgent;
+    alert("현재 userAgent:\n" + ua);
+    console.log("[InAppLanding] userAgent:", ua);
 
     const setLink = (finalUrl: string) => {
       setTimeout(() => {
@@ -45,26 +47,33 @@ export default function InAppLanding() {
 
       window.location.href = finalUrl;
     };
-
-    if (/kakaotalk/i.test(ua)) {
-      setLink(`kakaotalk://web/openExternal?url=${encodeURIComponent(url)}`);
-    } else if (/line\//i.test(ua)) {
-      setLink(`${url}?openExternalBrowser=1`);
-    } else if (
-      /inapp|naver|snapchat|instagram|everytimeapp|whatsapp|electron|wadiz|aliapp|zumapp|kakaostory|band|twitter|daumapps|fb_iab|fb4a|fban|fbios|fbss|trill/i.test(
-        ua
-      )
-    ) {
-      if (/android/i.test(ua)) {
-        setLink(
-          url.replace(
-            /^(https?):\/\/(.*)$/,
-            "intent://$2#Intent;scheme=$1;package=com.android.chrome;end"
-          )
-        );
-      } else if (/iphone|ipad/i.test(ua)) {
-        setLink(url.replace(/^https?:\/\//, "googlechrome://"));
+    try {
+      if (/kakaotalk/i.test(ua)) {
+        setLink(`kakaotalk://web/openExternal?url=${encodeURIComponent(url)}`);
+      } else if (/line\//i.test(ua)) {
+        setLink(`${url}?openExternalBrowser=1`);
+      } else if (
+        /inapp|naver|snapchat|instagram|everytimeapp|whatsapp|electron|wadiz|aliapp|zumapp|kakaostory|band|twitter|daumapps|fb_iab|fb4a|fban|fbios|fbss|trill/i.test(
+          ua
+        )
+      ) {
+        if (/android/i.test(ua)) {
+          setLink(
+            url.replace(
+              /^(https?):\/\/(.*)$/,
+              "intent://$2#Intent;scheme=$1;package=com.android.chrome;end"
+            )
+          );
+        } else if (/iphone|ipad/i.test(ua)) {
+          setLink(url.replace(/^https?:\/\//, "googlechrome://"));
+        }
+      } else {
+        console.log("인앱 브라우저 아님 - 정상 라우팅");
       }
+    } catch (e) {
+      const error = e as Error;
+      console.error("InAppLanding 처리 중 오류:", e);
+      alert("🚨 오류 발생: " + error);
     }
   }, []);
 
