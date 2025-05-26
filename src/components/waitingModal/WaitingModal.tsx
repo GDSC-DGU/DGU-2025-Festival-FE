@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ModalPortal from "@/components/common/ModalPortal";
 import * as S from "./WaitingModal.styles";
 import {
@@ -6,7 +6,7 @@ import {
   verifyPhoneCode,
   reserveBooth,
 } from "@/api/reservation";
-import { requestPermissionAndGetToken } from "@/firebase";
+// import { requestPermissionAndGetToken } from "@/firebase";
 
 interface Booth {
   id: string;
@@ -41,27 +41,27 @@ export default function WaitingModal({
   const [name, setName] = useState("");
   const [alreadyReserved, setAlreadyReserved] = useState(false);
 
-  useEffect(() => {
-    const askPermissionAndGetToken = async () => {
-      try {
-        if (Notification.permission === "default") {
-          const permission = await Notification.requestPermission();
-          if (permission === "granted") {
-            const token = await requestPermissionAndGetToken();
-            if (token) console.log("FCM 토큰:", token);
-          }
-        } else if (Notification.permission === "granted") {
-          const token = await requestPermissionAndGetToken();
-          if (token) console.log("FCM 토큰:", token);
-        } else {
-          console.log("알림 권한 거부됨");
-        }
-      } catch (err) {
-        console.error("알림 권한 요청 또는 토큰 발급 실패:", err);
-      }
-    };
-    askPermissionAndGetToken();
-  }, []);
+  // useEffect(() => {
+  //   const askPermissionAndGetToken = async () => {
+  //     try {
+  //       if (Notification.permission === "default") {
+  //         const permission = await Notification.requestPermission();
+  //         if (permission === "granted") {
+  //           // const token = await requestPermissionAndGetToken();
+  //           // if (token) console.log("FCM 토큰:", token);
+  //         }
+  //       } else if (Notification.permission === "granted") {
+  //         // const token = await requestPermissionAndGetToken();
+  //         // if (token) console.log("FCM 토큰:", token);
+  //       } else {
+  //         console.log("알림 권한 거부됨");
+  //       }
+  //     } catch (err) {
+  //       console.error("알림 권한 요청 또는 토큰 발급 실패:", err);
+  //     }
+  //   };
+  //   askPermissionAndGetToken();
+  // }, []);
 
   const handleNext = () => {
     if (people > 0) setStep("phone");
@@ -85,16 +85,16 @@ export default function WaitingModal({
 
   const handleVerify = async () => {
     try {
-      const token = await requestPermissionAndGetToken();
-      if (!token) {
-        alert("알림 권한이 필요합니다.");
-        return;
-      }
+      // const token = await requestPermissionAndGetToken();
+      // if (!token) {
+      //   alert("알림 권한이 필요합니다.");
+      //   return;
+      // }
 
       const res = await verifyPhoneCode({
         phoneNumber: phone,
         certificationNumber: verifyCode,
-        browserToken: token,
+        browserToken: "dummy-token", // TODO: Replace with actual token logic
       });
 
       if (res.success) {
@@ -113,14 +113,14 @@ export default function WaitingModal({
     if (!verified || name.trim() === "") return;
 
     try {
-      const token = await requestPermissionAndGetToken();
-      if (!token) {
-        alert("알림 권한이 필요합니다.");
-        return;
-      }
+      // const token = await requestPermissionAndGetToken();
+      // if (!token) {
+      //   alert("알림 권한이 필요합니다.");
+      //   return;
+      // }
 
       const res = await reserveBooth(booth.id, {
-        browserToken: token,
+        browserToken: "dummy-token", // TODO: Replace with actual token logic
         phoneNumber: phone,
         name: name.trim(),
         attendance: people,

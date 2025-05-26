@@ -134,7 +134,6 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
           const time = new Date(Date.now() - elapsedMs);
           calledAt = !isNaN(time.getTime()) ? time.toISOString() : undefined;
         }
-              
 
         return {
           id: String(item.reserveId),
@@ -146,7 +145,7 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
           visited: false,
           cancelled: item.status === "CANCELLED",
           order: index + 1,
-          status: item.status as WaitingBooth["status"],
+          status: (item.status === "CANCELLED" ? "CANCELED" : item.status) as WaitingBooth["status"],
         };
       });
 

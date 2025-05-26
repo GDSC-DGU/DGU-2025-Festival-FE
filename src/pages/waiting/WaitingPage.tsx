@@ -8,7 +8,7 @@ import * as S from "./WaitingPage.styles";
 import type { Booth } from "@/types/booth";
 import QuestionIcon from "@/assets/icons/question.png";
 import TopBar from "@/components/topbar/TopBar";
-import { requestPermissionAndGetToken } from "@/firebase";
+// import { requestPermissionAndGetToken } from "@/firebase";
 import { cancelReservation, fetchMyReservation } from "@/api/reservation";
 import { useMyReservation } from "@/api/hooks/useMyReservation";
 import { usePubStatuses } from "@/api/hooks/usePubStatuses";
@@ -50,8 +50,8 @@ export default function WaitingPage() {
 
   const handleClickBooth = async (booth: Booth) => {
     if (!activeWaiting || activeWaiting.boothId === booth.id) {
-      const token = await requestPermissionAndGetToken();
-      if (token) console.log("알림 권한 OK:", token);
+      // const token = await requestPermissionAndGetToken();
+      // if (token) console.log("알림 권한 OK:", token);
       setSelectedBooth(booth);
       setShowWaitingModal(true);
     }
