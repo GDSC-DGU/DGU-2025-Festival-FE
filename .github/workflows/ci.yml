@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Lint check
-        run: npm run lint
+        run: npm run lint -- --no-cache 
 
       - name: Run unit tests
         run: npm run test -- --coverage
