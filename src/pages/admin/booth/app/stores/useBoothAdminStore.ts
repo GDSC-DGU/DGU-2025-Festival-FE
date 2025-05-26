@@ -122,10 +122,19 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
         const isCalled = item.status === "CALLED" || item.status === "LATE";
         let calledAt: string | undefined;
 
-        if (isCalled && typeof item.elapsedTime === "number") {
-          const time = new Date(Date.now() - item.elapsedTime * 60000);
+        if (
+          isCalled &&
+          typeof item.elapsedTime === "string" &&
+          (item.elapsedTime as string).includes(":")
+        ) {
+          const [minutesStr, secondsStr] = (item.elapsedTime as string).split(":");
+          const minutes = parseInt(minutesStr, 10);
+          const seconds = parseInt(secondsStr, 10);
+          const elapsedMs = (minutes * 60 + seconds) * 1000;
+          const time = new Date(Date.now() - elapsedMs);
           calledAt = !isNaN(time.getTime()) ? time.toISOString() : undefined;
         }
+              
 
         return {
           id: String(item.reserveId),

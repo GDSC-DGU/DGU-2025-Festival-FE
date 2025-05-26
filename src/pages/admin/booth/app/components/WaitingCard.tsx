@@ -24,9 +24,16 @@ const WaitingBoothCard = ({
     openPhoneModal(booth);
   };
 
-  const elapsed = booth.calledAt
-    ? `${Math.floor((Date.now() - new Date(booth.calledAt).getTime()) / 60000)}분 경과`
+  const minutesPassed = booth.calledAt
+    ? Math.floor((Date.now() - new Date(booth.calledAt).getTime()) / 60000)
     : null;
+
+  const elapsed =
+    minutesPassed !== null
+      ? minutesPassed === 0
+        ? "방금 호출됨"
+        : `${minutesPassed}분 경과`
+      : null;
 
   return (
     <S.CardWrapper onClick={handleCardClick} highlightLate={highlightLate}>

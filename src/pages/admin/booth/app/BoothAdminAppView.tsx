@@ -40,26 +40,37 @@ const BoothAdminAppView = () => {
   const now = Date.now();
   const LATE_MINUTES = 5;
 
-  // ❶ 첫 렌더 + 주기적 fetch
+  // ✅ 첫 렌더 + 주기적 fetch
   useEffect(() => {
     fetchBooths();
     const interval = setInterval(() => {
       fetchBooths();
-    }, 10000); // 10초마다 재요청
+    }, 10000);
     return () => clearInterval(interval);
-  }, []);
+  }, [fetchBooths]);
 
-  // ❷ 지각자
-  const lateBooths = waitingBooths.filter(
-    (booth) =>
-      booth.calledAt &&
-      !booth.visited &&
-      !booth.cancelled &&
-      (now - new Date(booth.calledAt).getTime()) / 60000 >= LATE_MINUTES
-  );
+  // ✅ 지각자: 5분 이상 경과한 호출 + 최신순 정렬
+  const lateBooths = waitingBooths
+    .filter(
+      (booth) =>
+        booth.calledAt &&
+        !booth.visited &&
+        !booth.cancelled &&
+        (now - new Date(booth.calledAt).getTime()) / 60000 >= LATE_MINUTES
+    )
+    .sort(
+      (a, b) =>
+        new Date(b.calledAt!).getTime() - new Date(a.calledAt!).getTime()
+    );
 
-  // ❸ 전체 대기자 (취소 포함)
-  const allBooths = waitingBooths;
+  // ✅ 전체 대기자: 지각자 + 취소자 제외 + 최신 등록순
+  const allBooths = waitingBooths
+    .filter(
+      (booth) =>
+        !lateBooths.some((late) => late.id === booth.id) &&
+        !booth.cancelled
+    )
+    .sort((a, b) => (b.order ?? 0) - (a.order ?? 0));
 
   const notEnteredCount = allBooths.filter(
     (booth) => !booth.visited && !booth.cancelled
@@ -78,7 +89,7 @@ const BoothAdminAppView = () => {
         <Tabs current={tab} onChange={setTab} />
       </Section>
 
-      {/* ❹ 늦은 대기자 */}
+      {/* ✅ 늦은 대기자 */}
       {bottomTab === "late" && lateBooths.length > 0 && (
         <Section>
           <SectionTitle>늦은 대기자</SectionTitle>
@@ -98,7 +109,7 @@ const BoothAdminAppView = () => {
         </Section>
       )}
 
-      {/* ❺ 전체 대기자 */}
+      {/* ✅ 전체 대기자 */}
       {bottomTab === "waiting" && (
         <Section>
           <SectionTitle>전체 대기자 목록</SectionTitle>
@@ -116,13 +127,13 @@ const BoothAdminAppView = () => {
               const isLate = lateBooths.some((late) => late.id === booth.id);
 
               const showDeleteButton =
-                !!(!booth.cancelled && isCalling && elapsedMinutes >= LATE_MINUTES);
+                !booth.cancelled && isCalling && elapsedMinutes >= LATE_MINUTES;
 
               return (
                 <WaitingBoothCard
                   key={booth.id}
                   booth={booth}
-                  showDeleteButton={showDeleteButton}
+                  showDeleteButton={!!showDeleteButton}
                   highlightLate={isLate}
                 />
               );
@@ -133,7 +144,7 @@ const BoothAdminAppView = () => {
 
       <FloatingButton />
 
-      {/* 모달들 */}
+      {/* ✅ 모달 */}
       {modalType === "call" && selectedBooth && (
         <ConfirmCallModal
           boothName={selectedBooth.name}
