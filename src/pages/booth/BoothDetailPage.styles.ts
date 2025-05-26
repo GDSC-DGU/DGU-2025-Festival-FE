@@ -34,7 +34,7 @@ export const Card = styled.div`
 
 export const Header = styled.div`
   display: flex;
-  gap: 15px;
+  gap: 5px;
   width: 100%;
   flex-direction: column;
   justify-content: space-between;
@@ -46,6 +46,7 @@ export const Info = styled.div`
   justify-content: space-between;
   width: 100%;
   gap: 4px;
+  word-break: keep-all;
 `;
 
 export const BoothName = styled.div`
@@ -60,6 +61,7 @@ export const BoothIntro = styled.div`
   font-weight: 500;
   color: var(--gray-500);
   line-height: 1.5;
+  word-break: keep-all;
 `;
 
 export const Like = styled.div`
@@ -131,13 +133,6 @@ export const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-`;
-
-export const Description = styled.div`
-  padding: 16px;
-  font-size: 13px;
-  color: #333;
-  line-height: 1.5;
 `;
 
 // 이미지 스크롤 부분 스타일
