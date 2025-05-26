@@ -24,8 +24,6 @@ const BoothAdminAppView = () => {
   const [bottomTab, setBottomTab] = useState<"waiting" | "late">("waiting");
 
   const {
-    tab,
-    setTab,
     waitingBooths,
     modalType,
     selectedBooth,
@@ -85,8 +83,8 @@ const BoothAdminAppView = () => {
         <SectionDescription>
           현재 부스의 좌석 상황을 설정하면, 방문자가 이를 확인할 수 있어요.
         </SectionDescription>
-        <Tabs current={tab} onChange={setTab} />
-      </Section>
+        <Tabs />
+        </Section>
 
       {/* 늦은 대기자 */}
       {bottomTab === "late" && lateBooths.length > 0 && (
