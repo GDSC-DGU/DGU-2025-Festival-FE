@@ -62,7 +62,7 @@ export default function BoothPage() {
             {/* ✅ 부스 리스트 내부 맨 끝에 안내 메시지 박스 추가 */}
             {(selectedDate === "2025-05-28" ||
               selectedDate === "2025-05-29") && (
-              <Update>부스 추가 업데이트 예정이에요!</Update>
+              <Update>부스 추가 업데이트 예정이에요</Update>
             )}
           </BoothListWrapper>
         ) : (

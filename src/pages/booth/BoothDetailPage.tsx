@@ -255,7 +255,7 @@ export default function BoothDetailPage() {
               ))}
             </ScrollWrapper>
           ) : (
-            <EmptyContainer>근처에 있는 부스를 찾을 수 없어요!</EmptyContainer>
+            <EmptyContainer>근처에 있는 부스를 찾을 수 없어요</EmptyContainer>
           )}
         </SubContainer>
 
