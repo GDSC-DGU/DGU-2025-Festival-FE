@@ -1,6 +1,7 @@
 export type BoothType = "day" | "night";
 
 export interface Booth {
+  pubStatus?: "AVAILABLE" | "FULL" | "PREPARING" | "END";
   id: string;
   name: string;
   intro: string;

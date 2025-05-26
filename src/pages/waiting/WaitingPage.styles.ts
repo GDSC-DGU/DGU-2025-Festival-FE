@@ -186,7 +186,10 @@ export const ImmediateEntryText = styled.div`
   font-size: 12px;
   font-weight: 500;
   color: #575bdf;
+  align-self: flex-end;
+  margin-left: auto;
 `;
+
 
 export const WaitingSummary = styled.div`
   padding: 4px 12px;
@@ -196,4 +199,30 @@ export const WaitingSummary = styled.div`
   font-weight: 400;
   display: inline-block;
   width: fit-content;
+`;
+
+export const PreparingText = styled.div`
+  color: #aaa;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: right;
+  align-self: flex-end;
+  margin-left: auto;
+`;
+
+export const EndedText = styled.div`
+  color: #ccc;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: right;
+  align-self: flex-end;
+  margin-left: auto;
+`;
+
+export const EmptyBoothMessage = styled.div`
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  padding: 40px 0;
+  line-height: 1.6;
 `;

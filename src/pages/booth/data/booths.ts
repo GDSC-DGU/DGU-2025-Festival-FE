@@ -133,30 +133,40 @@ import booth_46_3 from '@/assets/booth/homeHistory/KakaoTalk_20250524_212926313_
 import booth_46_4 from '@/assets/booth/homeHistory/스크린샷 2025-05-25 103743.png';
 import booth_46_5 from '@/assets/booth/homeHistory/스크린샷 2025-05-25 103913.png';
 import booth_47_1 from '@/assets/morningbooth/engineering/1.png';
+import booth_4_4 from '@/assets/booth/chemical/KakaoTalk_20250526_115827005.jpg'
+import booth_5_5 from '@/assets/booth/computer/KakaoTalk_20250526_120842719.jpg'
+import booth_5_6 from '@/assets/booth/computer/KakaoTalk_20250526_120842719_01.jpg'
+import booth_5_7 from '@/assets/booth/computer/KakaoTalk_20250526_120842719_02.jpg'
+import booth_5_8 from '@/assets/booth/computer/KakaoTalk_20250526_120842719_03.jpg'
+import booth_5_9 from '@/assets/booth/computer/KakaoTalk_20250526_120842719_04.jpg'
+import booth_6_10 from '@/assets/booth/systemban/1.jpg';
+import booth_6_11 from '@/assets/booth/systemban/2.jpg';
+import booth_6_12 from '@/assets/booth/systemban/3.jpg';
+import booth_6_13 from '@/assets/booth/systemban/4.jpg';
+import booth_6_14 from '@/assets/booth/systemban/5.jpg';
+import booth_6_15 from '@/assets/booth/systemban/6.jpg';
+import booth_6_16 from '@/assets/booth/systemban/7.jpg';
+import booth_6_17 from '@/assets/booth/systemban/8.jpg';
+import booth_6_18 from '@/assets/booth/systemban/9.jpg';
+import booth_6_19 from '@/assets/booth/systemban/10.jpg';
+import booth_6_20 from '@/assets/booth/systemban/11.jpg';
+
+
 
 export const booths = [
     {
-        id: '1',
-        name: '동감 사파리 월드',
-        intro: ' 속보입니다! 동감랜드 사파리에서 아코 24마리가 탈출했습니다. 포획에 동참하시겠습니까?',
+        id: '3',
+        name: '동감🍊 사파리 월드',
+        intro: ' 속보입니다! 동감랜드 사파리에서 아코 24마리가 탈출했습니다.',
         date: '2025-05-28',
         type: 'night',
         position: { lat: 37.557685, lng: 127.000223 },
         images: [booth_1_1, booth_1_2, booth_1_3, booth_1_4, booth_1_5, booth_1_6, booth_1_7],
         waitingAvailable: true,
     },
+   
     {
-        id: '2',
-        name: ' 빽투-더 백팔',
-        intro: '108리더스 19기 레트로 야간주점',
-        date: '2025-05-27',
-        type: 'night',
-        position: { lat: 37.557735, lng: 127.000246 },
-        images: [booth_2_1, booth_2_2, booth_2_3],
-        waitingAvailable: false,
-    },
-    {
-        id: '3',
+        id: '1',
         name: '辛서유기',
         intro: '중어중문학과',
         date: '2025-05-27',
@@ -166,35 +176,57 @@ export const booths = [
         waitingAvailable: false,
     },
     {
-        id: '4',
+        id: '2',
         name: '분노의 삼국시대',
         intro: '“천하삼분(天下三分), 술로 통일하라!”',
         date: '2025-05-27',
         type: 'night',
         position: { lat: 37.5583, lng: 126.9975 },
         images: [booth_4_1, booth_4_2, booth_4_3],
-        waitingAvailable: false,
+        waitingAvailable: true,
+    },
+    {
+        id: '4',
+        name: '폭싹마셨수다',
+        intro: '여전히 취하고 싶은 당신에게 건내는 화생공의 초대장',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.558643, lng: 126.999150 },
+        images: [booth_4_4],
+        waitingAvailable: true,
     },
     {
         id: '5',
-        name: '속세 한 잔',
-        intro: '불교학부 야간 부스',
-        date: '2025-05-27',
+        name: 'CAISINO',
+        intro: '청춘을 베팅하라!🎲',
+        date: '2025-05-29',
         type: 'night',
-        position: { lat: 37.5586, lng: 126.9967 },
-        images: [booth_5_1, booth_5_2],
-        waitingAvailable: false,
+        position: { lat: 37.559708, lng: 126.999224 },
+        images: [booth_5_6, booth_5_5,  booth_5_7, booth_5_8, booth_5_9],
+        waitingAvailable: true,
     },
     {
         id: '6',
-        name: 'LAWTTE CINEMA',
-        intro: '법과대학 영화관 컨셉 야간 부스',
-        date: '2025-05-27',
+        name: '🥢 차린건 시반만 있지만,',
+        intro: '시스템반도체학부 & 물리반도체과학부 연합 야간 부스',
+        date: '2025-05-29',
         type: 'night',
-        position: { lat: 37.558301, lng: 127.000702 },
-        images: [booth_6_1, booth_6_2, booth_6_3],
-        waitingAvailable: false,
+        position: { lat: 37.558015, lng: 127.000628 },
+        images: [
+            booth_6_19, booth_6_10,
+            booth_6_11,
+            booth_6_12,
+            booth_6_13,
+            booth_6_14,
+            booth_6_15,
+            booth_6_16,
+            booth_6_17,
+            booth_6_18,
+            booth_6_20,
+        ],
+        waitingAvailable: true,
     },
+    
     {
         id: '7',
         name: '동약사랑산악회 약수터',
@@ -703,6 +735,37 @@ export const booths = [
         type: 'day',
         position: { lat: 37.558585, lng: 127.000345 },
         images: [booth_47_1],
+        waitingAvailable: false,
+    },
+
+    {
+        id: '58',
+        name: ' 빽투-더 백팔',
+        intro: '108리더스 19기 레트로 야간주점',
+        date: '2025-05-27',
+        type: 'night',
+        position: { lat: 37.557735, lng: 127.000246 },
+        images: [booth_2_1, booth_2_2, booth_2_3],
+        waitingAvailable: false,
+    },
+    {
+        id: '59',
+        name: '속세 한 잔',
+        intro: '불교학부 야간 부스',
+        date: '2025-05-27',
+        type: 'night',
+        position: { lat: 37.5586, lng: 126.9967 },
+        images: [booth_5_1, booth_5_2],
+        waitingAvailable: false,
+    },
+    {
+        id: '60',
+        name: 'LAWTTE CINEMA',
+        intro: '법과대학 영화관 컨셉 야간 부스',
+        date: '2025-05-27',
+        type: 'night',
+        position: { lat: 37.558301, lng: 127.000702 },
+        images: [booth_6_1, booth_6_2, booth_6_3],
         waitingAvailable: false,
     },
 ] as const;
