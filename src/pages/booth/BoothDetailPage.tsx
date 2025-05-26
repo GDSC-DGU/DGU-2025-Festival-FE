@@ -1,4 +1,3 @@
-
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { booths } from "@/pages/booth/data/booths";
@@ -37,6 +36,17 @@ export default function BoothDetailPage() {
 
   const { isLoading, totalLikes, toggleLike, isToggling, isLiked } =
     useLike(boothId);
+
+  const [localLiked, setLocalLiked] = useState(isLiked);
+  const hasCalledLikeAPI = useRef(false);
+
+  const handleLikeClick = () => {
+    setLocalLiked(prev => !prev);
+    if (!hasCalledLikeAPI.current && !isLiked) {
+      toggleLike();
+      hasCalledLikeAPI.current = true;
+    }
+  };
 
   useEffect(() => {
     setCurrentSlide(0);
@@ -98,11 +108,7 @@ export default function BoothDetailPage() {
 
   return (
     <Container>
-      <TopBar
-        title="부스 상세"
-        showBackButton
-        onBack={() => navigate("/booth")}
-      />
+      <TopBar title="부스 상세" showBackButton onBack={() => navigate("/booth")} />
       <ContentContainer>
         <MapWrapper>
           <MapContainer
@@ -131,7 +137,7 @@ export default function BoothDetailPage() {
                       setWaitingClosedModalMessage("운영이 종료된 부스입니다.");
                       setShowWaitingClosedModal(true);
                     } else if (pubStatus === "FULL") {
-                      setShowWaitingModal(true); // 정상 예약 모달
+                      setShowWaitingModal(true);
                     } else {
                       setWaitingClosedModalMessage("부스 상태를 확인할 수 없습니다.");
                       setShowWaitingClosedModal(true);
@@ -155,23 +161,19 @@ export default function BoothDetailPage() {
                 ))}
               </ImageScrollContainer>
               {booth.images.length > 1 && (
-                <ImagePagination
-                  total={booth.images.length}
-                  current={currentSlide}
-                  onDotClick={scrollToIndex}
-                />
+                <ImagePagination total={booth.images.length} current={currentSlide} onDotClick={scrollToIndex} />
               )}
             </ImageScrollWrapper>
           )}
 
           <Like
             as="button"
-            disabled={isToggling || isLiked}
-            onClick={toggleLike}
-            style={{ cursor: isToggling || isLiked ? "not-allowed" : "pointer", background: "none", border: "none" }}
+            disabled={isToggling}
+            onClick={handleLikeClick}
+            style={{ cursor: isToggling ? "not-allowed" : "pointer", background: "none", border: "none" }}
           >
             <LikeCount>{totalLikes}</LikeCount>
-            <img src={isLiked ? HeartOn : HeartOff} alt="찜" width={24} />
+            <img src={localLiked ? HeartOn : HeartOff} alt="찜" width={24} />
           </Like>
         </Card>
 

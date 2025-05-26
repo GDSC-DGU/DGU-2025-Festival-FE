@@ -19,7 +19,7 @@ import { useBoothStore } from "./stores/useBoothStore"; // ✅ 추가
 export default function BoothPage() {
   const [selectedDate, setSelectedDate] = useState("2025-05-27");
   const [boothType, setBoothType] = useState<"day" | "night">("day");
-  const [showModal, setShowModal] = useState(false);
+  const [, setShowModal] = useState(false);
 
   const isLiked = useBoothStore((state) => state.isLiked);
   const showOnlyLiked = useBoothStore((state) => state.showOnlyLiked);
