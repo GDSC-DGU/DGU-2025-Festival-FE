@@ -10,7 +10,7 @@ const BoothRanking = ({ booths }: BoothRankingItemProps) => {
   return (
     <Container>
       {booths.slice(0, 3).map((booth) => (
-        <BoothRankingCard booth={booth} />
+        <BoothRankingCard key={booth.id} booth={booth} />
       ))}
     </Container>
   );

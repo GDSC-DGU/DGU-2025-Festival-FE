@@ -27,12 +27,13 @@ export const ModalWrapper = styled.div`
   background: white;
   border-radius: 10px;
   padding: 24px;
-  max-width: 360px;
+  max-width: 340px;
   min-width: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  box-sizing: border-box;
   max-height: 90vh;
   overflow-y: auto;
 `;
@@ -163,9 +164,11 @@ export const SongContent = styled.div`
   flex-direction: column;
   gap: 5px;
   align-items: start;
+  flex: 1;
 `;
 
 export const SongTitle = styled.p`
   margin: 0;
   ${({ theme }) => theme.fonts.Body3}
+  white-space: normal;
 `;

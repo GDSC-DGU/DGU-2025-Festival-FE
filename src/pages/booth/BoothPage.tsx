@@ -10,21 +10,26 @@ import {
   ToolbarRow,
   WaitingCheckButton,
   ContentContainer,
-  BoothListWrapper
+  BoothListWrapper,
 } from "./BoothPage.styles";
 import { booths } from "./data/booths";
 import TopBar from "@/components/topbar/TopBar";
-import WaitingClosedModal from "@/pages/waiting/components/WaitingClosedModal"; // 추가
+import { useBoothStore } from "./stores/useBoothStore"; // ✅ 추가
 
 export default function BoothPage() {
   const [selectedDate, setSelectedDate] = useState("2025-05-27");
   const [boothType, setBoothType] = useState<"day" | "night">("day");
-  const [showModal, setShowModal] = useState(false); // 모달 상태
-  // const navigate = useNavigate(); // 임시 주석
+  const [, setShowModal] = useState(false);
 
-  const filteredBooths = booths.filter(
-    (booth) => booth.date === selectedDate && booth.type === boothType
-  );
+  const isLiked = useBoothStore((state) => state.isLiked);
+  const showOnlyLiked = useBoothStore((state) => state.showOnlyLiked);
+
+  const filteredBooths = booths.filter((booth) => {
+    const isSameDate = booth.date === selectedDate;
+    const isSameType = booth.type === boothType;
+    const isLikeOk = !showOnlyLiked || isLiked(booth.id);
+    return isSameDate && isSameType && isLikeOk;
+  });
 
   return (
     <PageWrapper>
@@ -43,34 +48,31 @@ export default function BoothPage() {
         </ToolbarRow>
 
         {filteredBooths.length > 0 ? (
-  <BoothListWrapper>
-    {filteredBooths.map((booth) => (
-      <BoothCard
-        key={booth.id}
-        boothId={booth.id}
-        name={booth.name}
-        intro={booth.intro}
-        image={booth.images[0]}
-      />
-    ))}
-  </BoothListWrapper>
-) : (
-  <div
-    style={{
-      padding: "40px 0",
-      textAlign: "center",
-      color: "#949db8",
-      fontSize: "14px",
-    }}
-  >
-    곧 업데이트 예정이에요.
-  </div>
-)}
-
-
+          <BoothListWrapper>
+            {filteredBooths.map((booth) => (
+              <BoothCard
+                key={booth.id}
+                boothId={booth.id}
+                name={booth.name}
+                intro={booth.intro}
+                image={booth.images[0]}
+              />
+            ))}
+          </BoothListWrapper>
+        ) : (
+          <div
+            style={{
+              padding: "40px 0",
+              textAlign: "center",
+              color: "#949db8",
+              fontSize: "14px",
+            }}
+          >
+            찜한 목록이 없어요.
+          </div>
+        )}
       </ContentContainer>
 
-      {showModal && <WaitingClosedModal onClose={() => setShowModal(false)} />}
     </PageWrapper>
   );
 }

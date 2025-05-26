@@ -13,7 +13,6 @@ import BoothOff from "@/assets/icons/booth_off.png";
 import WaitingOn from "@/assets/icons/waiting_on.png";
 import WaitingOff from "@/assets/icons/waiting_off.png";
 
-import WaitingClosedModal from "@/pages/waiting/components/WaitingClosedModal";
 
 interface NavItem {
   label: string;
@@ -48,13 +47,12 @@ const navItems: NavItem[] = [
     path: "/waiting",
     defaultIcon: WaitingOff,
     activeIcon: WaitingOn,
-    isWaiting: true, // 특수처리
   },
 ];
 
 export default function BottomNav() {
   const { pathname } = useLocation();
-  const [showWaitingModal, setShowWaitingModal] = useState(false);
+  const [, setShowWaitingModal] = useState(false);
 
   const handleClick = (item: NavItem) => {
     if (item.isWaiting) {
@@ -96,10 +94,6 @@ export default function BottomNav() {
           })}
         </ul>
       </S.BottomNav>
-
-      {showWaitingModal && (
-        <WaitingClosedModal onClose={() => setShowWaitingModal(false)} />
-      )}
     </>
   );
 }
