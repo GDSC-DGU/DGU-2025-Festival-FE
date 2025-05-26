@@ -2,14 +2,12 @@ import { adminInstance } from "@/api/instance";
 import { sendRequest } from "@/api/request";
 
 export const updateBoothStatus = (
-  status: "AVAILABLE" | "FULL" | "END",
-  payload?: Record<string, any>
+  status: "AVAILABLE" | "FULL" | "END"
 ) => {
-  const url = `/pub?pubStatus=${status}`;
+  const url = `/pub?pubsStatus=${status}`;
   return sendRequest<boolean>(
     adminInstance,
     "PATCH",
-    url,
-    payload ?? {} // 빈 객체라도?
+    url
   );
 };

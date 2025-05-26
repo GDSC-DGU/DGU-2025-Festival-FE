@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { updateBoothStatus } from "@/api/booth/adminBooth";
-import { useBoothAdminStore } from "../stores/useBoothAdminStore";
+// import { useBoothAdminStore } from "../stores/useBoothAdminStore";
 
 export type TabType = "available" | "full";
 
@@ -15,13 +15,20 @@ const Tabs: React.FC<TabsProps> = ({ current, onChange }) => {
   
     try {
       await updateBoothStatus(status);
-      alert(`부스 상태가 '${status}'로 변경되었습니다.`);
+  
+      const statusMessage =
+        status === "FULL"
+          ? "대기 예약 받기로 변경되었습니다."
+          : "바로 입장 가능으로 변경되었습니다.";
+  
+      alert(`부스 상태가 ${statusMessage}`);
       onChange(tab);
     } catch (err) {
       console.error("상태 변경 실패:", err);
-      alert("상태 변경에 실패했습니다.");
+      alert("상태 변경에 실패했습니다. 다시 시도해 주세요.");
     }
   };
+  
   
   
   return (
@@ -30,13 +37,13 @@ const Tabs: React.FC<TabsProps> = ({ current, onChange }) => {
         selected={current === "available"}
         onClick={() => handleTabChange("available")}
       >
-        자리 있음
+        바로 입장 가능
       </TabButton>
       <TabButton
         selected={current === "full"}
         onClick={() => handleTabChange("full")}
       >
-        만석
+        대기 예약 받기
       </TabButton>
     </TabWrapper>
   );
