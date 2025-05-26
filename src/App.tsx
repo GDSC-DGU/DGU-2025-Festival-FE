@@ -15,8 +15,14 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalFCMListener />
-      {inApp ? <InAppLanding /> : <RouterProvider router={router} />}
+      {inApp ? (
+        <InAppLanding />
+      ) : (
+        <>
+          <GlobalFCMListener />
+          <RouterProvider router={router} />
+        </>
+      )}
     </ThemeProvider>
   );
 }
