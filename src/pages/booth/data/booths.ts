@@ -208,6 +208,8 @@ import booth_98_1 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.
 import booth_98_2 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.06.png";
 import booth_98_3 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.12.png";
 import booth_98_4 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.18.png";
+import booth_99_1 from "@/assets/booth/caffeine/스크린샷 2025-05-27 오후 1.48.59.png";
+import booth_100_1 from "@/assets/booth/mecs/스크린샷 2025-05-27 오후 1.51.10.png";
 import type { Booth } from "@/types/booth";
 
 export const booths: Booth[] = [
@@ -484,7 +486,7 @@ export const booths: Booth[] = [
     position: { lat: 37.557211, lng: 127.002434 },
     images: [booth_25_1],
     waitingAvailable: false,
-    isLinenow: true,
+    // isLinenow: true,
   },
   {
     id: "26",
@@ -1243,5 +1245,40 @@ export const booths: Booth[] = [
     position: { lat: 37.559381, lng: 126.99954 },
     images: [booth_98_1, booth_98_2, booth_98_3, booth_98_4],
     waitingAvailable: false,
+  },
+  {
+    id: "98",
+    name: "CASS X 텐텐오락실",
+    intro: "CASS X 텐텐오락실 캠퍼스 어택 프로모션 부스",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.559381, lng: 126.99954 },
+    images: [booth_98_1, booth_98_2, booth_98_3, booth_98_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "99",
+    name: "카페인",
+    intro:
+      "폐관 수련을 끝내고 드디어 중앙요리동아리 카페인 주점 첫 출전...!!! 외않와..?🥺",
+    date: "2025-05-27",
+    type: "night",
+    position: { lat: 37.559381, lng: 126.99954 },
+    images: [booth_99_1],
+    waitingAvailable: false,
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/14",
+  },
+  {
+    id: "99",
+    name: "MECS SOME NOISE",
+    intro: "안주 퀄리티 돌았네!!아니 주점에 유명 디제잉이??COME ON!!",
+    date: "2025-05-27",
+    type: "night",
+    position: { lat: 37.559381, lng: 126.99954 },
+    images: [booth_100_1],
+    waitingAvailable: false,
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/17",
   },
 ] as const;
