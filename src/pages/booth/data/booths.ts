@@ -253,7 +253,7 @@ export const booths: Booth[] = [
         intro: '“천하삼분(天下三分), 술로 통일하라!”',
         date: '2025-05-27',
         type: 'night',
-        position: { lat: 37.5583, lng: 126.9975 },
+        position: { lat: 37.557919, lng: 126.999672 },
         images: [booth_4_1, booth_4_2, booth_4_3],
         waitingAvailable: true,
         isManage: true,
