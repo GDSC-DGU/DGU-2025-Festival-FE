@@ -1293,8 +1293,8 @@ export const booths: Booth[] = [
     position: { lat: 37.559473, lng: 126.999343 },
     images: [booth_100_1],
     waitingAvailable: false,
-    isLinenow: true,
-    linenowLink: "https://linenow.co.kr/booth/17",
+    // isLinenow: true,
+    // linenowLink: "https://linenow.co.kr/booth/17",
   },
   {
     id: "102",
