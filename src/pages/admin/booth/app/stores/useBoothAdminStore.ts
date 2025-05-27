@@ -33,6 +33,9 @@ interface BoothAdminState {
   phoneModalBooth: WaitingBooth | null;
   pubStatus: PubStatus;
 
+  lateTotalCount: number;
+  waitingTotalCount: number;
+
   setSelectedBooth: (booth: WaitingBooth | null) => void;
   openModal: (type: ModalType, booth: WaitingBooth) => void;
   closeModal: () => void;
@@ -66,6 +69,9 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
   modalType: null,
   phoneModalBooth: null,
   pubStatus: "AVAILABLE",
+
+  lateTotalCount: 0,
+  waitingTotalCount: 0,
 
   setSelectedBooth: (booth) => set({ selectedBooth: booth }),
   openModal: (type, booth) => set({ modalType: type, selectedBooth: booth }),
@@ -155,11 +161,12 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
         };
       });
 
-      set({ waitingBooths: booths });
-
-      if ("pubStatus" in res.data && typeof res.data.pubStatus === "string") {
-        set({ pubStatus: res.data.pubStatus as PubStatus });
-      }
+      set({
+        waitingBooths: booths,
+        pubStatus: res.data.pubStatus as PubStatus,
+        lateTotalCount: res.data.lateTotalCount || 0,
+        waitingTotalCount: res.data.waitingTotalCount || 0,
+      });
     } else {
       console.error("❌ 예약 목록 조회 실패:", res.error);
     }
