@@ -222,6 +222,10 @@ import booth_101_4 from '@/assets/booth/son/4.png';
 import booth_102_1 from '@/assets/booth/diff/1.png';
 import booth_102_2 from '@/assets/booth/diff/2.png';
 import booth_102_3 from '@/assets/booth/diff/3.png';
+import booth_103_1 from '@/assets/booth/tus/1.png';
+import booth_103_2 from '@/assets/booth/tus/2.png';
+import booth_104_1 from '@/assets/booth/elephan/1.png';
+import booth_104_2 from '@/assets/booth/elephan/2.png';
 import type { Booth } from '@/types/booth';
 
 export const booths: Booth[] = [
@@ -1236,6 +1240,58 @@ export const booths: Booth[] = [
         type: 'night',
         position: { lat: 37.559556, lng: 126.999413 },
         images: [booth_102_1, booth_102_2, booth_102_3],
+        waitingAvailable: false,
+    },
+    {
+        id: '104',
+        name: '💖 디프 Love 야간부스',
+        intro: '다양한 음식과 게임 이벤트가 있는 만화 컨셉의 야간부스',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.559655, lng: 126.999211 },
+        images: [booth_102_1, booth_102_2, booth_102_3],
+        waitingAvailable: false,
+    },
+    {
+        id: '105',
+        name: '🌊 손맛 보러올래?',
+        intro: '여긴 바다 대신 술이 흐르고, 파도 대신 설렘이 넘쳐',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.559653, lng: 126.99935 },
+        images: [booth_101_1, booth_101_2, booth_101_3, booth_101_4],
+        waitingAvailable: false,
+    },
+    {
+        id: '106',
+        name: 'MECS SOME NOISE',
+        intro: '안주 퀄리티 돌았네!!아니 주점에 유명 디제잉이??COME ON!!',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.559743, lng: 126.999248 },
+        images: [booth_100_1],
+        waitingAvailable: false,
+        // isLinenow: true,
+        // linenowLink: 'https://linenow.co.kr/booth/17',
+    },
+    {
+        id: '107',
+        name: '🏈 터스커스',
+        intro: '미식축구부와의 데이트!!',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.559546, lng: 126.99929 },
+        images: [booth_103_1, booth_103_2],
+        waitingAvailable: false,
+    },
+    {
+        id: '108',
+        name: '🐘 골때리는 엘레펜테',
+        intro: 'FC 엘레펜테 야간부스 오픈! 2002년 열기 그대로 지금 바로 KICK OFF',
+        date: '2025-05-28',
+        type: 'night',
+        position: { lat: 37.559575, lng: 126.99935 },
+        images: [booth_104_1, booth_104_2],
         waitingAvailable: false,
     },
 ] as const;
