@@ -35,8 +35,10 @@ import booth_10_5 from '@/assets/booth/economics/image (4).jpg';
 import booth_11_1 from '@/assets/booth/north/image (11).png';
 import booth_11_2 from '@/assets/booth/north/image (12).png';
 import booth_11_3 from '@/assets/booth/north/image (13).png';
-import booth_12_1 from '@/assets/booth/accounting/스크린샷 2025-05-25 032652.png';
-import booth_12_2 from '@/assets/booth/accounting/스크린샷 2025-05-25 033318.png';
+import booth_12_1 from '@/assets/booth/accounting/KakaoTalk_20250526_021549529.png';
+import booth_12_2 from '@/assets/booth/accounting/KakaoTalk_20250526_021549529_01.png';
+import booth_12_3 from '@/assets/booth/accounting/스크린샷 2025-05-25 032652.png';
+import booth_12_4 from '@/assets/booth/accounting/스크린샷 2025-05-25 033318.png';
 import booth_13_1 from '@/assets/booth/robot/image (2).png';
 import booth_13_2 from '@/assets/booth/robot/스크린샷 2025-05-25 033908.png';
 import booth_14_1 from '@/assets/booth/electronic/image (3).png';
@@ -117,8 +119,11 @@ import booth_43_2 from '@/assets/booth/socialwelfare/KakaoTalk_20250525_00585464
 import booth_43_3 from '@/assets/booth/socialwelfare/KakaoTalk_20250525_005854645_02.jpg';
 import booth_43_4 from '@/assets/booth/socialwelfare/스크린샷 2025-05-25 103330.png';
 import booth_43_5 from '@/assets/booth/socialwelfare/스크린샷 2025-05-25 103347.png';
-import booth_44_1 from '@/assets/booth/business/스크린샷 2025-05-25 103518.png';
-import booth_44_2 from '@/assets/booth/business/스크린샷 2025-05-25 103557.png';
+import booth_44_1 from '@/assets/booth/business/1.png';
+import booth_44_2 from '@/assets/booth/business/2.png';
+import booth_44_3 from '@/assets/booth/business/3.png';
+import booth_44_4 from '@/assets/booth/business/4.png';
+import booth_44_5 from '@/assets/booth/business/5.png';
 import booth_45_1 from '@/assets/booth/system/image (4).png';
 import booth_45_2 from '@/assets/booth/system/image (5).png';
 import booth_45_3 from '@/assets/booth/system/image (6).png';
@@ -360,7 +365,7 @@ export const booths: Booth[] = [
         date: '2025-05-27',
         type: 'night',
         position: { lat: 37.557182, lng: 127.001541 },
-        images: [booth_12_1, booth_12_2],
+        images: [booth_12_1, booth_12_2, booth_12_3, booth_12_4],
         waitingAvailable: false,
     },
     {
@@ -723,7 +728,7 @@ export const booths: Booth[] = [
         date: '2025-05-28',
         type: 'night',
         position: { lat: 37.557077, lng: 127.001851 },
-        images: [booth_44_1, booth_44_2],
+        images: [booth_44_1, booth_44_2, booth_44_3, booth_44_4, booth_44_5],
         waitingAvailable: false,
     },
     {
