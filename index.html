@@ -1,7 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="2025년 동국대학교 봄 대동제 DIRVANA 축제에서 다양한 공연, 체험, 그리고 야간 부스 웨이팅 기능까지! 축제에 관한 모든 정보를 확인하고 즐겨보세요!" />
+    <meta name="keywords" content="동국대학교, 봄 대동제, DIRVANA, 축제, 2025, 음악, 공연, 체험, 야간 부스, 웨이팅, 동국대학교 봄 대동제, 축제 사이트" />
+    <meta name="author" content="DIRVANA 2025 Team" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="2025 동국대학교 봄 대동제 DIRVANA" />
+    <meta property="og:description" content="DIRVANA 2025, 동국대학교 봄 대동제에서 다양한 공연과 체험뿐만 아니라, 야간 부스 웨이팅 기능까지 제공! 축제에 관한 모든 정보를 확인하세요." />
+    <meta property="og:image" content="URL_TO_IMAGE_HERE" />
+    <meta property="og:url" content="YOUR_SITE_URL_HERE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="2025 동국대학교 봄 대동제 DIRVANA" />
+    <meta name="twitter:description" content="DIRVANA 2025, 동국대학교 봄 대동제에서 다양한 공연과 체험뿐만 아니라, 야간 부스 웨이팅 기능까지 제공! 축제에 관한 모든 정보를 확인하세요." />
+    <meta name="twitter:image" content="URL_TO_IMAGE_HERE" />
+
+    <!-- Fonts -->
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap"
@@ -11,13 +28,54 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DIRVANA</title>
+
+    <title>DIRVANA - 2025 동국대학교 봄 대동제</title>
+
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "DIRVANA 2025",
+        "startDate": "2025-05-01T00:00:00",
+        "endDate": "2025-05-03T23:59:59",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": "동국대학교",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "30, Pil-dong, Chung-gu, Seoul, South Korea",
+            "addressLocality": "서울",
+            "postalCode": "04620",
+            "addressCountry": "KR"
+          }
+        },
+        "image": "URL_TO_IMAGE_HERE",
+        "description": "2025년 동국대학교 봄 대동제 DIRVANA, 다양한 공연과 체험, 그리고 야간 부스 웨이팅 기능을 제공! 축제에 대한 모든 정보를 여기서 확인하세요.",
+        "performer": {
+          "@type": "Organization",
+          "name": "동국대학교"
+        },
+        "url": "YOUR_SITE_URL_HERE"
+      }
+    </script>
   </head>
+
   <body>
     <div id="root"></div>
     <div id="modal-root"></div>
+
+    <!-- Clarity Heatmap Script -->
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "rq13wggbs9");
+    </script>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
