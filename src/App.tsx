@@ -7,6 +7,7 @@ import InAppLanding from "@/components/common/InAppLanding";
 import { isInAppBrowser } from "./utils/isInApp";
 import dayjs from "dayjs";
 import "@/utils/dayjs";
+import { Wrapper } from "@googlemaps/react-wrapper";
 
 export default function App() {
   const inApp = isInAppBrowser();
@@ -14,15 +15,17 @@ export default function App() {
   dayjs.locale("ko-numeric");
 
   return (
-    <ThemeProvider theme={theme}>
-      {inApp ? (
-        <InAppLanding />
-      ) : (
-        <>
-          <GlobalFCMListener />
-          <RouterProvider router={router} />
-        </>
-      )}
-    </ThemeProvider>
+    <Wrapper apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+      <ThemeProvider theme={theme}>
+        {inApp ? (
+          <InAppLanding />
+        ) : (
+          <>
+            <GlobalFCMListener />
+            <RouterProvider router={router} />
+          </>
+        )}
+      </ThemeProvider>
+    </Wrapper>
   );
 }
