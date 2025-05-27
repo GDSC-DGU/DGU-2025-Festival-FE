@@ -29,17 +29,17 @@ export default function BoothCard({
 }: BoothCardProps) {
   const isInitiallyLiked = useBoothStore((state) => state.isLiked(boothId));
   const setSelectedBoothId = useBoothStore((state) => state.setSelectedBoothId);
-  const toggleLikeState = useBoothStore((state) => state.toggleLike); 
-  const hasLikedBefore = useRef(false); 
+  const toggleLikeState = useBoothStore((state) => state.toggleLike);
+  const hasLikedBefore = useRef(false);
   const navigate = useNavigate();
   const { mutate } = useLikeBoothMutation();
 
   const handleLikeClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    toggleLikeState(boothId); 
+    toggleLikeState(boothId);
 
     if (!hasLikedBefore.current) {
-      mutate(Number(boothId.replace(/[^0-9]/g, ""))); 
+      mutate(Number(boothId.replace(/[^0-9]/g, "")));
       hasLikedBefore.current = true;
     }
   };
