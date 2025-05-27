@@ -7,7 +7,7 @@ export interface Booth {
   intro: string;
   date: string; // yyyy-MM-dd
   type: BoothType;
-  position?: {
+  position: {
     lat: number;
     lng: number;
   };
