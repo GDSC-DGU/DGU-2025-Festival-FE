@@ -77,10 +77,10 @@ import booth_29_1 from "@/assets/morningbooth/dglam/dglam1.png";
 import booth_30_1 from "@/assets/morningbooth/bitsome/1.png";
 import booth_30_2 from "@/assets/morningbooth/bitsome/2.png";
 import booth_30_3 from "@/assets/morningbooth/bitsome/3.png";
-import booth_31_1 from "@/assets/morningbooth/cass/image.png";
-import booth_31_2 from "@/assets/morningbooth/cass/image (1).png";
-import booth_31_3 from "@/assets/morningbooth/cass/image (2).png";
-import booth_31_4 from "@/assets/morningbooth/cass/image (3).png";
+// import booth_31_1 from "@/assets/morningbooth/cass/image.png";
+// import booth_31_2 from "@/assets/morningbooth/cass/image (1).png";
+// import booth_31_3 from "@/assets/morningbooth/cass/image (2).png";
+// import booth_31_4 from "@/assets/morningbooth/cass/image (3).png";
 import booth_32_1 from "@/assets/morningbooth/adrush/1.png";
 import booth_32_2 from "@/assets/morningbooth/adrush/2.png";
 import booth_33_1 from "@/assets/morningbooth/eslo/1.png";
@@ -529,16 +529,16 @@ export const booths: Booth[] = [
     images: [booth_30_1, booth_30_2, booth_30_3],
     waitingAvailable: false,
   },
-  {
-    id: "32",
-    name: "카스",
-    intro: "🍺 카스X텐텐 캠퍼스어택 프로모션 부스 안내",
-    date: "2025-05-27",
-    type: "day",
-    position: { lat: 37.559381, lng: 126.999543 },
-    images: [booth_31_1, booth_31_2, booth_31_3, booth_31_4],
-    waitingAvailable: false,
-  },
+  // {
+  //   id: "32",
+  //   name: "카스",
+  //   intro: "🍺 카스X텐텐 캠퍼스어택 프로모션 부스 안내",
+  //   date: "2025-05-27",
+  //   type: "day",
+  //   position: { lat: 37.559381, lng: 126.999543 },
+  //   images: [booth_31_1, booth_31_2, booth_31_3, booth_31_4],
+  //   waitingAvailable: false,
+  // },
   {
     id: "33",
     name: "나다움 연구실",
@@ -601,16 +601,16 @@ export const booths: Booth[] = [
     images: [booth_30_1, booth_30_2, booth_30_3],
     waitingAvailable: false,
   },
-  {
-    id: "40",
-    name: "카스",
-    intro: "🍺 카스X텐텐 캠퍼스어택 프로모션 부스 안내",
-    date: "2025-05-28",
-    type: "day",
-    position: { lat: 37.559316, lng: 126.999574 },
-    images: [booth_31_1, booth_31_2, booth_31_3, booth_31_4],
-    waitingAvailable: false,
-  },
+  // {
+  //   id: "40",
+  //   name: "카스",
+  //   intro: "🍺 카스X텐텐 캠퍼스어택 프로모션 부스 안내",
+  //   date: "2025-05-28",
+  //   type: "day",
+  //   position: { lat: 37.559316, lng: 126.999574 },
+  //   images: [booth_31_1, booth_31_2, booth_31_3, booth_31_4],
+  //   waitingAvailable: false,
+  // },
   {
     id: "41",
     name: "토리든",
@@ -691,16 +691,16 @@ export const booths: Booth[] = [
     images: [booth_41_1, booth_41_2, booth_41_3],
     waitingAvailable: false,
   },
-  {
-    id: "50",
-    name: "카스",
-    intro: "🍺 카스X텐텐 캠퍼스어택 프로모션 부스 안내",
-    date: "2025-05-29",
-    type: "day",
-    position: { lat: 37.559316, lng: 126.999574 },
-    images: [booth_31_1, booth_31_2, booth_31_3, booth_31_4],
-    waitingAvailable: false,
-  },
+  // {
+  //   id: "50",
+  //   name: "카스",
+  //   intro: "🍺 카스X텐텐 캠퍼스어택 프로모션 부스 안내",
+  //   date: "2025-05-29",
+  //   type: "day",
+  //   position: { lat: 37.559316, lng: 126.999574 },
+  //   images: [booth_31_1, booth_31_2, booth_31_3, booth_31_4],
+  //   waitingAvailable: false,
+  // },
   {
     id: "51",
     name: "중구 갈매기 앞치마단",
@@ -1247,17 +1247,17 @@ export const booths: Booth[] = [
     waitingAvailable: false,
   },
   {
-    id: "98",
+    id: "99",
     name: "CASS X 텐텐오락실",
     intro: "CASS X 텐텐오락실 캠퍼스 어택 프로모션 부스",
-    date: "2025-05-27",
+    date: "2025-05-28",
     type: "day",
     position: { lat: 37.559381, lng: 126.99954 },
     images: [booth_98_1, booth_98_2, booth_98_3, booth_98_4],
     waitingAvailable: false,
   },
   {
-    id: "99",
+    id: "100",
     name: "카페인",
     intro:
       "폐관 수련을 끝내고 드디어 중앙요리동아리 카페인 주점 첫 출전...!!! 외않와..?🥺",
@@ -1270,7 +1270,7 @@ export const booths: Booth[] = [
     linenowLink: "https://linenow.co.kr/booth/14",
   },
   {
-    id: "99",
+    id: "101",
     name: "MECS SOME NOISE",
     intro: "안주 퀄리티 돌았네!!아니 주점에 유명 디제잉이??COME ON!!",
     date: "2025-05-27",
