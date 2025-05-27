@@ -4,7 +4,6 @@ import BoothTypeToggle from "./components/BoothTypeToggle";
 import DateSelector from "./components/DateSelector";
 import MapContainer from "./components/MapContainer";
 import BoothCard from "./components/BoothCard";
-import { Wrapper } from "@googlemaps/react-wrapper";
 import type { Booth } from "@/types/booth";
 import {
   PageWrapper,
@@ -38,10 +37,7 @@ export default function BoothPage() {
       <TopBar title="부스" />
       <ContentContainer>
         <DateSelector selected={selectedDate} onChange={setSelectedDate} />
-        <Wrapper apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-          <MapContainer boothType={boothType} date={selectedDate} />
-        </Wrapper>
-
+        <MapContainer boothType={boothType} date={selectedDate} />
         <ToolbarRow>
           <BoothTypeToggle value={boothType} onChange={setBoothType} />
           <WaitingCheckButton onClick={() => setShowModal(true)}>
