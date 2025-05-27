@@ -8,7 +8,6 @@ import type { Booth } from "@/types/booth";
 import {
   PageWrapper,
   ToolbarRow,
-  WaitingCheckButton,
   ContentContainer,
   BoothListWrapper,
   Update,
@@ -20,7 +19,7 @@ import { useBoothStore } from "./stores/useBoothStore"; // ✅ 추가
 export default function BoothPage() {
   const [selectedDate, setSelectedDate] = useState("2025-05-27");
   const [boothType, setBoothType] = useState<"day" | "night">("day");
-  const [, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
   const isLiked = useBoothStore((state) => state.isLiked);
   const showOnlyLiked = useBoothStore((state) => state.showOnlyLiked);
@@ -40,9 +39,9 @@ export default function BoothPage() {
         <MapContainer boothType={boothType} date={selectedDate} />
         <ToolbarRow>
           <BoothTypeToggle value={boothType} onChange={setBoothType} />
-          <WaitingCheckButton onClick={() => setShowModal(true)}>
+          {/* <WaitingCheckButton onClick={() => setShowModal(true)}>
             웨이팅 확인
-          </WaitingCheckButton>
+          </WaitingCheckButton> */}
         </ToolbarRow>
 
         {filteredBooths.length > 0 ? (
