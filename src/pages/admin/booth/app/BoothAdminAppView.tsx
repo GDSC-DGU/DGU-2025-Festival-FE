@@ -84,7 +84,7 @@ const BoothAdminAppView = () => {
         <Section>
           <SectionTitle>늦은 대기자</SectionTitle>
           <SectionDescription>
-            호출 후 10분 이상 지났지만 아직 방문하지 않은 대기자입니다.
+            호출 후 3분 이상 지났지만 아직 방문하지 않은 대기자입니다.
           </SectionDescription>
           <TotalCount>늦은 대기자 {lateTotalCount}팀</TotalCount>
 
