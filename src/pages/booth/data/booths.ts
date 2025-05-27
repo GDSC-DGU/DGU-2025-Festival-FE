@@ -46,8 +46,6 @@ import booth_15_1 from "@/assets/booth/art/KakaoTalk_20250524_182551200.jpg";
 import booth_15_2 from "@/assets/booth/art/KakaoTalk_20250524_182551200_01.jpg";
 import booth_15_3 from "@/assets/booth/art/KakaoTalk_20250524_182551200_02.jpg";
 import booth_15_4 from "@/assets/booth/art/KakaoTalk_20250524_182551200_03.jpg";
-import booth_16_1 from "@/assets/booth/sport/스크린샷 2025-05-25 042036.png";
-import booth_16_2 from "@/assets/booth/sport/스크린샷 2025-05-25 042051.png";
 import booth_17_1 from "@/assets/booth/korean/KakaoTalk_20250524_212939804.jpg";
 import booth_17_2 from "@/assets/booth/korean/KakaoTalk_20250524_212939804_01.jpg";
 import booth_17_3 from "@/assets/booth/korean/스크린샷 2025-05-25 042113.png";
@@ -210,7 +208,9 @@ import booth_98_1 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.
 import booth_98_2 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.06.png";
 import booth_98_3 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.12.png";
 import booth_98_4 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.18.png";
-export const booths = [
+import type { Booth } from "@/types/booth";
+
+export const booths: Booth[] = [
   {
     id: "3",
     name: "동감🍊 사파리 월드",
@@ -228,6 +228,7 @@ export const booths = [
       booth_1_7,
     ],
     waitingAvailable: true,
+    isManage: true,
   },
 
   {
@@ -249,6 +250,7 @@ export const booths = [
     position: { lat: 37.5583, lng: 126.9975 },
     images: [booth_4_1, booth_4_2, booth_4_3],
     waitingAvailable: true,
+    isManage: true,
   },
   {
     id: "4",
@@ -259,6 +261,7 @@ export const booths = [
     position: { lat: 37.558643, lng: 126.99915 },
     images: [booth_4_4],
     waitingAvailable: true,
+    isManage: true,
   },
   {
     id: "5",
@@ -269,6 +272,7 @@ export const booths = [
     position: { lat: 37.559708, lng: 126.999224 },
     images: [booth_5_6, booth_5_5, booth_5_7, booth_5_8, booth_5_9],
     waitingAvailable: true,
+    isManage: true,
   },
   {
     id: "6",
@@ -291,6 +295,7 @@ export const booths = [
       booth_6_20,
     ],
     waitingAvailable: true,
+    isManage: true,
   },
 
   {
@@ -323,6 +328,8 @@ export const booths = [
     position: { lat: 37.557107, lng: 127.00222 },
     images: [booth_9_1, booth_9_2, booth_9_3],
     waitingAvailable: false,
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/16",
   },
   {
     id: "10",
@@ -344,6 +351,8 @@ export const booths = [
     position: { lat: 37.557045, lng: 127.002732 },
     images: [booth_11_1, booth_11_2, booth_11_3],
     waitingAvailable: false,
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/19",
   },
   {
     id: "12",
@@ -383,16 +392,6 @@ export const booths = [
     type: "night",
     position: { lat: 37.558027, lng: 127.003338 },
     images: [booth_15_1, booth_15_2, booth_15_3, booth_15_4],
-    waitingAvailable: false,
-  },
-  {
-    id: "16",
-    name: "두근두근 야구클럽",
-    intro: "동국대학교 야구부 프런트 야간 부스",
-    date: "2025-05-27",
-    type: "night",
-    position: { lat: 37.55879, lng: 126.999132 },
-    images: [booth_16_1, booth_16_2],
     waitingAvailable: false,
   },
   {
@@ -444,6 +443,7 @@ export const booths = [
     position: { lat: 37.557817, lng: 127.0001 },
     images: [booth_21_1, booth_21_2, booth_21_3],
     waitingAvailable: false,
+    isLinenow: true,
   },
   {
     id: "22",
@@ -484,6 +484,7 @@ export const booths = [
     position: { lat: 37.557211, lng: 127.002434 },
     images: [booth_25_1],
     waitingAvailable: false,
+    isLinenow: true,
   },
   {
     id: "26",
@@ -833,6 +834,8 @@ export const booths = [
     position: { lat: 37.5575, lng: 127.002358 },
     images: [booth_63_1, booth_63_2, booth_63_3],
     waitingAvailable: false,
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/12",
   },
   {
     id: "64",

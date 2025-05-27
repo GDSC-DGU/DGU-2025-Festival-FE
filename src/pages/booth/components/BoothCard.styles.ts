@@ -33,9 +33,8 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex: 1;
+  align-items: end;
+  flex-grow: 1;
 `;
 
 export const BoothName = styled.div`
@@ -65,4 +64,37 @@ export const LikeButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 0;
+`;
+
+export const LineNowButton = styled.div`
+  background: #2f6cf6;
+  color: white;
+  ${({ theme }) => theme.fonts.Caption};
+  padding: 3px 8px;
+  border: none;
+  border-radius: 4px;
+  right: 0;
+  bottom: 16px;
+  right: 16px;
+`;
+
+export const DIRVANA = styled.div`
+  background: ${({ theme }) => theme.colors.indigo600};
+  color: white;
+  ${({ theme }) => theme.fonts.Caption};
+  padding: 3px 8px;
+  border: none;
+  border-radius: 4px;
+  right: 0;
+  bottom: 16px;
+  right: 16px;
+`;
+
+export const InContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
 `;

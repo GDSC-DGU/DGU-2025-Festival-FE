@@ -13,7 +13,7 @@ export const ContentContainer = styled.div`
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  gap: 20px;
+  gap: 16px;
 `;
 
 export const ToolbarRow = styled.div`
@@ -77,7 +77,7 @@ export const BoothListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-
+  /* 
   mask-image: linear-gradient(
     to bottom,
     transparent 0%,
@@ -91,7 +91,7 @@ export const BoothListWrapper = styled.div`
     black 5%,
     black 95%,
     transparent 100%
-  );
+  ); */
 
   scrollbar-width: none;
   -ms-overflow-style: none;
