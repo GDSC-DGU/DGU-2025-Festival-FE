@@ -8,7 +8,7 @@ const isIOS = /iphone|ipad|ipod/i.test(userAgent);
 const isKakao = /kakaotalk/i.test(userAgent);
 const isLine = /line\//i.test(userAgent);
 const isOtherInApp =
-  /inapp|naver|snapchat|wirtschaftswoche|thunderbird|instagram|everytimeapp|whatsapp|electron|wadiz|aliapp|zumapp|kakaostory|band|twitter|daumapps|daumdevice\/mobile|fb_iab|fb4a|fban|fbios|fbss|trill/i.test(
+  /inapp|naver|snapchat|wirtschaftswoche|thunderbird|instagram|whatsapp|electron|wadiz|aliapp|zumapp|kakaostory|band|twitter|daumapps|daumdevice\/mobile|fb_iab|fb4a|fban|fbios|fbss|trill/i.test(
     userAgent
   );
 
