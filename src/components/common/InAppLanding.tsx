@@ -32,7 +32,7 @@ const tryOpenChromeOrFallback = (url: string) => {
       window.location.href = safariUrl;
     }
     document.body.removeChild(iframe);
-  }, 1500);
+  }, 3000);
 };
 
 export default function InAppLanding() {
@@ -46,7 +46,7 @@ export default function InAppLanding() {
         window.location.href = isIOS
           ? "kakaoweb://closeBrowser"
           : "kakaotalk://inappbrowser/close";
-      }, 500);
+      }, 3000);
       return;
     }
 

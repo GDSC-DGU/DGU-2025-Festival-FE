@@ -25,17 +25,15 @@ const WaitingBoothCard = ({
   };
 
   const minutesPassed = booth.calledAt
-  ? Math.floor((Date.now() - new Date(booth.calledAt).getTime()) / 60000)
-  : undefined;
+    ? Math.floor((Date.now() - new Date(booth.calledAt).getTime()) / 60000)
+    : undefined;
 
-const elapsed =
-  minutesPassed !== undefined && !isNaN(minutesPassed)
-    ? minutesPassed === 0
-      ? "방금 호출됨"
-      : `${minutesPassed}분 경과`
-    : "시간 정보 없음";
-
-// 시간 정보 안뜸
+  const elapsed =
+    minutesPassed !== undefined && !isNaN(minutesPassed)
+      ? minutesPassed === 0
+        ? "방금 호출됨"
+        : `${minutesPassed}분 경과`
+      : "시간 정보 없음";
 
   return (
     <S.CardWrapper onClick={handleCardClick} highlightLate={highlightLate}>
@@ -52,10 +50,12 @@ const elapsed =
           <S.CancelledText>대기 취소됨</S.CancelledText>
         ) : booth.visited ? (
           <S.VisitedText>입장 완료</S.VisitedText>
-        ) : booth.status === "CALLED" ? (
+        ) : booth.status === "CALLED" || booth.status === "LATE" ? (
           <>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-              <S.CalledText style={{ marginLeft: 16 }}>호출 중</S.CalledText>
+              <S.CalledText style={{ marginLeft: 16 }}>
+                {booth.status === "LATE" ? "지각 중" : "호출 중"}
+              </S.CalledText>
               {elapsed && (
                 <S.ElapsedText style={{ marginLeft: 16 }}>
                   <img
