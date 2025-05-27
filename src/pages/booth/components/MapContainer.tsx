@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
+import { booths } from "../data/booths";
 import { useBoothStore } from "../stores/useBoothStore";
 import Heart from "@/assets/icons/heart-null.png";
 import { createRoundedMarkerIcon } from "../utils/createRoundedMarkerIcon";
 import { MapWrapper, MapBox, FilterButton } from "./MapContainer.styles";
-import { booths } from "../data/booths";
 
 interface MapContainerProps {
   date: string;
@@ -69,11 +69,7 @@ export default function MapContainer({
             },
           });
           marker.addListener("click", () => {
-            if (booth.isLinenow && booth.linenowLink) {
-              window.open(booth.linenowLink, "_blank"); // 라인나우 링크로 새창 이동
-            } else {
-              window.location.href = `/booth/${booth.id}`; // 기본 상세 페이지 이동
-            }
+            window.location.href = `/booth/${booth.id}`;
           });
         } catch {
           console.error(`마커 렌더링 실패: ${booth.name}`);
