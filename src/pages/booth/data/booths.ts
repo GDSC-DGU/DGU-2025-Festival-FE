@@ -484,7 +484,7 @@ export const booths: Booth[] = [
     position: { lat: 37.557211, lng: 127.002434 },
     images: [booth_25_1],
     waitingAvailable: false,
-    isLinenow: true,
+    // isLinenow: true,
   },
   {
     id: "26",
