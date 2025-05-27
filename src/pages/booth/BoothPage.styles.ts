@@ -39,20 +39,6 @@ export const ToolbarRow = styled.div`
 //   }
 // `;
 
-export const WaitingCheckButton = styled.button`
-  position: relative;
-  background-color: #f1f3f9;
-  color: #949db8;
-  border: none;
-  border-radius: 32px;
-  padding: 10px 20px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: not-allowed;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  opacity: 0.7;
-`;
-
 export const Badge = styled.div`
   position: absolute;
   top: -8px;
