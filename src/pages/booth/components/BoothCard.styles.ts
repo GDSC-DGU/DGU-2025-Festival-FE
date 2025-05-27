@@ -43,12 +43,21 @@ export const BoothName = styled.div`
   font-size: 16px;
   color: var(--gray-700);
   line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* 1줄만 표시 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 export const Intro = styled.div`
   font-size: 12px;
   color: var(--gray-500);
   line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 2줄만 표시 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: keep-all;
 `;
 
 export const LikeButton = styled.button`
