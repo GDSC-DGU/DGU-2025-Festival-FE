@@ -24,7 +24,7 @@ const Notice = ({ notices }: NoticeProps) => {
           ref={ref}
           className={`fade-up ${isVisible ? "visible" : ""}`}
         >
-          등록된 공지사항이 없습니다.
+          등록된 공지사항이 없어요
         </EmptyContainer>
       )}
     </Container>

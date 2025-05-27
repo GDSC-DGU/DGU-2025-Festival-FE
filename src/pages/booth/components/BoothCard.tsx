@@ -9,6 +9,9 @@ import {
   LikeButton,
   Image,
   TitleContainer,
+  LineNowButton,
+  InContent,
+  DIRVANA,
 } from "./BoothCard.styles";
 import { useNavigate } from "react-router-dom";
 import { useLikeBoothMutation } from "@/api/likes/useLikeBoothMutation";
@@ -19,6 +22,9 @@ interface BoothCardProps {
   name: string;
   intro: string;
   image: string;
+  isLinenow?: boolean;
+  linenowLink?: string;
+  isManage?: boolean;
 }
 
 export default function BoothCard({
@@ -26,6 +32,9 @@ export default function BoothCard({
   name,
   intro,
   image,
+  isLinenow = false,
+  linenowLink,
+  isManage = false,
 }: BoothCardProps) {
   const isInitiallyLiked = useBoothStore((state) => state.isLiked(boothId));
   const setSelectedBoothId = useBoothStore((state) => state.setSelectedBoothId);
@@ -44,27 +53,39 @@ export default function BoothCard({
     }
   };
 
+  const handleClick = () => {
+    if (isLinenow) {
+      window.open(linenowLink, "_blank");
+      // navigate(`${linenowLink}`);
+    } else {
+      setSelectedBoothId(boothId);
+      navigate(`/booth/${boothId}`);
+    }
+  };
+
   return (
-    <Card
-      onClick={() => {
-        setSelectedBoothId(boothId);
-        navigate(`/booth/${boothId}`);
-      }}
-    >
+    <Card onClick={handleClick}>
       <Image src={image} alt="부스 이미지" />
       <Info>
-        <TitleContainer>
-          <BoothName>{name}</BoothName>
-          <LikeButton onClick={handleLikeClick}>
-            <img
-              src={isInitiallyLiked ? HeartOn : HeartOff}
-              alt={isInitiallyLiked ? "찜 해제" : "찜하기"}
-              width={24}
-              height={24}
-            />
-          </LikeButton>
-        </TitleContainer>
-        <Intro>{intro}</Intro>
+        <InContent>
+          <TitleContainer>
+            <BoothName>{name}</BoothName>
+
+            <LikeButton onClick={handleLikeClick}>
+              <img
+                src={isInitiallyLiked ? HeartOn : HeartOff}
+                alt={isInitiallyLiked ? "찜 해제" : "찜하기"}
+                width={24}
+                height={24}
+              />
+            </LikeButton>
+          </TitleContainer>
+          <Intro>{intro}</Intro>
+        </InContent>
+
+        {/* ✅ isLinenow가 true일 경우 버튼 렌더링 */}
+        {isLinenow && <LineNowButton>라인나우 예약가능</LineNowButton>}
+        {isManage && <DIRVANA>부스 예약가능</DIRVANA>}
       </Info>
     </Card>
   );

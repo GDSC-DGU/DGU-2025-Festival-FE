@@ -11,11 +11,14 @@ export interface Booth {
     lat: number;
     lng: number;
   };
-  image: string;
+  images: string[];
   likes?: number;
   waitingAvailable?: boolean;
   waitingCount?: number;
   department?: string;
+  isLinenow?: boolean;
+  linenowLink?: string;
+  isManage?: boolean;
 }
 
 export interface BoothRankingItem {

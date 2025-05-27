@@ -5,6 +5,7 @@ import DateSelector from "./components/DateSelector";
 import MapContainer from "./components/MapContainer";
 import BoothCard from "./components/BoothCard";
 import { Wrapper } from "@googlemaps/react-wrapper";
+import type { Booth } from "@/types/booth";
 import {
   PageWrapper,
   ToolbarRow,
@@ -50,16 +51,21 @@ export default function BoothPage() {
 
         {filteredBooths.length > 0 ? (
           <BoothListWrapper>
-            {filteredBooths.map((booth) => (
-              <BoothCard
-                key={booth.id}
-                boothId={booth.id}
-                name={booth.name}
-                intro={booth.intro}
-                image={booth.images[0]}
-              />
-            ))}
-            {/* ✅ 부스 리스트 내부 맨 끝에 안내 메시지 박스 추가 */}
+            {filteredBooths.map((booth) => {
+              const boothData = booth as Booth;
+              return (
+                <BoothCard
+                  key={boothData.id}
+                  boothId={boothData.id}
+                  name={boothData.name}
+                  intro={boothData.intro}
+                  image={boothData.images[0]}
+                  isLinenow={boothData.isLinenow}
+                  linenowLink={boothData?.linenowLink}
+                  isManage={boothData?.isManage}
+                />
+              );
+            })}
             {(selectedDate === "2025-05-28" ||
               selectedDate === "2025-05-29") && (
               <Update>부스 추가 업데이트 예정이에요</Update>

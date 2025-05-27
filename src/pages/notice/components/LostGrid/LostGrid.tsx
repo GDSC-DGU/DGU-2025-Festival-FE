@@ -73,7 +73,7 @@ const LostGrid = ({ isAdmin = false, lostItems }: LostGridProps) => {
         </TagList>
       </TagScrollWrapper>
       {filteredItems.length === 0 ? (
-        <EmptyText>등록된 분실물이 없습니다.</EmptyText>
+        <EmptyText>등록된 분실물이 없어요</EmptyText>
       ) : (
         <GridContainer>
           {filteredItems.map((lost, index) => (
