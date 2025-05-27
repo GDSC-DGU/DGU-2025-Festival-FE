@@ -33,6 +33,8 @@ const BoothAdminAppView = () => {
     confirmDelete,
     confirmCloseBooth,
     fetchBooths,
+    lateTotalCount,
+    waitingTotalCount,
   } = useBoothAdminStore();
 
   const now = Date.now();
@@ -69,10 +71,6 @@ const BoothAdminAppView = () => {
       !booth.cancelled
   );
 
-  const notEnteredCount = waitingBooths.filter(
-    (booth) => !booth.visited && !booth.cancelled
-  ).length;
-
   return (
     <Wrapper>
       <RoleTag />
@@ -84,27 +82,34 @@ const BoothAdminAppView = () => {
           현재 부스의 좌석 상황을 설정하면, 방문자가 이를 확인할 수 있어요.
         </SectionDescription>
         <Tabs />
-        </Section>
+      </Section>
 
       {/* 늦은 대기자 */}
-      {bottomTab === "late" && lateBooths.length > 0 && (
-        <Section>
-          <SectionTitle>늦은 대기자</SectionTitle>
-          <SectionDescription>
-            호출 후 10분 이상 지났지만 아직 방문하지 않은 대기자입니다.
-          </SectionDescription>
-          <BoothListWrapper>
-            {lateBooths.map((booth) => (
-              <WaitingBoothCard
-                key={booth.id}
-                booth={booth}
-                showDeleteButton={true}
-                highlightLate
-              />
-            ))}
-          </BoothListWrapper>
-        </Section>
-      )}
+      {bottomTab === "late" && (
+  <Section>
+    <SectionTitle>늦은 대기자</SectionTitle>
+    <SectionDescription>
+      호출 후 10분 이상 지났지만 아직 방문하지 않은 대기자입니다.
+    </SectionDescription>
+    <TotalCount>늦은 대기자 {lateTotalCount}팀</TotalCount>
+
+    {lateBooths.length > 0 ? (
+      <BoothListWrapper>
+        {lateBooths.map((booth) => (
+          <WaitingBoothCard
+            key={booth.id}
+            booth={booth}
+            showDeleteButton={true}
+            highlightLate
+          />
+        ))}
+      </BoothListWrapper>
+    ) : (
+      <p>현재 늦은 대기자가 없습니다.</p>
+    )}
+  </Section>
+)}
+
 
       {/* 전체 대기자 (호출 + 미호출 분리) */}
       {bottomTab === "waiting" && (
@@ -114,7 +119,7 @@ const BoothAdminAppView = () => {
             <SectionDescription>
               현재 등록된 모든 대기자를 확인할 수 있어요.
             </SectionDescription>
-            <TotalCount>대기 {notEnteredCount}팀</TotalCount>
+            <TotalCount>대기 {waitingTotalCount}팀</TotalCount>
           </Section>
 
           {calledBooths.length > 0 && (

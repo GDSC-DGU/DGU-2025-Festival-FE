@@ -768,4 +768,14 @@ export const booths = [
         images: [booth_6_1, booth_6_2, booth_6_3],
         waitingAvailable: false,
     },
+    {
+        id: '61',
+        name: 'LAWTTE CINEMA',
+        intro: '법과대학 영화관 컨셉 야간 부스',
+        date: '2025-05-27',
+        type: 'night',
+        position: { lat: 37.558301, lng: 127.000702 },
+        images: [booth_6_1, booth_6_2, booth_6_3],
+        waitingAvailable: false,
+    },
 ] as const;
