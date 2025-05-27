@@ -250,7 +250,14 @@ export default function BoothDetailPage() {
                   name={b.name}
                   image={b.images[0]}
                   intro={b.intro}
-                  onClick={() => navigate(`/booth/${b.id}`)}
+                  isLinenow={b.isLinenow}
+                  onClick={() => {
+                    if (b.isLinenow && b.linenowLink) {
+                      window.open(b.linenowLink, "_blank");
+                    } else {
+                      navigate(`/booth/${b.id}`);
+                    }
+                  }}
                 />
               ))}
             </ScrollWrapper>
