@@ -38,6 +38,7 @@ const Intro = styled.div`
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: keep-all;
+  width: 100%;
 `;
 
 const Linenow = styled.div`
@@ -54,7 +55,7 @@ const Content = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 4px;
-  box-sizing: border-box;
+  width: 100%;
 `;
 
 interface Props {
