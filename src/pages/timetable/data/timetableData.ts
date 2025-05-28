@@ -8,7 +8,7 @@ export const timetableData: PerformanceItemType[] = [
     end: "15:20",
     title: "21 Guns",
     tag: "밴드 동아리",
-    description: "멀티미니더공학과 21학번 밴드",
+    description: "멀티미디어공학과 21학번 밴드",
     instagram: "",
     songs: [
       { title: "Star Walkin’ - Lil Nas X" },
