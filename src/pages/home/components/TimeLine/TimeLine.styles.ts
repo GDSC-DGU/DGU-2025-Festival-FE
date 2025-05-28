@@ -4,18 +4,49 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  background-color: white;
+  gap: 16px;
+  background: ${({ theme }) => theme.gradients.rankingBox1};
   border-radius: 8px;
-  padding: 16px;
+  padding: 20px;
   width: 70%;
+  box-sizing: border-box;
   box-shadow: 0 0 10px ${({ theme }) => theme.colors.indigo900};
+`;
+
+export const Tag = styled.div`
+  position: relative;
+  padding: 6px 24px;
+  border-radius: 20px;
+  ${({ theme }) => theme.fonts.Button2}
+  z-index: 0;
+  overflow: hidden;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 20px;
+    background: ${({ theme }) => theme.colors.indigo700}; /* 보더 그라데이션 */
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+  }
+
+  color: ${({ theme }) => theme.colors.indigo700};
 `;
 
 export const PerformerImage = styled.img`
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
 `;
 

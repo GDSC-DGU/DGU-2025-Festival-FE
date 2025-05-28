@@ -81,171 +81,178 @@ import booth_30_3 from '@/assets/morningbooth/bitsome/3.png';
 // import booth_31_2 from "@/assets/morningbooth/cass/image (1).png";
 // import booth_31_3 from "@/assets/morningbooth/cass/image (2).png";
 // import booth_31_4 from "@/assets/morningbooth/cass/image (3).png";
+import booth_32_1 from "@/assets/morningbooth/adrush/1.png";
+import booth_32_2 from "@/assets/morningbooth/adrush/2.png";
+import booth_33_1 from "@/assets/morningbooth/eslo/1.png";
+import booth_33_2 from "@/assets/morningbooth/eslo/2.jpeg";
+import booth_34_1 from "@/assets/morningbooth/sumbual/1.png";
+import booth_34_2 from "@/assets/morningbooth/sumbual/2.png";
+import booth_35_1 from "@/assets/morningbooth/torriden/image.jpeg";
+import booth_35_2 from "@/assets/morningbooth/torriden/image (1).jpeg";
+import booth_35_3 from "@/assets/morningbooth/torriden/image (2).jpeg";
+import booth_35_4 from "@/assets/morningbooth/torriden/image (3).jpeg";
+import booth_35_5 from "@/assets/morningbooth/torriden/5.png";
+import booth_36_1 from "@/assets/morningbooth/dabudabud/1.png";
+import booth_37_1 from "@/assets/morningbooth/tossme/image.jpeg";
+import booth_37_2 from "@/assets/morningbooth/tossme/image (1).jpeg";
+import booth_38_1 from "@/assets/morningbooth/eco/1.jpg";
+import booth_38_2 from "@/assets/morningbooth/eco/2.jpg";
+import booth_38_3 from "@/assets/morningbooth/eco/3.jpg";
+import booth_38_4 from "@/assets/morningbooth/eco/4.png";
+import booth_39_1 from "@/assets/morningbooth/rocketboost/1.jpeg";
+import booth_39_2 from "@/assets/morningbooth/rocketboost/2.jpeg";
+import booth_39_3 from "@/assets/morningbooth/rocketboost/3.png";
+import booth_40_1 from "@/assets/morningbooth/bita/image.png";
+import booth_40_2 from "@/assets/morningbooth/bita/2.png";
+import booth_41_1 from "@/assets/morningbooth/cellfu/1.png";
+import booth_41_2 from "@/assets/morningbooth/cellfu/2.png";
+import booth_41_3 from "@/assets/morningbooth/cellfu/3.png";
+import booth_42_1 from "@/assets/booth/globaltrade/1.png";
+import booth_42_2 from "@/assets/booth/globaltrade/2.png";
+import booth_42_3 from "@/assets/booth/globaltrade/3.png";
+import booth_42_4 from "@/assets/booth/globaltrade/스크린샷 2025-05-25 103144.png";
+import booth_42_5 from "@/assets/booth/globaltrade/스크린샷 2025-05-25 103209.png";
+import booth_43_1 from "@/assets/booth/socialwelfare/KakaoTalk_20250525_005854645.png";
+import booth_43_2 from "@/assets/booth/socialwelfare/KakaoTalk_20250525_005854645_01.png";
+import booth_43_3 from "@/assets/booth/socialwelfare/KakaoTalk_20250525_005854645_02.jpg";
+import booth_43_4 from "@/assets/booth/socialwelfare/스크린샷 2025-05-25 103330.png";
+import booth_43_5 from "@/assets/booth/socialwelfare/스크린샷 2025-05-25 103347.png";
+import booth_44_1 from "@/assets/booth/business/1.png";
+import booth_44_2 from "@/assets/booth/business/2.png";
+import booth_44_3 from "@/assets/booth/business/3.png";
+import booth_44_4 from "@/assets/booth/business/4.png";
+import booth_44_5 from "@/assets/booth/business/5.png";
+import booth_45_1 from "@/assets/booth/system/image (4).png";
+import booth_45_2 from "@/assets/booth/system/image (5).png";
+import booth_45_3 from "@/assets/booth/system/image (6).png";
+import booth_46_1 from "@/assets/booth/homeHistory/KakaoTalk_20250524_212926313.png";
+import booth_46_2 from "@/assets/booth/homeHistory/KakaoTalk_20250524_212926313_01.png";
+import booth_46_3 from "@/assets/booth/homeHistory/KakaoTalk_20250524_212926313_02.png";
+import booth_46_4 from "@/assets/booth/homeHistory/스크린샷 2025-05-25 103743.png";
+import booth_46_5 from "@/assets/booth/homeHistory/스크린샷 2025-05-25 103913.png";
+import booth_47_1 from "@/assets/morningbooth/engineering/1.png";
+import booth_4_4 from "@/assets/booth/chemical/KakaoTalk_20250526_115827005.jpg";
+import booth_5_5 from "@/assets/booth/computer/KakaoTalk_20250526_120842719.jpg";
+import booth_5_6 from "@/assets/booth/computer/KakaoTalk_20250526_120842719_01.jpg";
+import booth_5_7 from "@/assets/booth/computer/KakaoTalk_20250526_120842719_02.jpg";
+import booth_5_8 from "@/assets/booth/computer/KakaoTalk_20250526_120842719_03.jpg";
+import booth_5_9 from "@/assets/booth/computer/KakaoTalk_20250526_120842719_04.jpg";
+import booth_6_10 from "@/assets/booth/systemban/1.jpg";
+import booth_6_11 from "@/assets/booth/systemban/2.jpg";
+import booth_6_12 from "@/assets/booth/systemban/3.jpg";
+import booth_6_13 from "@/assets/booth/systemban/4.jpg";
+import booth_6_14 from "@/assets/booth/systemban/5.jpg";
+import booth_6_15 from "@/assets/booth/systemban/6.jpg";
+import booth_6_16 from "@/assets/booth/systemban/7.jpg";
+import booth_6_17 from "@/assets/booth/systemban/8.jpg";
+import booth_6_18 from "@/assets/booth/systemban/9.jpg";
+import booth_6_19 from "@/assets/booth/systemban/10.jpg";
+import booth_6_20 from "@/assets/booth/systemban/11.jpg";
+import booth_61_1 from "@/assets/booth/english/스크린샷 2025-05-27 오전 12.37.35.png";
+import booth_61_2 from "@/assets/booth/english/스크린샷 2025-05-27 오전 12.37.42.png";
+import booth_61_3 from "@/assets/booth/english/스크린샷 2025-05-27 오전 12.37.49.png";
+import booth_61_4 from "@/assets/booth/english/스크린샷 2025-05-27 오전 12.37.55.png";
+import booth_61_5 from "@/assets/booth/english/스크린샷 2025-05-27 오전 12.38.04.png";
+import booth_62_1 from "@/assets/booth/science/스크린샷 2025-05-27 오전 12.49.58.png";
+import booth_62_2 from "@/assets/booth/science/스크린샷 2025-05-27 오전 12.50.05.png";
+import booth_63_1 from "@/assets/booth/administration/스크린샷 2025-05-27 오전 1.00.06.png";
+import booth_63_2 from "@/assets/booth/administration/스크린샷 2025-05-27 오전 1.00.16.png";
+import booth_63_3 from "@/assets/booth/administration/스크린샷 2025-05-27 오전 1.00.24.png";
+import booth_64_1 from "@/assets/booth/media/스크린샷 2025-05-27 오전 1.07.13.png";
+import booth_64_2 from "@/assets/booth/media/스크린샷 2025-05-27 오전 1.07.48.png";
+import booth_64_3 from "@/assets/booth/media/스크린샷 2025-05-27 오전 1.07.54.png";
+import booth_64_4 from "@/assets/booth/media/스크린샷 2025-05-27 오전 1.08.05.png";
+import booth_64_5 from "@/assets/booth/media/스크린샷 2025-05-27 오전 1.08.15.png";
+import booth_64_6 from "@/assets/booth/media/스크린샷 2025-05-27 오전 1.07.23.png";
+import booth_64_7 from "@/assets/booth/media/스크린샷 2025-05-27 오전 1.07.30.png";
+import booth_65_1 from "@/assets/booth/food/스크린샷 2025-05-27 오전 1.19.13.png";
+import booth_65_2 from "@/assets/booth/food/스크린샷 2025-05-27 오전 1.19.21.png";
+import booth_65_3 from "@/assets/booth/food/스크린샷 2025-05-27 오전 1.19.27.png";
+import booth_65_4 from "@/assets/booth/food/스크린샷 2025-05-27 오전 1.19.34.png";
+import booth_66_1 from "@/assets/booth/sport/스크린샷 2025-05-25 042036.png";
+import booth_66_2 from "@/assets/booth/sport/스크린샷 2025-05-25 042051.png";
+import booth_67_1 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.09.png";
+import booth_67_2 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.19.png";
+import booth_67_3 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.28.png";
+import booth_67_4 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.35.png";
+import booth_68_1 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 1.59.48.png";
+import booth_68_2 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 1.59.54.png";
+import booth_68_3 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.02.png";
+import booth_68_4 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.09.png";
+import booth_68_5 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.16.png";
+import booth_68_6 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.23.png";
+import booth_68_7 from "@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.30.png";
+import booth_69_1 from "@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.33.44.png";
+import booth_69_2 from "@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.33.52.png";
+import booth_69_3 from "@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.33.58.png";
+import booth_69_4 from "@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.34.04.png";
+import booth_69_5 from "@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.34.11.png";
+import booth_70_1 from "@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.35.59.png";
+import booth_70_2 from "@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.36.06.png";
+import booth_70_3 from "@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.36.15.png";
+import booth_70_4 from "@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.36.23.png";
+import booth_72_1 from "@/assets/booth/police/police-day.png";
+import booth_73_1 from "@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.02.56.png";
+import booth_73_2 from "@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.03.10.png";
+import booth_73_3 from "@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.03.17.png";
+import booth_73_4 from "@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.03.25.png";
+import booth_81_1 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 3.28.46.png";
+import booth_81_2 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 3.28.56.png";
+import booth_81_3 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 3.29.06.png";
+import booth_81_4 from "@/assets/booth/festa/스크린샷 2025-05-27 오전 3.29.12.png";
+import booth_89_1 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.18.png";
+import booth_89_2 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.25.png";
+import booth_89_3 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.31.png";
+import booth_89_4 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.36.png";
+import booth_89_5 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.43.png";
+import booth_89_6 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.50.png";
+import booth_89_7 from "@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.55.png";
+import booth_98_1 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.24.png";
+import booth_98_2 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.06.png";
+import booth_98_3 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.12.png";
+import booth_98_4 from "@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.18.png";
+import booth_99_1 from "@/assets/booth/caffeine/스크린샷 2025-05-27 오후 1.48.59.png";
+import booth_100_1 from "@/assets/booth/mecs/스크린샷 2025-05-27 오후 1.51.10.png";
+import booth_101_1 from "@/assets/booth/son/1.png";
+import booth_101_2 from "@/assets/booth/son/2.png";
+import booth_101_3 from "@/assets/booth/son/3.png";
+import booth_101_4 from "@/assets/booth/son/4.png";
+import booth_102_1 from "@/assets/booth/diff/1.png";
+import booth_102_2 from "@/assets/booth/diff/2.png";
+import booth_102_3 from "@/assets/booth/diff/3.png";
+import booth_103_1 from "@/assets/booth/tus/1.png";
+import booth_103_2 from "@/assets/booth/tus/2.png";
+import booth_104_1 from "@/assets/booth/elephan/1.png";
+import booth_104_2 from "@/assets/booth/elephan/2.png";
+import booth_109_1 from "@/assets/booth/yes.png";
+import booth_110_1 from "@/assets/booth/wave/1.jpg"
+import booth_110_2 from "@/assets/booth/wave/(1).jpg"
+import booth_110_3 from "@/assets/booth/wave/(2).jpg"
+import booth_110_4 from "@/assets/booth/wave/(3).jpg"
+import defaultImage from "@/assets/booth/default.png"
+import booth_111_1 from '@/assets/booth/baram/1.png';
+import booth_111_2 from '@/assets/booth/baram/2.png';
+import booth_111_3 from '@/assets/booth/baram/3.png';
+import booth_111_4 from '@/assets/booth/baram/4.png';
+import booth_111_5 from '@/assets/booth/baram/5.png';
+import booth_111_6 from '@/assets/booth/baram/6.png';
+import booth_111_7 from '@/assets/booth/baram/7.png';
+import booth_112_1 from '@/assets/booth/management/KakaoTalk_20250525_174720833.png';
+import booth_112_2 from '@/assets/booth/management/KakaoTalk_20250525_174720833_01.png';
+import booth_112_3 from '@/assets/booth/management/3.png';
+import booth_113_1 from '@/assets/booth/future/KakaoTalk_20250525_005830254.png';
+import booth_113_2 from '@/assets/booth/future/KakaoTalk_20250525_005830254_01.png';
+import booth_113_3 from '@/assets/booth/future/KakaoTalk_20250525_005830254_02.png';
+import booth_113_4 from '@/assets/booth/future/1.png';
+import booth_113_5 from '@/assets/booth/future/2.png';
+import booth_114_1 from '@/assets/booth/convergencesecurity/KakaoTalk_20250525_005841525.png';
+import booth_114_2 from '@/assets/booth/convergencesecurity/KakaoTalk_20250525_005841525_01.png';
+import booth_114_3 from '@/assets/booth/convergencesecurity/KakaoTalk_20250525_005841525_02.png';
+import booth_114_4 from '@/assets/booth/convergencesecurity/1.png';
+import booth_114_5 from '@/assets/booth/convergencesecurity/2.png';
 
-import booth_32_1 from '@/assets/morningbooth/adrush/1.png';
-import booth_32_2 from '@/assets/morningbooth/adrush/2.png';
-import booth_33_1 from '@/assets/morningbooth/eslo/1.png';
-import booth_33_2 from '@/assets/morningbooth/eslo/2.jpeg';
-import booth_34_1 from '@/assets/morningbooth/sumbual/1.png';
-import booth_34_2 from '@/assets/morningbooth/sumbual/2.png';
-import booth_35_1 from '@/assets/morningbooth/torriden/image.jpeg';
-import booth_35_2 from '@/assets/morningbooth/torriden/image (1).jpeg';
-import booth_35_3 from '@/assets/morningbooth/torriden/image (2).jpeg';
-import booth_35_4 from '@/assets/morningbooth/torriden/image (3).jpeg';
-import booth_35_5 from '@/assets/morningbooth/torriden/5.png';
-import booth_36_1 from '@/assets/morningbooth/dabudabud/1.png';
-import booth_37_1 from '@/assets/morningbooth/tossme/image.jpeg';
-import booth_37_2 from '@/assets/morningbooth/tossme/image (1).jpeg';
-import booth_38_1 from '@/assets/morningbooth/eco/1.jpg';
-import booth_38_2 from '@/assets/morningbooth/eco/2.jpg';
-import booth_38_3 from '@/assets/morningbooth/eco/3.jpg';
-import booth_38_4 from '@/assets/morningbooth/eco/4.png';
-import booth_39_1 from '@/assets/morningbooth/rocketboost/1.jpeg';
-import booth_39_2 from '@/assets/morningbooth/rocketboost/2.jpeg';
-import booth_39_3 from '@/assets/morningbooth/rocketboost/3.png';
-import booth_40_1 from '@/assets/morningbooth/bita/image.png';
-import booth_40_2 from '@/assets/morningbooth/bita/2.png';
-import booth_41_1 from '@/assets/morningbooth/cellfu/1.png';
-import booth_41_2 from '@/assets/morningbooth/cellfu/2.png';
-import booth_41_3 from '@/assets/morningbooth/cellfu/3.png';
-import booth_42_1 from '@/assets/booth/globaltrade/1.png';
-import booth_42_2 from '@/assets/booth/globaltrade/2.png';
-import booth_42_3 from '@/assets/booth/globaltrade/3.png';
-import booth_42_4 from '@/assets/booth/globaltrade/스크린샷 2025-05-25 103144.png';
-import booth_42_5 from '@/assets/booth/globaltrade/스크린샷 2025-05-25 103209.png';
-import booth_43_1 from '@/assets/booth/socialwelfare/KakaoTalk_20250525_005854645.png';
-import booth_43_2 from '@/assets/booth/socialwelfare/KakaoTalk_20250525_005854645_01.png';
-import booth_43_3 from '@/assets/booth/socialwelfare/KakaoTalk_20250525_005854645_02.jpg';
-import booth_43_4 from '@/assets/booth/socialwelfare/스크린샷 2025-05-25 103330.png';
-import booth_43_5 from '@/assets/booth/socialwelfare/스크린샷 2025-05-25 103347.png';
-import booth_44_1 from '@/assets/booth/business/1.png';
-import booth_44_2 from '@/assets/booth/business/2.png';
-import booth_44_3 from '@/assets/booth/business/3.png';
-import booth_44_4 from '@/assets/booth/business/4.png';
-import booth_44_5 from '@/assets/booth/business/5.png';
-import booth_45_1 from '@/assets/booth/system/image (4).png';
-import booth_45_2 from '@/assets/booth/system/image (5).png';
-import booth_45_3 from '@/assets/booth/system/image (6).png';
-import booth_46_1 from '@/assets/booth/homeHistory/KakaoTalk_20250524_212926313.png';
-import booth_46_2 from '@/assets/booth/homeHistory/KakaoTalk_20250524_212926313_01.png';
-import booth_46_3 from '@/assets/booth/homeHistory/KakaoTalk_20250524_212926313_02.png';
-import booth_46_4 from '@/assets/booth/homeHistory/스크린샷 2025-05-25 103743.png';
-import booth_46_5 from '@/assets/booth/homeHistory/스크린샷 2025-05-25 103913.png';
-import booth_47_1 from '@/assets/morningbooth/engineering/1.png';
-import booth_4_4 from '@/assets/booth/chemical/KakaoTalk_20250526_115827005.jpg';
-import booth_5_5 from '@/assets/booth/computer/KakaoTalk_20250526_120842719.jpg';
-import booth_5_6 from '@/assets/booth/computer/KakaoTalk_20250526_120842719_01.jpg';
-import booth_5_7 from '@/assets/booth/computer/KakaoTalk_20250526_120842719_02.jpg';
-import booth_5_8 from '@/assets/booth/computer/KakaoTalk_20250526_120842719_03.jpg';
-import booth_5_9 from '@/assets/booth/computer/KakaoTalk_20250526_120842719_04.jpg';
-import booth_6_10 from '@/assets/booth/systemban/1.jpg';
-import booth_6_11 from '@/assets/booth/systemban/2.jpg';
-import booth_6_12 from '@/assets/booth/systemban/3.jpg';
-import booth_6_13 from '@/assets/booth/systemban/4.jpg';
-import booth_6_14 from '@/assets/booth/systemban/5.jpg';
-import booth_6_15 from '@/assets/booth/systemban/6.jpg';
-import booth_6_16 from '@/assets/booth/systemban/7.jpg';
-import booth_6_17 from '@/assets/booth/systemban/8.jpg';
-import booth_6_18 from '@/assets/booth/systemban/9.jpg';
-import booth_6_19 from '@/assets/booth/systemban/10.jpg';
-import booth_6_20 from '@/assets/booth/systemban/11.jpg';
-import booth_61_1 from '@/assets/booth/english/스크린샷 2025-05-27 오전 12.37.35.png';
-import booth_61_2 from '@/assets/booth/english/스크린샷 2025-05-27 오전 12.37.42.png';
-import booth_61_3 from '@/assets/booth/english/스크린샷 2025-05-27 오전 12.37.49.png';
-import booth_61_4 from '@/assets/booth/english/스크린샷 2025-05-27 오전 12.37.55.png';
-import booth_61_5 from '@/assets/booth/english/스크린샷 2025-05-27 오전 12.38.04.png';
-import booth_62_1 from '@/assets/booth/science/스크린샷 2025-05-27 오전 12.49.58.png';
-import booth_62_2 from '@/assets/booth/science/스크린샷 2025-05-27 오전 12.50.05.png';
-import booth_63_1 from '@/assets/booth/administration/스크린샷 2025-05-27 오전 1.00.06.png';
-import booth_63_2 from '@/assets/booth/administration/스크린샷 2025-05-27 오전 1.00.16.png';
-import booth_63_3 from '@/assets/booth/administration/스크린샷 2025-05-27 오전 1.00.24.png';
-import booth_64_1 from '@/assets/booth/media/스크린샷 2025-05-27 오전 1.07.13.png';
-import booth_64_2 from '@/assets/booth/media/스크린샷 2025-05-27 오전 1.07.48.png';
-import booth_64_3 from '@/assets/booth/media/스크린샷 2025-05-27 오전 1.07.54.png';
-import booth_64_4 from '@/assets/booth/media/스크린샷 2025-05-27 오전 1.08.05.png';
-import booth_64_5 from '@/assets/booth/media/스크린샷 2025-05-27 오전 1.08.15.png';
-import booth_64_6 from '@/assets/booth/media/스크린샷 2025-05-27 오전 1.07.23.png';
-import booth_64_7 from '@/assets/booth/media/스크린샷 2025-05-27 오전 1.07.30.png';
-import booth_65_1 from '@/assets/booth/food/스크린샷 2025-05-27 오전 1.19.13.png';
-import booth_65_2 from '@/assets/booth/food/스크린샷 2025-05-27 오전 1.19.21.png';
-import booth_65_3 from '@/assets/booth/food/스크린샷 2025-05-27 오전 1.19.27.png';
-import booth_65_4 from '@/assets/booth/food/스크린샷 2025-05-27 오전 1.19.34.png';
-import booth_66_1 from '@/assets/booth/sport/스크린샷 2025-05-25 042036.png';
-import booth_66_2 from '@/assets/booth/sport/스크린샷 2025-05-25 042051.png';
-import booth_67_1 from '@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.09.png';
-import booth_67_2 from '@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.19.png';
-import booth_67_3 from '@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.28.png';
-import booth_67_4 from '@/assets/booth/festa/스크린샷 2025-05-27 오전 1.47.35.png';
-import booth_68_1 from '@/assets/booth/dglam/스크린샷 2025-05-27 오전 1.59.48.png';
-import booth_68_2 from '@/assets/booth/dglam/스크린샷 2025-05-27 오전 1.59.54.png';
-import booth_68_3 from '@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.02.png';
-import booth_68_4 from '@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.09.png';
-import booth_68_5 from '@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.16.png';
-import booth_68_6 from '@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.23.png';
-import booth_68_7 from '@/assets/booth/dglam/스크린샷 2025-05-27 오전 2.00.30.png';
-import booth_69_1 from '@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.33.44.png';
-import booth_69_2 from '@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.33.52.png';
-import booth_69_3 from '@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.33.58.png';
-import booth_69_4 from '@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.34.04.png';
-import booth_69_5 from '@/assets/booth/kkirikkiri/스크린샷 2025-05-27 오전 2.34.11.png';
-import booth_70_1 from '@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.35.59.png';
-import booth_70_2 from '@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.36.06.png';
-import booth_70_3 from '@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.36.15.png';
-import booth_70_4 from '@/assets/booth/fleamarket/스크린샷 2025-05-27 오전 2.36.23.png';
-import booth_72_1 from '@/assets/booth/police/police-day.png';
-import booth_73_1 from '@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.02.56.png';
-import booth_73_2 from '@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.03.10.png';
-import booth_73_3 from '@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.03.17.png';
-import booth_73_4 from '@/assets/booth/kodongi/스크린샷 2025-05-27 오전 3.03.25.png';
-import booth_81_1 from '@/assets/booth/festa/스크린샷 2025-05-27 오전 3.28.46.png';
-import booth_81_2 from '@/assets/booth/festa/스크린샷 2025-05-27 오전 3.28.56.png';
-import booth_81_3 from '@/assets/booth/festa/스크린샷 2025-05-27 오전 3.29.06.png';
-import booth_81_4 from '@/assets/booth/festa/스크린샷 2025-05-27 오전 3.29.12.png';
-import booth_89_1 from '@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.18.png';
-import booth_89_2 from '@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.25.png';
-import booth_89_3 from '@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.31.png';
-import booth_89_4 from '@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.36.png';
-import booth_89_5 from '@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.43.png';
-import booth_89_6 from '@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.50.png';
-import booth_89_7 from '@/assets/booth/coffee/스크린샷 2025-05-27 오전 3.53.55.png';
-import booth_98_1 from '@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.24.png';
-import booth_98_2 from '@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.06.png';
-import booth_98_3 from '@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.12.png';
-import booth_98_4 from '@/assets/booth/cass/스크린샷 2025-05-27 오전 4.13.18.png';
-import booth_99_1 from '@/assets/booth/caffeine/스크린샷 2025-05-27 오후 1.48.59.png';
-import booth_100_1 from '@/assets/booth/mecs/스크린샷 2025-05-27 오후 1.51.10.png';
-import booth_101_1 from '@/assets/booth/son/1.png';
-import booth_101_2 from '@/assets/booth/son/2.png';
-import booth_101_3 from '@/assets/booth/son/3.png';
-import booth_101_4 from '@/assets/booth/son/4.png';
-import booth_102_1 from '@/assets/booth/diff/1.png';
-import booth_102_2 from '@/assets/booth/diff/2.png';
-import booth_102_3 from '@/assets/booth/diff/3.png';
-import booth_103_1 from '@/assets/booth/tus/1.png';
-import booth_103_2 from '@/assets/booth/tus/2.png';
-import booth_104_1 from '@/assets/booth/elephan/1.png';
-import booth_104_2 from '@/assets/booth/elephan/2.png';
-import booth_105_1 from '@/assets/booth/baram/1.png';
-import booth_105_2 from '@/assets/booth/baram/2.png';
-import booth_105_3 from '@/assets/booth/baram/3.png';
-import booth_105_4 from '@/assets/booth/baram/4.png';
-import booth_105_5 from '@/assets/booth/baram/5.png';
-import booth_105_6 from '@/assets/booth/baram/6.png';
-import booth_105_7 from '@/assets/booth/baram/7.png';
-import booth_106_1 from '@/assets/booth/management/KakaoTalk_20250525_174720833.png';
-import booth_106_2 from '@/assets/booth/management/KakaoTalk_20250525_174720833_01.png';
-import booth_106_3 from '@/assets/booth/management/3.png';
-import booth_107_1 from '@/assets/booth/future/KakaoTalk_20250525_005830254.png';
-import booth_107_2 from '@/assets/booth/future/KakaoTalk_20250525_005830254_01.png';
-import booth_107_3 from '@/assets/booth/future/KakaoTalk_20250525_005830254_02.png';
-import booth_107_4 from '@/assets/booth/future/1.png';
-import booth_107_5 from '@/assets/booth/future/2.png';
-import booth_108_1 from '@/assets/booth/convergencesecurity/KakaoTalk_20250525_005841525.png';
-import booth_108_2 from '@/assets/booth/convergencesecurity/KakaoTalk_20250525_005841525_01.png';
-import booth_108_3 from '@/assets/booth/convergencesecurity/KakaoTalk_20250525_005841525_02.png';
-import booth_108_4 from '@/assets/booth/convergencesecurity/1.png';
-import booth_108_5 from '@/assets/booth/convergencesecurity/2.png';
-import type { Booth } from '@/types/booth';
+
+import type { Booth } from "@/types/booth";
 
 export const booths: Booth[] = [
     {
@@ -1147,184 +1154,265 @@ export const booths: Booth[] = [
         waitingAvailable: false,
     },
 
+  {
+    id: "93",
+    name: "포토부스 네컷 소개팅 - 코동이 부스",
+    intro:
+      "올해 대동제, 재미만 있고 썸은 없다고? 📸 네컷소개팅 부스에서 네컷사진 한 장으로 운명의 상대를 만날 기회!",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558302, lng: 126.999951 },
+    images: [booth_73_1, booth_73_2, booth_73_3, booth_73_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "94",
+    name: "플리마켓 - 1",
+    intro: "플리마켓 - 1",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558045, lng: 127.000578 },
+    images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "95",
+    name: "플리마켓 - 2",
+    intro: "플리마켓 - 2",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558294, lng: 127.000679 },
+    images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "96",
+    name: "플리마켓 - 1",
+    intro: "플리마켓 - 1",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558045, lng: 127.000578 },
+    images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "97",
+    name: "플리마켓 - 2",
+    intro: "플리마켓 - 2",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558294, lng: 127.000679 },
+    images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "98",
+    name: "CASS X 텐텐오락실",
+    intro: "CASS X 텐텐오락실 캠퍼스 어택 프로모션 부스",
+    date: "2025-05-27",
+    type: "day",
+    position: { lat: 37.559381, lng: 126.99954 },
+    images: [booth_98_1, booth_98_2, booth_98_3, booth_98_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "99",
+    name: "CASS X 텐텐오락실",
+    intro: "CASS X 텐텐오락실 캠퍼스 어택 프로모션 부스",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.559381, lng: 126.99954 },
+    images: [booth_98_1, booth_98_2, booth_98_3, booth_98_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "100",
+    name: "카페인",
+    intro:
+      "폐관 수련을 끝내고 드디어 중앙요리동아리 카페인 주점 첫 출전...!!! 외않와..?🥺",
+    date: "2025-05-27",
+    type: "night",
+    position: { lat: 37.55956, lng: 126.999263 },
+    images: [booth_99_1],
+    waitingAvailable: false,
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/14",
+  },
+  {
+    id: "101",
+    name: "MECS SOME NOISE",
+    intro: "안주 퀄리티 돌았네!!아니 주점에 유명 디제잉이??COME ON!!",
+    date: "2025-05-27",
+    type: "night",
+    position: { lat: 37.559473, lng: 126.999343 },
+    images: [booth_100_1],
+    waitingAvailable: false,
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/17",
+  },
+  {
+    id: "102",
+    name: "🌊 손맛 보러올래?",
+    intro: "여긴 바다 대신 술이 흐르고, 파도 대신 설렘이 넘쳐",
+    date: "2025-05-27",
+    type: "night",
+    position: { lat: 37.559628, lng: 126.999349 },
+    images: [booth_101_1, booth_101_2, booth_101_3, booth_101_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "103",
+    name: "💖 디프 Love 야간부스",
+    intro: "다양한 음식과 게임 이벤트가 있는 만화 컨셉의 야간부스",
+    date: "2025-05-27",
+    type: "night",
+    position: { lat: 37.559556, lng: 126.999413 },
+    images: [booth_102_1, booth_102_2, booth_102_3],
+    waitingAvailable: false,
+  },
+  {
+    id: "104",
+    name: "💖 디프 Love 야간부스",
+    intro: "다양한 음식과 게임 이벤트가 있는 만화 컨셉의 야간부스",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.559655, lng: 126.999211 },
+    images: [booth_102_1, booth_102_2, booth_102_3],
+    waitingAvailable: false,
+  },
+  {
+    id: "105",
+    name: "🌊 손맛 보러올래?",
+    intro: "여긴 바다 대신 술이 흐르고, 파도 대신 설렘이 넘쳐",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.559653, lng: 126.99935 },
+    images: [booth_101_1, booth_101_2, booth_101_3, booth_101_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "106",
+    name: "MECS SOME NOISE",
+    intro: "안주 퀄리티 돌았네!!아니 주점에 유명 디제잉이??COME ON!!",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.559743, lng: 126.999248 },
+    images: [booth_100_1],
+    waitingAvailable: false,
+    // isLinenow: true,
+    // linenowLink: 'https://linenow.co.kr/booth/17',
+  },
+  {
+    id: "107",
+    name: "🏈 터스커스",
+    intro: "미식축구부와의 데이트!!",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.559546, lng: 126.99929 },
+    images: [booth_103_1, booth_103_2],
+    waitingAvailable: false,
+  },
+  {
+    id: "108",
+    name: "🐘 골때리는 엘레펜테",
+    intro: "FC 엘레펜테 야간부스 오픈! 2002년 열기 그대로 지금 바로 KICK OFF",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.559575, lng: 126.99935 },
+    images: [booth_104_1, booth_104_2],
+    waitingAvailable: false,
+  },
+  {
+    id: "109",
+    name: "네네치킨🐔",
+    intro: "Yes! We are",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558516, lng: 127.000616 },
+    images: [booth_109_1],
+    waitingAvailable: false,
+  },
+  {
+    id: "110",
+    name: "공과대학 학생회",
+    intro: "🩶 ️웨이브 뽈 파크 개장 안내 ️🩶",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558585, lng: 127.000345 },
+    images: [booth_110_1,booth_110_2,booth_110_3,booth_110_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "111",
+    name: "동그라미",
+    intro: "문과 대학 불교동아리",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558193, lng: 127.000322 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "112",
+    name: "스킨 덕스",
+    intro: " ",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558302, lng: 126.999951 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "113",
+    name: "여명",
+    intro: " ",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558233, lng: 126.999944 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "114",
+    name: "Lotus",
+    intro: " ",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558616, lng: 127.000247  },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "115",
+    name: "섬별",
+    intro: "사범대학",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558635, lng: 127.000144   },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+
+  {
+  id: '116',
+  name: '🎭 우리들의 이중생활',
+  intro: '낮과 밤이 다른, 컨셉이 바뀌는 주점',
+  date: '2025-05-28',
+  type: 'night',
+  position: { lat: 37.559954, lng: 126.998604 },
+  images: [
+    booth_111_1,
+    booth_111_2,
+    booth_111_3,
+    booth_111_4,
+    booth_111_5,
+    booth_111_6,
+    booth_111_7,
+  ],
+  waitingAvailable: false,
+},
     {
-        id: '93',
-        name: '포토부스 네컷 소개팅 - 코동이 부스',
-        intro: '올해 대동제, 재미만 있고 썸은 없다고? 📸 네컷소개팅 부스에서 네컷사진 한 장으로 운명의 상대를 만날 기회!',
-        date: '2025-05-29',
-        type: 'day',
-        position: { lat: 37.558302, lng: 126.999951 },
-        images: [booth_73_1, booth_73_2, booth_73_3, booth_73_4],
-        waitingAvailable: false,
-    },
-    {
-        id: '94',
-        name: '플리마켓 - 1',
-        intro: '플리마켓 - 1',
-        date: '2025-05-28',
-        type: 'day',
-        position: { lat: 37.558045, lng: 127.000578 },
-        images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
-        waitingAvailable: false,
-    },
-    {
-        id: '95',
-        name: '플리마켓 - 2',
-        intro: '플리마켓 - 2',
-        date: '2025-05-28',
-        type: 'day',
-        position: { lat: 37.558294, lng: 127.000679 },
-        images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
-        waitingAvailable: false,
-    },
-    {
-        id: '96',
-        name: '플리마켓 - 1',
-        intro: '플리마켓 - 1',
-        date: '2025-05-29',
-        type: 'day',
-        position: { lat: 37.558045, lng: 127.000578 },
-        images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
-        waitingAvailable: false,
-    },
-    {
-        id: '97',
-        name: '플리마켓 - 2',
-        intro: '플리마켓 - 2',
-        date: '2025-05-29',
-        type: 'day',
-        position: { lat: 37.558294, lng: 127.000679 },
-        images: [booth_70_1, booth_70_2, booth_70_3, booth_70_4],
-        waitingAvailable: false,
-    },
-    {
-        id: '98',
-        name: 'CASS X 텐텐오락실',
-        intro: 'CASS X 텐텐오락실 캠퍼스 어택 프로모션 부스',
-        date: '2025-05-27',
-        type: 'day',
-        position: { lat: 37.559381, lng: 126.99954 },
-        images: [booth_98_1, booth_98_2, booth_98_3, booth_98_4],
-        waitingAvailable: false,
-    },
-    {
-        id: '99',
-        name: 'CASS X 텐텐오락실',
-        intro: 'CASS X 텐텐오락실 캠퍼스 어택 프로모션 부스',
-        date: '2025-05-28',
-        type: 'day',
-        position: { lat: 37.559381, lng: 126.99954 },
-        images: [booth_98_1, booth_98_2, booth_98_3, booth_98_4],
-        waitingAvailable: false,
-    },
-    {
-        id: '100',
-        name: '카페인',
-        intro: '폐관 수련을 끝내고 드디어 중앙요리동아리 카페인 주점 첫 출전...!!! 외않와..?🥺',
-        date: '2025-05-27',
-        type: 'night',
-        position: { lat: 37.55956, lng: 126.999263 },
-        images: [booth_99_1],
-        waitingAvailable: false,
-        isLinenow: true,
-        linenowLink: 'https://linenow.co.kr/booth/14',
-    },
-    {
-        id: '101',
-        name: 'MECS SOME NOISE',
-        intro: '안주 퀄리티 돌았네!!아니 주점에 유명 디제잉이??COME ON!!',
-        date: '2025-05-27',
-        type: 'night',
-        position: { lat: 37.559473, lng: 126.999343 },
-        images: [booth_100_1],
-        waitingAvailable: false,
-        // isLinenow: true,
-        // linenowLink: "https://linenow.co.kr/booth/17",
-    },
-    {
-        id: '102',
-        name: '🌊 손맛 보러올래?',
-        intro: '여긴 바다 대신 술이 흐르고, 파도 대신 설렘이 넘쳐',
-        date: '2025-05-27',
-        type: 'night',
-        position: { lat: 37.559628, lng: 126.999349 },
-        images: [booth_101_1, booth_101_2, booth_101_3, booth_101_4],
-        waitingAvailable: false,
-    },
-    {
-        id: '103',
-        name: '💖 디프 Love 야간부스',
-        intro: '다양한 음식과 게임 이벤트가 있는 만화 컨셉의 야간부스',
-        date: '2025-05-27',
-        type: 'night',
-        position: { lat: 37.559556, lng: 126.999413 },
-        images: [booth_102_1, booth_102_2, booth_102_3],
-        waitingAvailable: false,
-    },
-    {
-        id: '104',
-        name: '💖 디프 Love 야간부스',
-        intro: '다양한 음식과 게임 이벤트가 있는 만화 컨셉의 야간부스',
-        date: '2025-05-28',
-        type: 'night',
-        position: { lat: 37.559655, lng: 126.999211 },
-        images: [booth_102_1, booth_102_2, booth_102_3],
-        waitingAvailable: false,
-    },
-    {
-        id: '105',
-        name: '🌊 손맛 보러올래?',
-        intro: '여긴 바다 대신 술이 흐르고, 파도 대신 설렘이 넘쳐',
-        date: '2025-05-28',
-        type: 'night',
-        position: { lat: 37.559653, lng: 126.99935 },
-        images: [booth_101_1, booth_101_2, booth_101_3, booth_101_4],
-        waitingAvailable: false,
-    },
-    {
-        id: '106',
-        name: 'MECS SOME NOISE',
-        intro: '안주 퀄리티 돌았네!!아니 주점에 유명 디제잉이??COME ON!!',
-        date: '2025-05-28',
-        type: 'night',
-        position: { lat: 37.559743, lng: 126.999248 },
-        images: [booth_100_1],
-        waitingAvailable: false,
-        // isLinenow: true,
-        // linenowLink: 'https://linenow.co.kr/booth/17',
-    },
-    {
-        id: '107',
-        name: '🏈 터스커스',
-        intro: '미식축구부와의 데이트!!',
-        date: '2025-05-28',
-        type: 'night',
-        position: { lat: 37.559546, lng: 126.99929 },
-        images: [booth_103_1, booth_103_2],
-        waitingAvailable: false,
-    },
-    {
-        id: '108',
-        name: '🐘 골때리는 엘레펜테',
-        intro: 'FC 엘레펜테 야간부스 오픈! 2002년 열기 그대로 지금 바로 KICK OFF',
-        date: '2025-05-28',
-        type: 'night',
-        position: { lat: 37.559575, lng: 126.99935 },
-        images: [booth_104_1, booth_104_2],
-        waitingAvailable: false,
-    },
-    {
-        id: '109',
-        name: '🎭 우리들의 이중생활',
-        intro: '낮과 밤이 다른, 컨셉이 바뀌는 주점',
-        date: '2025-05-28',
-        type: 'night',
-        position: { lat: 37.559954, lng: 126.998604 },
-        images: [booth_105_1, booth_105_2, booth_105_3, booth_105_4, booth_105_5, booth_105_6, booth_105_7],
-        waitingAvailable: false,
-    },
-    {
-        id: '110',
+        id: '117',
         name: '‘선 택 2 0 2 5’',
         intro: '정치외교학전공 야간 부스',
         date: '2025-05-29',
@@ -1335,7 +1423,7 @@ export const booths: Booth[] = [
         // isLinenow: true,
     },
     {
-        id: '111',
+        id: '118',
         name: '국제통상학과',
         intro: 'International Trade ALL⭐️STAR TICKET OPEN! ⚾️',
         date: '2025-05-29',
@@ -1344,34 +1432,50 @@ export const booths: Booth[] = [
         images: [booth_26_1, booth_26_2, booth_26_3],
         waitingAvailable: false,
     },
-    {
-        id: '112',
-        name: '🛡️ 진격의 경정',
-        intro: '🛡️ 진격의 경정에서 맛과 자유를 만끽하세요!',
-        date: '2025-05-29',
-        type: 'night',
-        position: { lat: 37.557198, lng: 127.001483 },
-        images: [booth_106_1, booth_106_2, booth_106_3],
-        waitingAvailable: false,
-    },
-    {
-        id: '113',
-        name: '🏢 우리 부스 정상영업합니다',
-        intro: '🎊 미래융합대학 ‘필연’ 부스에서 특별한 추억과 행운을 모두 챙겨가세요!',
-        date: '2025-05-29',
-        type: 'night',
-        position: { lat: 37.55721, lng: 127.001757 },
-        images: [booth_107_1, booth_107_2, booth_107_3, booth_107_4, booth_107_5],
-        waitingAvailable: false,
-    },
-    {
-        id: '114',
-        name: '🌏 융보마블',
-        intro: '🎲 융보마블에서 세계 각국의 맛과 행운을 동시에 잡아보세요!',
-        date: '2025-05-29',
-        type: 'night',
-        position: { lat: 37.557107, lng: 127.00222 },
-        images: [booth_108_1, booth_108_2, booth_108_3, booth_108_4, booth_108_5],
-        waitingAvailable: false,
-    },
+ {
+  id: '119',
+  name: '🛡️ 진격의 경정',
+  intro: '🛡️ 진격의 경정에서 맛과 자유를 만끽하세요!',
+  date: '2025-05-29',
+  type: 'night',
+  position: { lat: 37.557198, lng: 127.001483 },
+  images: [
+    booth_112_1,
+    booth_112_2,
+    booth_112_3,
+  ],
+  waitingAvailable: false,
+},
+{
+  id: '120',
+  name: '🏢 우리 부스 정상영업합니다',
+  intro: '🎊 미래융합대학 ‘필연’ 부스에서 특별한 추억과 행운을 모두 챙겨가세요!',
+  date: '2025-05-29',
+  type: 'night',
+  position: { lat: 37.55721, lng: 127.001757 },
+  images: [
+    booth_113_1,
+    booth_113_2,
+    booth_113_3,
+    booth_113_4,
+    booth_113_5,
+  ],
+  waitingAvailable: false,
+},
+{
+  id: '121',
+  name: '🌏 융보마블',
+  intro: '🎲 융보마블에서 세계 각국의 맛과 행운을 동시에 잡아보세요!',
+  date: '2025-05-29',
+  type: 'night',
+  position: { lat: 37.557107, lng: 127.00222 },
+  images: [
+    booth_114_1,
+    booth_114_2,
+    booth_114_3,
+    booth_114_4,
+    booth_114_5,
+  ],
+  waitingAvailable: false,
+},
 ] as const;
