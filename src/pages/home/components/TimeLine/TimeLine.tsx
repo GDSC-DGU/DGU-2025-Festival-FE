@@ -6,18 +6,18 @@ import {
   Description,
   TimeDescription,
   EmptyContainer,
+  Tag,
 } from "./TimeLine.styles";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 import type { PerformanceItemType } from "@/pages/timetable/types/performanceItem";
 import DefaultImage from "@/assets/images/timelineImage.png";
-
 interface TimeLineProps {
   currentPerformer: PerformanceItemType | null;
 }
 
 const TimeLine = ({ currentPerformer }: TimeLineProps) => {
   const { ref: performerRef, isVisible: performerVisible } =
-    useOnScreenAnimation<HTMLDivElement>();
+    useOnScreenAnimation<HTMLDivElement>(0.2, 300); // 200ms 딜레이
   const { ref: emptyRef, isVisible: emptyVisible } =
     useOnScreenAnimation<HTMLDivElement>();
 
@@ -26,6 +26,7 @@ const TimeLine = ({ currentPerformer }: TimeLineProps) => {
       ref={performerRef}
       className={`fade-up ${performerVisible ? "visible" : ""}`}
     >
+      <Tag>동아리 공연</Tag>
       <PerformerImage
         src={currentPerformer.imageUrl || DefaultImage}
         alt="profile"

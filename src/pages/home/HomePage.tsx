@@ -72,8 +72,19 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    const performer = getCurrentPerformance();
-    setCurrentPerformance(performer ?? null); // undefined → null
+    const updatePerformer = () => {
+      const performer = getCurrentPerformance();
+      setCurrentPerformance(performer ?? null);
+    };
+
+    // 1. 첫 실행
+    updatePerformer();
+
+    // 2. 5분마다 반복
+    const intervalId = setInterval(updatePerformer, 5 * 60 * 1000); // 5분 = 300,000ms
+
+    // 3. 언마운트 시 인터벌 제거
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
