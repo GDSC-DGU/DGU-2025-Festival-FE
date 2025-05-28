@@ -52,6 +52,7 @@ p {
 
 .fade-up {
   opacity: 0;
+  /* opacity: 1; */
   transform: translateY(20px);
   transition: all 0.6s ease;
 }
