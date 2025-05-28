@@ -265,8 +265,6 @@ import booth_204_1 from "@/assets/booth/welfare/(1).webp"
 import booth_204_2 from "@/assets/booth/welfare/(1).webp"
 
 
-
-
 import type { Booth } from "@/types/booth";
 
 export const booths: Booth[] = [
@@ -1661,4 +1659,56 @@ export const booths: Booth[] = [
     images: [booth_204_1,booth_204_2],
     waitingAvailable: false,
   },
+  {
+    id: "206",
+    name: "큐피드 붓다붓다",
+    intro: " ",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558193, lng: 37.558193 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "208",
+    name: "안빈낙도 코끼리키링",
+    intro: " ",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558380, lng: 127.000012 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "211",
+    name: "공과대학 학생회",
+    intro: "🩶 ️웨이브 뽈 파크 개장 안내 ️🩶",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558585, lng: 127.000345 },
+    images: [booth_110_1, booth_110_2, booth_110_3, booth_110_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "212",
+    name: "인권 센터",
+    intro: " ",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558616, lng:  127.000247 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+ 
+  {
+    id: "216",
+    name: "화화",
+    intro: " ",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat:  37.559543, lng:  126.999399 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  
 ] as const;
