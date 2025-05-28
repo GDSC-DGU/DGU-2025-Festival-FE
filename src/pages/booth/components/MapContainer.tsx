@@ -23,34 +23,18 @@ export default function MapContainer({
   const mapRef = useRef<HTMLDivElement | null>(null);
   const isLiked = useBoothStore((state) => state.isLiked);
   const showOnlyLiked = useBoothStore((state) => state.showOnlyLiked);
-  const toggleShowOnlyLiked = useBoothStore(
-    (state) => state.toggleShowOnlyLiked
-  );
+  const toggleShowOnlyLiked = useBoothStore((state) => state.toggleShowOnlyLiked);
+
   const getStaticMapUrl = () => {
     const lat = centerLat ?? 37.558141;
     const lng = centerLng ?? 127.000258;
     const key = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  
     return `https://d3k0iddfz17ivl.cloudfront.net/maps/api/staticmap?center=${lat},${lng}&zoom=17&size=600x300&markers=color:red|${lat},${lng}&key=${key}`;
   };
-  
 
-  if (boothId) {
-    return (
-      <MapWrapper>
-        <img
-          src={getStaticMapUrl()}
-          alt="Static map"
-          width="100%"
-          height="300"
-          style={{ objectFit: "cover", borderRadius: "12px" }}
-        />
-      </MapWrapper>
-    );
-  }
-
-  // ✅ 기본 JS 지도 렌더링
   useEffect(() => {
+    if (boothId) return;
+
     if (!window.google || !mapRef.current) return;
 
     const boothCenter = { lat: 37.558141, lng: 127.000258 };
@@ -90,6 +74,7 @@ export default function MapContainer({
               fontWeight: "bold",
             },
           });
+
           marker.addListener("click", () => {
             window.location.href = `/booth/${booth.id}`;
           });
@@ -98,7 +83,21 @@ export default function MapContainer({
         }
       }
     })();
-  }, [date, boothType, showOnlyLiked, isLiked]);
+  }, [boothId, date, boothType, showOnlyLiked, isLiked]);
+
+  if (boothId) {
+    return (
+      <MapWrapper>
+        <img
+          src={getStaticMapUrl()}
+          alt="Static map"
+          width="100%"
+          height="300"
+          style={{ objectFit: "cover", borderRadius: "12px" }}
+        />
+      </MapWrapper>
+    );
+  }
 
   return (
     <MapWrapper>
