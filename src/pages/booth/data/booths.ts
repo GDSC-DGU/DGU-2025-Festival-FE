@@ -225,6 +225,13 @@ import booth_103_1 from "@/assets/booth/tus/1.png";
 import booth_103_2 from "@/assets/booth/tus/2.png";
 import booth_104_1 from "@/assets/booth/elephan/1.png";
 import booth_104_2 from "@/assets/booth/elephan/2.png";
+import booth_109_1 from "@/assets/booth/yes.png";
+import booth_110_1 from "@/assets/booth/wave/1.jpg"
+import booth_110_2 from "@/assets/booth/wave/(1).jpg"
+import booth_110_3 from "@/assets/booth/wave/(2).jpg"
+import booth_110_4 from "@/assets/booth/wave/(3).jpg"
+import defaultImage from "@/assets/booth/default.png"
+
 import type { Booth } from "@/types/booth";
 
 export const booths: Booth[] = [
@@ -1366,6 +1373,76 @@ export const booths: Booth[] = [
     type: "night",
     position: { lat: 37.559575, lng: 126.99935 },
     images: [booth_104_1, booth_104_2],
+    waitingAvailable: false,
+  },
+  {
+    id: "109",
+    name: "네네치킨🐔",
+    intro: "Yes! We are",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558516, lng: 127.000616 },
+    images: [booth_109_1],
+    waitingAvailable: false,
+  },
+  {
+    id: "110",
+    name: "공과대학 학생회",
+    intro: "🩶 ️웨이브 뽈 파크 개장 안내 ️🩶",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558585, lng: 127.000345 },
+    images: [booth_110_1,booth_110_2,booth_110_3,booth_110_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "111",
+    name: "동그라미",
+    intro: "문과 대학 불교동아리",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558193, lng: 127.000322 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "112",
+    name: "스킨 덕스",
+    intro: " ",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558302, lng: 126.999951 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "113",
+    name: "여명",
+    intro: " ",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558233, lng: 126.999944 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "114",
+    name: "Lotus",
+    intro: " ",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558616, lng: 127.000247  },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "115",
+    name: "섬별",
+    intro: "사범대학",
+    date: "2025-05-28",
+    type: "day",
+    position: { lat: 37.558635, lng: 127.000144   },
+    images: [defaultImage],
     waitingAvailable: false,
   },
 ] as const;
