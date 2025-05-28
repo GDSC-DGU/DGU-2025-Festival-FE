@@ -255,6 +255,16 @@ import booth_201_1 from "@/assets/booth/stat/1.jpg"
 import booth_201_2 from "@/assets/booth/stat/2.jpg"
 import booth_202_1 from "@/assets/booth/math01/1.jpg"
 import booth_202_2 from "@/assets/booth/math01/2.jpg"
+import booth_203_1 from "@/assets/booth/bio/1 (1).jpg"
+import booth_203_2 from "@/assets/booth/bio/1 (2).jpg"
+import booth_203_3 from "@/assets/booth/bio/1 (3).jpg"
+import booth_203_4 from "@/assets/booth/bio/1 (4).jpg"
+import booth_203_5 from "@/assets/booth/bio/1 (5).jpg"
+import booth_203_6 from "@/assets/booth/bio/1(6).jpg"
+import booth_204_1 from "@/assets/booth/welfare/(1).webp"
+import booth_204_2 from "@/assets/booth/welfare/(1).webp"
+
+
 
 
 import type { Booth } from "@/types/booth";
@@ -1619,6 +1629,36 @@ export const booths: Booth[] = [
     type: "night",
     position: { lat: 37.557927, lng: 126.999649 },
     images: [booth_202_1, booth_202_2],
+    waitingAvailable: false,
+  },
+  {
+    id: "203",
+    name: "🎡 E-BARLAND로 여러분을 초대합니다 🎡",
+    intro: "바이오시스템대학 4개 학과 학생회가 연합한 'E-bar LAND'가 오픈합니다.",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.557927, lng: 126.999649 },
+    images: [booth_203_1,booth_203_2,booth_203_3,booth_203_4,booth_203_5,booth_203_6],
+    waitingAvailable: false,
+  },
+  {
+    id: "204",
+    name: "🐱2025 봄 대동제 사회복지학과 야간부스🐱",
+    intro: "고양이 카페를 필두로 사회복지학과 야간부스가 다가오는 28일, 29일에 찾아갑니다!",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.557123, lng: 127.002408 },
+    images: [booth_204_1,booth_204_2],
+    waitingAvailable: false,
+  },
+  {
+    id: "205",
+    name: "🐱2025 봄 대동제 사회복지학과 야간부스🐱",
+    intro: "고양이 카페를 필두로 사회복지학과 야간부스가 다가오는 28일, 29일에 찾아갑니다!",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.557123, lng: 127.002408 },
+    images: [booth_204_1,booth_204_2],
     waitingAvailable: false,
   },
 ] as const;
