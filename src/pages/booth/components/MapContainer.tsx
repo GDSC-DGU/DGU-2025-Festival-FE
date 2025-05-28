@@ -29,8 +29,10 @@ export default function MapContainer({
     const lat = centerLat ?? 37.558141;
     const lng = centerLng ?? 127.000258;
     const key = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-    return `https://d3k0iddfz17ivl.cloudfront.net/maps/api/staticmap?center=${lat},${lng}&zoom=17&size=600x300&markers=color:red|${lat},${lng}&key=${key}`;
+    const marker = `color:red%7C${lat},${lng}`;
+    return `https://d3k0iddfz17ivl.cloudfront.net/maps/api/staticmap?center=${lat},${lng}&zoom=17&size=600x300&markers=${marker}&key=${key}`;
   };
+  
 
   useEffect(() => {
     if (boothId) return;
