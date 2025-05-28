@@ -17,23 +17,30 @@ export default function MapContainer({
   date,
   boothType,
   boothId,
+  centerLat,
+  centerLng,
 }: MapContainerProps) {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const isLiked = useBoothStore((state) => state.isLiked);
   const showOnlyLiked = useBoothStore((state) => state.showOnlyLiked);
-  const toggleShowOnlyLiked = useBoothStore(
-    (state) => state.toggleShowOnlyLiked
-  );
+  const toggleShowOnlyLiked = useBoothStore((state) => state.toggleShowOnlyLiked);
+
+  const getStaticMapUrl = () => {
+    const lat = centerLat ?? 37.558141;
+    const lng = centerLng ?? 127.000258;
+    const key = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    return `https://d3k0iddfz17ivl.cloudfront.net/maps/api/staticmap?center=${lat},${lng}&zoom=17&size=600x300&markers=color:red|${lat},${lng}&key=${key}`;
+  };
 
   useEffect(() => {
+    if (boothId) return;
+
     if (!window.google || !mapRef.current) return;
 
-    const boothCenter = boothId
-      ? booths.find((booth) => booth.id === boothId)?.position
-      : { lat: 37.558141, lng: 127.000258 };
+    const boothCenter = { lat: 37.558141, lng: 127.000258 };
 
     const map = new window.google.maps.Map(mapRef.current, {
-      center: boothCenter || { lat: 37.558141, lng: 127.000258 },
+      center: boothCenter,
       zoom: 18,
       disableDefaultUI: true,
     });
@@ -42,7 +49,6 @@ export default function MapContainer({
       const isSameDate = booth.date === date;
       const isSameType = booth.type === boothType;
       if (!isSameDate || !isSameType) return false;
-      if (boothId) return booth.id === boothId;
       if (showOnlyLiked) return isLiked(booth.id);
       return true;
     });
@@ -68,6 +74,7 @@ export default function MapContainer({
               fontWeight: "bold",
             },
           });
+
           marker.addListener("click", () => {
             window.location.href = `/booth/${booth.id}`;
           });
@@ -76,23 +83,35 @@ export default function MapContainer({
         }
       }
     })();
-  }, [date, boothType, showOnlyLiked, isLiked, boothId]);
+  }, [boothId, date, boothType, showOnlyLiked, isLiked]);
+
+  if (boothId) {
+    return (
+      <MapWrapper>
+        <img
+          src={getStaticMapUrl()}
+          alt="Static map"
+          width="100%"
+          height="300"
+          style={{ objectFit: "cover", borderRadius: "12px" }}
+        />
+      </MapWrapper>
+    );
+  }
 
   return (
     <MapWrapper>
       <MapBox ref={mapRef} />
-      {!boothId && (
-        <FilterButton onClick={toggleShowOnlyLiked} $active={showOnlyLiked}>
-          <img
-            src={Heart}
-            alt="찜한 목록"
-            width={14}
-            height={14}
-            style={{ marginRight: "6px" }}
-          />
-          찜한 목록
-        </FilterButton>
-      )}
+      <FilterButton onClick={toggleShowOnlyLiked} $active={showOnlyLiked}>
+        <img
+          src={Heart}
+          alt="찜한 목록"
+          width={14}
+          height={14}
+          style={{ marginRight: "6px" }}
+        />
+        찜한 목록
+      </FilterButton>
     </MapWrapper>
   );
 }
