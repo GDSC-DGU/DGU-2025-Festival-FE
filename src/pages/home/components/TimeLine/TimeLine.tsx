@@ -13,9 +13,10 @@ import type { PerformanceItemType } from "@/pages/timetable/types/performanceIte
 import DefaultImage from "@/assets/images/timelineImage.png";
 interface TimeLineProps {
   currentPerformer: PerformanceItemType | null;
+  onClick: () => void;
 }
 
-const TimeLine = ({ currentPerformer }: TimeLineProps) => {
+const TimeLine = ({ currentPerformer, onClick }: TimeLineProps) => {
   const { ref: performerRef, isVisible: performerVisible } =
     useOnScreenAnimation<HTMLDivElement>(0.2, 300); // 200ms 딜레이
   const { ref: emptyRef, isVisible: emptyVisible } =
@@ -23,6 +24,7 @@ const TimeLine = ({ currentPerformer }: TimeLineProps) => {
 
   return currentPerformer ? (
     <Container
+      onClick={onClick}
       ref={performerRef}
       className={`fade-up ${performerVisible ? "visible" : ""}`}
     >

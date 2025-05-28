@@ -17,7 +17,7 @@ import TopBar from "@/components/topbar/TopBar";
 import { useBoothStore } from "./stores/useBoothStore"; // ✅ 추가
 
 export default function BoothPage() {
-  const [selectedDate, setSelectedDate] = useState("2025-05-27");
+  const [selectedDate, setSelectedDate] = useState("2025-05-28");
   const [boothType, setBoothType] = useState<"day" | "night">("day");
   // const [showModal, setShowModal] = useState(false);
 

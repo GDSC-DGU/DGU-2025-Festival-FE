@@ -28,6 +28,7 @@ import HandImage from "@/assets/images/hand.webp";
 import Logo from "/assets/landing/logo.svg";
 import { getCurrentPerformance } from "./utils/getCurrentPerformance";
 import type { PerformanceItemType } from "../timetable/types/performanceItem";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [mappedBooths, setMappedBooths] = useState<BoothRankingItem[]>([]);
@@ -37,6 +38,11 @@ const HomePage = () => {
   const rankingAnimation = useOnScreenAnimation<HTMLDivElement>();
   const [currentPerformance, setCurrentPerformance] =
     useState<PerformanceItemType | null>(null);
+  const navigate = useNavigate();
+
+  const handleClickTimeline = () => {
+    navigate(`/timetable`);
+  };
 
   useEffect(() => {
     const fetchRanking = async () => {
@@ -110,7 +116,10 @@ const HomePage = () => {
           >
             <Title>실시간 공연 타임라인</Title>
           </TitleContainer>
-          <TimeLine currentPerformer={currentPerformance} />
+          <TimeLine
+            onClick={handleClickTimeline}
+            currentPerformer={currentPerformance}
+          />
         </ContentContainer>
         <ContentContainer>
           <TitleContainer
