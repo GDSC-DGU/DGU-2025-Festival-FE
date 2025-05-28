@@ -248,6 +248,15 @@ import booth_114_4 from "@/assets/booth/convergencesecurity/1.png";
 import booth_114_5 from "@/assets/booth/convergencesecurity/2.png";
 import booth_122_1 from "@/assets/booth/energe/image (3).png";
 import booth_124_1 from "@/assets/booth/lion/스크린샷 2025-05-28 오후 2.05.53.png";
+import booth_200_1 from "@/assets/booth/qr/KakaoTalk_20250525_104322260.jpg"
+import booth_200_2 from "@/assets/booth/qr/KakaoTalk_20250525_104322260_01.jpg"
+import booth_200_3 from "@/assets/booth/qr/KakaoTalk_20250525_104322260_02.jpg"
+import booth_201_1 from "@/assets/booth/stat/1.jpg"
+import booth_201_2 from "@/assets/booth/stat/2.jpg"
+import booth_202_1 from "@/assets/booth/math01/1.jpg"
+import booth_202_2 from "@/assets/booth/math01/2.jpg"
+
+
 import type { Booth } from "@/types/booth";
 
 export const booths: Booth[] = [
@@ -1579,5 +1588,37 @@ export const booths: Booth[] = [
     waitingAvailable: false,
     isLinenow: true,
     linenowLink: "https://linenow.co.kr/booth/18",
+  },
+
+  // 수빈 200부터 시작
+  {
+    id: "200",
+    name: "🔥QR 포스트잇 소개팅🔥",
+    intro: "💘1,2차 사전 접수 조기 마감 3차 사전 접수 중!",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558417, lng: 127.000044 },
+    images: [booth_200_1, booth_200_2, booth_200_3],
+    waitingAvailable: false,
+  },
+  {
+    id: "201",
+    name: "⚾ 통계학과 야간 부스 OPEN ⚾",
+    intro: "야구와 통계의 만남, 그 짜릿한 현장에 여러분을 초대합니다!",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.557877, lng: 126.999835 },
+    images: [booth_201_2, booth_201_1],
+    waitingAvailable: false,
+  },
+  {
+    id: "202",
+    name: "🐶수학과 가나디의 부스운영🐶",
+    intro: "가나디가 운영하는 심야식당에 여러분을 초대합니다!",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.557927, lng: 126.999649 },
+    images: [booth_202_1, booth_202_2],
+    waitingAvailable: false,
   },
 ] as const;
