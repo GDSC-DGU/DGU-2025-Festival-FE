@@ -44,7 +44,7 @@ export const Title = styled.h2`
 export const Section = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   width: 100%;
 `;
 
@@ -55,13 +55,12 @@ export const Container = styled.div`
   width: 100%;
   padding: 0 16px;
   box-sizing: border-box;
-  gap: 30px;
+  gap: 60px;
 `;
 
 export const Content = styled.div`
   ${({ theme }) => theme.fonts.Body3}
   /* background-color: ${({ theme }) => theme.colors.indigo50}; */
-  padding: 16px;
   border-radius: 10px;
   text-align: center;
   word-break: keep-all;
@@ -80,4 +79,5 @@ export const Header = styled.div`
   width: 100%;
   box-sizing: border-box;
   padding: 20px 0;
+  gap: 20px;
 `;
