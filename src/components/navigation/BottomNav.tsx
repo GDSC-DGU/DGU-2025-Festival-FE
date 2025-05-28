@@ -13,7 +13,6 @@ import BoothOff from "@/assets/icons/booth_off.png";
 import WaitingOn from "@/assets/icons/waiting_on.png";
 import WaitingOff from "@/assets/icons/waiting_off.png";
 
-
 interface NavItem {
   label: string;
   path: string;
@@ -68,7 +67,9 @@ export default function BottomNav() {
         <ul>
           {navItems.map((item) => {
             const isActive =
-              pathname === item.path || pathname.startsWith(`${item.path}/`);
+              pathname === item.path ||
+              pathname.startsWith(`${item.path}/`) ||
+              (item.path === "/" && pathname === "/about");
 
             return (
               <li key={item.path}>
@@ -78,7 +79,9 @@ export default function BottomNav() {
                       src={isActive ? item.activeIcon : item.defaultIcon}
                       alt={item.label}
                     />
-                    <span className={isActive ? "active" : ""}>{item.label}</span>
+                    <span className={isActive ? "active" : ""}>
+                      {item.label}
+                    </span>
                   </button>
                 ) : (
                   <NavLink to={item.path}>
@@ -86,7 +89,9 @@ export default function BottomNav() {
                       src={isActive ? item.activeIcon : item.defaultIcon}
                       alt={item.label}
                     />
-                    <span className={isActive ? "active" : ""}>{item.label}</span>
+                    <span className={isActive ? "active" : ""}>
+                      {item.label}
+                    </span>
                   </NavLink>
                 )}
               </li>
