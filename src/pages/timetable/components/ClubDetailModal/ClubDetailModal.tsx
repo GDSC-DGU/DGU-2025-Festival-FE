@@ -26,9 +26,10 @@ import InstagramLinkButton from "../InstagramLinkButton/InstagramLinkButton";
 interface DetailModalProps {
   id: number;
   onClose: () => void;
+  isArtist: boolean;
 }
 
-const ClubDetailModal = ({ id, onClose }: DetailModalProps) => {
+const ClubDetailModal = ({ id, onClose, isArtist }: DetailModalProps) => {
   const data = timetableData.find((item) => item.id === id);
 
   useEffect(() => {
@@ -65,7 +66,12 @@ const ClubDetailModal = ({ id, onClose }: DetailModalProps) => {
         <ModalWrapper onClick={(e) => e.stopPropagation()}>
           <Section>
             <TopBar>
-              <Tag>동아리 공연 정보</Tag>
+              {isArtist ? (
+                <Tag>연예인 공연 정보</Tag>
+              ) : (
+                <Tag>동아리 공연 정보</Tag>
+              )}
+
               <CloseButton onClick={onClose}>
                 <img src={CloseIcon} alt="닫기" width={18} height={18} />
               </CloseButton>
