@@ -22,6 +22,7 @@ interface TimetableItemProps {
   title: string;
   description?: string;
   imageUrl: string;
+  isArtist: boolean;
 }
 
 const TimetableItem = ({
@@ -31,6 +32,7 @@ const TimetableItem = ({
   title,
   description,
   imageUrl,
+  isArtist,
 }: TimetableItemProps) => {
   const { ref, isVisible } = useOnScreenAnimation<HTMLDivElement>(0.5);
 
@@ -50,12 +52,12 @@ const TimetableItem = ({
         {start}
         <br />~{end}
       </TimeText>
-      <LineContainer>
+      <LineContainer $isArtist={isArtist}>
         <Circle />
-        <VerticalLine />
+        <VerticalLine $isArtist={isArtist} />
       </LineContainer>
       <Card>
-        <Avatar src={image} alt="image" />
+        <Avatar $isArtist={isArtist} src={image} alt="image" />
         <Content>
           <Title>{title}</Title>
           {description && <Description>{description}</Description>}
@@ -64,7 +66,11 @@ const TimetableItem = ({
         <Button onClick={handleDetail}>상세보기</Button>
       </Card>
       {showModal && (
-        <ClubDetailModal id={id} onClose={() => setShowModal(false)} />
+        <ClubDetailModal
+          isArtist={isArtist}
+          id={id}
+          onClose={() => setShowModal(false)}
+        />
       )}
     </ItemContainer>
   );
