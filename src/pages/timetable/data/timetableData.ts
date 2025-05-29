@@ -1,8 +1,5 @@
 import type { PerformanceItemType } from "../types/performanceItem";
-import Image1 from "@/assets/lineup/다듀.webp";
-import Image2 from "@/assets/lineup/윤하.webp";
-import Image3 from "@/assets/lineup/씨엔블루.webp";
-import Image4 from "@/assets/lineup/키오라.webp";
+
 export const timetableData: PerformanceItemType[] = [
   {
     id: 1,
@@ -279,7 +276,7 @@ export const timetableData: PerformanceItemType[] = [
 
     imageUrl: "/images/image11.jpg",
   },
-
+=
   {
     id: 15,
 
@@ -335,4 +332,5 @@ export const timetableData: PerformanceItemType[] = [
     imageUrl: Image4,
     isArtist: true,
   },
+
 ];

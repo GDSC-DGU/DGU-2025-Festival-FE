@@ -248,6 +248,55 @@ import booth_114_4 from "@/assets/booth/convergencesecurity/1.png";
 import booth_114_5 from "@/assets/booth/convergencesecurity/2.png";
 import booth_122_1 from "@/assets/booth/energe/image (3).png";
 import booth_124_1 from "@/assets/booth/lion/스크린샷 2025-05-28 오후 2.05.53.png";
+import booth_200_1 from "@/assets/booth/qr/KakaoTalk_20250525_104322260.jpg"
+import booth_200_2 from "@/assets/booth/qr/KakaoTalk_20250525_104322260_01.jpg"
+import booth_200_3 from "@/assets/booth/qr/KakaoTalk_20250525_104322260_02.jpg"
+import booth_201_1 from "@/assets/booth/stat/1.jpg"
+import booth_201_2 from "@/assets/booth/stat/2.jpg"
+import booth_202_1 from "@/assets/booth/math01/1.jpg"
+import booth_202_2 from "@/assets/booth/math01/2.jpg"
+import booth_203_1 from "@/assets/booth/bio/1 (1).jpg"
+import booth_203_2 from "@/assets/booth/bio/1 (2).jpg"
+import booth_203_3 from "@/assets/booth/bio/1 (3).jpg"
+import booth_203_4 from "@/assets/booth/bio/1 (4).jpg"
+import booth_203_5 from "@/assets/booth/bio/1 (5).jpg"
+import booth_203_6 from "@/assets/booth/bio/1(6).jpg"
+import booth_204_1 from "@/assets/booth/welfare/(1).webp"
+import booth_204_2 from "@/assets/booth/welfare/(1).webp"
+import booth_219_1 from "@/assets/booth/Chemicraft/  (1).jpg"
+import booth_219_2 from "@/assets/booth/Chemicraft/  (2).jpg"
+import booth_220_1 from "@/assets/booth/physical/1 (1).jpg"
+import booth_220_2 from "@/assets/booth/physical/1 (2).jpg"
+import booth_224_1 from "@/assets/booth/social/social (1).webp"
+import booth_224_2 from "@/assets/booth/social/social (2).webp"
+import booth_224_3 from "@/assets/booth/social/social (3).webp"
+import booth_224_4 from "@/assets/booth/social/social (4).webp"
+import booth_224_5 from "@/assets/booth/social/social (5).webp"
+import booth_224_6 from "@/assets/booth/social/social (6).webp"
+import booth_224_7 from "@/assets/booth/social/social (7).webp"
+import booth_224_8 from "@/assets/booth/social/social (8).webp"
+import booth_226_1 from "@/assets/booth/civil/1 (1).jpg"
+import booth_226_2 from "@/assets/booth/civil/1 (2).jpg"
+import booth_226_3 from "@/assets/booth/civil/1 (3).jpg"
+import booth_226_4 from "@/assets/booth/civil/1 (4).jpg"
+import booth_226_5 from "@/assets/booth/civil/1 (5).jpg"
+import booth_226_6 from "@/assets/booth/civil/1 (6).jpg"
+import booth_226_7 from "@/assets/booth/civil/1 (7).jpg"
+import booth_227_1 from "@/assets/booth/geoedu/1 (1).jpg"
+import booth_227_2 from "@/assets/booth/geoedu/1 (2).jpg"
+import booth_228_1 from "@/assets/booth/edu/1 (1).jpg"
+import booth_228_2 from "@/assets/booth/edu/1 (2).jpg"
+import booth_228_3 from "@/assets/booth/edu/1 (3).jpg"
+import booth_229_1 from "@/assets/booth/ice/1 (1).webp"
+import booth_229_2 from "@/assets/booth/ice/1 (2).webp"
+import booth_229_3 from "@/assets/booth/ice/1 (3).webp"
+import booth_229_4 from "@/assets/booth/ice/1 (4).webp"
+import booth_229_5 from "@/assets/booth/ice/1 (5).webp"
+import booth_229_6 from "@/assets/booth/ice/1 (6).webp"
+import booth_229_7 from "@/assets/booth/ice/1 (7).webp"
+import booth_229_8 from "@/assets/booth/ice/1 (8).webp"
+
+
 import type { Booth } from "@/types/booth";
 
 export const booths: Booth[] = [
@@ -1496,8 +1545,8 @@ export const booths: Booth[] = [
     position: { lat: 37.557204, lng: 127.002442 },
     images: [booth_25_1],
     waitingAvailable: false,
-    // isLinenow: true,
-  },
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/35"},
 
   {
     id: "118",
@@ -1579,5 +1628,262 @@ export const booths: Booth[] = [
     waitingAvailable: false,
     isLinenow: true,
     linenowLink: "https://linenow.co.kr/booth/18",
+  },
+
+  // 수빈 200부터 시작
+  {
+    id: "200",
+    name: "🔥QR 포스트잇 소개팅🔥",
+    intro: "💘1,2차 사전 접수 조기 마감 3차 사전 접수 중!",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558417, lng: 127.000044 },
+    images: [booth_200_1, booth_200_2, booth_200_3],
+    waitingAvailable: false,
+  },
+  {
+    id: "201",
+    name: "⚾ 통계학과 야간 부스 OPEN ⚾",
+    intro: "야구와 통계의 만남, 그 짜릿한 현장에 여러분을 초대합니다!",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.557877, lng: 126.999835 },
+    images: [booth_201_2, booth_201_1],
+    waitingAvailable: false,
+  },
+  {
+    id: "202",
+    name: "🐶수학과 가나디의 부스운영🐶",
+    intro: "가나디가 운영하는 심야식당에 여러분을 초대합니다!",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.557927, lng: 126.999649 },
+    images: [booth_202_1, booth_202_2],
+    waitingAvailable: false,
+  },
+  {
+    id: "203",
+    name: "🎡 E-BARLAND로 여러분을 초대합니다 🎡",
+    intro: "바이오시스템대학 4개 학과 학생회가 연합한 'E-bar LAND'가 오픈합니다.",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.557927, lng: 126.999649 },
+    images: [booth_203_1,booth_203_2,booth_203_3,booth_203_4,booth_203_5,booth_203_6],
+    waitingAvailable: false,
+  },
+  {
+    id: "204",
+    name: "🐱2025 봄 대동제 사회복지학과 야간부스🐱",
+    intro: "고양이 카페를 필두로 사회복지학과 야간부스가 다가오는 28일, 29일에 찾아갑니다!",
+    date: "2025-05-28",
+    type: "night",
+    position: { lat: 37.557123, lng: 127.002408 },
+    images: [booth_204_1,booth_204_2],
+    waitingAvailable: false,
+  },
+  {
+    id: "205",
+    name: "🐱2025 봄 대동제 사회복지학과 야간부스🐱",
+    intro: "고양이 카페를 필두로 사회복지학과 야간부스가 다가오는 28일, 29일에 찾아갑니다!",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.557123, lng: 127.002408 },
+    images: [booth_204_1,booth_204_2],
+    waitingAvailable: false,
+  },
+  {
+    id: "206",
+    name: "큐피드 붓다붓다",
+    intro: " ",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558193, lng: 37.558193 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "208",
+    name: "안빈낙도 코끼리키링",
+    intro: " ",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558380, lng: 127.000012 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "211",
+    name: "공과대학 학생회",
+    intro: "🩶 ️웨이브 뽈 파크 개장 안내 ️🩶",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558585, lng: 127.000345 },
+    images: [booth_110_1, booth_110_2, booth_110_3, booth_110_4],
+    waitingAvailable: false,
+  },
+  {
+    id: "212",
+    name: "인권 센터",
+    intro: " ",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat: 37.558616, lng:  127.000247 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+ 
+  {
+    id: "216",
+    name: "화화",
+    intro: " ",
+    date: "2025-05-29",
+    type: "day",
+    position: { lat:  37.559543, lng:  126.999399 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  
+  {
+    id: "217",
+    name: "이과대학 코코몽 야간부스",
+    intro:
+      "야간에 펼쳐지는 환상적인 냉장고 나라로 놀러와서 잊지 못할 추억을 만들어보라몽~ 코코몽과 함께라면 언제나 즐겁다몽~",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.557793, lng: 127.000175 },
+    images: [booth_62_1, booth_62_2],
+    waitingAvailable: false,
+  },
+  {
+    id: "218",
+    name: "물리학과 야간부스",
+    intro:
+      " ",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.557844, lng: 126.999845 },
+    images: [defaultImage ],
+    waitingAvailable: false,
+  },
+  {
+    id: "219",
+    name: "‘Chemicraft World",
+    intro:
+      "화학과만의 특별한 월드",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.557844, lng: 126.999845 },
+    images: [booth_219_1, booth_219_2 ],
+    waitingAvailable: false,
+  },
+  {
+    id: "220",
+    name: " 2025 봄 대동제 체육교육과 야간부스 OPEN! 💪🍑",
+    intro:
+      "자기야… 우리 부스… 진짜 안 올 거야…? 🥺",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.558297, lng: 127.000747 },
+    images: [booth_220_1, booth_220_2 ],
+    waitingAvailable: false,
+  },
+  {
+    id: "221",
+    name: " 2025 봄 대동제 체육교육과 야간부스 OPEN! 💪🍑",
+    intro:
+      "자기야… 우리 부스… 진짜 안 올 거야…? 🥺",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.558540, lng: 127.000568  },
+    images: [booth_220_1, booth_220_2 ],
+    waitingAvailable: false,
+  },
+  {
+    id: "222",
+    name: " 여자총동창회 야간 부스",
+    intro:
+      " ",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.558646, lng: 127.000144 },
+    images: [defaultImage ],
+    waitingAvailable: false,
+  },
+  {
+    id: "223",
+    name: "광고홍보학과",
+    intro: "광홍돼학교 야간캠퍼스 개강!",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.557045, lng: 127.002732 },
+    images: [booth_9_1, booth_9_2, booth_9_3],
+    waitingAvailable: false,
+    
+  },
+  {
+    id: "224",
+    name: "💀2025 사회학과 봄 대동제 야간부스💀",
+    intro: "하나의 유령이 동국대학교를 떠돌고 있다—사회학과 라는 유령이.",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.557122, lng: 127.002386 },
+    images: [booth_224_1, booth_224_2, booth_224_3,booth_224_4,booth_224_5,booth_224_6,booth_224_7,booth_224_8],
+    waitingAvailable: false,
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/15"
+  },
+  {
+    id: "225",
+    name: "건축공학부 야간부스",
+    intro: " ",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.558612, lng: 126.999105 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  },
+  {
+    id: "226",
+    name: "🦺건설환경공학과 야간부스 출입금주🦺",
+    intro: "건설환경공학과 야간부스를 오픈합니다 :)",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.558814, lng: 126.999121 },
+    images: [booth_226_1,booth_226_2,booth_226_3,booth_226_4,booth_226_5,booth_226_6,booth_226_7],
+    waitingAvailable: false,
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/10"
+  },
+  {
+    id: "227",
+    name: "🌏 2025 지리교육과 야간부스 안내 🌱",
+    intro: "야구의 열정을 그대로 이어받은 지교 GBO(그보)에서 맛있는 안주와 놀거리 가득 즐기고 가세요-!",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.560141, lng: 127.000026 },
+    images: [booth_227_1,booth_227_2],
+    waitingAvailable: false,
+  },
+  {
+    id: "228",
+    name: "교육시네마",
+    intro: "🎥2025 봄 대동제 교육학과 야간부스🎥",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.560261, lng: 126.999566 },
+    images: [booth_228_1,booth_228_2, booth_228_3],
+    waitingAvailable: false,
+  },
+  {
+    id: "229",
+    name: "ICEBOMB",
+    intro: "갑자기 찾아온 여름밤, 💦 ICEBOMB 시원하게 오픈 💦",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.559529, lng: 126.999394 },
+    images: [booth_229_6,booth_229_2, booth_229_3,booth_229_4,booth_229_5,booth_229_1,booth_229_7,booth_229_8],
+    waitingAvailable: false,
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/20",
   },
 ] as const;

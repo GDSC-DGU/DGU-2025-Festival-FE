@@ -9,5 +9,4 @@ export type PerformanceItemType = {
   instagram: string;
   songs: { title: string }[];
   imageUrl: string;
-  isArtist?: boolean;
 };
