@@ -28,7 +28,12 @@ const TimeLine = ({ currentPerformer, onClick }: TimeLineProps) => {
       ref={performerRef}
       className={`fade-up ${performerVisible ? "visible" : ""}`}
     >
-      <Tag>동아리 공연</Tag>
+      {currentPerformer.isArtist == true ? (
+        <Tag>가수 공연</Tag>
+      ) : (
+        <Tag>동아리 공연</Tag>
+      )}
+
       <PerformerImage
         src={currentPerformer.imageUrl || DefaultImage}
         alt="profile"
