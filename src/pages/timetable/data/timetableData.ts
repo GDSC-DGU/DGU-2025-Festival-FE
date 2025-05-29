@@ -1,8 +1,5 @@
 import type { PerformanceItemType } from "../types/performanceItem";
-import Image1 from "@/assets/lineup/다듀.webp";
-import Image2 from "@/assets/lineup/윤하.webp";
-import Image3 from "@/assets/lineup/씨엔블루.webp";
-import Image4 from "@/assets/lineup/키오라.webp";
+
 export const timetableData: PerformanceItemType[] = [
   {
     id: 1,
@@ -278,61 +275,5 @@ export const timetableData: PerformanceItemType[] = [
     ],
 
     imageUrl: "/images/image11.jpg",
-  },
-
-  {
-    id: 15,
-
-    date: "2025-05-29",
-    start: "18:30",
-    end: "19:20",
-    title: "다이나믹 듀오",
-    tag: "힙합/랩",
-    description: "한국 힙합의 아이콘, 무대 위 진짜 ‘다이나믹’을 느껴보세요!",
-    instagram: "givenejoah",
-    songs: [],
-    imageUrl: Image1,
-    isArtist: true,
-  },
-
-  {
-    id: 16,
-    date: "2025-05-29",
-    start: "19:30",
-    end: "20:30",
-    title: "윤하",
-    tag: "발라드 가수",
-    description: "사건의 지평선🌠 넘어서 윤하가 바로 눈앞에.",
-    instagram: "younha_holic",
-    songs: [],
-    imageUrl: Image2,
-    isArtist: true,
-  },
-
-  {
-    id: 17,
-    date: "2025-05-29",
-    start: "20:30",
-    end: "21:30",
-    title: "씨엔블루",
-    tag: "밴드",
-    description: "‘외톨이야’🎸 듣던 그 시절 감성, 동국대에서 다 같이 떼창해요!",
-    instagram: "cnblue.official",
-    songs: [],
-    imageUrl: Image3,
-    isArtist: true,
-  },
-  {
-    id: 18,
-    date: "2025-05-29",
-    start: "21:30",
-    end: "22:00",
-    title: "키스오브라이프",
-    tag: "K-POP",
-    description: "‘Shhh’💋 말고 환호할 시간! 동국대 무대는 키오프가 접수",
-    instagram: "kissoflife_s2",
-    songs: [],
-    imageUrl: Image4,
-    isArtist: true,
   },
 ];
