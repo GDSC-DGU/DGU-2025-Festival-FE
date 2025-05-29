@@ -284,6 +284,18 @@ import booth_226_6 from "@/assets/booth/civil/1 (6).jpg"
 import booth_226_7 from "@/assets/booth/civil/1 (7).jpg"
 import booth_227_1 from "@/assets/booth/geoedu/1 (1).jpg"
 import booth_227_2 from "@/assets/booth/geoedu/1 (2).jpg"
+import booth_228_1 from "@/assets/booth/edu/1 (1).jpg"
+import booth_228_2 from "@/assets/booth/edu/1 (2).jpg"
+import booth_228_3 from "@/assets/booth/edu/1 (3).jpg"
+import booth_229_1 from "@/assets/booth/ice/1 (1).webp"
+import booth_229_2 from "@/assets/booth/ice/1 (2).webp"
+import booth_229_3 from "@/assets/booth/ice/1 (3).webp"
+import booth_229_4 from "@/assets/booth/ice/1 (4).webp"
+import booth_229_5 from "@/assets/booth/ice/1 (5).webp"
+import booth_229_6 from "@/assets/booth/ice/1 (6).webp"
+import booth_229_7 from "@/assets/booth/ice/1 (7).webp"
+import booth_229_8 from "@/assets/booth/ice/1 (8).webp"
+
 
 import type { Booth } from "@/types/booth";
 
@@ -1806,8 +1818,7 @@ export const booths: Booth[] = [
     position: { lat: 37.557045, lng: 127.002732 },
     images: [booth_9_1, booth_9_2, booth_9_3],
     waitingAvailable: false,
-    isLinenow: true,
-    linenowLink: "https://linenow.co.kr/booth/16",
+    
   },
   {
     id: "224",
@@ -1852,5 +1863,27 @@ export const booths: Booth[] = [
     position: { lat: 37.560141, lng: 127.000026 },
     images: [booth_227_1,booth_227_2],
     waitingAvailable: false,
+  },
+  {
+    id: "228",
+    name: "교육시네마",
+    intro: "🎥2025 봄 대동제 교육학과 야간부스🎥",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.560261, lng: 126.999566 },
+    images: [booth_228_1,booth_228_2, booth_228_3],
+    waitingAvailable: false,
+  },
+  {
+    id: "229",
+    name: "ICEBOMB",
+    intro: "갑자기 찾아온 여름밤, 💦 ICEBOMB 시원하게 오픈 💦",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.559529, lng: 126.999394 },
+    images: [booth_229_6,booth_229_2, booth_229_3,booth_229_4,booth_229_5,booth_229_1,booth_229_7,booth_229_8],
+    waitingAvailable: false,
+    isLinenow: true,
+    linenowLink: "https://linenow.co.kr/booth/20",
   },
 ] as const;
