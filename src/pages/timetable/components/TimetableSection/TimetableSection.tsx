@@ -22,7 +22,6 @@ const TimetableSection = ({ selectedDate }: TimetableSectionProps) => {
           title={item.title}
           description={item.description}
           imageUrl={item.imageUrl}
-          isArtist={item.isArtist ?? false}
         />
       ))}
     </Wrapper>
