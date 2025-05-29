@@ -17,7 +17,7 @@ import Lineup from "./components/Lineup/Lineup";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 
 const TimetablePage = () => {
-  const [selectedDate, setSelectedDate] = useState<string>(dates[0].value);
+  const [selectedDate, setSelectedDate] = useState<string>(dates[1].value);
 
   const dayIndex = useMemo(() => {
     const index = dates.findIndex((d) => d.value === selectedDate);

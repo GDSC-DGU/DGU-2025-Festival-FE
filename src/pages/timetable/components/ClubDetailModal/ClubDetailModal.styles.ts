@@ -113,6 +113,7 @@ export const Title = styled.h2`
 export const Description = styled.p`
   ${({ theme }) => theme.fonts.Body3}
   color: black;
+  word-break: keep-all;
 `;
 
 export const SongList = styled.div`

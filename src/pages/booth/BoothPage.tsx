@@ -10,14 +10,13 @@ import {
   ToolbarRow,
   ContentContainer,
   BoothListWrapper,
-  Update,
 } from "./BoothPage.styles";
 import { booths } from "./data/booths";
 import TopBar from "@/components/topbar/TopBar";
 import { useBoothStore } from "./stores/useBoothStore"; // ✅ 추가
 
 export default function BoothPage() {
-  const [selectedDate, setSelectedDate] = useState("2025-05-28");
+  const [selectedDate, setSelectedDate] = useState("2025-05-29");
   const [boothType, setBoothType] = useState<"day" | "night">("day");
   // const [showModal, setShowModal] = useState(false);
 
@@ -61,10 +60,6 @@ export default function BoothPage() {
                 />
               );
             })}
-            {(selectedDate === "2025-05-28" ||
-              selectedDate === "2025-05-29") && (
-              <Update>부스 추가 업데이트 예정이에요</Update>
-            )}
           </BoothListWrapper>
         ) : (
           <div

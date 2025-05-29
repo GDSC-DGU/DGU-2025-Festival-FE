@@ -15,12 +15,12 @@ export const TimeText = styled.div`
   width: 100px;
 `;
 
-export const LineContainer = styled.div`
+export const LineContainer = styled.div<{ $isArtist: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
-  min-height: 240px;
+  min-height: ${({ $isArtist }) => ($isArtist ? "330px" : "240px")};
 `;
 
 export const Circle = styled.div`
@@ -30,7 +30,7 @@ export const Circle = styled.div`
   background-color: white;
 `;
 
-export const VerticalLine = styled.div`
+export const VerticalLine = styled.div<{ $isArtist: boolean }>`
   width: 2px;
   height: 100%;
   background: linear-gradient(
@@ -54,19 +54,23 @@ export const Card = styled.div`
   border: 1.5px solid white;
 `;
 
-export const Avatar = styled.img.attrs({
-  referrerPolicy: "no-referrer",
-})`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+interface AvatarProps {
+  $isArtist?: boolean;
+}
+
+export const Avatar = styled.img<AvatarProps>`
+  width: ${({ $isArtist }) => ($isArtist ? "150px" : "60px")};
+  height: ${({ $isArtist }) => ($isArtist ? "150px" : "60px")};
+  border-radius: ${({ $isArtist }) => ($isArtist ? "10px" : "50%")};
   align-self: center;
+  object-fit: cover;
 `;
 
 export const Description = styled.p`
   ${({ theme }) => theme.fonts.Caption}
   color:black;
   text-align: center;
+  word-break: keep-all;
 `;
 
 export const Title = styled.h4`
