@@ -1886,4 +1886,15 @@ export const booths: Booth[] = [
     isLinenow: true,
     linenowLink: "https://linenow.co.kr/booth/20",
   },
+  {
+    id: "230",
+    name: "동아리 연합회",
+    intro: " ",
+    date: "2025-05-29",
+    type: "night",
+    position: { lat: 37.559334, lng: 126.999536 },
+    images: [defaultImage],
+    waitingAvailable: false,
+  
+  },
 ] as const;
