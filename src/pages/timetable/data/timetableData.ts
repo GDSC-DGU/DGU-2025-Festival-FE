@@ -316,7 +316,7 @@ export const timetableData: PerformanceItemType[] = [
     end: "21:30",
     title: "씨엔블루",
     tag: "밴드",
-    description: "‘외톨이야’🎸 듣던 그 시절 감성, 동국대에서 다 같이 떼창해요!",
+    description: "‘외톨이야’🎸 듣던 그 시절 감성으로, 다 같이 떼창해요!",
     instagram: "cnblue.official",
     songs: [],
     imageUrl: Image3,
