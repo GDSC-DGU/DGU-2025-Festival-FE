@@ -29,7 +29,6 @@ import { NoticePostAPI, NoticeDetailAPI, NoticePatchAPI } from '@/api/notice/not
 import { useNoticeStore } from '@/stores/useNoticeStore';
 import { useLostStore } from '@/stores/useLostStore';
 import type { LostFormData } from './components/LostForm';
-import imageCompression from 'browser-image-compression';
 
 const WritePage = () => {
     const isEditMode = useMatch('/admin/edit/:id') !== null;
@@ -204,7 +203,7 @@ const WritePage = () => {
         }
     };
 
-    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
         if (!files) return;
 
@@ -212,29 +211,8 @@ const WritePage = () => {
         const limitedFiles = fileArray.slice(0, maxImageCount - images.length);
         e.target.value = '';
 
-        // 압축 옵션 설정
-        const options = {
-            maxSizeMB: 1, // 최대 1MB로 압축
-            maxWidthOrHeight: 1024, // 최대 가로/세로 1024px
-            useWebWorker: true,
-        };
-
-        // 이미지 압축
-        const compressedFiles = await Promise.all(
-            limitedFiles.map(async (file) => {
-                try {
-                    const compressedFile = await imageCompression(file, options);
-                    return compressedFile;
-                } catch (error) {
-                    // 압축 실패 시 원본 파일 사용
-                    return file;
-                }
-            })
-        );
-
-        // 미리보기용 base64 생성
         Promise.all(
-            compressedFiles.map((file) => {
+            limitedFiles.map((file) => {
                 return new Promise<string>((resolve, reject) => {
                     const reader = new FileReader();
                     reader.onload = () => resolve(reader.result as string);
@@ -244,7 +222,7 @@ const WritePage = () => {
             })
         ).then((newPreviews) => {
             setImages((prev) => [...prev, ...newPreviews]);
-            setImageFiles((prev) => [...prev, ...compressedFiles]);
+            setImageFiles((prev) => [...prev, ...limitedFiles]);
             setShouldScrollToEnd(true);
             setInputKey((prev) => prev + 1);
         });
