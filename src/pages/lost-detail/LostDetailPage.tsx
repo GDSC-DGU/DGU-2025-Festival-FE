@@ -133,8 +133,9 @@ const LostDetailPage = () => {
             <QuestionText>어디서 찾나요?</QuestionText>
           </QuestionHeader>
           <QuestionContent>
-            잃어버린 분실물은 축제기획단 부스에서 찾으면 됩니다. {"\n"}분실물을
-            습득하셨다면 축제기획단 부스로 가져와주세요.
+            분실물 정보 및 신분증 정보를 확인한 후{"\n"} 본인 물건이거나 확인을
+            훤하시는 학우분들은{"\n"}월 ~ 금 (10:00~18:00) 총학생회실로
+            방문해주세요
           </QuestionContent>
         </QuestionContainer>
       </ContentContainer>
