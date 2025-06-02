@@ -34,7 +34,7 @@ const NoticePage = () => {
     if (saved === "공지사항" || saved === "분실물") {
       setTab(saved);
     } else {
-      setTab("공지사항");
+      setTab("분실물");
     }
   }, []);
 
