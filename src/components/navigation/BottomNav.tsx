@@ -134,7 +134,7 @@ export default function BottomNav() {
           content={
             <>
               지금은 공지사항/분실물만 제공하고 있습니다. <br />
-              다음 축제아서 만나요!
+              다음 축제에서 만나요!
             </>
           }
           onClose={() => {
