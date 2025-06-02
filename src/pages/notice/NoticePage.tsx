@@ -25,7 +25,7 @@ const NoticePage = () => {
   const lostList = useLostStore((state) => state.lostList);
 
   type NoticeTabType = "공지사항" | "분실물";
-  const [tab, setTab] = useState<NoticeTabType>("공지사항");
+  const [tab, setTab] = useState<NoticeTabType>("분실물");
   const [showQuestionContent, setShowQuestionContent] =
     useState<boolean>(false);
 
