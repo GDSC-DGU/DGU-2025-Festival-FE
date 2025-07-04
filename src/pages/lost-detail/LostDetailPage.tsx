@@ -23,24 +23,20 @@ import { formatDate } from "@/utils/date";
 import QuestionIcons from "@/assets/icons/question.svg";
 import { useState, useRef } from "react";
 import ImagePagination from "../notice-detail/components/ImagePagination/ImagePagination";
-import { LostDetailAPI } from "@/api/notice/lost";
+import { useLostDetail } from "@/api/notice/hooks/useLost";
 import { useLostStore } from "@/stores/useLostStore";
 import { LostTag } from "@/types/enums";
-import { useLoading } from "@/hooks/useLoading";
 import SkeletonLoading from "@/components/common/SkeletonLoading";
 const LostDetailPage = () => {
   const { id } = useParams();
   const lostId = Number(id);
-  const { loading } = useLoading(async () => {
-    await LostDetailAPI(lostId);
-    return true;
-  }, [lostId]);
+  const { isLoading } = useLostDetail(lostId);
   const [pageIndex, setPageIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const lost = useLostStore((state) => state.lostDetail);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Container>
         <TopBar title="분실물" showBackButton />

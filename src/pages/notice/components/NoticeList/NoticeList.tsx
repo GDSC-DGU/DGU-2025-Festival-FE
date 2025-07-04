@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import type { NoticeItemType } from "../../types/noticeItems";
 import DeleteModal from "@/pages/admin/notice/components/DeleteModal/DeleteModal";
-import { NoticeDeleteAPI } from "@/api/notice/notice";
+import { useDeleteNotice } from "@/api/notice/hooks/useNoticeAdmin";
 
 interface NoticeListProps {
   isAdmin?: boolean;
@@ -20,13 +20,15 @@ const NoticeList = ({
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [targetId, setTargetId] = useState<number | null>(null);
+  const { mutate: deleteNotice } = useDeleteNotice();
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     if (targetId === null) return;
-    const result = await NoticeDeleteAPI(targetId);
-    if (result.success) {
-      onDeleted?.(); // 부모 컴포넌트에 삭제 알림
-    }
+    deleteNotice(targetId, {
+      onSuccess: () => {
+        onDeleted?.(); // 부모에게 알림
+      },
+    });
     setIsModalOpen(false);
   };
 

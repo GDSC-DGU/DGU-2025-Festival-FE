@@ -14,24 +14,20 @@ import {
   ContentText,
 } from "./NoticeDetailPage.styles";
 import { formatDate } from "@/utils/date";
-import { useNoticeStore } from "@/stores/useNoticeStore";
-import { NoticeDetailAPI } from "@/api/notice/notice";
-import { useLoading } from "@/hooks/useLoading";
+// import { useNoticeStore } from "@/stores/useNoticeStore";
+import { useNoticeDetail } from "@/api/notice/hooks/useNotice";
 import SkeletonLoading from "@/components/common/SkeletonLoading";
 
 const NoticeDetailPage = () => {
   const { id } = useParams();
   const noticeId = Number(id);
-  const { loading } = useLoading(async () => {
-    await NoticeDetailAPI(noticeId);
-    return true;
-  }, [noticeId]);
+  const { data: notice, isLoading } = useNoticeDetail(noticeId);
 
   const [pageIndex, setPageIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const notice = useNoticeStore((state) => state.noticeDetail);
+  // const notice = useNoticeStore((state) => state.noticeDetail);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Container>
         <TopBar title="공지사항" showBackButton />
