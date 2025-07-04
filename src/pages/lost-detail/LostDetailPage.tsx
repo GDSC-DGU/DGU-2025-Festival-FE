@@ -26,24 +26,15 @@ import ImagePagination from "../notice-detail/components/ImagePagination/ImagePa
 import { useLostDetail } from "@/api/notice/hooks/useLost";
 import { useLostStore } from "@/stores/useLostStore";
 import { LostTag } from "@/types/enums";
-import SkeletonLoading from "@/components/common/SkeletonLoading";
+
 const LostDetailPage = () => {
   const { id } = useParams();
   const lostId = Number(id);
-  const { isLoading } = useLostDetail(lostId);
+  useLostDetail(lostId);
   const [pageIndex, setPageIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const lost = useLostStore((state) => state.lostDetail);
-
-  if (isLoading) {
-    return (
-      <Container>
-        <TopBar title="분실물" showBackButton />
-        <SkeletonLoading message="페이지를 불러오고 있습니다." />
-      </Container>
-    );
-  }
 
   if (!lost) {
     return (

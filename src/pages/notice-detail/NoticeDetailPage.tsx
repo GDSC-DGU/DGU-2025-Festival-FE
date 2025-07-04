@@ -16,25 +16,15 @@ import {
 import { formatDate } from "@/utils/date";
 // import { useNoticeStore } from "@/stores/useNoticeStore";
 import { useNoticeDetail } from "@/api/notice/hooks/useNotice";
-import SkeletonLoading from "@/components/common/SkeletonLoading";
 
 const NoticeDetailPage = () => {
   const { id } = useParams();
   const noticeId = Number(id);
-  const { data: notice, isLoading } = useNoticeDetail(noticeId);
+  const { data: notice } = useNoticeDetail(noticeId);
 
   const [pageIndex, setPageIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   // const notice = useNoticeStore((state) => state.noticeDetail);
-
-  if (isLoading) {
-    return (
-      <Container>
-        <TopBar title="공지사항" showBackButton />
-        <SkeletonLoading message="페이지를 불러오고 있습니다." />
-      </Container>
-    );
-  }
 
   if (!notice) {
     return (
