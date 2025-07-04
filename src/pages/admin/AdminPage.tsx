@@ -11,7 +11,7 @@ import {
   RoleText,
 } from "./AdminPage.styles";
 import SubmitButton from "@/components/button/SubmitButton";
-import { loginAPI } from "@/api/admin/admin";
+import { useAdminLogin } from "@/api/admin/hooks/useLogin";
 import { useState } from "react";
 import { Role } from "./types/role";
 import PubRoleIcon from "@/assets/icons/pub-role.svg";
@@ -22,6 +22,7 @@ const AdminLoginPage = () => {
   const [password, setPassword] = useState("");
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { mutate: loginMutate } = useAdminLogin();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -34,30 +35,29 @@ const AdminLoginPage = () => {
       setError("역할을 선택해주세요.");
       return;
     }
-
-    const payload = {
-      loginId: username,
-      password: password,
-      role: selectedRole,
-    };
-
-    try {
-      const response = await loginAPI(payload);
-      if (response.success) {
-        const userRole = payload.role;
-        if (userRole === ("ADFESTA" as Role)) {
-          navigate("/admin/notice");
-        } else {
-          navigate("/admin/booth");
-        }
-      } else {
-        setError("로그인에 실패했습니다.");
-        return;
+    loginMutate(
+      {
+        loginId: username,
+        password: password,
+        role: selectedRole,
+      },
+      {
+        onSuccess: (res) => {
+          if (res.success) {
+            if (selectedRole === Role.ADFESTA) {
+              navigate("/admin/notice");
+            } else {
+              navigate("/admin/booth");
+            }
+          } else {
+            setError("로그인에 실패했습니다.");
+          }
+        },
+        onError: () => {
+          setError("서버 오류가 발생했습니다.");
+        },
       }
-    } catch (error: unknown) {
-      console.error("로그인 실패:", error);
-      setError("서버 오류가 발생했습니다.");
-    }
+    );
   };
 
   return (
