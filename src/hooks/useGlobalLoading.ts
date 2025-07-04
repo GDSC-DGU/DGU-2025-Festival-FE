@@ -7,7 +7,7 @@ interface GlobalLoadingState {
   stopGlobalLoading: () => void;
 }
 
-export const useGlobalLoading = create<GlobalLoadingState>((set, get) => ({
+export const useGlobalLoading = create<GlobalLoadingState>((set) => ({
   loadingCount: 0,
   isGlobalLoading: false,
   startGlobalLoading: () =>
