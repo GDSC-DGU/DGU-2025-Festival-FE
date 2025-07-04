@@ -8,6 +8,7 @@ import { isInAppBrowser } from "./utils/isInApp";
 import dayjs from "dayjs";
 import "@/utils/dayjs";
 import { Wrapper } from "@googlemaps/react-wrapper";
+import GlobalLoading from "./components/common/GlobalLoading";
 
 export default function App() {
   const inApp = isInAppBrowser();
@@ -23,6 +24,7 @@ export default function App() {
           <>
             <GlobalFCMListener />
             <RouterProvider router={router} />
+            <GlobalLoading />
           </>
         )}
       </ThemeProvider>
