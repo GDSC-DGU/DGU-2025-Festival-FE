@@ -1,14 +1,18 @@
 import { create } from "zustand";
-import { fetchBoothList } from "@/api/booth/fetchBoothList";
-import { callBooth } from "@/api/booth/callBooth";
-import { completeVisit } from "@/api/booth/completeVisit";
-import { updateBoothStatus } from "@/api/booth/updateBoothStatus";
+import {
+  fetchReserveListAPI,
+  callBoothAPI,
+  completeVisitAPI,
+  updateBoothStatusAPI,
+} from "@/api/booth/adminBooth";
+
 import { sendRequest } from "@/api/request";
 import { adminInstance } from "@/api/instance";
 
 export type TabType = "available" | "full";
 export type ModalType = "call" | "visit" | "delete" | "closeBooth" | null;
 export type PubStatus = "AVAILABLE" | "FULL" | "END" | "PREPARING";
+export type WaitingStatus = "WAITING" | "CALLED" | "LATE" | "CANCELED";
 
 export interface WaitingBooth {
   id: string;
@@ -20,8 +24,9 @@ export interface WaitingBooth {
   order?: number;
   visited?: boolean;
   cancelled?: boolean;
-  status?: "WAITING" | "CALLED" | "LATE" | "CANCELED";
+  status: WaitingStatus;
 }
+
 
 interface BoothAdminState {
   tab: TabType;
@@ -55,9 +60,13 @@ interface BoothAdminState {
   getBoothOrder: (id: string) => number | undefined;
 }
 
+const isWaitingStatus = (value: string): value is WaitingBooth["status"] =>
+  ["WAITING", "CALLED", "LATE", "CANCELED"].includes(value);
+
 const normalizeStatus = (status: string): WaitingBooth["status"] => {
   if (status === "CANCELLED") return "CANCELED";
-  return status as WaitingBooth["status"];
+  if (isWaitingStatus(status)) return status;
+  return "WAITING"; 
 };
 
 export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
@@ -81,19 +90,24 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
   setPubStatus: (status) => set({ pubStatus: status }),
 
   confirmCall: async (id) => {
-    await callBooth(id);
+    await callBoothAPI(id);
     const updated = get().waitingBooths.map((b) =>
       b.id === id
-        ? { ...b, isCalling: true, calledAt: new Date().toISOString(), status: "CALLED" as WaitingBooth["status"] }
+        ? {
+            ...b,
+            isCalling: true,
+            calledAt: new Date().toISOString(),
+            status: "CALLED" as WaitingStatus,
+          }
         : b
     );
     set({ waitingBooths: updated });
   },
 
   confirmVisit: async (id) => {
-    await completeVisit(id);
+    await completeVisitAPI(id);
     const updated = get().waitingBooths.map((b) =>
-      b.id === id ? { ...b, visited: true, status: "CALLED" as WaitingBooth["status"] } : b
+      b.id === id ? { ...b, visited: true, status: "CALLED" as WaitingStatus } : b
     );
     set({ waitingBooths: updated });
   },
@@ -101,7 +115,7 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
   confirmDelete: async (id) => {
     await sendRequest(adminInstance, "DELETE", "/pub", { reserveId: id });
     const updated = get().waitingBooths.map((b) =>
-      b.id === id ? { ...b, cancelled: true, status: "CANCELED" as WaitingBooth["status"] } : b
+      b.id === id ? { ...b, cancelled: true, status: "CANCELED" as WaitingStatus } : b
     );
     set({ waitingBooths: updated });
   },
@@ -117,18 +131,18 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
     set({ waitingBooths: updated, modalType: null, selectedBooth: null });
   },
 
-  setBoothStatus: async (status: "AVAILABLE" | "FULL" | "END") => {
+  setBoothStatus: async (status) => {
     try {
-      await updateBoothStatus(status);
+      await updateBoothStatusAPI(status);
       set({ pubStatus: status });
       await get().fetchBooths();
     } catch (err) {
-      console.error("❌ 부스 상태 변경 실패:", err);
+      console.error("부스 상태 변경 실패:", err);
     }
   },
 
   fetchBooths: async () => {
-    const res = await fetchBoothList();
+    const res = await fetchReserveListAPI();
     if (res.success) {
       const booths = res.data.reserveList.map((item, index) => {
         const isCalled = item.status === "CALLED" || item.status === "LATE";
@@ -163,12 +177,14 @@ export const useBoothAdminStore = create<BoothAdminState>((set, get) => ({
 
       set({
         waitingBooths: booths,
-        pubStatus: res.data.pubStatus as PubStatus,
+        pubStatus: (res.data.pubStatus && ["AVAILABLE", "FULL", "END", "PREPARING"].includes(res.data.pubStatus as unknown as string))
+          ? (res.data.pubStatus as unknown as PubStatus)
+          : "AVAILABLE",
         lateTotalCount: res.data.lateTotalCount || 0,
         waitingTotalCount: res.data.waitingTotalCount || 0,
       });
     } else {
-      console.error("❌ 예약 목록 조회 실패:", res.error);
+      console.error("예약 목록 조회 실패:", res.error);
     }
   },
 
