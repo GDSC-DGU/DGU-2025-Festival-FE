@@ -21,7 +21,7 @@ import CompleteModal from "./components/CompleteModal/ComplateModal";
 import NoticeForm from "./components/NoticeForm";
 import LostForm from "./components/LostForm";
 import { LostTag } from "@/types/enums";
-import { LostPostAPI, LostPatchAPI, LostDetailAPI } from "@/api/notice/lost";
+import { usePostLost, usePatchLost } from "@/api/notice/hooks/useLostAdmin";
 import {
   useNavigate,
   useSearchParams,
@@ -31,10 +31,9 @@ import {
 import { formatDate } from "@/utils/date";
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import {
-  NoticePostAPI,
-  NoticeDetailAPI,
-  NoticePatchAPI,
-} from "@/api/notice/notice";
+  usePostNotice,
+  usePatchNotice,
+} from "@/api/notice/hooks/useNoticeAdmin";
 import { useNoticeStore } from "@/stores/useNoticeStore";
 import { useLostStore } from "@/stores/useLostStore";
 import type { LostFormData } from "./components/LostForm";
@@ -74,22 +73,27 @@ const WritePage = () => {
   const { noticeDetail } = useNoticeStore();
   const { lostDetail } = useLostStore();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (isEditMode && id) {
-        try {
-          if (isNotice) {
-            await NoticeDetailAPI(id);
-          } else {
-            await LostDetailAPI(id);
-          }
-        } catch {
-          navigate("/admin/notice");
-        }
-      }
-    };
-    fetchData();
-  }, [id, isEditMode]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (isEditMode && id) {
+  //       try {
+  //         if (isNotice) {
+  //           await NoticeDetailAPI(id);
+  //         } else {
+  //           await LostDetailAPI(id);
+  //         }
+  //       } catch {
+  //         navigate("/admin/notice");
+  //       }
+  //     }
+  //   };
+  //   fetchData();
+  // }, [id, isEditMode]);
+
+  const { mutateAsync: postNotice } = usePostNotice();
+  const { mutateAsync: patchNotice } = usePatchNotice();
+  const { mutateAsync: postLost } = usePostLost();
+  const { mutateAsync: patchLost } = usePatchLost();
 
   useEffect(() => {
     if (isEditMode) {
@@ -143,74 +147,111 @@ const WritePage = () => {
 
   const handleSubmit = async () => {
     try {
-      let response: { success: boolean } | undefined = { success: false };
+      const formData = new FormData();
+      formData.append("title", title);
+      imageFiles.forEach((file) => formData.append("images", file));
+      deletedImageUrls.forEach((url) => formData.append("deleteUrls", url));
 
       if (isNotice) {
-        if (isEditMode && id !== undefined) {
-          const formData = new FormData();
-          formData.append("title", title);
-          formData.append("description", description);
-          imageFiles.forEach((file) => {
-            formData.append("images", file);
-          });
-          deletedImageUrls.forEach((url) => {
-            formData.append("deleteUrls", url);
-          });
+        formData.append("description", description);
+        if (isEditMode && id) {
           formData.append("noticeId", id.toString());
-          response = await NoticePatchAPI(formData);
+          await patchNotice(formData);
         } else {
-          const formData = new FormData();
-          formData.append("title", title);
-          formData.append("description", description);
-          imageFiles.forEach((file) => {
-            formData.append("images", file);
-          });
-          response = await NoticePostAPI(formData);
+          await postNotice(formData);
         }
       } else {
-        if (isEditMode && id !== undefined) {
-          const formData = new FormData();
-          formData.append("title", title);
-          formData.append("tag", lostForm.tag || "");
-          formData.append("color", lostForm.color);
-          formData.append("category", lostForm.category);
-          formData.append("brand", lostForm.brand);
-          formData.append("location", lostForm.location);
-          formData.append("note", lostForm.note);
+        formData.append("tag", lostForm.tag || "");
+        formData.append("color", lostForm.color);
+        formData.append("category", lostForm.category);
+        formData.append("brand", lostForm.brand);
+        formData.append("location", lostForm.location);
+        formData.append("note", lostForm.note);
 
-          imageFiles.forEach((file) => {
-            formData.append("images", file);
-          });
-          deletedImageUrls.forEach((url) => {
-            formData.append("deleteUrls", url);
-          });
+        if (isEditMode && id) {
           formData.append("lostId", id.toString());
-          response = await LostPatchAPI(formData);
+          await patchLost(formData);
         } else {
-          const formData = new FormData();
-          formData.append("title", title);
-          formData.append("tag", lostForm.tag || "");
-          formData.append("color", lostForm.color);
-          formData.append("category", lostForm.category);
-          formData.append("brand", lostForm.brand);
-          formData.append("location", lostForm.location);
-          formData.append("note", lostForm.note);
-          imageFiles.forEach((file) => {
-            formData.append("images", file);
-          });
-          response = await LostPostAPI(formData);
+          await postLost(formData);
         }
       }
 
-      if (response.success || typeof response === "string") {
-        setIsModalOpen(true);
-      } else {
-        alert("게시에 실패했습니다. 다시 시도해주세요.");
-      }
+      setIsModalOpen(true);
     } catch {
       alert("게시에 실패했습니다. 다시 시도해주세요.");
     }
   };
+
+  // const handleSubmit = async () => {
+  //   try {
+  //     let response: { success: boolean } | undefined = { success: false };
+
+  //     if (isNotice) {
+  //       if (isEditMode && id !== undefined) {
+  //         const formData = new FormData();
+  //         formData.append("title", title);
+  //         formData.append("description", description);
+  //         imageFiles.forEach((file) => {
+  //           formData.append("images", file);
+  //         });
+  //         deletedImageUrls.forEach((url) => {
+  //           formData.append("deleteUrls", url);
+  //         });
+  //         formData.append("noticeId", id.toString());
+  //         response = await NoticePatchAPI(formData);
+  //       } else {
+  //         const formData = new FormData();
+  //         formData.append("title", title);
+  //         formData.append("description", description);
+  //         imageFiles.forEach((file) => {
+  //           formData.append("images", file);
+  //         });
+  //         response = await NoticePostAPI(formData);
+  //       }
+  //     } else {
+  //       if (isEditMode && id !== undefined) {
+  //         const formData = new FormData();
+  //         formData.append("title", title);
+  //         formData.append("tag", lostForm.tag || "");
+  //         formData.append("color", lostForm.color);
+  //         formData.append("category", lostForm.category);
+  //         formData.append("brand", lostForm.brand);
+  //         formData.append("location", lostForm.location);
+  //         formData.append("note", lostForm.note);
+
+  //         imageFiles.forEach((file) => {
+  //           formData.append("images", file);
+  //         });
+  //         deletedImageUrls.forEach((url) => {
+  //           formData.append("deleteUrls", url);
+  //         });
+  //         formData.append("lostId", id.toString());
+  //         response = await LostPatchAPI(formData);
+  //       } else {
+  //         const formData = new FormData();
+  //         formData.append("title", title);
+  //         formData.append("tag", lostForm.tag || "");
+  //         formData.append("color", lostForm.color);
+  //         formData.append("category", lostForm.category);
+  //         formData.append("brand", lostForm.brand);
+  //         formData.append("location", lostForm.location);
+  //         formData.append("note", lostForm.note);
+  //         imageFiles.forEach((file) => {
+  //           formData.append("images", file);
+  //         });
+  //         response = await LostPostAPI(formData);
+  //       }
+  //     }
+
+  //     if (response.success || typeof response === "string") {
+  //       setIsModalOpen(true);
+  //     } else {
+  //       alert("게시에 실패했습니다. 다시 시도해주세요.");
+  //     }
+  //   } catch {
+  //     alert("게시에 실패했습니다. 다시 시도해주세요.");
+  //   }
+  // };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;

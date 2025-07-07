@@ -1,7 +1,7 @@
 import TopBar from "@/components/topbar/TopBar";
 import Toggle from "@/components/toggle/Toggle";
 import LostGrid from "./components/LostGrid/LostGrid";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   ContentContainer,
@@ -12,8 +12,8 @@ import {
 } from "./NoticePage.styles";
 import NoticeList from "./components/NoticeList/NoticeList";
 import QuestionIcon from "@/assets/icons/question.svg";
-import { LostListAPI } from "@/api/notice/lost";
-import { NoticeListAPI } from "@/api/notice/notice";
+import { useLostList } from "@/api/notice/hooks/useLost";
+import { useNoticeList } from "@/api/notice/hooks/useNotice";
 import { useNoticeStore } from "@/stores/useNoticeStore";
 import { useLostStore } from "@/stores/useLostStore";
 import FindModal from "./components/FindModal/FindModal";
@@ -21,13 +21,16 @@ import FindModal from "./components/FindModal/FindModal";
 const STORAGE_KEY = "notice_tab";
 
 const NoticePage = () => {
-  const { noticeList, setNoticeList } = useNoticeStore();
+  const { noticeList } = useNoticeStore();
   const lostList = useLostStore((state) => state.lostList);
 
   type NoticeTabType = "공지사항" | "분실물";
   const [tab, setTab] = useState<NoticeTabType>("공지사항");
   const [showQuestionContent, setShowQuestionContent] =
     useState<boolean>(false);
+
+  useNoticeList();
+  useLostList();
 
   useEffect(() => {
     const saved = sessionStorage.getItem(STORAGE_KEY);
@@ -42,22 +45,6 @@ const NoticePage = () => {
     setTab(selected);
     sessionStorage.setItem(STORAGE_KEY, selected);
   };
-
-  const fetchNoticeList = useCallback(async () => {
-    const newList = await NoticeListAPI();
-    if (Array.isArray(newList)) {
-      setNoticeList(newList);
-    }
-  }, [setNoticeList]);
-
-  const fetchLostList = async () => {
-    await LostListAPI();
-  };
-
-  useEffect(() => {
-    fetchNoticeList();
-    fetchLostList();
-  }, [fetchNoticeList]);
 
   return (
     <Container>
