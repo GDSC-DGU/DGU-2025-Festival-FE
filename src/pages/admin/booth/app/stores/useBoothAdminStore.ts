@@ -4,7 +4,7 @@ import {
   callBoothAPI,
   completeVisitAPI,
   updateBoothStatusAPI,
-} from "@/api/booth/adminBooth";
+} from "@/api/booth/admin/adminBooth";
 
 import { sendRequest } from "@/api/request";
 import { adminInstance } from "@/api/instance";

@@ -9,9 +9,9 @@ import type { Booth } from "@/types/booth";
 import QuestionIcon from "@/assets/icons/question.png";
 import TopBar from "@/components/topbar/TopBar";
 // import { requestPermissionAndGetToken } from "@/firebase";
-import { cancelReservation, fetchMyReservation } from "@/api/reservation";
-import { useMyReservation } from "@/api/hooks/useMyReservation";
-import { usePubStatuses } from "@/api/hooks/usePubStatuses";
+import { cancelReservation, fetchMyReservation } from "@/api/booth/user/userBooth";
+import { useMyReservation } from "@/api/booth/user/hooks/useMyReservation";
+import { usePubStatuses } from "@/api/booth/user/hooks/usePubStatuses";
 
 const today = (() => {
   const now = new Date();

@@ -31,7 +31,7 @@ import {
 } from "./BoothDetailPage.styles";
 import { useLike } from "@/api/likes/hooks/useLike";
 import SkeletonLoading from "@/components/common/SkeletonLoading";
-import { usePubStatus } from "@/api/hooks/usePubStatus";
+import { usePubStatus } from "@/api/booth/hooks/hooks/usePubStatus";
 import getDistance from "./utils/getDistance";
 
 export default function BoothDetailPage() {

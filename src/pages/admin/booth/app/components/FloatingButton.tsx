@@ -12,7 +12,7 @@ import closeIcon from "@/assets/icons/close-menu.png";
 import BoothCloseModal from "../Modal/BoothCloseModal";
 import LogoutModal from "@/components/modal/logoutModal/LogoutModal";
 import { useAuthStore } from "@/stores/useAuthStore";
-import { updateBoothStatusAPI } from "@/api/booth/adminBooth";
+import { updateBoothStatusAPI } from "@/api/booth/admin/adminBooth";
 
 const FloatingButton = () => {
   const [isOpen, setIsOpen] = useState(false);
