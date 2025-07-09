@@ -7,7 +7,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { fetchMyReservation } from "../userBooth";
-import type { ReservationInfo } from "../../shared/sharedTypes";
+import type { ReservationInfo } from "../../shared/sharedBoothTypes";
 
 export const useMyReservation = (phoneNumber: string) => {
   return useQuery<ReservationInfo>({

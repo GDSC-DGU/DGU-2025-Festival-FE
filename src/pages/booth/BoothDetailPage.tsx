@@ -29,9 +29,9 @@ import {
   ImageScrollWrapper,
   EmptyContainer,
 } from "./BoothDetailPage.styles";
-import { useLike } from "@/api/likes/hooks/useLike";
+import { useLike } from "@/api/likes/hooks/useLikeBooth";
 import SkeletonLoading from "@/components/common/SkeletonLoading";
-import { usePubStatus } from "@/api/booth/hooks/hooks/usePubStatus";
+import { usePubStatus } from "@/api/booth/user/hooks/useUserBoothPubStatus";
 import getDistance from "./utils/getDistance";
 
 export default function BoothDetailPage() {

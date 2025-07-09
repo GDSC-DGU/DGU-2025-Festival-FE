@@ -7,7 +7,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { fetchPubsStatus } from "../userBooth";
-import type { PubStatus } from "../../shared/sharedTypes";
+import type { PubStatus } from "../../shared/sharedBoothTypes";
 
 export const usePubStatuses = () => {
   return useQuery<PubStatus[]>({

@@ -3,7 +3,7 @@ import { sendRequest } from "@/api/request";
 import type {
   AdminPubStatus,
   ReserveListResponse,
-} from "../shared/sharedTypes";
+} from "../shared/sharedBoothTypes";
 
 // 1. 예약 목록 조회 (/pub)
 export const fetchReserveListAPI = () =>

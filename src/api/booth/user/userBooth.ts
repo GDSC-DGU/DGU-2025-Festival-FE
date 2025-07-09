@@ -1,6 +1,6 @@
 import { sendRequest } from "@/api/request";
 import { defaultInstance } from "@/api/instance";
-import type { PubStatus, ReservationInfo } from "../shared/sharedTypes";
+import type { PubStatus, ReservationInfo } from "../shared/sharedBoothTypes";
 
 // 1. 번호 인증 요청 (/sms/certify)
 export const requestPhoneCert = (phoneNumber: string) => {
