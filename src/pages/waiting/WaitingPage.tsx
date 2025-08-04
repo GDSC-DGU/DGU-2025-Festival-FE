@@ -6,8 +6,8 @@ import WaitingInfoModal from "./components/WaitingInfoModal";
 import CancelConfirmModal from "./components/CancelConfirmModal";
 import * as S from "./WaitingPage.styles";
 import type { Booth } from "@/types/booth";
-import QuestionIcon from "@/assets/icons/question.png";
 import TopBar from "@/components/topbar/TopBar";
+import QuestionButton from "@/components/questionButton/questionButton";
 // import { requestPermissionAndGetToken } from "@/firebase";
 import { cancelReservation, fetchMyReservation } from "@/api/booth/user/userBooth";
 import { useMyReservation } from "@/api/booth/user/hooks/useUserBoothReservation";
@@ -28,7 +28,8 @@ export default function WaitingPage() {
   const { activeWaiting, addWaiting, cancelWaiting } = useWaitingStore();
   const phoneNumber = localStorage.getItem("userPhoneNumber") ?? "";
 
-  const { data: myReservation, refetch: refetchReservation } = useMyReservation(phoneNumber);
+  const { data: myReservation, refetch: refetchReservation } =
+    useMyReservation(phoneNumber);
   const { data: pubStatuses = [] } = usePubStatuses();
 
   // 새로고침 후 상태 복원
@@ -36,7 +37,9 @@ export default function WaitingPage() {
     if (phoneNumber && !activeWaiting) {
       fetchMyReservation(phoneNumber).then((res) => {
         if (res.success && res.data?.reserveStatus === "WAITING") {
-          const matchedBooth = booths.find((b) => b.date === today && b.waitingAvailable);
+          const matchedBooth = booths.find(
+            (b) => b.date === today && b.waitingAvailable
+          );
           if (matchedBooth) {
             addWaiting({
               boothId: matchedBooth.id,
@@ -74,12 +77,10 @@ export default function WaitingPage() {
       <TopBar title="야간 부스 웨이팅" />
       <S.ContentContainer>
         <S.QuestionWrapper>
-          <S.QuestionIcon
-            src={QuestionIcon}
-            alt="웨이팅 안내"
+          <QuestionButton
+            text="웨이팅 안내"
             onClick={() => setShowInfoModal(true)}
           />
-          <S.WaitingHint>웨이팅 안내</S.WaitingHint>
         </S.QuestionWrapper>
 
         {/* 내 웨이팅 정보 */}
@@ -89,13 +90,15 @@ export default function WaitingPage() {
             <S.WaitingCard>
               <S.WaitingCardContent>
                 <S.BoothName>
-                  {booths.find((b) => b.id === activeWaiting.boothId)?.name ?? "-"}
+                  {booths.find((b) => b.id === activeWaiting.boothId)?.name ??
+                    "-"}
                 </S.BoothName>
                 <S.Badge>내 순서 {myReservation?.waitTeam ?? "?"}번</S.Badge>
                 <S.WaitingSummary>
-                  전체 대기 {
-                    filteredBooths.find((b) => b.id === activeWaiting.boothId)?.waitingCount ?? "?"
-                  }팀
+                  전체 대기{" "}
+                  {filteredBooths.find((b) => b.id === activeWaiting.boothId)
+                    ?.waitingCount ?? "?"}
+                  팀
                 </S.WaitingSummary>
               </S.WaitingCardContent>
               <S.CancelButton onClick={() => setShowCancelConfirm(true)}>
@@ -132,7 +135,9 @@ export default function WaitingPage() {
                   ) : booth.pubStatus === "FULL" ? (
                     <S.BoothActionButton
                       onClick={() =>
-                        isMyWaiting ? setShowCancelConfirm(true) : handleClickBooth(booth)
+                        isMyWaiting
+                          ? setShowCancelConfirm(true)
+                          : handleClickBooth(booth)
                       }
                       $isCancel={isMyWaiting}
                     >

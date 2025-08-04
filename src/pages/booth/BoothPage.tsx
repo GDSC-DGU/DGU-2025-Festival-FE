@@ -1,23 +1,24 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-import BoothTypeToggle from "./components/BoothTypeToggle";
-import DateSelector from "./components/DateSelector";
+import Toggle from "@/components/toggle/Toggle";
+import DaySelector from "@/components/daySelector/DaySelector";
 import MapContainer from "./components/MapContainer";
 import BoothCard from "./components/BoothCard";
 import type { Booth } from "@/types/booth";
+import { dates } from "./data/dates";
 import {
   PageWrapper,
-  ToolbarRow,
   ContentContainer,
   BoothListWrapper,
 } from "./BoothPage.styles";
 import { booths } from "./data/booths";
 import TopBar from "@/components/topbar/TopBar";
-import { useBoothStore } from "./stores/useBoothStore"; // ✅ 추가
+import { useBoothStore } from "./stores/useBoothStore";
 
 export default function BoothPage() {
   const [selectedDate, setSelectedDate] = useState("2025-05-29");
-  const [boothType, setBoothType] = useState<"day" | "night">("day");
+
+  type BoothTabType = "day" | "night";
+  const [tab, setTab] = useState<BoothTabType>("day");
   // const [showModal, setShowModal] = useState(false);
 
   const isLiked = useBoothStore((state) => state.isLiked);
@@ -25,24 +26,33 @@ export default function BoothPage() {
 
   const filteredBooths = booths.filter((booth) => {
     const isSameDate = booth.date === selectedDate;
-    const isSameType = booth.type === boothType;
+    const isSameType = booth.type === tab;
     const isLikeOk = !showOnlyLiked || isLiked(booth.id);
     return isSameDate && isSameType && isLikeOk;
   });
+
+  const handleToggle = (selected: BoothTabType) => {
+    setTab(selected);
+  };
 
   return (
     <PageWrapper>
       <TopBar title="부스" />
       <ContentContainer>
-        <DateSelector selected={selectedDate} onChange={setSelectedDate} />
-        <MapContainer boothType={boothType} date={selectedDate} />
-        <ToolbarRow>
-          <BoothTypeToggle value={boothType} onChange={setBoothType} />
-          {/* <WaitingCheckButton onClick={() => setShowModal(true)}>
-            웨이팅 확인
-          </WaitingCheckButton> */}
-        </ToolbarRow>
-
+        <DaySelector
+          dates={dates}
+          selectedDate={selectedDate}
+          onSelect={setSelectedDate}
+        />
+        <MapContainer boothType={tab} date={selectedDate} />
+        <Toggle
+          options={[
+            { label: "낮 부스", value: "day" },
+            { label: "야간 부스", value: "night" },
+          ]}
+          current={tab}
+          onChange={handleToggle}
+        />
         {filteredBooths.length > 0 ? (
           <BoothListWrapper>
             {filteredBooths.map((booth) => {

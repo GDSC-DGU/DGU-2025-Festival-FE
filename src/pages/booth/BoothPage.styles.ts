@@ -59,7 +59,7 @@ export const BoothListWrapper = styled.div`
   position: relative;
   max-height: 320px;
   overflow-y: auto;
-  padding: 15px 4px;
+  padding: 4px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -94,16 +94,6 @@ export const BoothListWrapper = styled.div`
     height: 20px;
     z-index: 2;
     pointer-events: none;
-  }
-
-  &::before {
-    top: 0;
-    background: linear-gradient(to bottom, white, transparent);
-  }
-
-  &::after {
-    bottom: 0;
-    background: linear-gradient(to top, white, transparent);
   }
 `;
 

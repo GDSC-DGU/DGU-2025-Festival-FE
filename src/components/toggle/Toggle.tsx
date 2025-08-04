@@ -1,32 +1,32 @@
 import { ToggleContainer, TabButton } from "./Toggle.styles";
 
-export type ToggleOption = string;
+export interface ToggleOption {
+  label: string;
+  value: string;
+}
 
-export interface ToggleProps<T extends ToggleOption = string> {
-  options: [T, T];
+export interface ToggleProps<T extends string = string> {
+  options: [ToggleOption, ToggleOption];
   current: T;
   onChange: (val: T) => void;
 }
 
-const Toggle = <T extends ToggleOption>({
+const Toggle = <T extends string>({
   options,
   current,
   onChange,
 }: ToggleProps<T>) => {
   return (
     <ToggleContainer>
-      <TabButton
-        $isActive={current === options[0]}
-        onClick={() => onChange(options[0])}
-      >
-        {options[0]}
-      </TabButton>
-      <TabButton
-        $isActive={current === options[1]}
-        onClick={() => onChange(options[1])}
-      >
-        {options[1]}
-      </TabButton>
+      {options.map((option) => (
+        <TabButton
+          key={option.value}
+          $isActive={current === option.value}
+          onClick={() => onChange(option.value as T)}
+        >
+          {option.label}
+        </TabButton>
+      ))}
     </ToggleContainer>
   );
 };

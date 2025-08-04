@@ -1491,7 +1491,6 @@ export const booths: Booth[] = [
   //   position: { lat: 37.557045, lng: 127.002732 },
   //   images: getBoothImages(9, 3, "png"),
   //   waitingAvailable: false,
-    
   // },
   // {
   //   id: "224",

@@ -10,7 +10,7 @@ import {
   Section,
 } from "./TimetablePage.styles";
 import { useState, useMemo, useEffect } from "react";
-import DaySelectorList from "./components/DaySelectorList/DaySelectorList";
+import DaySelector from "@/components/daySelector/DaySelector";
 import { dates } from "./data/dates";
 import TimetableSection from "./components/TimetableSection/TimetableSection";
 import Lineup from "./components/Lineup/Lineup";
@@ -38,7 +38,7 @@ const TimetablePage = () => {
         <SubTitle>동국대학교 대동제</SubTitle>
         <MainTitle>Time Table</MainTitle>
         <SelectorContainer>
-          <DaySelectorList
+          <DaySelector
             dates={dates}
             selectedDate={selectedDate}
             onSelect={setSelectedDate}
