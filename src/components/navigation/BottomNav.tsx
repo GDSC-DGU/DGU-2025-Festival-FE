@@ -28,14 +28,14 @@ const navItems: NavItem[] = [
     path: "/",
     defaultIcon: HomeOff,
     activeIcon: HomeOn,
-    isClosed: true,
+    isClosed: false,
   },
   {
     label: "타임테이블",
     path: "/timetable",
     defaultIcon: TimetableOff,
     activeIcon: TimetableOn,
-    isClosed: true,
+    isClosed: false,
   },
   {
     label: "공지/분실물",
@@ -49,14 +49,14 @@ const navItems: NavItem[] = [
     path: "/booth",
     defaultIcon: BoothOff,
     activeIcon: BoothOn,
-    isClosed: true,
+    isClosed: false,
   },
   {
     label: "웨이팅",
     path: "/waiting",
     defaultIcon: WaitingOff,
     activeIcon: WaitingOn,
-    isClosed: true,
+    isClosed: false,
   },
 ];
 

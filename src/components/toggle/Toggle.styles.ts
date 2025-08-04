@@ -4,7 +4,7 @@ export const ToggleContainer = styled.div`
   display: flex;
   background-color: ${({ theme }) => theme.colors.gray100};
   border-radius: 999px;
-  padding: 6px;
+  padding: 4px;
   width: fit-content;
 `;
 

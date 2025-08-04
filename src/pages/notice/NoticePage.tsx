@@ -24,17 +24,15 @@ const NoticePage = () => {
   const { noticeList, setNoticeList } = useNoticeStore();
   const lostList = useLostStore((state) => state.lostList);
 
-  type NoticeTabType = "공지사항" | "분실물";
-  const [tab, setTab] = useState<NoticeTabType>("분실물");
+  type NoticeTabType = "notice" | "lost";
+  const [tab, setTab] = useState<NoticeTabType>("lost");
   const [showQuestionContent, setShowQuestionContent] =
     useState<boolean>(false);
 
   useEffect(() => {
     const saved = sessionStorage.getItem(STORAGE_KEY);
-    if (saved === "공지사항" || saved === "분실물") {
+    if (saved === "notice" || saved === "lost") {
       setTab(saved);
-    } else {
-      setTab("분실물");
     }
   }, []);
 
@@ -65,11 +63,14 @@ const NoticePage = () => {
       <ContentContainer>
         <Section>
           <Toggle
-            options={["공지사항", "분실물"]}
+            options={[
+              { label: "공지사항", value: "notice" },
+              { label: "분실물", value: "lost" },
+            ]}
             current={tab}
             onChange={handleToggle}
           />
-          {tab === "분실물" && (
+          {tab === "lost" && (
             <QuestionContainer
               onClick={() => setShowQuestionContent(!showQuestionContent)}
             >
@@ -83,7 +84,7 @@ const NoticePage = () => {
         </Section>
 
         <ToggleContainer>
-          {tab === "공지사항" ? (
+          {tab === "notice" ? (
             <NoticeList notices={noticeList} />
           ) : (
             <LostGrid lostItems={lostList} />
