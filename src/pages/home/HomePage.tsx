@@ -18,10 +18,10 @@ import Notice from "./components/Notice/Notice";
 import BoothRanking from "./components/BoothRanking/BoothRanking";
 import RankingIcon from "@/assets/icons/ranking.svg";
 import { booths } from "../booth/data/booths";
-import { boothRankingAPI } from "@/api/booth/booth";
+import { boothRankingAPI } from "@/api/booth/boothRanking";
 import { useEffect, useState } from "react";
 import type { BoothRankingItem } from "@/types/booth";
-import { NoticeListAPI } from "@/api/notice/notice";
+import { useNoticeList } from "@/api/notice/hooks/useNotice";
 import { useNoticeStore } from "@/stores/useNoticeStore";
 import { useOnScreenAnimation } from "@/hooks/useOnScreenAnimation";
 import HandImage from "@/assets/images/hand.webp";
@@ -31,8 +31,10 @@ import type { PerformanceItemType } from "../timetable/types/performanceItem";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const { data } = useNoticeList();
+  const { setPreviewNotices } = useNoticeStore();
+
   const [mappedBooths, setMappedBooths] = useState<BoothRankingItem[]>([]);
-  const previewNotices = useNoticeStore((state) => state.previewNotices);
   const timelineAnimation = useOnScreenAnimation<HTMLDivElement>();
   const noticeAnimation = useOnScreenAnimation<HTMLDivElement>();
   const rankingAnimation = useOnScreenAnimation<HTMLDivElement>();
@@ -65,13 +67,16 @@ const HomePage = () => {
       setMappedBooths(mapped);
     };
 
-    const fetchNoticeList = async () => {
-      await NoticeListAPI();
-    };
-
     fetchRanking();
-    fetchNoticeList();
   }, []);
+
+  const isValidNoticeList = Array.isArray(data);
+
+  useEffect(() => {
+    if (isValidNoticeList) {
+      setPreviewNotices(data.slice(0, 3));
+    }
+  }, [data, isValidNoticeList, setPreviewNotices]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -128,7 +133,7 @@ const HomePage = () => {
           >
             <Title>공지사항</Title>
           </TitleContainer>
-          <Notice notices={previewNotices} />
+          <Notice notices={isValidNoticeList ? data.slice(0, 3) : []} />
         </ContentContainer>
         <ContentContainer>
           <TitleContainer

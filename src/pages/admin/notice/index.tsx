@@ -16,8 +16,8 @@ import { useNavigate } from "react-router-dom";
 import FloatingLogoutButton from "./components/FloatingLogoutButton/FloatingLogoutButton";
 import { useNoticeStore } from "@/stores/useNoticeStore";
 import { useLostStore } from "@/stores/useLostStore";
-import { LostListAPI } from "@/api/notice/lost";
-import { NoticeListAPI } from "@/api/notice/notice";
+import { useLostList } from "@/api/notice/hooks/useLost";
+import { useNoticeList } from "@/api/notice/hooks/useNotice";
 
 const STORAGE_KEY = "notice_tab";
 
@@ -25,6 +25,7 @@ const AdminNoticePage = () => {
   const navigate = useNavigate();
   const noticeList = useNoticeStore((state) => state.noticeList);
   const lostList = useLostStore((state) => state.lostList);
+
   type NoticeTabType = "notice" | "lost";
   const [tab, setTab] = useState<NoticeTabType>("notice");
 
@@ -44,19 +45,6 @@ const AdminNoticePage = () => {
     const type = tab;
     navigate(`/admin/write?type=${type}`);
   };
-
-  useEffect(() => {
-    const fetchNoticeList = async () => {
-      await NoticeListAPI();
-    };
-
-    const fetchLostList = async () => {
-      await LostListAPI();
-    };
-
-    fetchNoticeList();
-    fetchLostList();
-  }, []);
 
   return (
     <Container>

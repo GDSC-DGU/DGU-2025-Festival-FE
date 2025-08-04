@@ -29,7 +29,7 @@ import { NoticePostAPI, NoticeDetailAPI, NoticePatchAPI } from '@/api/notice/not
 import { useNoticeStore } from '@/stores/useNoticeStore';
 import { useLostStore } from '@/stores/useLostStore';
 import type { LostFormData } from './components/LostForm';
-
+        
 const WritePage = () => {
     const isEditMode = useMatch('/admin/edit/:id') !== null;
     const { id: idParam } = useParams();
@@ -168,7 +168,6 @@ const WritePage = () => {
                     formData.append('brand', lostForm.brand);
                     formData.append('location', lostForm.location);
                     formData.append('note', lostForm.note);
-
                     imageFiles.forEach((file) => {
                         formData.append('images', file);
                     });

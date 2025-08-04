@@ -1,7 +1,7 @@
 import TopBar from "@/components/topbar/TopBar";
 import Toggle from "@/components/toggle/Toggle";
 import LostGrid from "./components/LostGrid/LostGrid";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   ContentContainer,
@@ -19,13 +19,16 @@ import FindModal from "./components/FindModal/FindModal";
 const STORAGE_KEY = "notice_tab";
 
 const NoticePage = () => {
-  const { noticeList, setNoticeList } = useNoticeStore();
+  const { noticeList } = useNoticeStore();
   const lostList = useLostStore((state) => state.lostList);
 
   type NoticeTabType = "notice" | "lost";
   const [tab, setTab] = useState<NoticeTabType>("lost");
   const [showQuestionContent, setShowQuestionContent] =
     useState<boolean>(false);
+
+  useNoticeList();
+  useLostList();
 
   useEffect(() => {
     const saved = sessionStorage.getItem(STORAGE_KEY);
@@ -38,22 +41,6 @@ const NoticePage = () => {
     setTab(selected);
     sessionStorage.setItem(STORAGE_KEY, selected);
   };
-
-  const fetchNoticeList = useCallback(async () => {
-    const newList = await NoticeListAPI();
-    if (Array.isArray(newList)) {
-      setNoticeList(newList);
-    }
-  }, [setNoticeList]);
-
-  const fetchLostList = async () => {
-    await LostListAPI();
-  };
-
-  useEffect(() => {
-    fetchNoticeList();
-    fetchLostList();
-  }, [fetchNoticeList]);
 
   return (
     <Container>
