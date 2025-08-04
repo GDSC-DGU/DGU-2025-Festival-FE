@@ -5,6 +5,7 @@ import {
   updateBoothStatusAPI,
 } from "@/api/booth/admin/adminBooth";
 import { withDelayedGlobalLoading } from "@/utils/delayedGlobalLoading";
+import type { BoothStatus } from "@/types/booth";
 
 /**
  * 특정 예약 팀에게 호출(Call) 처리하는 mutation 훅
@@ -51,7 +52,7 @@ export const useCompleteVisit = () => {
 
 export const useUpdateBoothStatus = () => {
   return useMutation({
-    mutationFn: (status: "AVAILABLE" | "FULL" | "END") =>
+    mutationFn: (status: BoothStatus) =>
       withDelayedGlobalLoading(updateBoothStatusAPI(status)),
   });
 };
