@@ -16,8 +16,8 @@ import { useNavigate } from "react-router-dom";
 import FloatingLogoutButton from "./components/FloatingLogoutButton/FloatingLogoutButton";
 import { useNoticeStore } from "@/stores/useNoticeStore";
 import { useLostStore } from "@/stores/useLostStore";
-import { LostListAPI } from "@/api/notice/lost";
-import { NoticeListAPI } from "@/api/notice/notice";
+import { useLostList } from "@/api/notice/hooks/useLost";
+import { useNoticeList } from "@/api/notice/hooks/useNotice";
 
 const STORAGE_KEY = "notice_tab";
 
@@ -25,12 +25,14 @@ const AdminNoticePage = () => {
   const navigate = useNavigate();
   const noticeList = useNoticeStore((state) => state.noticeList);
   const lostList = useLostStore((state) => state.lostList);
-  type NoticeTabType = "공지사항" | "분실물";
-  const [tab, setTab] = useState<NoticeTabType>("공지사항");
+
+  type NoticeTabType = "notice" | "lost";
+  const [tab, setTab] = useState<NoticeTabType>("notice");
+
   useEffect(() => {
     const saved = sessionStorage.getItem(STORAGE_KEY);
     if (saved === "분실물") {
-      setTab("분실물");
+      setTab("lost");
     }
   }, []);
 
@@ -40,22 +42,9 @@ const AdminNoticePage = () => {
   };
 
   const handleWrite = () => {
-    const type = tab === "공지사항" ? "notice" : "lost";
+    const type = tab;
     navigate(`/admin/write?type=${type}`);
   };
-
-  useEffect(() => {
-    const fetchNoticeList = async () => {
-      await NoticeListAPI();
-    };
-
-    const fetchLostList = async () => {
-      await LostListAPI();
-    };
-
-    fetchNoticeList();
-    fetchLostList();
-  }, []);
 
   return (
     <Container>
@@ -64,7 +53,10 @@ const AdminNoticePage = () => {
       <ContentContainer>
         <Section>
           <Toggle
-            options={["공지사항", "분실물"]}
+            options={[
+              { label: "공지사항", value: "notice" },
+              { label: "분실물", value: "lost" },
+            ]}
             current={tab}
             onChange={handleToggle}
           />
@@ -74,7 +66,7 @@ const AdminNoticePage = () => {
         </Section>
 
         <ToggleContainer>
-          {tab === "공지사항" ? (
+          {tab === "notice" ? (
             <NoticeList notices={noticeList} isAdmin={true} />
           ) : (
             <LostGrid isAdmin={true} lostItems={lostList} />

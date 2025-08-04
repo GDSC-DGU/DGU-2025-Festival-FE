@@ -5,7 +5,7 @@ import {
   requestPhoneCert,
   verifyPhoneCode,
   reserveBooth,
-} from "@/api/reservation";
+} from "@/api/booth/user/userBooth";
 // import { requestPermissionAndGetToken } from "@/firebase";
 
 interface Booth {

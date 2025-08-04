@@ -26,58 +26,42 @@ export const TitleWrapper = styled.div`
 export const Title = styled.h1`
   font-size: 20px;
   font-weight: 600;
-  color: #333c55;
+  color: ${({ theme }) => theme.colors.gray700};
   text-align: center;
 `;
 
 export const QuestionWrapper = styled.div`
   position: absolute;
-  right: 25px;
-  top: 60px;
+  right: 20px;
+  top: 70px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 4px;
 `;
 
-export const QuestionIcon = styled.img`
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  align-self: center;
-`;
-
-export const WaitingHint = styled.div`
-  font-size: 10px;
-  color: #7b84d4;
-  font-weight: 500;
-  text-align: right;
-`;
-
 export const MyWaitingBox = styled.div`
-margin-top: 40px;
   width: 100%;
   max-width: 300px;
-  display: column;            
-  justify-content: center;   
+  display: column;
+  justify-content: center;
 `;
-
 
 export const SubTitle = styled.h2`
   font-size: 16px;
   font-weight: 600;
-  color: #333c55;
+  color: ${({ theme }) => theme.colors.gray700};
   margin-bottom: 16px;
   margin-left: 6px;
 `;
 
 export const WaitingCard = styled.div`
   width: 100%;
-  max-width: 320px; 
+  max-width: 320px;
   padding: 16px;
-  border: 1px solid #f2dede; 
+  border: 1px solid #f2dede;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.white};
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -89,25 +73,25 @@ export const WaitingCardContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
-  flex: 1; 
+  flex: 1;
 `;
 
 export const BoothName = styled.div`
   font-size: 16px;
   font-weight: 600;
-  color: #333c55;
+  color: ${({ theme }) => theme.colors.gray700};
   margin-left: 6px;
 `;
 
 export const BoothInfo = styled.div`
   font-size: 12px;
-  color: #646e8b;
+  color: ${({ theme }) => theme.colors.gray500};
 `;
 
 export const Badge = styled.div`
   padding: 4px 12px;
   border-radius: 100px;
-  background-color: var(--gray-200);
+  background-color: ${({ theme }) => theme.colors.gray200};
   font-size: 12px;
   font-weight: 400;
   display: inline-block;
@@ -130,8 +114,6 @@ export const SectionTitle = styled.h3`
   font-size: 16px;
   font-weight: 600;
   color: #333c55;
-  margin-left: 6px;
-  margin-top: 40px;
 `;
 
 export const BoothList = styled.div`
@@ -139,8 +121,6 @@ export const BoothList = styled.div`
   flex-direction: column;
   gap: 20px;
 `;
-
-
 
 interface BoothActionButtonProps {
   $isCancel?: boolean;
@@ -157,10 +137,9 @@ export const BoothActionButton = styled.button<BoothActionButtonProps>`
   color: white;
   white-space: nowrap;
   text-align: center;
-  align-self: flex-end; 
-  margin-left: auto;  
+  align-self: flex-end;
+  margin-left: auto;
 `;
-
 
 export const BoothIntro = styled.div`
   font-size: 12px;
@@ -178,7 +157,6 @@ export const ImmediateEntryText = styled.div`
   align-self: flex-end;
   margin-left: auto;
 `;
-
 
 export const WaitingSummary = styled.div`
   padding: 4px 12px;

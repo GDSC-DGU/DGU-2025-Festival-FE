@@ -1,17 +1,15 @@
 import TopBar from "@/components/topbar/TopBar";
 import Toggle from "@/components/toggle/Toggle";
 import LostGrid from "./components/LostGrid/LostGrid";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   ContentContainer,
   ToggleContainer,
   Section,
-  QuestionContainer,
-  QuestionText,
 } from "./NoticePage.styles";
+import QuestionButton from "@/components/questionButton/questionButton";
 import NoticeList from "./components/NoticeList/NoticeList";
-import QuestionIcon from "@/assets/icons/question.svg";
 import { LostListAPI } from "@/api/notice/lost";
 import { NoticeListAPI } from "@/api/notice/notice";
 import { useNoticeStore } from "@/stores/useNoticeStore";
@@ -21,20 +19,21 @@ import FindModal from "./components/FindModal/FindModal";
 const STORAGE_KEY = "notice_tab";
 
 const NoticePage = () => {
-  const { noticeList, setNoticeList } = useNoticeStore();
+  const { noticeList } = useNoticeStore();
   const lostList = useLostStore((state) => state.lostList);
 
-  type NoticeTabType = "공지사항" | "분실물";
-  const [tab, setTab] = useState<NoticeTabType>("분실물");
+  type NoticeTabType = "notice" | "lost";
+  const [tab, setTab] = useState<NoticeTabType>("lost");
   const [showQuestionContent, setShowQuestionContent] =
     useState<boolean>(false);
 
+  useNoticeList();
+  useLostList();
+
   useEffect(() => {
     const saved = sessionStorage.getItem(STORAGE_KEY);
-    if (saved === "공지사항" || saved === "분실물") {
+    if (saved === "notice" || saved === "lost") {
       setTab(saved);
-    } else {
-      setTab("분실물");
     }
   }, []);
 
@@ -43,47 +42,31 @@ const NoticePage = () => {
     sessionStorage.setItem(STORAGE_KEY, selected);
   };
 
-  const fetchNoticeList = useCallback(async () => {
-    const newList = await NoticeListAPI();
-    if (Array.isArray(newList)) {
-      setNoticeList(newList);
-    }
-  }, [setNoticeList]);
-
-  const fetchLostList = async () => {
-    await LostListAPI();
-  };
-
-  useEffect(() => {
-    fetchNoticeList();
-    fetchLostList();
-  }, [fetchNoticeList]);
-
   return (
     <Container>
       <TopBar title="공지사항 및 분실물" />
       <ContentContainer>
         <Section>
           <Toggle
-            options={["공지사항", "분실물"]}
+            options={[
+              { label: "공지사항", value: "notice" },
+              { label: "분실물", value: "lost" },
+            ]}
             current={tab}
             onChange={handleToggle}
           />
-          {tab === "분실물" && (
-            <QuestionContainer
+          {tab === "lost" && (
+            <QuestionButton
+              text="어디서 찾나요?"
               onClick={() => setShowQuestionContent(!showQuestionContent)}
-            >
-              <img src={QuestionIcon} width={20} height={20} alt="?" />
-              <QuestionText>어디서 찾나요?</QuestionText>
-              {showQuestionContent && (
-                <FindModal onClose={() => setShowQuestionContent(false)} />
-              )}
-            </QuestionContainer>
+            />
           )}
         </Section>
-
+        {showQuestionContent && (
+          <FindModal onClose={() => setShowQuestionContent(false)} />
+        )}
         <ToggleContainer>
-          {tab === "공지사항" ? (
+          {tab === "notice" ? (
             <NoticeList notices={noticeList} />
           ) : (
             <LostGrid lostItems={lostList} />
