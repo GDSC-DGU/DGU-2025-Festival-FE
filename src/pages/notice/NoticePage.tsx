@@ -7,11 +7,9 @@ import {
   ContentContainer,
   ToggleContainer,
   Section,
-  QuestionContainer,
-  QuestionText,
 } from "./NoticePage.styles";
+import QuestionButton from "@/components/questionButton/questionButton";
 import NoticeList from "./components/NoticeList/NoticeList";
-import QuestionIcon from "@/assets/icons/question.svg";
 import { LostListAPI } from "@/api/notice/lost";
 import { NoticeListAPI } from "@/api/notice/notice";
 import { useNoticeStore } from "@/stores/useNoticeStore";
@@ -71,18 +69,15 @@ const NoticePage = () => {
             onChange={handleToggle}
           />
           {tab === "lost" && (
-            <QuestionContainer
+            <QuestionButton
+              text="어디서 찾나요?"
               onClick={() => setShowQuestionContent(!showQuestionContent)}
-            >
-              <img src={QuestionIcon} width={20} height={20} alt="?" />
-              <QuestionText>어디서 찾나요?</QuestionText>
-              {showQuestionContent && (
-                <FindModal onClose={() => setShowQuestionContent(false)} />
-              )}
-            </QuestionContainer>
+            />
           )}
         </Section>
-
+        {showQuestionContent && (
+          <FindModal onClose={() => setShowQuestionContent(false)} />
+        )}
         <ToggleContainer>
           {tab === "notice" ? (
             <NoticeList notices={noticeList} />
