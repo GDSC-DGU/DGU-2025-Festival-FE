@@ -29,3 +29,5 @@ export interface BoothRankingItem {
   image?: string;
   score: string;
 }
+
+export type BoothStatus = "AVAILABLE" | "FULL" | "PREPARING" | "END";

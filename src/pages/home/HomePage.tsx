@@ -18,7 +18,7 @@ import Notice from "./components/Notice/Notice";
 import BoothRanking from "./components/BoothRanking/BoothRanking";
 import RankingIcon from "@/assets/icons/ranking.svg";
 import { booths } from "../booth/data/booths";
-import { boothRankingAPI } from "@/api/booth/booth";
+import { boothRankingAPI } from "@/api/booth/boothRanking";
 import { useEffect, useState } from "react";
 import type { BoothRankingItem } from "@/types/booth";
 import { useNoticeList } from "@/api/notice/hooks/useNotice";
